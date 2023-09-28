@@ -1,2 +1,2 @@
-# Gotehenburg-guide
+# Gothenburg-guide
 Program and quiz about gothemburg
