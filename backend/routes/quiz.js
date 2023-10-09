@@ -34,6 +34,7 @@ router.get("/abcquestion/:id", (request, response, next) => {
         if(result[0]?.question){
             const data = result[0]
             delete data.correct;
+            
             response.json(data)
         }
         else{
