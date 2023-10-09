@@ -6,9 +6,8 @@ var con = mysql.createConnection({
     database: "gbgmysql"
   });
 
-
 function createtable(){
-    //we should make all tables here!
+
     con.connect(function(err) {
         if (err) throw err;
         console.log("Connected!");
@@ -21,8 +20,6 @@ function createtable(){
         });
     });
 }
-
-
 
 function createtableForRegiseter(){
     con.connect(function(err) {
