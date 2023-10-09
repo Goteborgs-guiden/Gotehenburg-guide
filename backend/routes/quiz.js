@@ -7,9 +7,24 @@ const database = require("../sql")
 module.exports=router;
 //http endpoints
 router.use(bodyParser.json())
-router.post("/abcanswer",(request,response, next) =>{
+router.post("/abcanswer/:id",(request,response, next) =>{
     const body = request.body;
-    //todo William löser det
+    let id = request.params.id;
+    let sql = 'SELECT * FROM abcquestion WHERE id = '+id;
+    database.con.query(sql,(err, result) => {
+        if(err) console.warn("error getting the data");
+        if(result[0]?.question){
+            if(body.answer === result[0].correct){
+                response.send(true);
+            }
+            else{
+                response.send(false);
+            }
+        }
+        else{
+            response.status(404).send("site not found")
+        }
+    });
     response.send("ok")
 })
 router.get("/abcquestion/:id", (request, response, next) => {
@@ -17,7 +32,6 @@ router.get("/abcquestion/:id", (request, response, next) => {
     let sql = 'SELECT * FROM abcquestion WHERE id = '+id;
     database.con.query(sql,(err, result) => {
         if(err) console.warn("error getting the data");
-        response.send
         if(result[0]?.question){
             const data = result[0]
             delete data.correct;
