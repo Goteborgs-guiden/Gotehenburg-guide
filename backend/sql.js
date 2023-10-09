@@ -24,10 +24,9 @@ function createtable(){
 function createtableForRegiseter(){
     con.connect(function(err) {
         if (err) throw err;
-        console.log("Connected!");
         var tableForRegister = "CREATE TABLE account (username VARCHAR(255) NOT NULL , password VARCHAR(255) NOT NULL, token VARCHAR(255) NOT NULL) ";
         con.query(tableForRegister, function (err, result) {
-            if (err) console.warn("table exists");
+            if (err) console.warn("register table exists");
             else{
                 console.log("Table created");
             }
