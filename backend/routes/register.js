@@ -14,6 +14,13 @@ router.use(express.urlencoded({extended: true}));
 router.post("/", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
+    const first_name = req.body.first_name;
+    const surname = req.body.surname;
+    const img = req.body.img;
+    const district = req.body.district;
+    const date_of_birth = req.body.date_of_birth;
+
+
     bcrypt.genSalt(10, function (err, Salt){
         bcrypt.hash(password, Salt, function (err, hash){
             if (err) {
@@ -23,8 +30,8 @@ router.post("/", (req, res) => {
             console.log(hash);
             bcrypt.compare(password, hashedPassword, async function (err, isMatch){
                 if (isMatch){
-                    console.log('Encrypted password is: ', password);
-                    console.log('Decrypted password is: ', hashedPassword);
+                    //console.log('Encrypted password is: ', password);
+                    //console.log('Decrypted password is: ', hashedPassword);
                 }
                 if (!isMatch){
                     console.log(hashedPassword+ 'is not encryption of'+ password);
@@ -43,10 +50,10 @@ router.post("/", (req, res) => {
                 database.con.connect(function (err) {
                     if (err) throw err;
                     console.log("Connected!");
-                    var sql = "INSERT INTO account (username, password, token) VALUES ";
+                    var sql = "INSERT INTO account (username, password, token, first_name, surname, img, district, date_of_birth) VALUES ";
                     database.con.query({
-                        sql: 'INSERT INTO account (username, password, token) VALUES (?, ?, ?)',
-                        values: [username, hashedPassword, token()]
+                        sql: 'INSERT INTO account (username, password, token, first_name, surname, img, district, date_of_birth) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                        values: [username, hashedPassword, token(), first_name, surname, img, district, date_of_birth]
                     }, function (error, results, fields) {
                         if (err) throw err;
                         console.log("1 record inserted");

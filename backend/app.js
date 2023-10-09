@@ -10,7 +10,7 @@ const quiz = require('./routes/quiz')
 const register = require('./routes/register')
 
 app.use("/quiz", quiz)
-app.use("/register/", register)
+app.use("/register", register)
 
 app.listen(port, () => {
     database.createtable();
