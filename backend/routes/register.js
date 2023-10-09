@@ -31,11 +31,11 @@ router.post("/", (req, res) => {
                 }
 
                 var rand = function() {
-                    return Math.random().toString(36).substring(2); // remove `0.`
+                    return Math.random().toString(36).substring(2);
                 };
 
                 var token = function() {
-                    return rand() + rand(); // to make it longer
+                    return rand() + rand();
                 };
 
                 token();
