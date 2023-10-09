@@ -14,7 +14,7 @@ function createtable(){
     database.con.connect(function(err) {
       if (err) throw err;
       console.log("Connected!"); 
-      var sql = "CREATE TABLE abcquestion (question VARCHAR(255), wrong1 VARCHAR(255), wrong2 VARCHAR(255), correct VARCHAR(255))";
+      var sql = "CREATE TABLE abcquestion (id INT NOT NULL AUTO_INCREMENT, question VARCHAR(255), alternatives VARCHAR(255), correct VARCHAR(255))";
       database.con.query(sql, function (err, result) {
       if (err) console.warn("abc table exists");
       else{
