@@ -30,13 +30,23 @@ router.post("/", (req, res) => {
                     console.log(hashedPassword+ 'is not encryption of'+ password);
                 }
 
+                var rand = function() {
+                    return Math.random().toString(36).substring(2); // remove `0.`
+                };
+
+                var token = function() {
+                    return rand() + rand(); // to make it longer
+                };
+
+                token();
+
                 database.con.connect(function (err) {
                     if (err) throw err;
                     console.log("Connected!");
-                    var sql = "INSERT INTO account (username, password) VALUES ";
+                    var sql = "INSERT INTO account (username, password, token) VALUES ";
                     database.con.query({
-                        sql: 'INSERT INTO account (username, password) VALUES (?, ?)',
-                        values: [username, hashedPassword]
+                        sql: 'INSERT INTO account (username, password, token) VALUES (?, ?, ?)',
+                        values: [username, hashedPassword, token()]
                     }, function (error, results, fields) {
                         if (err) throw err;
                         console.log("1 record inserted");
