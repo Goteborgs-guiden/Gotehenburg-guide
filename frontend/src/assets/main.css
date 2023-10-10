@@ -1,1 +1,50 @@
+html {
+    min-height: 77%;
+    background-image: url(stadssiluett.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin:0;
+    padding:0;
+}
+
+body {
+    margin:0;
+    padding:0;
+}
+
+header{
+    background-color: #214F75;
+    padding-bottom: 30px;
+}
+.mainHeader{
+    color: white;
+    font-size: 30px;
+}
+.partOfHeader{
+    background-color: #406C90;
+    margin: 0;
+    padding-top: 20px;
+}
+.footer {
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    color: white;
+}
+
+div#copyright{
+    text-align: center;
+    padding-left: 600px;
+    padding-bottom: 10px;
+}
+div#contact{
+    text-align: center;
+    padding-left: 50px;
+    padding-bottom: 10px;
+}
+
 
