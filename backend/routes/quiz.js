@@ -1,9 +1,14 @@
+
 const express=require('express')
 const router=express.Router()
 const mysql = require("mysql2")
 const bodyParser = require('body-parser')
 const database = require("../sql")
+const cors = require('cors');
 
+router.use(cors({
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+}));
 module.exports=router;
 //http endpoints
 router.use(bodyParser.json())

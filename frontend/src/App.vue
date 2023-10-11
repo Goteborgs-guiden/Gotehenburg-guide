@@ -6,6 +6,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/new">New</RouterLink>
+        <RouterLink to="/AbcView">abcview</RouterLink>
     </div>
   </header>
   <RouterView />
