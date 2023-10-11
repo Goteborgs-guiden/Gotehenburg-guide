@@ -24,13 +24,15 @@ router.post("/abcanswer/:id",(request,response, next) =>{
         else{
             response.status(404).send("site not found")
         }
-    }); 
+    });
+    response.send("ok")
 })
 router.get("/abcquestion/:id", (request, response, next) => {
     let id = request.params.id;
     let sql = 'SELECT * FROM abcquestion WHERE id = '+id;
     database.con.query(sql,(err, result) => {
         if(err) console.warn("error getting the data");
+        response.send
         if(result[0]?.question){
             const data = result[0]
             delete data.correct;
