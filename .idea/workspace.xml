@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="700fd73d-c9f8-46ad-9444-daa7554d4e20" name="Changes" comment="">
+    <list default="true" id="700fd73d-c9f8-46ad-9444-daa7554d4e20" name="Changes" comment="Start with homepage">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Homepage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TheHomepage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/HomeView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/stadssiluett.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/stadssiluett.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/NewView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/NewView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,9 +35,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2WYtBaT7NN678kcaeqrOO606dd8" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -49,7 +51,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "30-design-homepage-in-vue",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Simon/WebstormProjects/Vue-Webb-Labb2",
+    "last_opened_file_path": "C:/Users/Simon/WebstormProjects/Labb-1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -107,5 +109,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Start with homepage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start with homepage" />
   </component>
 </project>

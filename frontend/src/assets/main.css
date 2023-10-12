@@ -21,11 +21,15 @@ header{
     color: white;
     font-size: 30px;
 }
-.partOfHeader{
+.navbar{
     background-color: #406C90;
     margin: 0;
-    padding-top: 20px;
+    padding-top: 5px;
+    padding-right: 10px;
+    text-align: right;
 }
+
+
 .footer {
 
     position: absolute;
@@ -41,10 +45,25 @@ div#copyright{
     padding-left: 600px;
     padding-bottom: 10px;
 }
+
 div#contact{
     text-align: center;
     padding-left: 50px;
     padding-bottom: 10px;
 }
+.RouterL{
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.wrapper{
+    float: right;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+
+
+
+
 
 
