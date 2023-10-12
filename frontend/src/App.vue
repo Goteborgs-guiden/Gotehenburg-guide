@@ -1,14 +1,11 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import EditPage from './components/EditPage.vue';
+import MainContainer from './components/MainContainer.vue';
 </script>
 <template>
-  <header>
-    <div class="wrapper">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/new">New</RouterLink>
-    </div>
-  </header>
-  <RouterView />
+  <MainContainer>
+    <EditPage/>
+  </MainContainer>
 </template>
 <style scoped>
 </style>
