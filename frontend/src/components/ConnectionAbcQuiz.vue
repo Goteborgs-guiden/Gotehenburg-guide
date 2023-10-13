@@ -1,10 +1,10 @@
 <script setup>
   import { ref } from 'vue';
-  let input = ref('');
   let message = ref('');
   let id = ref('id');
   const apiUrl = "http://127.0.0.1:3000/";
   let abcdata = ref('');
+  let alternatives = ref (['']);
   fetch(apiUrl)
   .then(response => response.text())
   .then(data => {
@@ -14,27 +14,17 @@
   .catch(error => {
     console.error('Error:', error);
   });
-  function saveInfo(input){
-    fetch("http://127.0.0.1:3000/user", {
-      method: 'POST',
-      body: input,
-      headers:{
-        'Content-type':'text/plain',
-      },
-    }).then(response => response.text())
-    .then(data =>{
-      console.log('response from server:',data);
-    })
-  }
+
   function sendJson(input, id){
-    const obj = [input,id];
-    fetch("http://127.0.0.1:3000/abcanswer", {
+    
+    console.log(input);
+    fetch("http://127.0.0.1:3000/quiz/abcanswer/" + id, {
       method: 'POST',
-      body: obj,
+      body: JSON.stringify({answer:input}),
       headers:{
-        'Content-type':'text/json',
+        'Content-type':'application/json',
       },
-    }).then(response => response.text())
+    }).then(response => response.json())
     .then(data =>{
       console.log('response from server:',data);
     })
@@ -48,24 +38,27 @@
     .then(data =>{
       console.log('response from server:',data)
       abcdata.value = data;
+      alternatives.value = data.alternatives.split(",");
     })
    
   }
 </script>
 
 <template>
-  <div>
-    <p>{{message}}</p>
+<div>
+   <p>{{message}}</p>
     <from>
-      <input v-model="input" type="text">
-      <button @click="saveInfo(input)">submit</button>
-      <input v-model="id" type="number">
-      <button @click="sendJson(id,input)">send data</button>
-      <input v-model="id" type="id">
-      <button @click="getQuestion(id)">Show Question</button>
-    </from>
-  </div>
+    </from> 
+  </div> 
   <p>{{abcdata}}</p>
+  <from>
+    <input v-model="id" type="">
+    <button @click="getQuestion(id)">Show Question</button>
+    <button @click="sendJson(alternatives[0],id)">{{alternatives[0]}}</button>
+    <button @click="sendJson(alternatives[1],id)">{{alternatives[1]}}</button>
+    <button @click="sendJson(alternatives[2],id)">{{alternatives[2]}}</button>
+    <button @click="sendJson(alternatives[3],id)">{{alternatives[3]}}</button>
+  </from>
 </template>
 <style scoped>
 </style> 

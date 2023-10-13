@@ -4,6 +4,5 @@ import ConnectionAbcQuiz from '../components/ConnectionAbcQuiz.vue'
 <template>
     <main>
       <ConnectionAbcQuiz />
-      <h1>HEJ</h1>
     </main>
   </template>
