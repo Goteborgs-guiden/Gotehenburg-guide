@@ -109,28 +109,30 @@ router.get("/", (req, res) => {
               });
             });
           } else {
-            res.status(401).send("Username or Wrong password");
+            res.status(401).send("Wrong credentials");
           }
         });
       } else {
-        res.status(404).send("User not found");
+        res.status(401).send("Wrong credentials");
       }
     });
   });
 });
 function authenticateToken(req, res, next) {
+  // skicka http request om token inte är giltigt 404 typ
+
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
-  if (token == null) return res.status(401);
+  if (token == null) return res.sendStatus(401);
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    if (err) return res.status(403);
+    if (err) return res.sendStatus(403);
     req.user = user;
     next();
   });
 }
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "1800s",
+    expiresIn: "18s",
   });
 }
 /*This endpoint is only for testing authenticateToken should be removed later*/
