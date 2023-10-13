@@ -14,8 +14,8 @@ const birthDate = ref ('')
 <template>
   <section>
     <div id="profile-picture">
-      <img >
-      <button id="profilbild">Ändra profilbild</button>
+      <img src="">
+      <button id="profilepic">Ändra profilbild</button>
     </div>
     <div id="edit-instructions">
       
