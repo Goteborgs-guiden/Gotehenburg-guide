@@ -6,12 +6,12 @@ const bcrypt = require("bcryptjs");
 const { hashPassword } = require("mysql/lib/protocol/Auth");
 const { use } = require("./register");
 const jwt = require("jsonwebtoken");
-
+const cors = require("cors");
 module.exports = router;
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
-
+router.use(cors());
 router.post("/", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -77,7 +77,7 @@ router.post("/", (req, res) => {
   });
 });
 
-router.get("/", (req, res) => {
+router.post("/login", (req, res) => {
   username = req.body.username;
   password = req.body.password;
   database.con.connect(function (err) {
@@ -119,8 +119,6 @@ router.get("/", (req, res) => {
   });
 });
 function authenticateToken(req, res, next) {
-  // skicka http request om token inte är giltigt 404 typ
-
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.sendStatus(401);
@@ -132,7 +130,7 @@ function authenticateToken(req, res, next) {
 }
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "18s",
+    expiresIn: "1800s",
   });
 }
 /*This endpoint is only for testing authenticateToken should be removed later*/

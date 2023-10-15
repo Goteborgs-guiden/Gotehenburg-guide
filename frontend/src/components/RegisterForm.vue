@@ -28,8 +28,6 @@ let date_of_birth = ref("");
 <template>
   <header>
     <div class="wrapper">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/new">New</RouterLink>
         <form>
           <label>Register</label>
           <label>Username</label>
@@ -50,7 +48,10 @@ let date_of_birth = ref("");
         </form>
     </div>
   </header>
-  <RouterView />
 </template>
 <style scoped>
+  form{
+    display: flex;
+    flex-direction: column;
+  }
 </style>
