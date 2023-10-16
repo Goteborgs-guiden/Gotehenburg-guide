@@ -1,7 +1,9 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import MainContainer from './components/MainContainer.vue';
 </script>
 <template>
+  <MainContainer>
+  </MainContainer>
   <header>
     <div class="wrapper">
         <RouterLink class="RouterL" to="/">Home</RouterLink>
