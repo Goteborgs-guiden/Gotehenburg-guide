@@ -5,7 +5,7 @@ const app = express();
 const mysql = require("mysql2")
 const port = 3000;
 const database = require("./sql")
-
+const register = require('./routes/register')
 const quiz=require('./routes/quiz')
 app.use("/quiz",quiz)
 function createtable(){
@@ -24,8 +24,12 @@ function createtable(){
     });
   }
 
-app.listen(port,()=>{
-    createtable();  
+app.use("/quiz", quiz)
+app.use("/register", register)
+
+app.listen(port, () => {
+    database.createtable();
+    database.createtableForRegiseter();
     console.log(`app listening on port ${port}`);
 });
 app.use(cors({
