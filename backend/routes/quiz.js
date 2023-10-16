@@ -6,9 +6,7 @@ const bodyParser = require('body-parser')
 const database = require("../sql")
 const cors = require('cors');
 
-router.use(cors({
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
-}));
+router.use(cors());
 module.exports=router;
 //http endpoints
 router.use(bodyParser.json())
@@ -20,17 +18,16 @@ router.post("/abcanswer/:id",(request,response, next) =>{
         if(err) console.warn("error getting the data");
         if(result[0]?.question){
             if(body.answer === result[0].correct){
-                response.send(true);
+                response.status(200).send(true);
             }
             else{
-                response.send(false);
+                response.status(200).send(false);
             }
         }
         else{
             response.status(404).send("site not found")
         }
     });
-    response.send("ok")
 })
 router.get("/abcquestion/:id", (request, response, next) => {
     let id = request.params.id;
