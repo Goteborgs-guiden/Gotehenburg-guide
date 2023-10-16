@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useDialogStore = defineStore('dialog', () => {
   const showRegister = ref(false)
-  const showLogin = ref(true)
+  const showLogin = ref(false)
   function toggleRegister() {
     showRegister.value = !showRegister.value
   }

@@ -27,8 +27,9 @@ const dialogs = useDialogStore()
 <style scoped>
 .popup-background {
     position: absolute;
-    background: rgba(0,0,0,0.5);
+    background: rgba(112, 38, 38, 0.5);
     top: 0;
-    right: 0;
+    right: 50%;
+    margin: auto;
 }
 </style>

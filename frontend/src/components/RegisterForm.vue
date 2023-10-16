@@ -1,5 +1,4 @@
 <script setup>
-import { RouterLink, RouterView} from 'vue-router'
 import { ref } from 'vue'
 let username = ref("");
 let password = ref("");
@@ -33,17 +32,15 @@ let date_of_birth = ref("");
           <label>Username</label>
           <input type="text" v-model="username" placeholder="username">
           <label>Password</label>
-          <input type="text" v-model="password" placeholder="password">
+          <input type="password" v-model="password" placeholder="password">
           <label>First Name</label>
           <input type="text" v-model="first_name" placeholder="first_name">
           <label>Surname</label>
           <input type="text" v-model="surname" placeholder="surname">
-          <label>Img</label>
-          <input type="text" v-model="img" placeholder="img">
           <label>District</label>
           <input type="text" v-model="district" placeholder="district">
           <label>Date of Birth</label>
-          <input type="text" v-model="date_of_birth" placeholder="date_of_birth">
+          <input type="date" v-model="date_of_birth" placeholder="date_of_birth">
           <input type="submit" value="Register" @click.prevent="register()">
         </form>
     </div>

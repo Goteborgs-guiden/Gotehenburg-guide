@@ -31,7 +31,7 @@
           <label>Username</label>
           <input type="text" v-model="username" placeholder="username">
           <label>Password</label>
-          <input type="text" v-model="password" placeholder="password">
+          <input type="password" v-model="password" placeholder="password">
           <input type="submit" value="login" @click.prevent="login()">
         </form>
     </div>
