@@ -2,30 +2,19 @@
   import { onMounted, ref } from 'vue';
   let message = ref('');
   let id = ref(0);
-  const apiUrl = "http://127.0.0.1:3000/";
+  //const apiUrl = "http://127.0.0.1:3000/";
   let abcdata = ref('');
   let alternatives = ref (['']);
   let correctData =  ref ('');
   let onGoingQuiz = true;
   let points = ref(0);
-
-  fetch(apiUrl)
-  .then(response => response.text())
-  .then(data => {
-     
-    console.log('Response from server:', data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
   
   onMounted(() => {
      if(id.value===0)  
     getQuestion(1),getQuestion(id.value++)
 
   })
-  function sendJson(input, id){
-    
+  function sendAnswer(input, id){
     console.log(input);
     fetch("http://127.0.0.1:3000/quiz/abcanswer/" + id, {
       method: 'POST',
@@ -69,10 +58,10 @@
   <div v-if="onGoingQuiz">
   <p>{{abcdata}}</p>
   <from> 
-    <button @click="sendJson(alternatives[0],id, getQuestion(id++),getQuestion(id))">{{alternatives[0]}}</button>
-    <button @click="sendJson(alternatives[1],id, getQuestion(id++),getQuestion(id))">{{alternatives[1]}}</button>
-    <button @click="sendJson(alternatives[2],id, getQuestion(id++),getQuestion(id))">{{alternatives[2]}}</button>
-    <button @click="sendJson(alternatives[3],id, getQuestion(id++),getQuestion(id))">{{alternatives[3]}}</button>
+    <button @click="sendAnswer(alternatives[0],id, getQuestion(id++),getQuestion(id))">{{alternatives[0]}}</button>
+    <button @click="sendAnswer(alternatives[1],id, getQuestion(id++),getQuestion(id))">{{alternatives[1]}}</button>
+    <button @click="sendAnswer(alternatives[2],id, getQuestion(id++),getQuestion(id))">{{alternatives[2]}}</button>
+    <button @click="sendAnswer(alternatives[3],id, getQuestion(id++),getQuestion(id))">{{alternatives[3]}}</button>
     
   </from>
   <p v-if="correctData">Rätt svar!</p>
