@@ -1,8 +1,11 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+//import TheWelcome from '../components/TheWelcome.vue'
+import Homepage from "@/components/TheHomepage.vue";
 </script>
 <template>
   <main>
-    <TheWelcome />
+<!--    <TheWelcome />-->
+    <Homepage />
   </main>
+
 </template>

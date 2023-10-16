@@ -4,6 +4,14 @@ import MainContainer from './components/MainContainer.vue';
 <template>
   <MainContainer>
   </MainContainer>
+  <header>
+    <div class="wrapper">
+        <RouterLink class="RouterL" to="/">Home</RouterLink>
+        <RouterLink class="RouterL" to="/new">New</RouterLink>
+    </div>
+  </header>
+  <RouterView />
 </template>
 <style scoped>
+
 </style>
