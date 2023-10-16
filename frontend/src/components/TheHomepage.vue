@@ -10,8 +10,13 @@ import {RouterLink} from "vue-router";
     <RouterLink class="RouterL"  to="/">Quiz</RouterLink>
     <RouterLink class="RouterL"  to="/">Hitta i GBG</RouterLink>
     <RouterLink class="RouterL" to="/">GBGuide</RouterLink>
-    <input>
+    <input placeholder="Search">
   </p>
+  <div>
+    <a href="#"><img width="30%" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1"></a>
+    <a href="#"><img width="30%" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2"></a>
+    <a href="#"><img width="30%" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3"></a>
+  </div>
   <p>
     <a><textarea placeholder="fun fact of the day"></textarea></a>
   </p>
@@ -21,7 +26,11 @@ import {RouterLink} from "vue-router";
   </footer>
 </template>
 <style scoped>
-
+img{
+  margin-top: 20px;
+  margin-left:30px;
+  size: 70%;
+}
 textarea{
   display: block;
   margin-left: auto;
