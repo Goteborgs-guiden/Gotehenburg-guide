@@ -18,6 +18,26 @@ const router = createRouter({
       path: '/AbcView',
       name: 'AbcView',
       component: () => import('../views/AbcView.vue')
+    },
+    {
+      path: '/OrdvitsarQuiz',
+      name: 'OrdvitsarQuiz',
+      component: () => import('../views/OrdvitsarQuiz.vue')
+    },
+    {
+      path: '/MapQuizView',
+      name: 'MapQuiz',
+      component: () => import('../views/MapQuizView/MapQuizView.vue')
+    },
+    {
+      path: '/MapQuizView2',
+      name: 'MapQuiz2',
+      component: () => import('../views/MapQuizView/MapQuizView2.vue')
+    },
+    {
+      path: '/MapQuizView3',
+      name: 'MapQuiz3',
+      component: () => import('../views/MapQuizView/MapQuizView3.vue')
     }
     
 
