@@ -38,8 +38,12 @@ const router = createRouter({
       path: '/MapQuizView3',
       name: 'MapQuiz3',
       component: () => import('../views/MapQuizView/MapQuizView3.vue')
+    },
+    {
+      path: '/Profile',
+      name: 'Profile',
+      component: () => import('../views/ProfilePage.vue')
     }
-    
 
   ]
 })
