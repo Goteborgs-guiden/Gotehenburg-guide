@@ -7,26 +7,11 @@ const port = 3000;
 const database = require("./sql")
 const register = require('./routes/register')
 const quiz=require('./routes/quiz')
-app.use("/quiz",quiz)
-function createtable(){
-    //we should make all tables here!
-    //denna borde vara i sql simon fixar!!!
-    database.con.connect(function(err) {
-      if (err) throw err;
-      console.log("Connected!"); 
-      var sql = "CREATE TABLE abcquestion (id INT NOT NULL AUTO_INCREMENT, question VARCHAR(255), alternatives VARCHAR(255), correct VARCHAR(255), PRIMARY KEY (id))";
-      database.con.query(sql, function (err, result) {
-      if (err) console.warn("abc table exists");
-      else{
-        console.log("Table created");
-      }
-    });
-    });
-  }
+const highscore=require('./routes/highscore')
 
 app.use("/quiz", quiz)
-app.use("/register", register)
-
+app.use("/register", register.router)
+app.use("/highscore", highscore)
 app.listen(port, () => {
     database.createtable();
     database.createtableForRegiseter();
