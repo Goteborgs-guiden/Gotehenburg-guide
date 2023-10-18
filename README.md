@@ -191,7 +191,55 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>-->
 
+## API Reference
 
+```http
+  GET  /quiz/abcquestion/{id}
+  GET /highscore/toplist
+  
+```
+**Requires** json
+
+POST /quiz/abcanswer/{id} 
+
+        {
+            "answer":"example"
+        }
+**Requires** json
+
+POST /register 
+
+        {
+            "username":"username",
+            "password":"pass",
+            "first_name":"f_name",
+            "surname":"l_name",
+            "img":"",
+            "district":"charmanderstreet",
+            "date_of_birth":"2023/10/18"
+        }
+**Requires** json
+
+POST /register/login 
+
+        {
+            "username":"username",
+            "password":"pass",
+        }
+**Requires** json        
+
+DELETE /register/logout : POST /register/token 
+
+        {
+            "token":"your_valid_refreshtoken"
+        }
+**Requires** json
+
+POST /highscore BEARER:access token
+
+        {
+            "score":"11"
+        }
 
 <!-- LICENSE -->
 ## License
