@@ -117,7 +117,6 @@ box-shadow: 0px 4px 4px 9px rgba(0, 0, 0, 0.30);
 border-radius: 6px;
 border: 1px solid #000;
 background: #FFF;
-
 text-align: center;
 color: #000;
 font-family: Nikukyu;
@@ -127,10 +126,90 @@ font-weight: 400;
 line-height: normal;
 }
 
+.pos-1 {
+border-radius: 6px;
+border: 1px solid #000;
+background: #FFF;
+color: #000;
+font-family: Nikukyu;
+font-size: 57px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.pos-2 {
+border-radius: 6px;
+border: 1px solid #000;
+background: #FFCD37;
+color: #599BD6;
+}
+
+.pos-3{
+border-radius: 6px;
+border: 1px solid #000;
+background: #1A09E7;
+color: #FFF;
+}
+
+.pos-4 {
+border-radius: 6px;
+border: 1px solid #000;
+background: #12A621;
+color: #FFF;
+}
+
+.pos-5 {
+border-radius: 6px;
+border: 1px solid #000;
+background: #DE0101;
+color: #FFF;
+}
+
+.pos-6 {
+border-radius: 6px;
+border: 1px solid #000;
+background: #DD5F04;
+color: #09068D;
+}
+
+.pos-7 {
+border-radius: 6px;
+border: 1px solid #000;
+background: rgba(112, 57, 33, 0.92);
+}
+
+.pos-8 {
+border-radius: 6px;
+border: 1px solid #000;
+background: #6D0370;
+color: #FFF;
+}
+
+.pos-9 {
+border-radius: 6px;
+border: 1px solid #000;
+background: #7CC9F4;
+color: #214F75;
+}
+
+.pos-10 {
+border-radius: 6px;
+border: 1px solid #000;
+background: #7BCF8E;
+}
+
+.pos-11 {
+border-radius: 6px;
+background: #151515;
+color: #D4D3D3;
+}
+
 .user {
 width: 100%;
 border-radius: 17px;
 background: rgba(64, 108, 144, 0.73);
 text-align: center;
+color: #FFF;
 }
 </style>
