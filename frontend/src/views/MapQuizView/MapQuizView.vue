@@ -1,8 +1,8 @@
 <script setup>
 import {RouterLink} from "vue-router";
 import TheMap from "@/components/MapQuizComponents/TheMap.vue";
-import TheButtons from "@/components/MapQuizComponents/TheButtons.vue";
-import TheQuestion from "@/components/MapQuizComponents/TheQuestion.vue";
+import TheButtons from "@/components/MapQuizComponents/PageOne/TheButtons.vue";
+import TheQuestion from "@/components/MapQuizComponents/PageOne/TheQuestion.vue";
 </script>
 <template>
   <header class="mainHeader">
