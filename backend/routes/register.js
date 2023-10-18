@@ -7,7 +7,11 @@ const { hashPassword } = require("mysql/lib/protocol/Auth");
 const { use } = require("./register");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
-module.exports = router;
+module.exports = { 
+  router:router,
+  authenticateToken:authenticateToken
+}
+
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));

@@ -7,9 +7,11 @@ const port = 3000;
 const database = require("./sql")
 const register = require('./routes/register')
 const quiz=require('./routes/quiz')
-app.use("/quiz", quiz)
-app.use("/register", register)
+const highscore=require('./routes/highscore')
 
+app.use("/quiz", quiz)
+app.use("/register", register.router)
+app.use("/highscore", highscore)
 app.listen(port, () => {
     database.createtable();
     database.createtableForRegiseter();
