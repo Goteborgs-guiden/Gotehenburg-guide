@@ -32,3 +32,10 @@ router.post("/",authenticateToken,(req,res) => {
         }
     })
 })
+router.get("/toplist", (req, res) => {
+    let sql = "SELECT username, highscore FROM account ORDER BY highscore DESC LIMIT 11";
+    database.con.query(sql, (err, result) => {
+        if(err) console.warn("error getting the data");
+        res.status(200).send(result);
+    })
+})
