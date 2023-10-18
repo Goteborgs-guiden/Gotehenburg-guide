@@ -36,19 +36,25 @@
 
     <div id="quiz-scores">
         <ul class="quiz">
-            <li><a href="#">tram</a></li>
+            <li><RouterLink class="RouterL" to="/AbcView">
+            <img src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
+            </RouterLink></li>
             <li><h2>Ordvitsknök</h2></li>
             <li><h3>Personliga Bästa</h3></li>
             <li><h2>X/X</h2></li>
         </ul>
         <ul class="quiz">
-            <li><a href="#">tram</a></li>
+            <li><RouterLink class="RouterL" to="/OrdvitsarQuiz">
+            <img src="../assets/img/new tramquiz 2.svg" alt="tramquiz2">
+            </RouterLink></li>
             <li><h2>Tjöt</h2></li>
             <li><h3>Personliga Bästa</h3></li>
             <li><h2>X/X</h2></li>
         </ul>
         <ul class="quiz">
-            <li><a href="#">tram</a></li>
+            <li><RouterLink class="RouterL" to="/MapQuizView">
+            <img src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3">
+            </RouterLink></li>
             <li><h2>Geografi-käck</h2></li>
             <li><h3>Personliga Bästa</h3></li>
             <li><h2>X/X</h2></li>
