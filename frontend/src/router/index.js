@@ -20,6 +20,12 @@ const router = createRouter({
       component: () => import('../views/AbcView.vue')
     },
     {
+
+      path: '/FillInBlankQuizView',
+      name: 'FillInBlankQuizView',
+      component: () => import('../views/FillInBlankQuizView.vue')
+    },
+    {
       path: '/MapQuizView',
       name: 'MapQuiz',
       component: () => import('../views/MapQuizView/MapQuizView.vue')
