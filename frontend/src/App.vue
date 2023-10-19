@@ -3,15 +3,8 @@ import MainContainer from './components/MainContainer.vue';
 </script>
 <template>
   <MainContainer>
+    <RouterView />
   </MainContainer>
-  <header>
-    <div class="wrapper">
-        <RouterLink class="RouterL" to="/">Home</RouterLink>
-        <RouterLink class="RouterL" to="/new">New</RouterLink>
-        <RouterLink to="/AbcView">Quiz</RouterLink>
-    </div>
-  </header>
-  <RouterView />
 </template>
 <style scoped>
 
