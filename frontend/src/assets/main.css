@@ -15,31 +15,6 @@ body {
     margin:0;
     padding:0;
 }
-
-
-
-
-.footer {
-
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
-    display: flex;
-    color: white;
-}
-
-div#copyright{
-    text-align: center;
-    padding-left: 600px;
-    padding-bottom: 10px;
-}
-
-div#contact{
-    text-align: center;
-    padding-left: 50px;
-    padding-bottom: 10px;
-}
 .RouterL{
     color: white;
     padding-left: 20px;
