@@ -16,12 +16,6 @@ const dialogs = useDialogStore()
     <div v-if="dialogs.showLogin" class="popup-background">
         <LoginForm/>
     </div>
-        <div class="wrapper">
-            <button @click="dialogs.toggleRegister">Register</button>
-            <button @click="dialogs.toggleLogin">Login</button>
-        </div>
-        <p>{{ token }}</p>
-        <button @click="token = useTokensStore()">update</button>
 </div>
 </template>
 <style scoped>

@@ -12,4 +12,7 @@ import DialogPopup from './DialogPopup.vue'
 </main>
 </template>
 <style scoped>
+main {
+  min-height: 100vh;
+}
 </style>

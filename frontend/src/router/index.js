@@ -20,6 +20,7 @@ const router = createRouter({
       component: () => import('../views/AbcView.vue')
     },
     {
+
       path: '/FillInBlankQuizView',
       name: 'FillInBlankQuizView',
       component: () => import('../views/FillInBlankQuizView.vue')
@@ -38,8 +39,12 @@ const router = createRouter({
       path: '/MapQuizView3',
       name: 'MapQuiz3',
       component: () => import('../views/MapQuizView/MapQuizView3.vue')
+    },
+    {
+      path: '/Profile',
+      name: 'Profile',
+      component: () => import('../views/ProfilePage.vue')
     }
-    
 
   ]
 })
