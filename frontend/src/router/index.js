@@ -20,11 +20,6 @@ const router = createRouter({
       component: () => import('../views/AbcView.vue')
     },
     {
-      path: '/OrdvitsarQuiz',
-      name: 'OrdvitsarQuiz',
-      component: () => import('../views/OrdvitsarQuiz.vue')
-    },
-    {
       path: '/MapQuizView',
       name: 'MapQuiz',
       component: () => import('../views/MapQuizView/MapQuizView.vue')
