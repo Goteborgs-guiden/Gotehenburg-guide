@@ -8,4 +8,29 @@
   </footer>
 </template>
 <style scoped>
+.footer {
+  fill: #214F75;
+  height: 200px;
+}
+
+#copyright {
+  color: #FFF;
+font-family: Permanent Marker;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+#contact {
+  color: #FFF;
+font-family: Permanent Marker;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+
+
 </style>
