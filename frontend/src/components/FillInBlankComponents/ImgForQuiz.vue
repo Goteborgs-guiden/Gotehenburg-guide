@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 <template>
   <main>
     <div class="Img">
@@ -10,9 +9,9 @@
 <style scoped>
 .Img {
   margin: 0 auto;
-  margin-top: 50px;
-  padding: 140px 350px;
-  width: 120px;
+  margin-top: 3.125rem;
+  padding: 8.75rem 21.875rem;
+  width: 7.5rem;
   border: 2px solid black;
   background-color: wheat;
 }
