@@ -13,6 +13,10 @@ const props = defineProps({
 </template>
 <style scoped>
 .Question {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left: 1rem;
   margin-top: 3.125rem;
   margin-left: 32.5rem;
   width: 50.4rem;
