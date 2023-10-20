@@ -25,15 +25,18 @@ function sendAnswer(input, id, answerid) {
       console.log('response from server:', data)
       correctData.value = data
       if (data) {
-        console.log("answerid=",answerid)
+        console.log('answerid=', answerid)
         document.getElementById('btn' + answerid).style.border = '2px solid green'
         points.value++
-      }
-      else{
-        console.log("answerid=",answerid)
+      } else {
+        console.log('answerid=', answerid)
         document.getElementById('btn' + answerid).style.border = '2px solid red'
       }
-      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = ''}, 1000);
+      setTimeout(function () {
+        getQuestion(currentQuestion.value++)
+        getQuestion(currentQuestion.value)
+        document.getElementById('btn' + answerid).style.border = ''
+      }, 1000)
     })
 }
 function getQuestion(id) {
@@ -53,29 +56,33 @@ function getQuestion(id) {
 </script>
 
 <template>
-  <div id="question-image">
-    <img src="#" />
-  </div>
+  <div class="grid-container">
+    <div class="item1" id="question-image">
+      <img src="#" />
+    </div>
 
-  <div v-if="onGoingQuiz" id="abc-quiz">
-    <p>{{ abcdata }}</p>
-    <from>
-      <button id="btn0" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
-        {{ alternatives[0] }}
-      </button>
-      <button id="btn1" @click="sendAnswer(alternatives[1], currentQuestion, 1)">
-        {{ alternatives[1] }}
-      </button>
-      <button id="btn2" @click="sendAnswer(alternatives[2], currentQuestion, 2)">
-        {{ alternatives[2] }}
-      </button>
-      <button id="btn3" @click="sendAnswer(alternatives[3], currentQuestion, 3)">
-        {{ alternatives[3] }}
-      </button>
-    </from>
+    <div v-if="onGoingQuiz" id="abc-quiz" class="item2">
+      <p>{{ abcdata }}</p>
+      <div class="selection">
+        <from>
+          <button id="btn0" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
+            {{ alternatives[0] }}
+          </button>
+          <button id="btn1" @click="sendAnswer(alternatives[1], currentQuestion, 1)">
+            {{ alternatives[1] }}
+          </button>
+          <button id="btn2" @click="sendAnswer(alternatives[2], currentQuestion, 2)">
+            {{ alternatives[2] }}
+          </button>
+          <button id="btn3" @click="sendAnswer(alternatives[3], currentQuestion, 3)">
+            {{ alternatives[3] }}
+          </button>
+        </from>
+      </div>
+    </div>
+      <button id="visible-from-second-question" class="one item3">Tillbaka</button>
+      <button id="visible-from-first-to-second-to-last-question" class="one two item4">Nästa</button>
   </div>
-  <button id="visible-from-second-question">Tillbaka</button>
-  <button id="visible-from-first-to-second-to-last-question">Nästa</button>
   <div>
     <from> </from>
   </div>
@@ -90,16 +97,75 @@ function getQuestion(id) {
   </div>
 </template>
 <style scoped>
+
+.item1 {grid-area: image;}
+.item2 {grid-area: choices;}
+.item3 {grid-area: buttonOne;}
+.item4 {grid-area: buttonTwo;}
+.grid-container{
+  display: grid;
+  grid-template-columns: 1fr 50% 1fr;
+  grid-template-rows: 1fr 1fr 20%;
+  grid-template-areas: 
+  '. image .'
+  '. choices .'
+  'buttonOne . buttonTwo';
+}
+.selection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  width: 59.53125rem;
+  height: 13.6875rem;
+  background-color: rgba(64, 108, 144, 0.9);
+  border-radius: 0.8rem;
+}
 #btn0 {
   border: 2px solid none;
+  width: 23.25rem;
+  height: 3.21875rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
 }
 #btn1 {
   border: 2px solid none;
+  width: 23.25rem;
+  height: 3.21875rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
 }
 #btn2 {
   border: 2px solid none;
+  width: 23.25rem;
+  height: 3.21875rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
 }
 #btn3 {
   border: 2px solid none;
+  width: 23.25rem;
+  height: 3.21875rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
+}
+
+.one {
+  padding: 0.6rem 1.4rem;
+  border-radius: 0.8rem;
+  border: 5px solid #91b6d8;
+  background: #fff;
+  color: #214f75;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Newsreader';
+  font-size: 1.3125rem;
+}
+
+.two {
+  padding: 0.6rem 2rem;
 }
 </style>
