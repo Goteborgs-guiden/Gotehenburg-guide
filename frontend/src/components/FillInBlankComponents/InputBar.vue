@@ -14,7 +14,7 @@ const props = defineProps({
 <style scoped>
 .Question {
   margin-top: 3.125rem;
-  margin-left: 19.5rem;
+  margin-left: 32.5rem;
   width: 50.4rem;
   height: 9rem;
   border-radius: 0.78125rem;
@@ -42,6 +42,4 @@ const props = defineProps({
   font-family: 'Newsreader';
   font-size: 1.3125rem;
 }
-
-
 </style>

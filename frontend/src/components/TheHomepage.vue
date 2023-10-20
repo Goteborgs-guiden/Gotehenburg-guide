@@ -39,6 +39,7 @@ textarea{
   padding-right: 100px;
 
 }
+
 img{
   margin-top: 20px;
   margin-left:30px;
