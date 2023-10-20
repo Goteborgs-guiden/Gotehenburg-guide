@@ -82,10 +82,10 @@ function getQuestion(id) {
     </div>
     <div class="item3">
       <button id="visible-from-second-question" class="one">Tillbaka</button>
-      </div>
-      <div class="item4">
+    </div>
+    <div class="item4">
       <button id="visible-from-first-to-second-to-last-question" class="one two">Nästa</button>
-      </div>
+    </div>
   </div>
   <div>
     <from> </from>
@@ -101,24 +101,36 @@ function getQuestion(id) {
   </div>
 </template>
 <style scoped>
-
-.item1 {grid-area: image;}
-.item2 {grid-area: choices;}
-.item3 {grid-area: buttonOne;}
-.item4 {grid-area: buttonTwo;}
-.grid-container{
+.item1 {
+  grid-area: image;
+}
+.item2 {
+  grid-area: choices;
+}
+.item3 {
+  grid-area: buttonOne;
+}
+.item4 {
+  grid-area: buttonTwo;
+}
+.grid-container {
   display: grid;
   grid-template-columns: 1fr 50% 1fr;
   grid-template-rows: 1fr 1fr 20%;
-  grid-template-areas: 
-  '. image .'
-  '. choices .'
-  'buttonOne . buttonTwo';
+  grid-template-areas:
+    '. image .'
+    '. choices .'
+    'buttonOne . buttonTwo';
+}
+
+.item1 {
+  justify-self: center;
+}
+
+.item2 {
+  justify-self: center;
 }
 .selection {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   text-align: center;
   width: 59.53125rem;
   height: 13.6875rem;
@@ -126,38 +138,44 @@ function getQuestion(id) {
   border-radius: 0.8rem;
 }
 #btn0 {
-  border: 2px solid none;
   width: 23.25rem;
-  height: 3.21875rem;
+  height: 3.5rem;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
+  margin-top: 2rem;
+  margin-right: 5.5rem;
 }
 #btn1 {
-  border: 2px solid none;
   width: 23.25rem;
-  height: 3.21875rem;
+  height: 3.5rem;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
 }
 #btn2 {
-  border: 2px solid none;
   width: 23.25rem;
-  height: 3.21875rem;
+  height: 3.5rem;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
+  margin-top: 2.5rem;
+  margin-right: 5.5rem;
 }
 #btn3 {
-  border: 2px solid none;
   width: 23.25rem;
-  height: 3.21875rem;
+  height: 3.5rem;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
 }
 
+.item3 {
+  justify-self: center;
+}
+.item4 {
+  justify-self: center;
+}
 .one {
   padding: 0.6rem 1.4rem;
   border-radius: 0.8rem;
