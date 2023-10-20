@@ -80,8 +80,12 @@ function getQuestion(id) {
         </from>
       </div>
     </div>
-      <button id="visible-from-second-question" class="one item3">Tillbaka</button>
-      <button id="visible-from-first-to-second-to-last-question" class="one two item4">Nästa</button>
+    <div class="item3">
+      <button id="visible-from-second-question" class="one">Tillbaka</button>
+      </div>
+      <div class="item4">
+      <button id="visible-from-first-to-second-to-last-question" class="one two">Nästa</button>
+      </div>
   </div>
   <div>
     <from> </from>
