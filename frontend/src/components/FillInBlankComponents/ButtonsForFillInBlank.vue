@@ -10,6 +10,7 @@ import { RouterLink } from 'vue-router'
   </main>
 </template>
 <style scoped>
+
 button {
   padding: 0.8rem 1.4rem;
   border-radius: 0.8rem;
@@ -20,13 +21,16 @@ button {
   font-family: 'Newsreader';
   font-size: 1.3125rem;
 }
+
+
 .Back {
   margin-left: 14rem;
   margin-top: 1.55rem;
 }
 .Next {
-  margin-left: 43rem;
+  margin-left: 68rem;
   padding-left: 2rem;
   padding-right: 2rem;
 }
+
 </style>

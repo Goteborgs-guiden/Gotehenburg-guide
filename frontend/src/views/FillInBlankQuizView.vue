@@ -71,12 +71,42 @@ function sendAnswer(input, id) {
       <p>Quizen är slut</p>
       <p>Du fick {{ points }} poäng</p>
     </div>
-    <ImgForQuiz />
-    <InputBar />
-    <ButtonsForFillInBlank question="{{question}}" />
+    <div class="grid-container">
+      <ImgForQuiz class="item1" />
+      <InputBar class="item2" />
+      <ButtonsForFillInBlank class="item3" question="{{question}}" />
+    </div>
   </main>
-
-
 </template>
+<style scoped>
+/*.item1 {grid-area: image;}
+.item2 {grid-area: question;}
+.item3 {grid-area: buttons;}
 
-<style scoped></style>
+.grid-container {
+display: grid;
+grid-template-columns: 25% 50% 25%;
+grid-template-rows: 40% 20% 20%;
+grid-template-areas: 
+'. image .'
+'. question .'
+'buttons . .';
+}*/
+
+input {
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
+}
+
+button {
+  padding: 0.6rem 1.4rem;
+  border-radius: 0.8rem;
+  border: 5px solid #91b6d8;
+  background: #fff;
+  color: #214f75;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Newsreader';
+  font-size: 1.3125rem;
+}
+</style>
