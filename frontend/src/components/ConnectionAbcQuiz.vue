@@ -8,6 +8,8 @@ let correctData = ref('')
 let onGoingQuiz = true
 let points = ref(0)
 let allowsubmit = true;
+import { useTokensStore } from '../stores/tokens';
+const tokens = useTokensStore();
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
@@ -55,6 +57,21 @@ function getQuestion(id) {
       })
   } else onGoingQuiz = false
 }
+function setHighscore(points) {
+    fetch('http://127.0.0.1:3000/highscore', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'BEARER ' + tokens.accessToken
+      },
+      body: JSON.stringify({ score: points }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(tokens.accessToken)
+        console.log('response from server:', data)
+      })
+    }
 </script>
 
 <template>
@@ -92,6 +109,9 @@ function getQuestion(id) {
     <p v-if="points > 2">Snyggt byggt, fräsig kärra!</p>
     <p v-else>Rackarns rabarber det där gick inte så bra!</p>
     <p>{{ points }} Poäng</p>
+    <div v-if="setHighscore(points)">
+
+    </div>
   </div>
 </template>
 <style scoped>
