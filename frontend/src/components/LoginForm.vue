@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import { useTokensStore } from '../stores/tokens'
+import { useDialogStore } from '../stores/dialog'
+const dialogs = useDialogStore()
 const tokens = useTokensStore()
 let email = ref('')
 let password = ref('')
@@ -17,6 +19,9 @@ function login() {
     .then((response) => response.json())
     .then((data) => {
       console.log('response from server:', data)
+      if(data!=null){
+        dialogs.showLogin = false
+      }
       tokens.setTokens(data)
     })
 }
