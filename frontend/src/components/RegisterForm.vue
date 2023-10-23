@@ -1,54 +1,131 @@
 <script setup>
 import { ref } from 'vue'
-let username = ref("");
-let password = ref("");
-let first_name = ref("");
-let surname = ref("");
-let img = ref("");
-let district = ref("");
-let date_of_birth = ref("");
-  function register(){
-    const data = {username:username.value, password:password.value, first_name:first_name.value, surname:surname.value, img:img.value, district:district.value,date_of_birth:date_of_birth.value};
-    console.log(data);
-    fetch("http://127.0.0.1:3000/register",{
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-type':'application/json',
-        },
-    }) 
-    .then(response => response.json())
-    .then(data =>{
-      console.log('response from server:',data)
-    })
-
+let username = ref('')
+let password = ref('')
+let first_name = ref('')
+let surname = ref('')
+let img = ref('')
+let district = ref('')
+let date_of_birth = ref('')
+function register() {
+  const data = {
+    username: username.value,
+    password: password.value,
+    first_name: first_name.value,
+    surname: surname.value,
+    img: img.value,
+    district: district.value,
+    date_of_birth: date_of_birth.value
   }
+  console.log(data)
+  fetch('http://127.0.0.1:3000/register', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type': 'application/json'
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('response from server:', data)
+    })
+}
 </script>
 <template>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+    rel="stylesheet"
+  />
   <header>
     <div class="wrapper">
-        <form>
-          <label>Register</label>
-          <label>Username</label>
-          <input type="text" v-model="username" placeholder="username">
-          <label>Password</label>
-          <input type="password" v-model="password" placeholder="password">
-          <label>First Name</label>
-          <input type="text" v-model="first_name" placeholder="first_name">
-          <label>Surname</label>
-          <input type="text" v-model="surname" placeholder="surname">
-          <label>District</label>
-          <input type="text" v-model="district" placeholder="district">
-          <label>Date of Birth</label>
-          <input type="date" v-model="date_of_birth" placeholder="date_of_birth">
-          <input type="submit" value="Register" @click.prevent="register()">
-        </form>
+      <form>
+        <label class="register">Registrera dig:</label>
+        <label>mailadress:</label>
+        <input class="input" type="text" v-model="username" placeholder="" />
+        <label>användarnamn:</label>
+        <input class="input" type="text" v-model="username" placeholder="användarnamn" />
+        <label>lösenord:</label>
+        <input class="input" type="password" v-model="password" placeholder="lösenord" />
+        <label>upprepa lösenord:</label>
+        <input class="input" type="text" v-model="first_name" placeholder="first name" />
+        <label>Surname</label>
+        <input class="input" type="text" v-model="surname" placeholder="surname" />
+        <label>District</label>
+        <input class="input" type="text" v-model="district" placeholder="district" />
+        <label>Date of Birth</label>
+        <input class="input" type="date" v-model="date_of_birth" placeholder="date_of_birth" />
+        <div class="button-wrapper">
+          <input class="button" type="submit" value="Register" @click.prevent="register()" />
+        </div>
+      </form>
     </div>
   </header>
 </template>
 <style scoped>
-  form{
-    display: flex;
-    flex-direction: column;
-  }
+.wrapper {
+  border: 5px solid #fff;
+  background: #214f75;
+  width: 21.84375rem;
+  height: 29.78125rem;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  font-family: 'Permanent Marker';
+  font-size: 1.3125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.register {
+  color: #fff;
+  font-family: 'Permanent Marker';
+  font-size: 42px;
+  text-decoration: underline;
+}
+
+.input {
+  width: 18.375rem;
+  height: 2.65625rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
+  box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.4) inset;
+  color: rgba(33, 79, 117, 0.30);
+font-family: 'Permanent Marker';
+  font-size: 1.3125rem;
+}
+
+input[type='text'] {
+  padding-left: 5%;
+}
+
+input[type='password'] {
+  padding-left: 5%;
+}
+.button {
+  border-radius: 0.53125rem;
+  width: 50%;
+  border: 2px solid #214f75;
+  background: #fff;
+  box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.4);
+  color: #214f75;
+  font-family: 'Permanent Marker';
+  text-align: center;
+  width: 10.34375rem;
+  height: 2.3125rem;
+  font-size: 1.3125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.button-wrapper {
+  text-align: center;
+}
 </style>
