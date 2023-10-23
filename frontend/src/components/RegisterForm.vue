@@ -2,20 +2,12 @@
 import { ref } from 'vue'
 let username = ref('')
 let password = ref('')
-let first_name = ref('')
-let surname = ref('')
-let img = ref('')
-let district = ref('')
-let date_of_birth = ref('')
+let email = ref('')
 function register() {
   const data = {
     username: username.value,
     password: password.value,
-    first_name: first_name.value,
-    surname: surname.value,
-    img: img.value,
-    district: district.value,
-    date_of_birth: date_of_birth.value
+    email: email.value
   }
   console.log(data)
   fetch('http://127.0.0.1:3000/register', {
@@ -41,19 +33,13 @@ function register() {
       <form>
         <label class="register">Registrera dig:</label>
         <label>mailadress:</label>
-        <input class="input" type="text" v-model="username" placeholder="" />
+        <input class="input" type="text" v-model="email" placeholder="" />
         <label>användarnamn:</label>
         <input class="input" type="text" v-model="username" placeholder="användarnamn" />
         <label>lösenord:</label>
         <input class="input" type="password" v-model="password" placeholder="lösenord" />
         <label>upprepa lösenord:</label>
-        <input class="input" type="text" v-model="first_name" placeholder="first name" />
-        <label>Surname</label>
-        <input class="input" type="text" v-model="surname" placeholder="surname" />
-        <label>District</label>
-        <input class="input" type="text" v-model="district" placeholder="district" />
-        <label>Date of Birth</label>
-        <input class="input" type="date" v-model="date_of_birth" placeholder="date_of_birth" />
+        <input class="input" type="password" v-model="pass2" placeholder="first name" />
         <div class="button-wrapper">
           <input class="button" type="submit" value="Register" @click.prevent="register()" />
         </div>
