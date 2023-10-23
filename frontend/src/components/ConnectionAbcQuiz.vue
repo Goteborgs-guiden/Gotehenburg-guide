@@ -96,8 +96,6 @@ function setHighscore(points) {
       </button>
     </from>
   </div>
-  <button id="visible-from-second-question">Tillbaka</button>
-  <button id="visible-from-first-to-second-to-last-question">Nästa</button>
   <div>
     <from> </from>
   </div>

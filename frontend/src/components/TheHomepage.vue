@@ -2,17 +2,6 @@
 import {RouterLink} from "vue-router";
 </script>
 <template>
-
-  <p class="navbar">
-    <RouterLink class="RouterL"  to="/">Quiz</RouterLink>
-    <RouterLink class="RouterL"  to="/">Hitta i GBG</RouterLink>
-    <RouterLink class="RouterL" to="/">GBGuide</RouterLink>
-
-
-
-
-    <input placeholder="Search">
-  </p>
   <div>
     <RouterLink class="RouterL" to="/AbcView">
       <img src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
