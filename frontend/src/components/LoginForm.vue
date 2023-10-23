@@ -2,10 +2,10 @@
 import { ref } from 'vue'
 import { useTokensStore } from '../stores/tokens'
 const tokens = useTokensStore()
-let username = ref('')
+let email = ref('')
 let password = ref('')
 function login() {
-  const data = { username: username.value, password: password.value }
+  const data = { email: email.value, password: password.value }
   console.log(data)
   fetch('http://127.0.0.1:3000/register/login', {
     method: 'POST',
@@ -28,7 +28,7 @@ function login() {
         <form>
           <label class="login">Logga in:</label>
           <label class="inputLabel">mailadress:</label>
-          <input class="inputField" type="text" v-model="username" placeholder="mailadress" />
+          <input class="inputField" type="text" v-model="email" placeholder="mailadress" />
           <label class="inputLabel">lösenord:</label>
           <input class="inputField" type="password" v-model="password" placeholder="lösenord" />
           <a href="url">Glömt lösenord?</a>
