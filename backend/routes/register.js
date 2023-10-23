@@ -17,13 +17,9 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 router.use(cors());
 router.post("/", (req, res) => {
+  const email = req.body.email;
   const username = req.body.username;
   const password = req.body.password;
-  const first_name = req.body.first_name;
-  const surname = req.body.surname;
-  const img = req.body.img;
-  const district = req.body.district;
-  const date_of_birth = req.body.date_of_birth;
   database.con.connect(function (err) {
     if (err) throw err;
     let sql1 =
@@ -50,19 +46,20 @@ router.post("/", (req, res) => {
                   if (err) throw err;
                   console.log("Connected!");
                   var sql =
-                    "INSERT INTO account (username, password, token, first_name, surname, img, district, date_of_birth) VALUES ";
+                    "INSERT INTO account (email, username, password, token, first_name, surname, img, district, date_of_birth) VALUES ";
                   database.con.query(
                     {
-                      sql: "INSERT INTO account (username, password, token, first_name, surname, img, district, date_of_birth) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                      sql: "INSERT INTO account (email, username, password, token, first_name, surname, img, district, date_of_birth) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)",
                       values: [
+                        email,
                         username,
                         hashedPassword,
                         '',
-                        first_name,
-                        surname,
-                        img,
-                        district,
-                        date_of_birth,
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
                       ],
                     },
                     function (error, results, fields) {
@@ -82,18 +79,18 @@ router.post("/", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  username = req.body.username;
+  email = req.body.email;
   password = req.body.password;
   database.con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
-    var sql = "SELECT * FROM account WHERE username = '" + username + "'";
+    var sql = "SELECT * FROM account WHERE email = '" + email + "'";
     database.con.query(sql, function (err, result) {
       if (err) throw err;
-      if (result[0]?.username) {
+      if (result[0]?.email) {
         bcrypt.compare(password, result[0].password, function (err, isMatch) {
           if (isMatch) {
-            const user = { name: username };
+            const user = { name: result[0].username };
             const accessToken = generateAccessToken(user);
             const refreshToken = jwt.sign(
               user,
@@ -103,7 +100,7 @@ router.post("/login", (req, res) => {
               "UPDATE account SET token = '" +
               refreshToken +
               "' WHERE username = '" +
-              username +
+              result[0].username +
               "'";
             database.con.query(sql2, function (err, result) {
               if (err) throw err;
