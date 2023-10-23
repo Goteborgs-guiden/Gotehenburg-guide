@@ -7,11 +7,13 @@ let alternatives = ref([''])
 let correctData = ref('')
 let onGoingQuiz = true
 let points = ref(0)
+let allowsubmit = true;
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function sendAnswer(input, id, answerid) {
+  if(allowsubmit){
   console.log(input)
   fetch('http://127.0.0.1:3000/quiz/abcanswer/' + id, {
     method: 'POST',
@@ -33,8 +35,11 @@ function sendAnswer(input, id, answerid) {
         console.log("answerid=",answerid)
         document.getElementById('btn' + answerid).style.border = '2px solid red'
       }
-      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = ''}, 1000);
+      allowsubmit = false;
+      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = ''; allowsubmit=true}, 1000);
+    
     })
+  }
 }
 function getQuestion(id) {
   if (id <= 3) {
