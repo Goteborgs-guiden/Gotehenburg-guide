@@ -2,7 +2,6 @@
 import {RouterLink} from "vue-router";
 import ImgForQuiz from "@/components/FillInBlankComponents/ImgForQuiz.vue";
 import InputBar from "@/components/FillInBlankComponents/InputBar.vue";
-import ButtonsForFillInBlank from "@/components/FillInBlankComponents/ButtonsForFillInBlank.vue";
 import { onMounted, ref } from 'vue'
 let currentQuestion = ref(0)
 let correctData = ref('')
@@ -54,16 +53,6 @@ function sendAnswer(input, id) {
 }
 </script>
 <template>
-  <header class="mainHeader">
-    <div>GBGuiden</div>
-  </header>
-  <p class="navbar">
-    <RouterLink class="RouterL" to="/">Quiz</RouterLink>
-    <RouterLink class="RouterL" to="/">Hitta i GBG</RouterLink>
-    <RouterLink class="RouterL" to="/">GBGuide</RouterLink>
-    <input placeholder="Search">
-  </p>
-
   <main>
     <div v-if="onGoingQuiz" id="abc-quiz">
       <p>{{ question }}</p>
@@ -80,13 +69,7 @@ function sendAnswer(input, id) {
     </div>
     <ImgForQuiz />
     <InputBar />
-    <ButtonsForFillInBlank question="{{question}}"/>
   </main>
-
-  <footer class="footer">
-    <div id="copyright">copyright @ a-laget</div>
-    <div id="contact">contact: a-laget@alaget.se</div>
-  </footer>
 </template>
 
 <style scoped>
