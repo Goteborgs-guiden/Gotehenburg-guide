@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import { ref } from 'vue'
-let highscores = ref([]);
+let highscores = ref([])
 onMounted(() => {
   getHighscore()
 })
@@ -11,35 +11,41 @@ function getHighscore() {
   })
     .then((response) => response.json())
     .then((data) => {
-        //alternatives.value = data.alternatives.split(',')
-        //highscores.value = data;
-        highscores.value = data;
-        console.log(data);
-        console.log(highscores.value[0].username)
+      //alternatives.value = data.alternatives.split(',')
+      //highscores.value = data;
+      highscores.value = data
+      console.log(data)
+      console.log(highscores.value[0].username)
       console.log('response from server:', data)
     })
 }
 </script>
 <template>
   <div class="grid-container">
-    <div class="scoreboard">
+    <div class="item1 scoreboard">
       <h1>X/X</h1>
     </div>
-    <div>
+    <div class="item2">
       <button class="redo">Försök igen</button>
     </div>
 
-    <div class="quiz-link">
-      <a href="#" class="quiz-link-indiv">svg-Spårvagn: länk till quiz 1, dialekt</a>
-      <a href="#" class="quiz-link-indiv">svg-Spårvagn: länk till quiz 2, ordvitsar</a>
-      <a href="#" class="quiz-link-indiv">svg-Spårvagn: länk till quiz 3, karta</a>
+    <div class="item3 quiz-link">
+      <RouterLink class="RouterL" to="/AbcView">
+        <img class="tramBack" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1" />
+      </RouterLink>
+      <RouterLink class="RouterL" to="/FillInBlankQuizView">
+        <img class="tramBack" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2" />
+      </RouterLink>
+      <RouterLink class="RouterL" to="/MapQuizView">
+        <img class="tramBack" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3" />
+      </RouterLink>
     </div>
 
-    <div class="highscore">
+    <div class="item4 highscore">
       <table>
         <tr v-for="(highscore, index) in highscores" :key="index">
-        <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
-        <td class="user">{{ highscore.username }} med {{ highscore.highscore }} poäng</td>
+          <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
+          <td class="user">{{ highscore.username }} med {{ highscore.highscore }} poäng</td>
         </tr>
       </table>
     </div>
@@ -60,7 +66,6 @@ function getHighscore() {
 }
 .grid-container {
   display: grid;
-
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 30% 10% 10% 50%;
   grid-template-areas:
@@ -81,7 +86,7 @@ function getHighscore() {
   box-shadow: 0px 4px 4px 9px rgba(0, 0, 0, 0.3);
   width: 60%;
   text-align: center;
-  padding-top: 2.9rem;
+  padding-top: 2rem;
   color: #fff;
   font-family: 'Newsreader';
   font-size: xx-large;
@@ -101,19 +106,23 @@ function getHighscore() {
   margin-top: 1.5rem;
 }
 
-/*.tramBack {
-  background: linear-gradient(180deg, #214f75 48.96%, rgba(33, 79, 117, 0) 100%);
-  width: 10.65625rem;
-  height: 11.5rem;
+.tramBack {
+  background: linear-gradient(180deg, #214F75 48.96%, #FFF 100%);
+  width: 15.65625rem;
+  height: 16.5rem;
   border-radius: 2.59375rem;
-  opacity: 0.78;
-}*/
+  padding: 0.3rem;
+  padding-top: 0.8rem;
+}
 
 img {
   width: 30%;
 }
 
 .quiz-link {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   text-align: center;
 }
 
@@ -126,7 +135,7 @@ img {
   width: 57.5rem;
   height: 55.0625rem;
   padding: 2%;
-  margin-top: 3rem;
+  margin-top: 2rem;
   border-radius: 0.75rem;
   border: 4px solid #214f75;
   background: rgba(232, 243, 253, 0.9);
@@ -154,30 +163,6 @@ td {
   color: #fff;
   border: 2.22rem;
   font-family: 'Newsreader';
-}
-
-.position {
-  width: 4.9rem;
-  height: 3.125rem;
-  border-radius: 0.4rem;
-=======
-  font-family: Newsreader;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.quiz-link-indiv {
-  border-radius: 83px;
-  opacity: 0.78;
-  background: linear-gradient(180deg, #214f75 48.96%, rgba(33, 79, 117, 0) 100%);
-}
-
-.highscore {
-  border-radius: 24px;
-  border: 4px solid #214f75;
-  background: rgba(232, 243, 253, 0.9);
-  box-shadow: 0px 4px 4px 9px rgba(0, 0, 0, 0.3);
 }
 
 .position {
