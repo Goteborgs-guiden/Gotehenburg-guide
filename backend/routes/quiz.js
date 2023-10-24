@@ -81,3 +81,39 @@ router.get("/fillblank/:id", (request, response, next) => {
         }
     });   
 });
+router.use(bodyParser.json())
+router.post("/locationQuiz/:id",(request,response) =>{
+    const body = request.body;
+    let id = request.params.id;
+    let sql = 'SELECT * FROM locationQuestion WHERE id = '+id;
+    database.con.query(sql,(err, result) => {
+        if(err) console.warn("error getting the data");
+        if(result[0]?.question){
+            if(body.answer === result[0].correct){
+                response.status(200).send(true);
+            }
+            else{
+                response.status(200).send(false);
+            }
+        }
+        else{
+            response.status(404).send("site not found")
+        }
+    });
+})
+router.get("/locationQuiz/:id", (request, response, next) => {
+    let id = request.params.id;
+    let sql = 'SELECT * FROM locationQuestion WHERE id = '+id;
+    database.con.query(sql,(err, result) => {
+        if(err) console.warn("error getting the data");
+        if(result[0]?.question){
+            const data = result[0]
+            delete data.correct;
+            
+            response.json(data)
+        }
+        else{
+            response.status(404).send("site not found")
+        }
+    });   
+});
