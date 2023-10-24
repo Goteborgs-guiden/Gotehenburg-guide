@@ -1,8 +1,6 @@
 <script setup>
-import { RouterLink } from 'vue-router'
-import ImgForQuiz from '@/components/FillInBlankComponents/ImgForQuiz.vue'
-import InputBar from '@/components/FillInBlankComponents/InputBar.vue'
-import ButtonsForFillInBlank from '@/components/FillInBlankComponents/ButtonsForFillInBlank.vue'
+import ImgForQuiz from "@/components/FillInBlankComponents/ImgForQuiz.vue";
+import InputBar from "@/components/FillInBlankComponents/InputBar.vue";
 import { onMounted, ref } from 'vue'
 let currentQuestion = ref(0)
 let correctData = ref('')
@@ -71,11 +69,8 @@ function sendAnswer(input, id) {
       <p>Quizen är slut</p>
       <p>Du fick {{ points }} poäng</p>
     </div>
-    <div class="grid-container">
-      <ImgForQuiz class="item1" />
-      <InputBar class="item2" />
-      <ButtonsForFillInBlank class="item3" question="{{question}}" />
-    </div>
+    <ImgForQuiz />
+    <InputBar />
   </main>
 </template>
 <style scoped>

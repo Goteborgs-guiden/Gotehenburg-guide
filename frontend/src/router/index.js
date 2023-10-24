@@ -44,8 +44,12 @@ const router = createRouter({
       path: '/Profile',
       name: 'Profile',
       component: () => import('../views/ProfilePage.vue')
+    },
+    {
+      path: '/HighscorePage',
+      name: 'HighscorePage',
+      component: () => import('../views/HighscorePage.vue')
     }
-
   ]
 })
 
