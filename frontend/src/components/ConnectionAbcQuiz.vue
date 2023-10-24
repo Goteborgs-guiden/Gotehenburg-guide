@@ -56,7 +56,7 @@ function getQuestion(id) {
   } else onGoingQuiz = false
 }
 function setHighscore(points) {
-    fetch('http://127.0.0.1:3000/highscore', {
+    fetch('http://127.0.0.1:3000/highscore/abc', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
