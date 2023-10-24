@@ -29,17 +29,15 @@ function sendAnswer(input, id, answerid) {
       console.log('response from server:', data)
       correctData.value = data
       if (data) {
-        console.log("answerid=",answerid)
+        console.log('answerid=', answerid)
         document.getElementById('btn' + answerid).style.border = '2px solid green'
         points.value++
-      }
-      else{
-        console.log("answerid=",answerid)
+      } else {
+        console.log('answerid=', answerid)
         document.getElementById('btn' + answerid).style.border = '2px solid red'
       }
       allowsubmit = false;
       setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = ''; allowsubmit=true}, 1000);
-    
     })
   }
 }
@@ -75,26 +73,36 @@ function setHighscore(points) {
 </script>
 
 <template>
-  <div id="question-image">
-    <img src="#" />
-  </div>
+  <div class="grid-container">
+    <div class="item1" id="question-image">
+      <img src="#" />
+    </div>
 
-  <div v-if="onGoingQuiz" id="abc-quiz">
-    <p>{{ abcdata }}</p>
-    <from>
-      <button id="btn0" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
-        {{ alternatives[0] }}
-      </button>
-      <button id="btn1" @click="sendAnswer(alternatives[1], currentQuestion, 1)">
-        {{ alternatives[1] }}
-      </button>
-      <button id="btn2" @click="sendAnswer(alternatives[2], currentQuestion, 2)">
-        {{ alternatives[2] }}
-      </button>
-      <button id="btn3" @click="sendAnswer(alternatives[3], currentQuestion, 3)">
-        {{ alternatives[3] }}
-      </button>
-    </from>
+    <div v-if="onGoingQuiz" id="abc-quiz" class="item2">
+      <p>{{ abcdata }}</p>
+      <div class="selection">
+        <from>
+          <button id="btn0" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
+            {{ alternatives[0] }}
+          </button>
+          <button id="btn1" @click="sendAnswer(alternatives[1], currentQuestion, 1)">
+            {{ alternatives[1] }}
+          </button>
+          <button id="btn2" @click="sendAnswer(alternatives[2], currentQuestion, 2)">
+            {{ alternatives[2] }}
+          </button>
+          <button id="btn3" @click="sendAnswer(alternatives[3], currentQuestion, 3)">
+            {{ alternatives[3] }}
+          </button>
+        </from>
+      </div>
+    </div>
+    <div class="item3">
+      <button id="visible-from-second-question" class="one">Tillbaka</button>
+    </div>
+    <div class="item4">
+      <button id="visible-from-first-to-second-to-last-question" class="one two">Nästa</button>
+    </div>
   </div>
   <div>
     <from> </from>
@@ -113,16 +121,93 @@ function setHighscore(points) {
   </div>
 </template>
 <style scoped>
+.item1 {
+  grid-area: image;
+}
+.item2 {
+  grid-area: choices;
+}
+.item3 {
+  grid-area: buttonOne;
+}
+.item4 {
+  grid-area: buttonTwo;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 50% 1fr;
+  grid-template-rows: 1fr 1fr 20%;
+  grid-template-areas:
+    '. image .'
+    '. choices .'
+    'buttonOne . buttonTwo';
+}
+
+.item1 {
+  justify-self: center;
+}
+
+.item2 {
+  justify-self: center;
+}
+.selection {
+  text-align: center;
+  width: 59.53125rem;
+  height: 13.6875rem;
+  background-color: rgba(64, 108, 144, 0.9);
+  border-radius: 0.8rem;
+}
 #btn0 {
-  border: 2px solid none;
+  width: 23.25rem;
+  height: 3.5rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
+  margin-top: 2rem;
+  margin-right: 5.5rem;
 }
 #btn1 {
-  border: 2px solid none;
+  width: 23.25rem;
+  height: 3.5rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
 }
 #btn2 {
-  border: 2px solid none;
+  width: 23.25rem;
+  height: 3.5rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
+  margin-top: 2.5rem;
+  margin-right: 5.5rem;
 }
 #btn3 {
-  border: 2px solid none;
+  width: 23.25rem;
+  height: 3.5rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
+}
+
+.item3 {
+  justify-self: center;
+}
+.item4 {
+  justify-self: center;
+}
+.one {
+  padding: 0.6rem 1.4rem;
+  border-radius: 0.8rem;
+  border: 5px solid #91b6d8;
+  background: #fff;
+  color: #214f75;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Newsreader';
+  font-size: 1.3125rem;
+}
+
+.two {
+  padding: 0.6rem 2rem;
 }
 </style>
