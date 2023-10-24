@@ -1,76 +1,45 @@
-<script setup></script>
+<script setup>
+import { onMounted } from 'vue'
+import { ref } from 'vue'
+let highscores = ref([]);
+onMounted(() => {
+  getHighscore()
+})
+function getHighscore() {
+  fetch('http://127.0.0.1:3000/highscore/toplist', {
+    method: 'GET'
+  })
+    .then((response) => response.json())
+    .then((data) => {
+        //alternatives.value = data.alternatives.split(',')
+        //highscores.value = data;
+        highscores.value = data;
+        console.log(data);
+        console.log(highscores.value[0].username)
+      console.log('response from server:', data)
+    })
+}
+</script>
 <template>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Osmanya&display=swap"
-    rel="stylesheet"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader&display=swap" rel="stylesheet" />
-
   <div class="grid-container">
-    <div class="scoreboard item1">
+    <div class="scoreboard">
       <h1>X/X</h1>
     </div>
-    <div class="item2">
+    <div>
       <button class="redo">Försök igen</button>
     </div>
 
-    <div class="quiz-link item3">
-      <RouterLink class="RouterL" to="/AbcView">
-        <img src="../assets/img/old tramquiz 1.svg" alt="tramquiz1" />
-      </RouterLink>
-      <RouterLink class="RouterL" to="/OrdvitsarQuiz">
-        <img class="img2" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2" />
-      </RouterLink>
-      <RouterLink class="RouterL" to="/MapQuizView">
-        <img src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3" />
-      </RouterLink>
+    <div class="quiz-link">
+      <a href="#" class="quiz-link-indiv">svg-Spårvagn: länk till quiz 1, dialekt</a>
+      <a href="#" class="quiz-link-indiv">svg-Spårvagn: länk till quiz 2, ordvitsar</a>
+      <a href="#" class="quiz-link-indiv">svg-Spårvagn: länk till quiz 3, karta</a>
     </div>
 
-    <div class="highscore item4">
+    <div class="highscore">
       <table>
-        <tr>
-          <td class="position pos-1">1</td>
-          <td class="user">UserNameFromDatabase</td>
-        </tr>
-        <tr>
-          <td class="position pos-2">2</td>
-          <td class="user">UserNameFromDatabase</td>
-        </tr>
-        <tr>
-          <td class="position pos-3">3</td>
-          <td class="user">UserNameFromDatabase</td>
-        </tr>
-        <tr>
-          <td class="position pos-4">4</td>
-          <td class="user">UserNameFromDatabase</td>
-        </tr>
-        <tr>
-          <td class="position pos-5">5</td>
-          <td class="user">UserNameFromDatabase</td>
-        </tr>
-        <tr>
-          <td class="position pos-6">6</td>
-          <td class="user">UserNameFromDatabase</td>
-        </tr>
-        <tr>
-          <td class="position pos-7">7</td>
-          <td class="user">UserNameFromDatabase</td>
-        </tr>
-        <tr>
-          <td class="position pos-8">8</td>
-          <td class="user">UserNameFromDatabase</td>
-        </tr>
-        <tr>
-          <td class="position pos-9">9</td>
-          <td class="user">UserNameFromDatabase</td>
-        </tr>
-        <tr>
-          <td class="position pos-10">10</td>
-          <td class="user">UserNameFromDatabase</td>
-        </tr>
-        <tr>
-          <td class="position pos-11">11</td>
-          <td class="user">UserNameFromDatabase</td>
+        <tr v-for="(highscore, index) in highscores" :key="index">
+        <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
+        <td class="user">{{ highscore.username }} med {{ highscore.highscore }} poäng</td>
         </tr>
       </table>
     </div>
@@ -91,6 +60,7 @@
 }
 .grid-container {
   display: grid;
+
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 30% 10% 10% 50%;
   grid-template-areas:
@@ -190,6 +160,28 @@ td {
   width: 4.9rem;
   height: 3.125rem;
   border-radius: 0.4rem;
+=======
+  font-family: Newsreader;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.quiz-link-indiv {
+  border-radius: 83px;
+  opacity: 0.78;
+  background: linear-gradient(180deg, #214f75 48.96%, rgba(33, 79, 117, 0) 100%);
+}
+
+.highscore {
+  border-radius: 24px;
+  border: 4px solid #214f75;
+  background: rgba(232, 243, 253, 0.9);
+  box-shadow: 0px 4px 4px 9px rgba(0, 0, 0, 0.3);
+}
+
+.position {
+  border-radius: 6px;
   border: 1px solid #000;
   background: #fff;
   text-align: center;

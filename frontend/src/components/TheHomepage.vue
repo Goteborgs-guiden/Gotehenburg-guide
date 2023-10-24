@@ -2,17 +2,11 @@
 import {RouterLink} from "vue-router";
 </script>
 <template>
-
-
-  <!--<div><a href="#"><img width="10%" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1"></a></div>
-  <div><a href="#"><img width="10%" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2"></a></div>
-  <div><a href="#"><img width="10%" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3"></a></div>-->
-
   <div>
     <RouterLink class="RouterL" to="/AbcView">
       <img src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
     </RouterLink>
-    <RouterLink class="RouterL" to="/OrdvitsarQuiz">
+    <RouterLink class="RouterL" to="/FillInBlankQuizView">
       <img src="../assets/img/new tramquiz 2.svg" alt="tramquiz2">
     </RouterLink>
     <RouterLink class="RouterL" to="/MapQuizView">
