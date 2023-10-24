@@ -6,13 +6,11 @@ onMounted(() => {
   getHighscore()
 })
 function getHighscore() {
-  fetch('http://127.0.0.1:3000/highscore/toplist', {
+  fetch('http://127.0.0.1:3000/highscore/abc', {
     method: 'GET'
   })
     .then((response) => response.json())
     .then((data) => {
-      //alternatives.value = data.alternatives.split(',')
-      //highscores.value = data;
       highscores.value = data
       console.log(data)
       console.log(highscores.value[0].username)
@@ -45,7 +43,7 @@ function getHighscore() {
       <table>
         <tr v-for="(highscore, index) in highscores" :key="index">
           <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
-          <td class="user">{{ highscore.username }} med {{ highscore.highscore }} poäng</td>
+          <td class="user">{{ highscore.username }} med {{ highscore.ABCHS }} poäng</td>
         </tr>
       </table>
     </div>
