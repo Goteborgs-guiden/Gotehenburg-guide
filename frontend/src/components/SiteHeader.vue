@@ -22,9 +22,10 @@ const tokenStore = useTokensStore()
         <button @click="token = useTokensStore()">update</button>-->
 
     <nav class="navbar">
-    <RouterLink class="RouterL"  to="/">Quiz</RouterLink>
-    <RouterLink class="RouterL"  to="/">Hitta i GBG</RouterLink>
-    <RouterLink class="RouterL" to="/">GBGuide</RouterLink>
+    <RouterLink class="RouterL" style="text-decoration: none;" to="/">Quiz</RouterLink>
+    <RouterLink class="RouterL" style="text-decoration: none;" to="/">Hitta i GBG</RouterLink>
+    <RouterLink class="RouterL" style="text-decoration: none;" to="/">GBGuide</RouterLink>
+    <RouterLink class="RouterL" style="text-decoration: none;" to="/highscore">Highscore</RouterLink>
     <input id="search" placeholder="Hitta vänner">
     </nav>
   </header>

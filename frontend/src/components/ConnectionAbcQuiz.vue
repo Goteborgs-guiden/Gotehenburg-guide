@@ -7,11 +7,15 @@ let alternatives = ref([''])
 let correctData = ref('')
 let onGoingQuiz = true
 let points = ref(0)
+let allowsubmit = true;
+import { useTokensStore } from '../stores/tokens';
+const tokens = useTokensStore();
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function sendAnswer(input, id, answerid) {
+  if(allowsubmit){
   console.log(input)
   fetch('http://127.0.0.1:3000/quiz/abcanswer/' + id, {
     method: 'POST',
@@ -32,12 +36,10 @@ function sendAnswer(input, id, answerid) {
         console.log('answerid=', answerid)
         document.getElementById('btn' + answerid).style.border = '2px solid red'
       }
-      setTimeout(function () {
-        getQuestion(currentQuestion.value++)
-        getQuestion(currentQuestion.value)
-        document.getElementById('btn' + answerid).style.border = ''
-      }, 1000)
+      allowsubmit = false;
+      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = ''; allowsubmit=true}, 1000);
     })
+  }
 }
 function getQuestion(id) {
   if (id <= 3) {
@@ -53,6 +55,21 @@ function getQuestion(id) {
       })
   } else onGoingQuiz = false
 }
+function setHighscore(points) {
+    fetch('http://127.0.0.1:3000/highscore', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'BEARER ' + tokens.accessToken
+      },
+      body: JSON.stringify({ score: points }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(tokens.accessToken)
+        console.log('response from server:', data)
+      })
+    }
 </script>
 
 <template>
@@ -98,6 +115,9 @@ function getQuestion(id) {
     <p v-if="points > 2">Snyggt byggt, fräsig kärra!</p>
     <p v-else>Rackarns rabarber det där gick inte så bra!</p>
     <p>{{ points }} Poäng</p>
+    <div v-if="setHighscore(points)">
+
+    </div>
   </div>
 </template>
 <style scoped>
