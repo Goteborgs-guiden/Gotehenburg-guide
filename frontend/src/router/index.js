@@ -46,8 +46,8 @@ const router = createRouter({
       component: () => import('../views/ProfilePage.vue')
     },
     {
-      path: '/HighscorePage',
-      name: 'HighscorePage',
+      path: '/Highscore',
+      name: 'Highscore',
       component: () => import('../views/HighscorePage.vue')
     }
   ]
