@@ -30,14 +30,14 @@ function sendAnswer(input, id, answerid) {
       correctData.value = data
       if (data) {
         console.log('answerid=', answerid)
-        document.getElementById('btn' + answerid).style.border = '2rem solid green'
+        document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
         points.value++
       } else {
         console.log('answerid=', answerid)
-        document.getElementById('btn' + answerid).style.border = '2rem solid red'
+        document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
       }
       allowsubmit = false;
-      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = ''; allowsubmit=true}, 1000);
+      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'; allowsubmit=true}, 1000);
     })
   }
 }
@@ -79,16 +79,16 @@ function setHighscore(points) {
         {{ question }}
           </div>
       <div class="selection">
-          <button class="btn" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
+          <button class="btn" id="btn0" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
             {{ alternatives[0] }}
           </button>
-          <button class="btn" @click="sendAnswer(alternatives[1], currentQuestion, 1)">
+          <button class="btn" id="btn1" @click="sendAnswer(alternatives[1], currentQuestion, 1)">
             {{ alternatives[1] }}
           </button>
-          <button class="btn" @click="sendAnswer(alternatives[2], currentQuestion, 2)">
+          <button class="btn" id="btn2" @click="sendAnswer(alternatives[2], currentQuestion, 2)">
             {{ alternatives[2] }}
           </button>
-          <button class="btn" @click="sendAnswer(alternatives[3], currentQuestion, 3)">
+          <button class="btn" id="btn3" @click="sendAnswer(alternatives[3], currentQuestion, 3)">
             {{ alternatives[3] }}
           </button>
         
@@ -162,10 +162,20 @@ margin-bottom: 2rem;
   width: 70%;
   height: 3.5rem;
   border-radius: 1.90625rem;
-  border: 2px solid #214f75;
   background: #e8f3fd;
 }
-
+#btn0 {
+  border: 0.2rem solid #214f75;
+}
+#btn1 {
+  border: 0.2rem solid #214f75;
+}
+#btn2 {
+  border: 0.2rem solid #214f75;
+}
+#btn3 {
+  border: 0.2rem solid #214f75;
+}
 @media screen and (max-width: 768px) {
   #question {
     width: 80%;
