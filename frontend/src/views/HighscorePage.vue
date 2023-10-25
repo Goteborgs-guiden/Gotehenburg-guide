@@ -1,25 +1,50 @@
 <script setup>
 import { onMounted } from 'vue'
 import { ref } from 'vue'
-let highscores = ref([])
+let highscoreABC = ref([])
+let highscoreBlank = ref([])
+let selected = ref('abc');
 onMounted(() => {
-  getHighscore()
+  getABCHighscore()
+  getBlankHighscore()
 })
-function getHighscore() {
+
+function getABCHighscore() {
   fetch('http://127.0.0.1:3000/highscore/abc', {
     method: 'GET'
   })
     .then((response) => response.json())
     .then((data) => {
-      highscores.value = data
+      highscoreABC.value = data
+
       console.log(data)
-      console.log(highscores.value[0].username)
+      console.log(highscoreABC.value[0].username)
+      console.log('response from server:', data)
+    })
+}
+function getBlankHighscore() {
+  fetch('http://127.0.0.1:3000/highscore/blank', {
+    method: 'GET'
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      highscoreBlank.value = data
+      console.log(data)
+      console.log(highscoreBlank.value[0].username)
       console.log('response from server:', data)
     })
 }
 </script>
 <template>
+  <form>
+        <select v-model="selected">
+          <option value="abc">ABC</option>
+          <option value="fillblank">Blank highscore</option>
+          <option value="map">Map highscore</option>
+        </select>
+      </form>
   <div class="grid-container">
+    
     <div class="item1 scoreboard">
       <h1>X/X</h1>
     </div>
@@ -38,12 +63,22 @@ function getHighscore() {
         <img class="tramBack" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3" />
       </RouterLink>
     </div>
-
+    
     <div class="item4 highscore">
-      <table>
-        <tr v-for="(highscore, index) in highscores" :key="index">
+      
+      <table v-if ="selected==='abc'">
+        <tr v-for="(highscore, index) in highscoreABC" :key="index">
           <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
           <td class="user">{{ highscore.username }} med {{ highscore.ABCHS }} poäng</td>
+        </tr>
+      </table>
+      <table v-if ="selected==='fillblank'">
+        <tr v-for="(highscore, index) in highscoreBlank" :key="index">
+          <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
+
+
+          <td class="user">{{ highscore.username }} med {{ highscore.BlankHS }} poäng</td>
+
         </tr>
       </table>
     </div>

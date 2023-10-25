@@ -36,7 +36,8 @@ function createtable(){
 function createtableForRegiseter(){
     con.connect(function(err) {
         if (err) throw err;
-        var tableForRegister = "CREATE TABLE account (email VARCHAR(255) NOT NULL, username VARCHAR(255) NOT NULL , password VARCHAR(255) NOT NULL, token VARCHAR(255) NOT NULL, first_name VARCHAR(255) NOT NULL , surname VARCHAR(255) NOT NULL , img VARCHAR(255), district VARCHAR(255) NOT NULL , date_of_birth VARCHAR(255) NOT NULL , friends VARCHAR(255) , ABCHS INT DEFAULT 0, BlankHS INT DEFAULT 0, LocationHS INT DEFAULT 0);";
+
+        var tableForRegister = "CREATE TABLE account (email VARCHAR(255) NOT NULL, username VARCHAR(255) NOT NULL , password VARCHAR(255) NOT NULL, token VARCHAR(255) NOT NULL, first_name VARCHAR(255) NOT NULL , surname VARCHAR(255) NOT NULL , img VARCHAR(255), district VARCHAR(255) NOT NULL , date_of_birth VARCHAR(255) NOT NULL , friends VARCHAR(255) , about VARCHAR(255) , ABCHS INT DEFAULT 0, BlankHS INT DEFAULT 0, LocationHS INT DEFAULT 0);";
         con.query(tableForRegister, function (err, result) {
             if (err) console.warn("register table exists");
             else{
