@@ -48,12 +48,4 @@ router.post("/", authenticateToken, (req, res) => {
         })
     }
     res.status(200).send("Profile updated");
-
-
-
-    /*sql = "UPDATE account SET first_name = '" + req.body.first_name + "', surname = '" + req.body.surname + "', img = '" + req.body.img + "', district = '" + req.body.district + "', date_of_birth = '" + req.body.date_of_birth + "', friends = '" + req.body.friends + "', about = '" + req.body.about + "' WHERE username = '" + req.user.name + "'";
-    database.con.query(sql, (err, result) => {
-        if(err) console.warn("error getting the data");
-        res.status(200).send("Profile updated");
-    })*/
 });
