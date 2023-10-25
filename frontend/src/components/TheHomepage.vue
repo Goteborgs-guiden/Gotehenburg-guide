@@ -2,35 +2,52 @@
 import {RouterLink} from "vue-router";
 </script>
 <template>
-  <div>
+  <div class="Trams">
     <RouterLink class="RouterL" to="/AbcView">
-      <img src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
+      <img class="Tramquiz1" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
     </RouterLink>
     <RouterLink class="RouterL" to="/FillInBlankQuizView">
-      <img src="../assets/img/new tramquiz 2.svg" alt="tramquiz2">
+      <img class="Tramquiz2" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2">
     </RouterLink>
     <RouterLink class="RouterL" to="/MapQuizView">
-      <img src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3">
+      <img class="Tramquiz3" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3">
     </RouterLink>
   </div>
-  <p>
-    <a><textarea placeholder="fun fact of the day"></textarea></a>
-  </p>
 
 </template>
 <style scoped>
 
-textarea{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 100px;
-  padding-right: 100px;
+@media only screen and (max-width: 500px) {
+  .Trams{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  img{
+    width: 250px;
+  }
+  .Tramquiz2{
+    display: none;
+  }
+  .Tramquiz3{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 500px) {
+
+  .Trams{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+
+  }
+  img{
+    width: 250px;
+
+  }
 
 }
-img{
-  margin-top: 20px;
-  margin-left:30px;
-  width: 10%;
-}
+
 </style>

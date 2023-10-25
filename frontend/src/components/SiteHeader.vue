@@ -10,12 +10,12 @@ const tokenStore = useTokensStore()
    <header class="mainHeader">
 
     <div id="headerContent">
-        <h1>GBGuiden</h1>
-            <div v-if="!tokenStore.accessToken">
+        <h1 class="GBG">GBGuiden</h1>
+            <div v-if="!tokenStore.accessToken" class="ButtonsForLoggAndRegis">
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
-            <div v-else>Användarnamn
+            <div v-else class="ToMyPage">Användarnamn
                 Till min sida</div>
         </div>
         <!--<p>{{ token }}</p>
@@ -100,5 +100,33 @@ width: 20%;
 
 ::placeholder {
     color: #214F75;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar {
+    display: none;
+    margin: auto;
+  }
+
+  .ButtonsForLoggAndRegis {
+    display: none;
+    margin: auto;
+  }
+
+  .GBG{
+    font-size: 63px;
+    display: flex;
+  }
+
+  header{
+    margin: 0;
+  }
+
+  .ToMyPage{
+    display: none;
+  }
+  .mainHeader{
+
+  }
 }
 </style>
