@@ -31,6 +31,17 @@ function createtable(){
             }
         });
     });
+    con.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+        var sql = "CREATE TABLE locationQuiz (id INT AUTO_INCREMENT PRIMARY KEY, question VARCHAR(255), alternatives VARCHAR(255), correct VARCHAR(255))";
+        con.query(sql, function (err, result) {
+            if (err) console.warn("locationQuiz table exists");
+            else{
+                console.log("Table created");
+            }
+        });
+    });
 }
 
 function createtableForRegiseter(){
@@ -45,5 +56,7 @@ function createtableForRegiseter(){
         });
     });
 }
+
+   
 
   module.exports = {con, createtable, createtableForRegiseter};
