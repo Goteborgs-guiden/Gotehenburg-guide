@@ -16,3 +16,44 @@ router.get("/", authenticateToken, (req, res) => {
       res.json(result[0]);
     });
   });
+router.post("/", authenticateToken, (req, res) => {
+    if(req.body.first_name !== undefined){
+        sql = "UPDATE account SET first_name = '" + req.body.first_name + "' WHERE username = '" + req.user.name + "'";
+        database.con.query(sql, (err, result) => {
+        })
+    }
+    if(req.body.surname !== undefined){
+        sql = "UPDATE account SET surname = '" + req.body.surname + "' WHERE username = '" + req.user.name + "'";
+        database.con.query(sql, (err, result) => {
+        })
+    }
+    if(req.body.img !== undefined){
+        sql = "UPDATE account SET img = '" + req.body.img + "' WHERE username = '" + req.user.name + "'";
+        database.con.query(sql, (err, result) => {
+        })
+    }
+    if(req.body.district !== undefined){
+        sql = "UPDATE account SET district = '" + req.body.district + "' WHERE username = '" + req.user.name + "'";
+        database.con.query(sql, (err, result) => {
+        })
+    }
+    if(req.body.date_of_birth !== undefined){
+        sql = "UPDATE account SET date_of_birth = '" + req.body.date_of_birth + "' WHERE username = '" + req.user.name + "'";
+        database.con.query(sql, (err, result) => {
+        })
+    }
+    if(req.body.about !== undefined){
+        sql = "UPDATE account SET about = '" + req.body.about + "' WHERE username = '" + req.user.name + "'";
+        database.con.query(sql, (err, result) => {
+        })
+    }
+    res.status(200).send("Profile updated");
+
+
+
+    /*sql = "UPDATE account SET first_name = '" + req.body.first_name + "', surname = '" + req.body.surname + "', img = '" + req.body.img + "', district = '" + req.body.district + "', date_of_birth = '" + req.body.date_of_birth + "', friends = '" + req.body.friends + "', about = '" + req.body.about + "' WHERE username = '" + req.user.name + "'";
+    database.con.query(sql, (err, result) => {
+        if(err) console.warn("error getting the data");
+        res.status(200).send("Profile updated");
+    })*/
+});
