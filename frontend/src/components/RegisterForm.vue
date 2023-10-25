@@ -33,13 +33,13 @@ function register() {
       <form>
         <label class="register">Registrera dig:</label>
         <label>mailadress:</label>
-        <input class="input" type="text" v-model="email" placeholder="" />
+        <input class="input" type="text" v-model="email" placeholder="mailadress" />
         <label>användarnamn:</label>
         <input class="input" type="text" v-model="username" placeholder="användarnamn" />
         <label>lösenord:</label>
         <input class="input" type="password" v-model="password" placeholder="lösenord" />
         <label>upprepa lösenord:</label>
-        <input class="input" type="password" v-model="pass2" placeholder="first name" />
+        <input class="input" type="password" v-model="pass2" placeholder="upprepa lösenord" />
         <div class="button-wrapper">
           <input class="button" type="submit" value="Register" @click.prevent="register()" />
         </div>

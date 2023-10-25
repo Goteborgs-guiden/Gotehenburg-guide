@@ -15,42 +15,32 @@ const router = createRouter({
       component: () => import('../views/newView.vue')
     },
     {
-      path: '/AbcView',
+      path: '/tjot',
       name: 'AbcView',
       component: () => import('../views/AbcView.vue')
     },
     {
 
-      path: '/FillInBlankQuizView',
+      path: '/ordvitsknok',
       name: 'FillInBlankQuizView',
       component: () => import('../views/FillInBlankQuizView.vue')
     },
     {
-      path: '/MapQuizView',
-      name: 'MapQuiz',
-      component: () => import('../views/MapQuizView/MapQuizView.vue')
+      path: '/geografikack',
+      name: 'MapQuizView',
+      component: () => import('../views/MapQuizView.vue')
     },
     {
-      path: '/MapQuizView2',
-      name: 'MapQuiz2',
-      component: () => import('../views/MapQuizView/MapQuizView2.vue')
-    },
-    {
-      path: '/MapQuizView3',
-      name: 'MapQuiz3',
-      component: () => import('../views/MapQuizView/MapQuizView3.vue')
-    },
-    {
+
       path: '/Profile',
       name: 'Profile',
       component: () => import('../views/ProfilePage.vue')
     },
     {
-      path: '/highscore',
-      name: 'highscore',
+      path: '/Highscore',
+      name: 'Highscore',
       component: () => import('../views/HighscorePage.vue')
     }
-
   ]
 })
 

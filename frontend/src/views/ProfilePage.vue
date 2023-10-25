@@ -1,24 +1,49 @@
 <script setup>
+import { RouterLink } from "vue-router";
+import { onMounted, ref } from 'vue';
+import { useTokensStore } from '../stores/tokens';
+const tokens = useTokensStore();
+const userInfo = ref('');
+const friends = ref('');
+onMounted(() => {
+  getInfo();
+})
+
+function getInfo() {
+    fetch('http://127.0.0.1:3000/user', {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'BEARER ' + tokens.accessToken
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        userInfo.value = data;
+        friends.value = userInfo.value.friends.split(',')
+        console.log('friends', friends.value)
+      })
+    }
 </script>
 <template>
     <div id="profile-page">
         <div id="top-section">
             <div id="profile-img">
-                <h1 id="username">Användarnamn</h1>
+                <h1 id="username">{{ userInfo.username}}</h1>
             </div>
             <div id="profile-info">
                 <table id="shorts">
                     <tr>
                         <td class="info">Namn:</td>
-                        <td class="answer">hämtas från databas</td>
+                        <td class="answer">{{ userInfo.first_name}} {{ userInfo.surname }}</td>
                     </tr>
                     <tr>
                         <td class="info">Födelsedag:</td>
-                        <td class="answer">hämtas från databas</td>
+                        <td class="answer">{{userInfo.date_of_birth}}</td>
                     </tr>
                     <tr>
                         <td class="info">Område:</td>
-                        <td class="answer">hämtas från databas</td>
+                        <td class="answer">{{ userInfo.district }}</td>
                     </tr>
                 </table>
                 <table id="about">
@@ -26,7 +51,7 @@
                         <td>Om mig:</td>
                     </tr>
                     <tr class="answer">
-                        <td>Hämtas från databas</td>
+                        <td>{{ userInfo.about }}</td>
                     </tr>
                 </table>
                 <a href="#editPage?">
@@ -37,38 +62,34 @@
         <div id="quiz-friends">
             <div id="quiz-scores">
                 <ul class="quiz">
-                    <li><RouterLink class="RouterL" to="/AbcView">
+                    <li><RouterLink class="RouterL" to="/tjot">
                     <img class="tram" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
-                    </RouterLink></li>
-                    <li class="quiz-info quiz-extra">Ordvitsknök</li>
-                    <li class="quiz-info">Personligt bästa:</li>
-                    <li class="quiz-info quiz-extra">X/X</li>
-                </ul>
-                <ul class="quiz">
-                    <li><RouterLink class="RouterL" to="/OrdvitsarQuiz">
-                    <img class="tram" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Tjöt</li>
                     <li class="quiz-info">Personligt bästa:</li>
-                    <li class="quiz-info quiz-extra">X/X</li>
+                    <li class="quiz-info quiz-extra">{{userInfo.ABCHS}}/5</li>
                 </ul>
                 <ul class="quiz">
-                    <li><RouterLink class="RouterL" to="/MapQuizView">
+                    <li><RouterLink class="RouterL" to="/ordvitsknok">
+                    <img class="tram" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2">
+                    </RouterLink></li>
+                    <li class="quiz-info quiz-extra">Ordvitsknök</li>
+                    <li class="quiz-info">Personligt bästa:</li>
+                    <li class="quiz-info quiz-extra">{{userInfo.BlankHS}}/5</li>
+                </ul>
+                <ul class="quiz">
+                    <li><RouterLink class="RouterL" to="/geografikack">
                     <img class="tram" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Geografi-käck</li>
                     <li class="quiz-info">Personligt bästa:</li>
-                    <li class="quiz-info quiz-extra">X/X</li>
+                    <li class="quiz-info quiz-extra">{{userInfo.LocationHS}}/5</li>
                 </ul>
             </div>
-
             <div id="friend-list">
                 <h3 id="friends">Vänner</h3>
                 <ul id="friends-list">
-                    <li class="friend">vän</li>
-                    <li class="friend">vän</li>
-                    <li class="friend">vän</li>
-                    <li class="friend">vän</li>
+                    <li v-for="(friend, index) in friends" :key="index" class="friend">{{ friend }}</li>
                 </ul>
             </div>
         </div>
