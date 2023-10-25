@@ -17,7 +17,7 @@ onMounted(() => {
 function sendAnswer(input, id, answerid) {
   if(allowsubmit){
   console.log(input)
-  fetch('http://127.0.0.1:3000/quiz/abcanswer/' + id, {
+  fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
     method: 'POST',
     body: JSON.stringify({ answer: input }),
     headers: {
@@ -44,7 +44,7 @@ function sendAnswer(input, id, answerid) {
 function getQuestion(id) {
   if (id <= 3) {
     correctData.value = ''
-    fetch('http://127.0.0.1:3000/quiz/abcquestion/' + id, {
+    fetch('http://127.0.0.1:3000/quiz/locationQuestion/' + id, {
       method: 'GET'
     })
       .then((response) => response.json())
@@ -56,7 +56,7 @@ function getQuestion(id) {
   } else onGoingQuiz = false
 }
 function setHighscore(points) {
-    fetch('http://127.0.0.1:3000/highscore/abc', {
+    fetch('http://127.0.0.1:3000/highscore', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
