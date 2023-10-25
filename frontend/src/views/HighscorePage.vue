@@ -3,10 +3,12 @@ import { onMounted } from 'vue'
 import { ref } from 'vue'
 let highscoreABC = ref([])
 let highscoreBlank = ref([])
+let highscoreLocation = ref([])
 let selected = ref('abc');
 onMounted(() => {
   getABCHighscore()
   getBlankHighscore()
+  getLocationHighscore()
 })
 
 function getABCHighscore() {
@@ -16,10 +18,6 @@ function getABCHighscore() {
     .then((response) => response.json())
     .then((data) => {
       highscoreABC.value = data
-
-      console.log(data)
-      console.log(highscoreABC.value[0].username)
-      console.log('response from server:', data)
     })
 }
 function getBlankHighscore() {
@@ -29,9 +27,15 @@ function getBlankHighscore() {
     .then((response) => response.json())
     .then((data) => {
       highscoreBlank.value = data
-      console.log(data)
-      console.log(highscoreBlank.value[0].username)
-      console.log('response from server:', data)
+    })
+}
+function getLocationHighscore() {
+  fetch('http://127.0.0.1:3000/highscore/location', {
+    method: 'GET'
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      highscoreLocation.value = data
     })
 }
 </script>
@@ -65,7 +69,6 @@ function getBlankHighscore() {
     </div>
     
     <div class="item4 highscore">
-      
       <table v-if ="selected==='abc'">
         <tr v-for="(highscore, index) in highscoreABC" :key="index">
           <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
@@ -75,10 +78,13 @@ function getBlankHighscore() {
       <table v-if ="selected==='fillblank'">
         <tr v-for="(highscore, index) in highscoreBlank" :key="index">
           <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
-
-
           <td class="user">{{ highscore.username }} med {{ highscore.BlankHS }} poäng</td>
-
+        </tr>
+      </table>
+      <table v-if ="selected==='map'">
+        <tr v-for="(highscore, index) in highscoreLocation" :key="index">
+          <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
+          <td class="user">{{ highscore.username }} med {{ highscore.LocationHS }} poäng</td>
         </tr>
       </table>
     </div>
