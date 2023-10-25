@@ -2,10 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const database = require("../sql");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const { hashPassword } = require("mysql/lib/protocol/Auth");
-const { use } = require("./register");
-const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const {authenticateToken}=require('./register')
 router.use(cors());
