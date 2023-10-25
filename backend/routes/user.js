@@ -49,3 +49,19 @@ router.post("/", authenticateToken, (req, res) => {
     }
     res.status(200).send("Profile updated");
 });
+router.post("/friend", authenticateToken, (req, res) => {
+    sql = "SELECT friends FROM account WHERE username = '" + req.user.name + "'";
+    database.con.query(sql, (err, result) => {
+        let friends = result[0].friends;
+        if(friends === ""){
+            friends = req.body.friend;
+        }
+        else{
+            friends = friends + "," + req.body.friend;
+        }
+        sql = "UPDATE account SET friends = '" + friends + "' WHERE username = '" + req.user.name + "'";
+        database.con.query(sql, (err, result) => {
+            res.status(200).send("Friend added");
+        })
+    })
+})
