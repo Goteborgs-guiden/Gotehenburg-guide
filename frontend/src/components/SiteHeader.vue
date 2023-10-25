@@ -31,16 +31,12 @@ function getInfo() {
    <header class="mainHeader">
 
     <div id="headerContent">
-        <h1 class="GBG">GBGuiden</h1>
-            <div v-if="!tokenStore.accessToken" class="ButtonsForLoggAndRegis">
       <RouterLink id="GBGlogo" style="text-decoration: none;" to="/">GBGuiden</RouterLink>
-            <div v-if="!tokenStore.accessToken">
+            <div v-if="!tokenStore.accessToken" class="ButtonsForLoggAndRegis">>
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
-            <div v-else class="ToMyPage">Användarnamn
-                Till min sida</div>
-            <div v-else>
+            <div v-else class="ToMyPage">
                 <div v-if="getInfo()"></div>
                 <RouterLink class="RouterL" style="text-decoration: none;" to="/profile">{{userInfo.username}}</RouterLink>
             </div>
@@ -193,7 +189,7 @@ height: 1.5rem;
     margin: auto;
   }
 
-  .GBG{
+  #GBGlogo{
     font-size: 63px;
     display: flex;
   }
