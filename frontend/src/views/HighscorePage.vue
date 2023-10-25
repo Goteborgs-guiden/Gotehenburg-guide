@@ -8,6 +8,7 @@ onMounted(() => {
   getABCHighscore()
   getBlankHighscore()
 })
+
 function getABCHighscore() {
   fetch('http://127.0.0.1:3000/highscore/abc', {
     method: 'GET'
@@ -15,6 +16,7 @@ function getABCHighscore() {
     .then((response) => response.json())
     .then((data) => {
       highscoreABC.value = data
+
       console.log(data)
       console.log(highscoreABC.value[0].username)
       console.log('response from server:', data)
@@ -73,7 +75,10 @@ function getBlankHighscore() {
       <table v-if ="selected==='fillblank'">
         <tr v-for="(highscore, index) in highscoreBlank" :key="index">
           <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
+
+
           <td class="user">{{ highscore.username }} med {{ highscore.BlankHS }} poäng</td>
+
         </tr>
       </table>
     </div>
