@@ -36,6 +36,7 @@ router.post("/", (req, res) => {
             }
             const hashedPassword = hash;
             bcrypt.compare(
+
               password,
               hashedPassword,
               async function (err, isMatch) {
@@ -46,14 +47,16 @@ router.post("/", (req, res) => {
                   if (err) throw err;
                   console.log("Connected!");
                   var sql =
-                    "INSERT INTO account (email, username, password, token, first_name, surname, img, district, date_of_birth) VALUES ";
+                    "INSERT INTO account (email, username, password, token, first_name, surname, img, district, date_of_birth, friends, about) VALUES ";
                   database.con.query(
                     {
-                      sql: "INSERT INTO account (email, username, password, token, first_name, surname, img, district, date_of_birth) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)",
+                      sql: "INSERT INTO account (email, username, password, token, first_name, surname, img, district, date_of_birth, friends, about) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?,?,?)",
                       values: [
                         email,
                         username,
                         hashedPassword,
+                        '',
+                        '',
                         '',
                         '',
                         '',
@@ -134,14 +137,6 @@ function generateAccessToken(user) {
     expiresIn: "1800s",
   });
 }
-/*This endpoint is only for testing authenticateToken should be removed later*/
-router.get("/userinfo", authenticateToken, (req, res) => {
-  sql = "SELECT * FROM account WHERE username = '" + req.user.name + "'";
-  database.con.query(sql, function (err, result) {
-    if (err) throw err;
-    res.json(result[0]);
-  });
-});
 router.post("/token", (req, res) => {
   const refreshToken = req.body.token;
   if (refreshToken == null) return res.status(401);
