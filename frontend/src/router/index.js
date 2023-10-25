@@ -49,6 +49,16 @@ const router = createRouter({
       path: '/Highscore',
       name: 'Highscore',
       component: () => import('../views/HighscorePage.vue')
+    },
+    {
+      path: '/gbguide',
+      name: 'gbguide',
+      component: () => import('../views/GbguidePage.vue')
+    },
+    {
+      path: '/scroll',
+      name: 'scroll',
+      component: () => import('../components/ScrollMenu.vue')
     }
   ]
 })
