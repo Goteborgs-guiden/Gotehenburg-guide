@@ -1,9 +1,30 @@
 <script setup>
 import { useDialogStore } from '../stores/dialog';
 import { useTokensStore } from '../stores/tokens';
+import { onMounted, ref } from 'vue';
 const dialogs = useDialogStore()
 const tokenStore = useTokensStore()
-
+const userInfo = ref('');
+onMounted(() => {
+  getInfo();
+})
+function getInfo() {
+    fetch('http://127.0.0.1:3000/user', {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'BEARER ' + tokenStore.accessToken
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        userInfo.value = data;
+        console.log('response from server:', data)
+        //this log if needed for some reason otherwise it doesn't display user info
+        console.log('userInfo', userInfo.value)
+        console.log("a")
+      })
+    }
 </script>
 
 <template>
@@ -15,16 +36,19 @@ const tokenStore = useTokensStore()
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
-            <div v-else>Användarnamn
-                Till min sida</div>
+            <div v-else>
+                <div v-if="getInfo()"></div>
+                <RouterLink class="RouterL" style="text-decoration: none;" to="/profile">{{userInfo.username}}</RouterLink>
+            </div>
         </div>
         <!--<p>{{ token }}</p>
         <button @click="token = useTokensStore()">update</button>-->
 
     <nav class="navbar">
-    <RouterLink class="RouterL"  to="/">Quiz</RouterLink>
-    <RouterLink class="RouterL"  to="/">Hitta i GBG</RouterLink>
-    <RouterLink class="RouterL" to="/">GBGuide</RouterLink>
+    <RouterLink class="RouterL" style="text-decoration: none;" to="/">Quiz</RouterLink>
+    <RouterLink class="RouterL" style="text-decoration: none;" to="/">Hitta i GBG</RouterLink>
+    <RouterLink class="RouterL" style="text-decoration: none;" to="/">GBGuide</RouterLink>
+    <RouterLink class="RouterL" style="text-decoration: none;" to="/highscore">Highscore</RouterLink>
     <input id="search" placeholder="Hitta vänner">
     </nav>
   </header>

@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 let currentQuestion = ref(0)
 //const apiUrl = "http://127.0.0.1:3000/";
-let question = ref('')
+let abcdata = ref('')
 let alternatives = ref([''])
 let correctData = ref('')
 let onGoingQuiz = true
@@ -17,7 +17,7 @@ onMounted(() => {
 function sendAnswer(input, id, answerid) {
   if(allowsubmit){
   console.log(input)
-  fetch('http://127.0.0.1:3000/quiz/abcanswer/' + id, {
+  fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
     method: 'POST',
     body: JSON.stringify({ answer: input }),
     headers: {
@@ -30,11 +30,11 @@ function sendAnswer(input, id, answerid) {
       correctData.value = data
       if (data) {
         console.log('answerid=', answerid)
-        document.getElementById('btn' + answerid).style.border = '2rem solid green'
+        document.getElementById('btn' + answerid).style.border = '2px solid green'
         points.value++
       } else {
         console.log('answerid=', answerid)
-        document.getElementById('btn' + answerid).style.border = '2rem solid red'
+        document.getElementById('btn' + answerid).style.border = '2px solid red'
       }
       allowsubmit = false;
       setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = ''; allowsubmit=true}, 1000);
@@ -44,19 +44,19 @@ function sendAnswer(input, id, answerid) {
 function getQuestion(id) {
   if (id <= 3) {
     correctData.value = ''
-    fetch('http://127.0.0.1:3000/quiz/abcquestion/' + id, {
+    fetch('http://127.0.0.1:3000/quiz/locationQuestion/' + id, {
       method: 'GET'
     })
       .then((response) => response.json())
       .then((data) => {
         console.log('response from server:', data)
-        question.value = data.question
+        abcdata.value = data.question
         alternatives.value = data.alternatives.split(',')
       })
   } else onGoingQuiz = false
 }
 function setHighscore(points) {
-    fetch('http://127.0.0.1:3000/highscore/abc', {
+    fetch('http://127.0.0.1:3000/highscore', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -73,29 +73,33 @@ function setHighscore(points) {
 </script>
 
 <template>
-  <div class="quiz-container">
-    <div v-if="onGoingQuiz" id="abc-quiz">
-      <div id="question">
-        {{ question }}
-          </div>
+  <div class="grid-container">
+    <div class="item1" id="question-image">
+      <img src="#" />
+    </div>
+
+    <div v-if="onGoingQuiz" id="abc-quiz" class="item2">
+      <p>{{ abcdata }}</p>
       <div class="selection">
-          <button class="btn" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
+        <from>
+          <button id="btn0" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
             {{ alternatives[0] }}
           </button>
-          <button class="btn" @click="sendAnswer(alternatives[1], currentQuestion, 1)">
+          <button id="btn1" @click="sendAnswer(alternatives[1], currentQuestion, 1)">
             {{ alternatives[1] }}
           </button>
-          <button class="btn" @click="sendAnswer(alternatives[2], currentQuestion, 2)">
+          <button id="btn2" @click="sendAnswer(alternatives[2], currentQuestion, 2)">
             {{ alternatives[2] }}
           </button>
-          <button class="btn" @click="sendAnswer(alternatives[3], currentQuestion, 3)">
+          <button id="btn3" @click="sendAnswer(alternatives[3], currentQuestion, 3)">
             {{ alternatives[3] }}
           </button>
-        
+        </from>
       </div>
     </div>
-   
+    </div>
   <div>
+    <from> </from>
   </div>
   <div v-if="onGoingQuiz">
     <p v-if="correctData">Rätt svar!</p>
@@ -109,94 +113,95 @@ function setHighscore(points) {
 
     </div>
   </div>
-  </div>
 </template>
 <style scoped>
-
-.quiz-container {
-  height: 100vh;
-  width: 100vw;
+.item1 {
+  grid-area: image;
+}
+.item2 {
+  grid-area: choices;
+}
+.item3 {
+  grid-area: buttonOne;
+}
+.item4 {
+  grid-area: buttonTwo;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 50% 1fr;
+  grid-template-rows: 1fr 1fr 20%;
+  grid-template-areas:
+    '. image .'
+    '. choices .'
+    'buttonOne . buttonTwo';
 }
 
-#abc-quiz {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+.item1 {
+  justify-self: center;
 }
 
-#question {
-  border-radius: 25px;
-border: 4px solid #406C90;
-background: rgba(232, 243, 253, 0.91);
-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-width: 40%;
-height: 7rem;
-flex-shrink: 0;
-color: #000;
-font-family: Newsreader;
-font-size: 2rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 2rem;
-margin-bottom: 2rem;
+.item2 {
+  justify-self: center;
 }
 .selection {
   text-align: center;
-  width: 40%;
+  width: 59.53125rem;
+  height: 13.6875rem;
   background-color: rgba(64, 108, 144, 0.9);
   border-radius: 0.8rem;
-  height: 20rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
 }
-.btn {
-  width: 70%;
+#btn0 {
+  width: 23.25rem;
+  height: 3.5rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
+  margin-top: 2rem;
+  margin-right: 5.5rem;
+}
+#btn1 {
+  width: 23.25rem;
+  height: 3.5rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
+}
+#btn2 {
+  width: 23.25rem;
+  height: 3.5rem;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
+  margin-top: 2.5rem;
+  margin-right: 5.5rem;
+}
+#btn3 {
+  width: 23.25rem;
   height: 3.5rem;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
 }
 
-@media screen and (max-width: 768px) {
-  #question {
-    width: 80%;
-  }
-  .quiz-container {
-  height: 100vh;
-  width: 100%;
+.item3 {
+  justify-self: center;
 }
-  #abc-quiz {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  .question {
-    display: flex;
-    flex-direction: column;
-  }
-  .selection {
-    width: 90%;
-    height: 20rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
-  }
-  .btn {
-    width: 70%;
-    margin: 0.8rem;
-  }
- 
+.item4 {
+  justify-self: center;
+}
+.one {
+  padding: 0.6rem 1.4rem;
+  border-radius: 0.8rem;
+  border: 5px solid #91b6d8;
+  background: #fff;
+  color: #214f75;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Newsreader';
+  font-size: 1.3125rem;
+}
+
+.two {
+  padding: 0.6rem 2rem;
 }
 </style>

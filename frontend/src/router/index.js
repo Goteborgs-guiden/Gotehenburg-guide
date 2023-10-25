@@ -27,25 +27,20 @@ const router = createRouter({
     },
     {
       path: '/MapQuizView',
-      name: 'MapQuiz',
-      component: () => import('../views/MapQuizView/MapQuizView.vue')
+      name: 'MapQuizView',
+      component: () => import('../views/MapQuizView.vue')
     },
     {
-      path: '/MapQuizView2',
-      name: 'MapQuiz2',
-      component: () => import('../views/MapQuizView/MapQuizView2.vue')
-    },
-    {
-      path: '/MapQuizView3',
-      name: 'MapQuiz3',
-      component: () => import('../views/MapQuizView/MapQuizView3.vue')
-    },
-    {
+
       path: '/Profile',
       name: 'Profile',
       component: () => import('../views/ProfilePage.vue')
+    },
+    {
+      path: '/Highscore',
+      name: 'Highscore',
+      component: () => import('../views/HighscorePage.vue')
     }
-
   ]
 })
 
