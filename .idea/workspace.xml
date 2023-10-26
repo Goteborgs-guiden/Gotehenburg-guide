@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf07fae8-f574-4373-84e3-8f575026f4db" name="Changes" comment="Update the change">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/TheHomepage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TheHomepage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

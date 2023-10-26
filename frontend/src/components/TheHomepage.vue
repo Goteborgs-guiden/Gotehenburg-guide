@@ -1,17 +1,38 @@
 <script setup>
 import {RouterLink} from "vue-router";
+import {ref} from "vue";
+
+const touchStartPos = ref()
+function touchStartMethod(touchEvent){
+  touchStartPos.value = touchEvent.changedTouches[0].clientX;
+}
+//posXStart
+function touchEndMethod (touchEvent){
+  const posXEnd = touchEvent.changedTouches[0].clientX;
+
+  console.log("Start pos", touchStartPos)
+  console.log("End pos", posXEnd)
+  console.log(posXEnd)
+  if (touchStartPos.value < posXEnd){
+    //Look at bob work in instead of console.log
+    console.log("swipe right")
+  }else {
+    //Look at bob work in instead of console.log
+    console.log("swipe left")
+  }
+}
 </script>
 <template>
 
-  <div class="Trams">
+  <div class="Trams" @touchstart="touchStartMethod" @touchend="touchEndMethod">
     <a class="HoldArrow"><img src="../../public/svgarrows/arrowleft.svg" class="LeftArrow"></a>
     <RouterLink class="RouterL" to="/tjot">
       <img class="Tramquiz1" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
     </RouterLink>
-    <RouterLink class="RouterLT" to="/ordvitsknok">
+    <RouterLink class="RouterL" to="/ordvitsknok">
       <img class="Tramquiz2" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2">
     </RouterLink>
-    <RouterLink class="RouterLT" to="/geografikack">
+    <RouterLink class="RouterL" to="/geografikack">
       <img class="Tramquiz3" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3">
     </RouterLink>
     <a class="HoldArrow"><img src="../../public/svgarrows/arrowright.svg" class="RightArrow"></a>
@@ -31,13 +52,10 @@ import {RouterLink} from "vue-router";
     width: 250px;
   }
   .Tramquiz2{
-    display: none;
+
   }
   .Tramquiz3{
-    display: none;
-  }
-  .RouterLT{
-    display: none;
+
   }
   .LeftArrow{
     width: 30px;
@@ -56,12 +74,9 @@ import {RouterLink} from "vue-router";
     display: flex;
     justify-content: center;
     margin-top: 30px;
-
-
   }
   img{
     width: 250px;
-
   }
   .LeftArrow{
     display: none;
@@ -69,8 +84,6 @@ import {RouterLink} from "vue-router";
   .RightArrow{
     display: none;
   }
-
 }
-
 </style>
 
