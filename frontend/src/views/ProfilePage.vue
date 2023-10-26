@@ -60,7 +60,7 @@ function getInfo() {
         <div id="quiz-friends">
             <div id="quiz-scores">
                 <ul class="quiz">
-                    <li><RouterLink class="RouterL" to="/AbcView">
+                    <li><RouterLink class="RouterL" to="/tjot">
                     <img class="tram" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Tjöt</li>
@@ -68,7 +68,7 @@ function getInfo() {
                     <li class="quiz-info quiz-extra">{{userInfo.ABCHS}}/5</li>
                 </ul>
                 <ul class="quiz">
-                    <li><RouterLink class="RouterL" to="/OrdvitsarQuiz">
+                    <li><RouterLink class="RouterL" to="/ordvitsknok">
                     <img class="tram" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Ordvitsknök</li>
@@ -76,7 +76,7 @@ function getInfo() {
                     <li class="quiz-info quiz-extra">{{userInfo.BlankHS}}/5</li>
                 </ul>
                 <ul class="quiz">
-                    <li><RouterLink class="RouterL" to="/MapQuizView">
+                    <li><RouterLink class="RouterL" to="/geografikack">
                     <img class="tram" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Geografi-käck</li>
