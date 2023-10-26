@@ -9,8 +9,8 @@ const props = defineProps(['imgSrc', 'caption'])
 </template>
 <style>
 img {
-  width: 25rem;
-  height: 25rem;
+  width: 20em;
+  height: 20em;
 }
 
 .image-box {
@@ -22,10 +22,10 @@ img {
 
 h3 {
   position: absolute;
-  right: 0.5em;
-  bottom: 0.5em;
+  right: 0.4em;
+  bottom: 0.4em;
   font-family: 'Newsreader';
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: white;
   border-radius: 2.75rem;
   background: rgba(5, 40, 64, 0.73);

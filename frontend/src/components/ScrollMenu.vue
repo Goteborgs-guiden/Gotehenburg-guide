@@ -17,34 +17,52 @@ let arrayOfImages = [
 const slideOffset = ref(0)
 </script>
 <template>
-  <div class="scrollMenu" :style="{ transform: `translateX(${slideOffset}px)` }">
-    <ScrollImage
-      v-for="item in arrayOfImages"
-      :imgSrc="imageBaseUrl + item.imgSrc"
-      :key="item.caption"
-      :caption="item.caption"
-    />
-    <button class="backwardButton buttonItem" @click="slideOffset = Math.min(slideOffset + 440, 0)">
-      <img src="/svgarrows/arrowleft.svg" class="buttonImage" />
-    </button>
-    <button
-      class="forwardButton buttonItem"
-      @click="slideOffset = Math.max(slideOffset - 440, -1750)"
-    >
-      <img src="/svgarrows/arrowright.svg" class="buttonImage" />
-    </button>
-  </div>
+  <section class="container">
+    <div class="scrollContainer">
+      <div class="scrollMenu" :style="{ transform: `translateX(${slideOffset}px)` }">
+        <ScrollImage
+          v-for="item in arrayOfImages"
+          :imgSrc="imageBaseUrl + item.imgSrc"
+          :key="item.caption"
+          :caption="item.caption"
+        />
+      </div>
+
+      <button
+        class="backwardButton buttonItem"
+        @click="slideOffset = Math.min(slideOffset + 350, 0)"
+      >
+        <img src="/svgarrows/arrowleft.svg" class="buttonImage" />
+      </button>
+      <button
+        class="forwardButton buttonItem"
+        @click="slideOffset = Math.max(slideOffset - 350, -1050)"
+      >
+        <img src="/svgarrows/arrowright.svg" class="buttonImage" />
+      </button>
+    </div>
+  </section>
 </template>
 <style>
+.container {
+  position: relative;
+}
+
+.scrollContainer {
+  width: 94%;
+  margin-left: 3%;
+  overflow: hidden;
+}
+
 .scrollMenu {
   display: flex;
   max-width: 100%;
   background-color: white;
   transition: all 0.6s ease;
-  padding-left: 4.5em;
 }
 
 .buttonImage {
+  position: absolute;
   width: 3em;
   cursor: pointer;
 }
@@ -61,15 +79,16 @@ const slideOffset = ref(0)
   position: absolute;
   background-color: rgb(255, 255, 255);
   border: none;
-  height: 100%;
-  width: 5em;
+  top: 0;
 }
 
 .backwardButton {
-  left: 0;
+  top: 3em;
+  left: 0.5%;
 }
 
 .forwardButton {
-  right: 0;
+  top: 3em;
+  right: 2.5%;
 }
 </style>

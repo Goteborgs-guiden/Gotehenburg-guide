@@ -11,7 +11,7 @@ import ScrollMenu from "@/components/ScrollMenu.vue";
       </div>
       <div class="img-text">
         <h1>GBGuide</h1>
-        <h2>Göteborgs topp 5</h2>
+        <h2>Göteborgs Topp 5</h2>
       </div>
     </div>
     <div class="item2">

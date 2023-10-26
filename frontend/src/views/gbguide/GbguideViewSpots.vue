@@ -3,10 +3,10 @@
   <main>
     <header>
       <div class="imageBox">
-        <img src="/gbguide/swimmingareas/badplatsernarrow.png" class="headerImage" />
+        <img src="/gbguide/viewspots/utsiktsplatsernarrow.png" class="headerImage" />
       </div>
       <div class="titleBox">
-        <h1 class="title">Badplatser</h1>
+        <h1 class="title">Utsiktsplatser</h1>
       </div>
     </header>
     <article class="artBox">
@@ -168,8 +168,8 @@
   font-family: 'Newsreader';
   color: white;
   position: absolute;
-  top: 20%;
-  left: 33%;
+  top: 25%;
+  left: 29%;
 }
 
 .title {
