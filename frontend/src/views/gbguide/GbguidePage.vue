@@ -10,8 +10,8 @@ import ScrollMenu from "@/components/ScrollMenu.vue";
         <img src="/gbguide/gbgcity3.jpeg" class="main-img overlay" />
       </div>
       <div class="img-text">
-        <h1>GBGuide</h1>
-        <h2>Göteborgs Topp 5</h2>
+        <h1 class="mainTitle" >GBGuide</h1>
+        <h2 class="mainSecTitle" >Göteborgs Topp 5</h2>
       </div>
     </div>
     <div class="item2">
@@ -20,7 +20,7 @@ import ScrollMenu from "@/components/ScrollMenu.vue";
   </main>
 </template>
 <style>
-/*
+
 .grid-container {
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -28,7 +28,7 @@ import ScrollMenu from "@/components/ScrollMenu.vue";
     'header'
     'list';
     gap: 1rem;
-}*/
+}
 
 .item1 {
   grid-area: header;
@@ -36,6 +36,8 @@ import ScrollMenu from "@/components/ScrollMenu.vue";
   text-align: center;
 }
 .item2 {
+  width: 100%;
+  overflow: hidden;
   grid-area: list;
 }
 
@@ -61,12 +63,12 @@ import ScrollMenu from "@/components/ScrollMenu.vue";
   left: 33%;
 }
 
-h1 {
+.mainTitle {
   font-size: 10rem;
   margin-bottom: 0;
 }
 
-h2 {
+.mainSecTitle {
   font-size: 4rem;
   margin-top: 0;
 }

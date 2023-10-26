@@ -4,14 +4,14 @@ import { ref } from 'vue'
 
 const imageBaseUrl = '/gbguide/'
 let arrayOfImages = [
-  { imgSrc: 'lakesmall.png', caption: 'Badplatser' },
-  { imgSrc: 'restaurantsmall.png', caption: 'Restauranger' },
-  { imgSrc: 'artistsmall.png', caption: 'Artister' },
-  { imgSrc: 'beersmall.png', caption: 'Ölhak' },
-  { imgSrc: 'lisebergsmall.png', caption: 'Sevärdheter' },
-  { imgSrc: 'museumsmall.png', caption: 'museum' },
-  { imgSrc: 'gbgviewssmall.png', caption: 'utsiktsplatser' },
-  { imgSrc: 'hikesmall.png', caption: 'vandringsleder' }
+  { imgSrc: 'lakesmall.png', caption: 'Badplatser', link: 'swimming' },
+  { imgSrc: 'restaurantsmall.png', caption: 'Restauranger', link: 'restaurants' },
+  { imgSrc: 'artistsmall.png', caption: 'Artister', link: 'artists' },
+  { imgSrc: 'beersmall.png', caption: 'Ölhak', link: 'pubs' },
+  { imgSrc: 'lisebergsmall.png', caption: 'Sevärdheter', link: 'touristattractions' },
+  { imgSrc: 'museumsmall.png', caption: 'museum', link: 'museum' },
+  { imgSrc: 'gbgviewssmall.png', caption: 'utsiktsplatser', link: 'viewspots' },
+  { imgSrc: 'hikesmall.png', caption: 'vandringsleder', link: 'hiking' }
 ]
 
 const slideOffset = ref(0)
@@ -25,6 +25,7 @@ const slideOffset = ref(0)
           :imgSrc="imageBaseUrl + item.imgSrc"
           :key="item.caption"
           :caption="item.caption"
+          :link="imageBaseUrl + item.link"
         />
       </div>
 
@@ -79,16 +80,14 @@ const slideOffset = ref(0)
   position: absolute;
   background-color: rgb(255, 255, 255);
   border: none;
-  top: 0;
+  top: 40%;
 }
 
 .backwardButton {
-  top: 3em;
   left: 0.5%;
 }
 
 .forwardButton {
-  top: 3em;
   right: 2.5%;
 }
 </style>

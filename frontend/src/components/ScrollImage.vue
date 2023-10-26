@@ -1,14 +1,16 @@
 <script setup>
-const props = defineProps(['imgSrc', 'caption'])
+import { RouterLink } from 'vue-router'
+
+const props = defineProps(['imgSrc', 'caption', 'link'])
 </script>
 <template>
-  <div class="image-box">
-    <img :src="props.imgSrc" />
-    <h3>{{ props.caption }}</h3>
-  </div>
+  <RouterLink :to="props.link" class="image-box">
+    <img :src="props.imgSrc" class="linkImages" />
+    <h3 class="linkImageText">{{ props.caption }}</h3>
+  </RouterLink>
 </template>
 <style>
-img {
+.linkImages {
   width: 20em;
   height: 20em;
 }
@@ -20,7 +22,7 @@ img {
   margin: 1rem;
 }
 
-h3 {
+.linkImageText {
   position: absolute;
   right: 0.4em;
   bottom: 0.4em;

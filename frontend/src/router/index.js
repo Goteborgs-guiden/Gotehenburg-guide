@@ -60,42 +60,42 @@ const router = createRouter({
       component: () => import('../components/ScrollMenu.vue')
     },
     {
-      path: '/gbguide/Swimming',
+      path: '/gbguide/swimming',
       name: 'Swimming',
       component: () => import('../views/gbguide/GbguideSwimming.vue')
     },
     {
-      path: '/gbguide/Museum',
+      path: '/gbguide/museum',
       name: 'Museum',
       component: () => import('../views/gbguide/GbguideMuseum.vue')
     },
     {
-      path: '/gbguide/Pubs',
+      path: '/gbguide/pubs',
       name: 'Pubs',
       component: () => import('../views/gbguide/GbguidePubs.vue')
     },
     {
-      path: '/gbguide/Artist',
+      path: '/gbguide/artists',
       name: 'Artists',
       component: () => import('../views/gbguide/GbguideArtists.vue')
     },
     {
-      path: '/gbguide/Hiking',
+      path: '/gbguide/hiking',
       name: 'Hiking',
       component: () => import('../views/gbguide/GbguideHikingTrails.vue')
     },
     {
-      path: '/gbguide/ViewSpots',
+      path: '/gbguide/viewspots',
       name: 'ViewSpots',
       component: () => import('../views/gbguide/GbguideViewSpots.vue')
     },
     {
-      path: '/gbguide/TouristAttractions',
+      path: '/gbguide/touristattractions',
       name: 'TouristAttractions',
       component: () => import('../views/gbguide/GbguideToursistAttractions.vue')
     },
     {
-      path: '/gbguide/Restaurants',
+      path: '/gbguide/restaurants',
       name: 'Restaurants',
       component: () => import('../views/gbguide/GbguideRestaurants.vue')
     }
