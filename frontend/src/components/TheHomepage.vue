@@ -14,19 +14,23 @@ import {RouterLink} from "vue-router";
     </RouterLink>
   </div>
   <p>
-    <a><textarea placeholder="fun fact of the day"></textarea></a>
+    <a><RouterLink to="/"><button>Klicka mig för att generera random quizfråga</button></RouterLink> </a>
   </p>
 
 </template>
 <style scoped>
 
-textarea{
+button{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 100px;
-  padding-right: 100px;
-
+  padding: 30px 100px;
+  border: 2px solid #214F75;
+  background-color: #E8F3FD;
+  border-radius: 5px;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
 }
 
 img{
@@ -35,3 +39,4 @@ img{
   width: 10%;
 }
 </style>
+
