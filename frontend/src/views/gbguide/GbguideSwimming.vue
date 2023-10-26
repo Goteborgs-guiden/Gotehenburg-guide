@@ -18,7 +18,7 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
           <img src="/gbguide/swimmingareas/askimsbadet.jpeg" class="artImageClosed" />
         </div>
         <div class="artTitleBoxClosed">
-          <h1 class="artTitleClosed">1. Askimbadet</h1>
+          <h1 class="artTitleClosed">1. Askimsbadet</h1>
           <div class="artTextBoxClosed">
             <p class="artTextClosed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -37,7 +37,7 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
           <img src="/gbguide/swimmingareas/askimsbadet.jpeg" class="artImageOpen" />
         </div>
         <div class="artTitleBoxOpen">
-          <h1 class="artTitleOpen">1. Askimbadet</h1>
+          <h1 class="artTitleOpen">1. Askimsbadet</h1>
           <div class="artTextBoxOpen">
             <p class="artTextOpen">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

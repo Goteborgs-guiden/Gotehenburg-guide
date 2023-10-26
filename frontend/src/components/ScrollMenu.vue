@@ -8,10 +8,10 @@ let arrayOfImages = [
   { imgSrc: 'restaurantsmall.png', caption: 'Restauranger', link: 'restaurants' },
   { imgSrc: 'artistsmall.png', caption: 'Artister', link: 'artists' },
   { imgSrc: 'beersmall.png', caption: 'Ölhak', link: 'pubs' },
-  { imgSrc: 'lisebergsmall.png', caption: 'Sevärdheter', link: 'touristattractions' },
-  { imgSrc: 'museumsmall.png', caption: 'museum', link: 'museum' },
-  { imgSrc: 'gbgviewssmall.png', caption: 'utsiktsplatser', link: 'viewspots' },
-  { imgSrc: 'hikesmall.png', caption: 'vandringsleder', link: 'hiking' }
+  { imgSrc: 'lisebergsmall.png', caption: 'Aktiviteter', link: 'touristattractions' },
+  { imgSrc: 'museumsmall.png', caption: 'Museum', link: 'museum' },
+  { imgSrc: 'gbgviewssmall.png', caption: 'Utsiktsplatser', link: 'viewspots' },
+  { imgSrc: 'hikesmall.png', caption: 'Vandringsleder', link: 'hiking' }
 ]
 
 const slideOffset = ref(0)

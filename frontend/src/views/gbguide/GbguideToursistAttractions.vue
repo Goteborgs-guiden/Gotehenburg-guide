@@ -1,159 +1,237 @@
-<script setup></script>
+<script setup>
+import ScrollMenu from '@/components/ScrollMenu.vue'
+</script>
 <template>
+  <ScrollMenu />
   <main>
     <header>
       <div class="imageBox">
-        <img src="/gbguide/swimmingareas/badplatsernarrow.png" class="headerImage" />
+        <img src="/gbguide/touristattractions/touristheader.jpeg" class="headerImage" />
       </div>
       <div class="titleBox">
-        <h1 class="title">Badplatser</h1>
+        <h1 class="title">Aktiviteter</h1>
       </div>
     </header>
-    <article class="artBox">
-      <div class="artImageBox">
-        <img src="/gbguide/swimmingareas/askimsbadet.jpeg" class="artImage" />
-      </div>
-      <div class="artTitleBox">
-        <h1 class="artTitle">1. Askimsbadet</h1>
-        <div class="artTextBox">
-          <p class="artText">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Quam viverra orci sagittis eu volutpat odio
-            facilisis mauris. Sit amet facilisis magna etiam. Condimentum mattis pellentesque id
-            nibh tortor id aliquet. Volutpat lacus laoreet non curabitur gravida arcu ac tortor
-            dignissim.
-          </p>
-          <p class="invisable">
-            Nunc mattis enim ut tellus elementum sagittis vitae et leo. Mi bibendum neque egestas
-            congue quisque egestas diam in. Aenean pharetra magna ac placerat vestibulum. Etiam sit
-            amet nisl purus. Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper
-            dignissim cras. Euismod elementum nisi quis eleifend quam adipiscing vitae proin
-            sagittis. Amet est placerat in egestas erat imperdiet sed euismod nisi.
-          </p>
+    <div class="box1">
+      <article class="artBoxClosed">
+        <div class="artImageBoxClosed">
+          <img src="/gbguide/touristattractions/liseberg.jpeg" class="artImageClosed" />
         </div>
-        <div class="buttonBox">
-          <button class="artButton">
-            <img src="/svgarrows/arrowdown.svg" class="downButton" />
-          </button>
+        <div class="artTitleBoxClosed">
+          <h1 class="artTitleClosed">1. Liseberg</h1>
+          <div class="artTextBoxClosed">
+            <p class="artTextClosed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          <div class="artButtonBoxClosed">
+            <button class="artButtonClosed">
+              <img src="/svgarrows/arrowdown.svg" class="downButtonClosed" />
+            </button>
+          </div>
         </div>
-      </div>
-    </article>
-    <article class="artBox">
-      <div class="artImageBox">
-        <img src="/gbguide/swimmingareas/aspholmen.jpeg" class="artImage" />
-      </div>
-      <div class="artTitleBox">
-        <h1 class="artTitle">2. Aspholmen</h1>
-        <div class="artTextBox">
-          <p class="artText">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Quam viverra orci sagittis eu volutpat odio
-            facilisis mauris. Sit amet facilisis magna etiam. Condimentum mattis pellentesque id
-            nibh tortor id aliquet. Volutpat lacus laoreet non curabitur gravida arcu ac tortor
-            dignissim.
-          </p>
-          <p class="invisable">
-            Nunc mattis enim ut tellus elementum sagittis vitae et leo. Mi bibendum neque egestas
-            congue quisque egestas diam in. Aenean pharetra magna ac placerat vestibulum. Etiam sit
-            amet nisl purus. Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper
-            dignissim cras. Euismod elementum nisi quis eleifend quam adipiscing vitae proin
-            sagittis. Amet est placerat in egestas erat imperdiet sed euismod nisi.
-          </p>
+      </article>
+      <article class="artBoxOpen">
+        <div class="artImageBoxOpen">
+          <img src="/gbguide/touristattractions/liseberg.jpeg" class="artImageOpen" />
         </div>
-        <div class="buttonBox">
-          <button class="artButton">
-            <img src="/svgarrows/arrowdown.svg" class="downButton" />
-          </button>
+        <div class="artTitleBoxOpen">
+          <h1 class="artTitleOpen">1. Liseberg</h1>
+          <div class="artTextBoxOpen">
+            <p class="artTextOpen">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+              <br />
+              <br />
+              Quam viverra orci sagittis eu volutpat odio facilisis mauris. Sit amet facilisis magna
+              etiam.
+            </p>
+          </div>
+          <div class="artButtonBoxOpen">
+            <button class="artButtonOpen">
+              <img src="/svgarrows/arrowup.svg" class="upButtonOpen" />
+            </button>
+          </div>
         </div>
-      </div>
-    </article>
-    <article class="artBox">
-      <div class="artImageBox">
-        <img src="/gbguide/swimmingareas/billdal.jpeg" class="artImage" />
-      </div>
-      <div class="artTitleBox">
-        <h1 class="artTitle">3. Billdal</h1>
-        <div class="artTextBox">
-          <p class="artText">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Quam viverra orci sagittis eu volutpat odio
-            facilisis mauris. Sit amet facilisis magna etiam. Condimentum mattis pellentesque id
-            nibh tortor id aliquet. Volutpat lacus laoreet non curabitur gravida arcu ac tortor
-            dignissim.
-          </p>
-          <p class="invisable">
-            Nunc mattis enim ut tellus elementum sagittis vitae et leo. Mi bibendum neque egestas
-            congue quisque egestas diam in. Aenean pharetra magna ac placerat vestibulum. Etiam sit
-            amet nisl purus. Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper
-            dignissim cras. Euismod elementum nisi quis eleifend quam adipiscing vitae proin
-            sagittis. Amet est placerat in egestas erat imperdiet sed euismod nisi.
-          </p>
+      </article>
+    </div>
+    <div class="box2">
+      <article class="artBoxClosed">
+        <div class="artImageBoxClosed">
+          <img src="/gbguide/touristattractions/kryssning.jpeg" class="artImageClosed" />
         </div>
-        <div class="buttonBox">
-          <button class="artButton">
-            <img src="/svgarrows/arrowdown.svg" class="downButton" />
-          </button>
+        <div class="artTitleBoxClosed">
+          <h1 class="artTitleClosed">2. Skaldjurskryssning i Skärgården</h1>
+          <div class="artTextBoxClosed">
+            <p class="artTextClosed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          <div class="artButtonBoxClosed">
+            <button class="artButtonClosed">
+              <img src="/svgarrows/arrowdown.svg" class="downButtonClosed" />
+            </button>
+          </div>
         </div>
-      </div>
-    </article>
-    <article class="artBox">
-      <div class="artImageBox">
-        <img src="/gbguide/swimmingareas/delsjobadet.jpeg" class="artImage" />
-      </div>
-      <div class="artTitleBox">
-        <h1 class="artTitle">4. Delsjöbadet</h1>
-        <div class="artTextBox">
-          <p class="artText">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Quam viverra orci sagittis eu volutpat odio
-            facilisis mauris. Sit amet facilisis magna etiam. Condimentum mattis pellentesque id
-            nibh tortor id aliquet. Volutpat lacus laoreet non curabitur gravida arcu ac tortor
-            dignissim.
-          </p>
-          <p class="invisable">
-            Nunc mattis enim ut tellus elementum sagittis vitae et leo. Mi bibendum neque egestas
-            congue quisque egestas diam in. Aenean pharetra magna ac placerat vestibulum. Etiam sit
-            amet nisl purus. Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper
-            dignissim cras. Euismod elementum nisi quis eleifend quam adipiscing vitae proin
-            sagittis. Amet est placerat in egestas erat imperdiet sed euismod nisi.
-          </p>
+      </article>
+      <article class="artBoxOpen">
+        <div class="artImageBoxOpen">
+          <img src="/gbguide/touristattractions/kryssning.jpeg" class="artImageOpen" />
         </div>
-        <div class="buttonBox">
-          <button class="artButton">
-            <img src="/svgarrows/arrowdown.svg" class="downButton" />
-          </button>
+        <div class="artTitleBoxOpen">
+          <h1 class="artTitleOpen">2. Skaldjurskryssning i Skärgården</h1>
+          <div class="artTextBoxOpen">
+            <p class="artTextOpen">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+              <br />
+              <br />
+              Quam viverra orci sagittis eu volutpat odio facilisis mauris. Sit amet facilisis magna
+              etiam.
+            </p>
+          </div>
+          <div class="artButtonBoxOpen">
+            <button class="artButtonOpen">
+              <img src="/svgarrows/arrowup.svg" class="upButtonOpen" />
+            </button>
+          </div>
         </div>
-      </div>
-    </article>
-    <article class="artBox">
-      <div class="artImageBox">
-        <img src="/gbguide/swimmingareas/fiskeback.jpeg" class="artImage" />
-      </div>
-      <div class="artTitleBox">
-        <h1 class="artTitle">5. Fiskebäck</h1>
-        <div class="artTextBox">
-          <p class="artText">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Quam viverra orci sagittis eu volutpat odio
-            facilisis mauris. Sit amet facilisis magna etiam. Condimentum mattis pellentesque id
-            nibh tortor id aliquet. Volutpat lacus laoreet non curabitur gravida arcu ac tortor
-            dignissim.
-          </p>
-          <p class="invisable">
-            Nunc mattis enim ut tellus elementum sagittis vitae et leo. Mi bibendum neque egestas
-            congue quisque egestas diam in. Aenean pharetra magna ac placerat vestibulum. Etiam sit
-            amet nisl purus. Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper
-            dignissim cras. Euismod elementum nisi quis eleifend quam adipiscing vitae proin
-            sagittis. Amet est placerat in egestas erat imperdiet sed euismod nisi.
-          </p>
+      </article>
+    </div>
+    <div class="box3">
+      <article class="artBoxClosed">
+        <div class="artImageBoxClosed">
+          <img src="/gbguide/touristattractions/botaniska.jpeg" class="artImageClosed" />
         </div>
-        <div class="buttonBox">
-          <button class="artButton">
-            <img src="/svgarrows/arrowdown.svg" class="downButton" />
-          </button>
+        <div class="artTitleBoxClosed">
+          <h1 class="artTitleClosed">3. Botaniska Trädgården</h1>
+          <div class="artTextBoxClosed">
+            <p class="artTextClosed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          <div class="artButtonBoxClosed">
+            <button class="artButtonClosed">
+              <img src="/svgarrows/arrowdown.svg" class="downButtonClosed" />
+            </button>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+      <article class="artBoxOpen">
+        <div class="artImageBoxOpen">
+          <img src="/gbguide/touristattractions/botaniska.jpeg" class="artImageOpen" />
+        </div>
+        <div class="artTitleBoxOpen">
+          <h1 class="artTitleOpen">3. Botaniska trädgården</h1>
+          <div class="artTextBoxOpen">
+            <p class="artTextOpen">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+              <br />
+              <br />
+              Quam viverra orci sagittis eu volutpat odio facilisis mauris. Sit amet facilisis magna
+              etiam.
+            </p>
+          </div>
+          <div class="artButtonBoxOpen">
+            <button class="artButtonOpen">
+              <img src="/svgarrows/arrowup.svg" class="upButtonOpen" />
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="box4">
+      <article class="artBoxClosed">
+        <div class="artImageBoxClosed">
+          <img src="/gbguide/touristattractions/matlagningskurs.jpeg" class="artImageClosed" />
+        </div>
+        <div class="artTitleBoxClosed">
+          <h1 class="artTitleClosed">4. Matlagningskurs</h1>
+          <div class="artTextBoxClosed">
+            <p class="artTextClosed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          <div class="artButtonBoxClosed">
+            <button class="artButtonClosed">
+              <img src="/svgarrows/arrowdown.svg" class="downButtonClosed" />
+            </button>
+          </div>
+        </div>
+      </article>
+      <article class="artBoxOpen">
+        <div class="artImageBoxOpen">
+          <img src="/gbguide/touristattractions/matlagningskurs.jpeg" class="artImageOpen" />
+        </div>
+        <div class="artTitleBoxOpen">
+          <h1 class="artTitleOpen">4. Matlagningskurs</h1>
+          <div class="artTextBoxOpen">
+            <p class="artTextOpen">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+              <br />
+              <br />
+              Quam viverra orci sagittis eu volutpat odio facilisis mauris. Sit amet facilisis magna
+              etiam.
+            </p>
+          </div>
+          <div class="artButtonBoxOpen">
+            <button class="artButtonOpen">
+              <img src="/svgarrows/arrowup.svg" class="upButtonOpen" />
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="box5">
+      <article class="artBoxClosed">
+        <div class="artImageBoxClosed">
+          <img src="/gbguide/touristattractions/universeum.jpeg" class="artImageClosed" />
+        </div>
+        <div class="artTitleBoxClosed">
+          <h1 class="artTitleClosed">5. Universeum</h1>
+          <div class="artTextBoxClosed">
+            <p class="artTextClosed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          <div class="artButtonBoxClosed">
+            <button class="artButtonClosed">
+              <img src="/svgarrows/arrowdown.svg" class="downButtonClosed" />
+            </button>
+          </div>
+        </div>
+      </article>
+      <article class="artBoxOpen">
+        <div class="artImageBoxOpen">
+          <img src="/gbguide/touristattractions/universeum.jpeg" class="artImageOpen" />
+        </div>
+        <div class="artTitleBoxOpen">
+          <h1 class="artTitleOpen">5. Universeum</h1>
+          <div class="artTextBoxOpen">
+            <p class="artTextOpen">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+              <br />
+              <br />
+              Quam viverra orci sagittis eu volutpat odio facilisis mauris. Sit amet facilisis magna
+              etiam.
+            </p>
+          </div>
+          <div class="artButtonBoxOpen">
+            <button class="artButtonOpen">
+              <img src="/svgarrows/arrowup.svg" class="upButtonOpen" />
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
   </main>
 </template>
 <style>
@@ -168,7 +246,7 @@
   font-family: 'Newsreader';
   color: white;
   position: absolute;
-  top: 20%;
+  top: 50%;
   left: 33%;
 }
 
@@ -180,40 +258,88 @@
 .headerImage {
   display: block;
   width: 100%;
+  height: 100%;
 }
-.artBox {
+
+.artBoxClosed {
   display: grid;
   grid-template-columns: 20% 70%;
   background-color: #e8f3fd;
+  color: #173a5a;
   margin: 2em;
   border: 3px solid #214f75;
   border-radius: 1em;
   font-family: 'Newsreader';
 }
 
-.artImage {
+.artImageClosed {
   width: 18em;
+  height: 18em;
   margin: 1em;
+  border: 3px solid #214f75;
 }
 
-.buttonBox {
-  text-align: center;
+.artTitleClosed {
+  font-size: 3em;
 }
 
-.artButton {
+.artButtonClosed {
   background-color: transparent;
   border: none;
+  margin-left: 44em;
+  margin-top: 9em;
 }
 
-.artButton:active {
+.artButtonClosed:active {
   transform: translateY(0.5em);
 }
 
-.downButton {
+.downButtonClosed {
   width: 3em;
 }
 
-.downButton:hover {
+.downButtonClosed:hover {
+  width: 3.5em;
+}
+
+.artBoxOpen {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  background-color: #214f75;
+  color: white;
+  margin: 2em;
+  border: 3px solid #e8f3fd;
+  border-radius: 1em;
+  font-family: 'Newsreader';
+}
+
+.artImageOpen {
+  width: 35em;
+  height: 30em;
+  margin: 1em;
+  border: 3px solid #e8f3fd;
+}
+
+.artTitleOpen {
+  font-size: 4em;
+}
+
+.artButtonOpen {
+  background-color: transparent;
+  border: none;
+  margin-left: 15em;
+  margin-top: 15em;
+}
+
+.artButtonOpen:active {
+  transform: translateY(0.5em);
+}
+
+.downButtonOpen {
+  width: 3em;
+}
+
+.downButtonOpen:hover {
   width: 3.5em;
 }
 </style>
