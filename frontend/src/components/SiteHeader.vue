@@ -4,7 +4,7 @@ import { useTokensStore } from '../stores/tokens';
 import { onMounted, ref } from 'vue';
 
 const scrollPosition = ref()
-const mobile = ref(true)
+const mobile = ref()
 const mobileNav = ref()
 const windowWidth = ref()
 const dialogs = useDialogStore()
@@ -13,6 +13,8 @@ const userInfo = ref('');
 onMounted(() => {
   getInfo();
 })
+window.addEventListener("resize", checkScreen);
+checkScreen();
 function getInfo() {
     fetch('http://127.0.0.1:3000/user', {
       method: 'GET',
@@ -29,8 +31,21 @@ function getInfo() {
         console.log('userInfo', userInfo.value)
         console.log("a")
       })
-
     }
+    function toggleMobileNav(){
+      mobileNav.value = !mobileNav.value;
+    }
+    function checkScreen() {
+      windowWidth.value = window.innerWidth;
+      if (windowWidth.value <= 768) {
+        mobile.value = true;
+        return;
+      }
+      mobile.value = false;
+      mobileNav.value = false;
+      return;
+    }
+    
 </script>
 
 
@@ -52,37 +67,38 @@ function getInfo() {
         <button @click="token = useTokensStore()">update</button>-->
 
     <nav class="navbar">
-    <ul v-show="!mobile" class="navmenu">
-    <li class="dropdown">
-      <a class="navitem">Quiz</a>
+      <ul v-show="!mobile" class="navigation">
+      <li class="dropdown">
+      <a v-show="!mobile" class="navitem">Quiz</a>
+      <div v-show="mobile">
+        <RouterLink class="dropdownitem" to="/tjot">Tjöt</RouterLink>
+        <RouterLink class="dropdownitem" to="/ordvitsknok">Ordvitsknök</RouterLink>
+        <RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink>
+      </div>
       <div class="dropdown-content dropdownitem">
         <li><RouterLink class="dropdownitem" to="/tjot">Tjöt</RouterLink></li>
         <li><RouterLink class="dropdownitem" to="/ordvitsknok">Ordvitsknök</RouterLink></li>
         <li><RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink></li>
       </div>
-    </li>
-    <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
-    <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
-    <li><input id="search"  placeholder="Hitta vänner"></li>
-  </ul>  
-  <div class="icon">
-    <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{'icon-active': mobileNav}"></i>
-  </div>
-  <Transition name="mobile-nav" class="dropdown-nav">
-    <ul v-show="mobileNav" class="navmenu">
-    <li class="dropdown ">
-      <a class="navitem">Quiz</a>
-      <div class="dropdown-content dropdownitem">
-        <li><RouterLink class="dropdownitem" to="/tjot">Tjöt</RouterLink></li>
-        <li><RouterLink class="dropdownitem" to="/ordvitsknok">Ordvitsknök</RouterLink></li>
-        <li><RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink></li>
+        </li>
+        <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
+        <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
+        <li><input id="search"  placeholder="Hitta vänner"></li>
+      </ul>  
+      <div class="icon">
+        <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{ 'icon-active': mobileNav }"></i>
       </div>
-    </li>
-    <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
-    <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
-    <li><input id="search"  placeholder="Hitta vänner"></li>
-  </ul>
-  </Transition>
+      <Transition name="mobile-nav">
+        <ul v-show="mobileNav" class="dropdown-nav">
+          <a class="navitem">Quiz</a>
+        <RouterLink class="dropdownitem" to="/tjot">Tjöt</RouterLink>
+        <RouterLink class="dropdownitem" to="/ordvitsknok">Ordvitsknök</RouterLink>
+        <RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink>
+        <RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink>
+        <RouterLink class="navitem" to="/highscore">Highscore</RouterLink>
+        <input id="search"  placeholder="Hitta vänner">
+      </ul>
+      </Transition>
   </nav>
   </header>
 </template>
@@ -110,7 +126,7 @@ padding-left: 3rem;
 
 header{
     background-color: #214F75;
-
+    height: 6rem;
 }
 ul {
   list-style-type: none;
@@ -134,6 +150,7 @@ li .navitem:hover, .dropdown:hover {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  top: 8rem;
 }
 
 .dropdown-content a {
@@ -202,8 +219,9 @@ font-weight: 400;
 line-height: normal;
 display: flex;
 padding-left: 5%;
-width: 90%;
+width: 80%;
 height: 1.5rem;
+margin-left: 1rem;
 }
 
 ::placeholder {
@@ -212,15 +230,48 @@ height: 1.5rem;
 
 @media screen and (max-width: 768px) {
 
-.icon {
+  .navigation {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .icon {
   display: flex;
   position: absolute;
   align-items: center;
-  top: 0;
-  right: 1.5rem;
-  height: 100%;
+  padding-right: 1.5rem;
+  i {
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: .8s ease all;
 }
+}
+.icon-active {
+transform: rotate(180deg);
 
+}
+.dropdown-nav {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 8.5rem;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  max-width: 15rem;
+  height: 40%;
+  background-color:#406C90;
+  padding-bottom: 1rem;
+  border-radius: .8rem;
+}
+.dropdownitem {
+  font-family: permanent marker;
+  border-radius: .8rem;
+  margin-left: 1rem;
+}
 
 
 
