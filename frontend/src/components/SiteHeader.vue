@@ -42,7 +42,7 @@ function reload(){
    <header class="mainHeader">
 
     <div id="headerContent">
-        <h1>GBGuiden</h1>
+        
         <RouterLink id="GBGlogo" style="text-decoration: none;" to="/">GBGuiden</RouterLink>
           <div v-if="!isLoggedin">
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
