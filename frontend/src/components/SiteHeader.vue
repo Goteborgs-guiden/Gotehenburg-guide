@@ -2,6 +2,11 @@
 import { useDialogStore } from '../stores/dialog';
 import { useTokensStore } from '../stores/tokens';
 import { onMounted, ref } from 'vue';
+
+const scrollPosition = ref()
+const mobile = ref(true)
+const mobileNav = ref()
+const windowWidth = ref()
 const dialogs = useDialogStore()
 const tokenStore = useTokensStore()
 const userInfo = ref('');
@@ -24,14 +29,16 @@ function getInfo() {
         console.log('userInfo', userInfo.value)
         console.log("a")
       })
+
     }
 </script>
 
-<template>
-   <header class="mainHeader">
 
+<template>
+   <header :class="{'scrolled-nav': scrollPosition}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="headerContent">
-      <RouterLink id="GBGlogo" style="text-decoration: none;" to="/">GBGuiden</RouterLink>
+      <RouterLink id="GBGlogo" to="/">GBGuiden</RouterLink>
             <div v-if="!tokenStore.accessToken">
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
@@ -45,8 +52,8 @@ function getInfo() {
         <button @click="token = useTokensStore()">update</button>-->
 
     <nav class="navbar">
-    <ul>
-    <li class="dropdown ">
+    <ul v-show="!mobile" class="navmenu">
+    <li class="dropdown">
       <a class="navitem">Quiz</a>
       <div class="dropdown-content dropdownitem">
         <li><RouterLink class="dropdownitem" to="/tjot">Tjöt</RouterLink></li>
@@ -58,10 +65,31 @@ function getInfo() {
     <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
     <li><input id="search"  placeholder="Hitta vänner"></li>
   </ul>  
+  <div class="icon">
+    <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{'icon-active': mobileNav}"></i>
+  </div>
+  <Transition name="mobile-nav" class="dropdown-nav">
+    <ul v-show="mobileNav" class="navmenu">
+    <li class="dropdown ">
+      <a class="navitem">Quiz</a>
+      <div class="dropdown-content dropdownitem">
+        <li><RouterLink class="dropdownitem" to="/tjot">Tjöt</RouterLink></li>
+        <li><RouterLink class="dropdownitem" to="/ordvitsknok">Ordvitsknök</RouterLink></li>
+        <li><RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink></li>
+      </div>
+    </li>
+    <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
+    <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
+    <li><input id="search"  placeholder="Hitta vänner"></li>
+  </ul>
+  </Transition>
   </nav>
   </header>
 </template>
 <style scoped>
+nav{
+  transition: .5s ease all;
+}
 
 #GBGlogo {
 margin: 0;
@@ -82,6 +110,7 @@ padding-left: 3rem;
 
 header{
     background-color: #214F75;
+
 }
 ul {
   list-style-type: none;
@@ -96,6 +125,7 @@ ul {
 li .navitem:hover, .dropdown:hover {
   background-color: #214F75;
   border-radius: .8rem;
+  transition: .5s ease all;
 }
 .dropdown-content {
   display: none;
@@ -137,6 +167,8 @@ padding: 1.5rem;
   padding-right: 1.5rem; 
   padding-left: 1.5rem;
   border-radius: .8rem;
+  transition: .5s ease all;
+  border-bottom: 1px solid transparent;
 }
 .dropdownitem {
   font-family: permanent marker;
@@ -176,5 +208,21 @@ height: 1.5rem;
 
 ::placeholder {
     color: #214F75;
+}
+
+@media screen and (max-width: 768px) {
+
+.icon {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  top: 0;
+  right: 1.5rem;
+  height: 100%;
+}
+
+
+
+
 }
 </style>
