@@ -38,6 +38,9 @@ function touchEndMethod (touchEvent){
     <a class="HoldArrow"><img src="../../public/svgarrows/arrowright.svg" class="RightArrow"></a>
   </div>
 
+  <p>
+    <a><RouterLink to="/"><button class="ToRandQuiz">Klicka mig för att generera random quizfråga</button></RouterLink> </a>
+  </p>
 
 </template>
 <style scoped>
@@ -70,20 +73,52 @@ function touchEndMethod (touchEvent){
 
 @media screen and (min-width: 500px) {
 
-  .Trams{
+  .Trams {
     display: flex;
     justify-content: center;
     margin-top: 30px;
   }
-  img{
+
+  img {
     width: 250px;
   }
-  .LeftArrow{
+
+  .LeftArrow {
     display: none;
   }
-  .RightArrow{
+
+  .RightArrow {
     display: none;
   }
 }
-</style>
+.ToRandQuiz{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px 100px;
+  border: 2px solid #214F75;
+  background-color: #E8F3FD;
+  border-radius: 5px;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 19px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.ToRandQuiz:hover{
+  cursor: pointer;
+  background-color: #406C90;
+  border-color: black;
+  color: white;
+}
+.ToRandQuiz:active{
+  background-color: #406C90;
+  transform: scale(.96);
+}
 
+img{
+  margin-top: 20px;
+  margin-left:30px;
+  width: 10%;
+}
+</style>

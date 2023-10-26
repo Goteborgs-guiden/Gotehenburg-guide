@@ -23,6 +23,10 @@ function login() {
         dialogs.showLogin = false
       }
       tokens.setTokens(data)
+      localStorage.setItem('accessToken', data.accessToken)
+      console.log(tokens.expiresIn);
+      localStorage.setItem('time', tokens.expiresIn);
+      location.reload();
     })
 }
 </script>

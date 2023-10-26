@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf07fae8-f574-4373-84e3-8f575026f4db" name="Changes" comment="Update the change">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="cf07fae8-f574-4373-84e3-8f575026f4db" name="Changes" comment="Add FillInBlankQuizView.vue">
       <change beforePath="$PROJECT_DIR$/frontend/src/components/TheHomepage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TheHomepage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +45,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;118-css-for-homepage-mobile-adaptation&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;153-add-button-to-homepage&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Simon PC/WebstormProjects/Gotehenburg-guideM&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -94,7 +94,7 @@
       <workItem from="1696921214406" duration="9499000" />
       <workItem from="1697612248484" duration="453000" />
       <workItem from="1697679576212" duration="1840000" />
-      <workItem from="1698241012022" duration="860000" />
+      <workItem from="1698303675989" duration="2459000" />
     </task>
     <task id="LOCAL−00001" summary="Update the change">
       <option name="closed" value="true" />
