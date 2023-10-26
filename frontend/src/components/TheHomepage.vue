@@ -4,7 +4,7 @@ import {RouterLink} from "vue-router";
 <template>
 
   <div class="Trams">
-    <a class="HoldArrow"><img src="../assets/img/Leftarrow.png" class="LeftArrow"></a>
+    <a class="HoldArrow"><img src="../../public/svgarrows/arrowleft.svg" class="LeftArrow"></a>
     <RouterLink class="RouterL" to="/tjot">
       <img class="Tramquiz1" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
     </RouterLink>
@@ -14,7 +14,7 @@ import {RouterLink} from "vue-router";
     <RouterLink class="RouterLT" to="/geografikack">
       <img class="Tramquiz3" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3">
     </RouterLink>
-    <a class="HoldArrow"><img src="../assets/img/Rightarrow.png" class="RightArrow"></a>
+    <a class="HoldArrow"><img src="../../public/svgarrows/arrowright.svg" class="RightArrow"></a>
   </div>
 
 
