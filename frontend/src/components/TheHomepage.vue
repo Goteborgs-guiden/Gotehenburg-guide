@@ -2,8 +2,10 @@
 import {RouterLink} from "vue-router";
 </script>
 <template>
+
   <div class="Trams">
-    <RouterLink class="RouterLT" to="/tjot">
+    <a class="HoldArrow"><img src="../assets/img/Leftarrow.png" class="LeftArrow"></a>
+    <RouterLink class="RouterL" to="/tjot">
       <img class="Tramquiz1" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
     </RouterLink>
     <RouterLink class="RouterLT" to="/ordvitsknok">
@@ -12,8 +14,9 @@ import {RouterLink} from "vue-router";
     <RouterLink class="RouterLT" to="/geografikack">
       <img class="Tramquiz3" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3">
     </RouterLink>
-
+    <a class="HoldArrow"><img src="../assets/img/Rightarrow.png" class="RightArrow"></a>
   </div>
+
 
 </template>
 <style scoped>
@@ -36,6 +39,15 @@ import {RouterLink} from "vue-router";
   .RouterLT{
     display: none;
   }
+  .LeftArrow{
+    width: 30px;
+    padding: 90px 0px;
+  }
+  .RightArrow{
+    width: 30px;
+    padding: 90px 0px;
+  }
+
 }
 
 @media screen and (min-width: 500px) {
@@ -50,6 +62,12 @@ import {RouterLink} from "vue-router";
   img{
     width: 250px;
 
+  }
+  .LeftArrow{
+    display: none;
+  }
+  .RightArrow{
+    display: none;
   }
 
 }
