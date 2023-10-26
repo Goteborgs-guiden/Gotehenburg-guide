@@ -3,6 +3,7 @@ import { useDialogStore } from '../stores/dialog';
 import { onMounted, ref } from 'vue';
 const dialogs = useDialogStore()
 const userInfo = ref('');
+const isLoggedin = ref(false);
 onMounted(() => {
   getInfo();
 })
@@ -18,10 +19,22 @@ function getInfo() {
       .then((data) => {
         userInfo.value = data;
         console.log('response from server:', data)
+        if(data){
+          isLoggedin.value = true;
+        }
+        else{
+          isLoggedin.value = false;
+        }
       })
     }
 function reload(){
-  setTimeout(function(){location.reload();}, 1000*1800.1)
+  const time = Date.parse(localStorage.getItem('time'));
+  const currentTime = new Date(Date.now());
+  const timeLeft = time - currentTime;
+  console.log("time",time)
+  console.log("currentTime",currentTime);
+  console.log("time left",timeLeft)
+  setTimeout(function(){location.reload();}, timeLeft)
 }
 </script>
 
@@ -30,7 +43,7 @@ function reload(){
 
     <div id="headerContent">
         <h1>GBGuiden</h1>
-            <div v-if="!userInfo">
+            <div v-if="!isLoggedin">
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
