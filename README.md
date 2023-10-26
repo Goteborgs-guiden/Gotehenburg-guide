@@ -125,9 +125,22 @@ To get a local copy up and running follow these simple example steps.-->
   ```sh
   docker run --name gbgmysql -e MYSQL_ROOT_PASSWORD=password -e 'MYSQL_ROOT_HOST=%' -e MYSQL_DATABASE=gbgmysql -e MYSQL_USER=developer -e MYSQL_PASSWORD=password -p 3306:3306 mysql:latest
   ```
-* npm
+* Enviourment variables
   ```sh
-  npm install npm@latest
+  Create a .env file in backend folder with:
+  ACCESS_TOKEN_SECRET='Your_Access_Token'
+  REFRESH_TOKEN_SECRET='Your_Refresh_Token' 
+  ```
+* All commands to get it running from Gotehenburg-guide. you need 2 terminals
+  ```sh
+  Frontend
+  cd frontend
+  npm install
+  npm run dev
+  
+  Backend
+  cd backend
+  node app.js
   ```
 
 <!--### Installation
