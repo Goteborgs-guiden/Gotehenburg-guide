@@ -9,6 +9,7 @@ let points = ref(0)
 let question = ref('')
 let answer = ref('')
 let allowsubmit = ref(true)
+
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
@@ -53,6 +54,24 @@ function sendAnswer(input, id) {
       })
   }
 }
+  function setHighscore(points) {
+    console.log("test")
+    fetch('http://127.0.0.1:3000/highscore/blank', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
+      },
+      body: JSON.stringify({ score: points }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('response from server:', data)
+      })
+      return true;
+    }
+    
+
 </script>
 <template>
   <main>
@@ -65,9 +84,11 @@ function sendAnswer(input, id) {
         <p v-else>Fel svar</p>
       </div>
     </div>
-    <div v-else>
+    <div v-if="!onGoingQuiz">
+      <div v-if="setHighscore(points)"></div>
       <p>Quizen är slut</p>
       <p>Du fick {{ points }} poäng</p>
+
     </div>
     <ImgForQuiz />
     <InputBar />
