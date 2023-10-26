@@ -8,8 +8,6 @@ let correctData = ref('')
 let onGoingQuiz = true
 let points = ref(0)
 let allowsubmit = true;
-import { useTokensStore } from '../stores/tokens';
-const tokens = useTokensStore();
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
@@ -60,13 +58,12 @@ function setHighscore(points) {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'BEARER ' + tokens.accessToken
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
       },
       body: JSON.stringify({ score: points }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(tokens.accessToken)
         console.log('response from server:', data)
       })
     }
