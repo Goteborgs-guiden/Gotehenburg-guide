@@ -3,13 +3,13 @@ import {RouterLink} from "vue-router";
 </script>
 <template>
   <div>
-    <RouterLink class="RouterL" to="/AbcView">
+    <RouterLink class="RouterL" to="/tjot">
       <img src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
     </RouterLink>
-    <RouterLink class="RouterL" to="/FillInBlankQuizView">
+    <RouterLink class="RouterL" to="/ordvitsknok">
       <img src="../assets/img/new tramquiz 2.svg" alt="tramquiz2">
     </RouterLink>
-    <RouterLink class="RouterL" to="/MapQuizView">
+    <RouterLink class="RouterL" to="/geografikack">
       <img src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3">
     </RouterLink>
   </div>
