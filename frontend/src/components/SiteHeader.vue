@@ -54,7 +54,7 @@ function getInfo() {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="headerContent">
       <RouterLink id="GBGlogo" to="/">GBGuiden</RouterLink>
-            <div v-if="!tokenStore.accessToken">
+            <div v-if="!tokenStore.accessToken && !mobile">
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
@@ -81,8 +81,8 @@ function getInfo() {
         <li><RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink></li>
       </div>
         </li>
-        <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
         <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
+        <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
         <li><input id="search"  placeholder="Hitta vänner"></li>
       </ul>  
       <div class="icon">
@@ -94,9 +94,18 @@ function getInfo() {
         <RouterLink class="dropdownitem" to="/tjot">Tjöt</RouterLink>
         <RouterLink class="dropdownitem" to="/ordvitsknok">Ordvitsknök</RouterLink>
         <RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink>
-        <RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink>
         <RouterLink class="navitem" to="/highscore">Highscore</RouterLink>
+        <RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink>
+        <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
+        <div v-if="!tokenStore.accessToken" class="login-and-register">
+              <button class="button" @click="dialogs.toggleLogin">Logga in</button>
+              <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
+            </div>
+        <div v-else>
+          <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
+        </div>
         <input id="search"  placeholder="Hitta vänner">
+
       </ul>
       </Transition>
   </nav>
@@ -115,7 +124,7 @@ font-size: 4rem;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
-padding-left: 3rem;
+padding-left: 3%;
 }
 
 #headerContent {
@@ -168,7 +177,7 @@ li .navitem:hover, .dropdown:hover {
 }
 
 .button {
-background-color: #214F75;;
+background-color: #214F75;
 color: #FFF;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 font-family: Permanent Marker;
@@ -177,7 +186,15 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 border: none;
-padding: 1.5rem;
+float: right;
+padding-left: 1rem;
+padding-right: 1rem;
+margin-right: 2rem;
+}
+.button:hover {
+  background-color: #406C90;
+  border-radius: .8rem;
+  transition: .5s ease all;
 }
 .navitem {
   font-family: permanent marker;
@@ -262,7 +279,7 @@ transform: rotate(180deg);
   gap: 10px;
   width: 100%;
   max-width: 15rem;
-  height: 40%;
+  height: 50%;
   background-color:#406C90;
   padding-bottom: 1rem;
   border-radius: .8rem;
@@ -270,10 +287,21 @@ transform: rotate(180deg);
 .dropdownitem {
   font-family: permanent marker;
   border-radius: .8rem;
-  margin-left: 1rem;
+  margin-left: 3rem;
 }
+.login-and-register {
+  font-family: permanent marker;
+  background-color:#406C90;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+.button {
+background-color: #406C90;
+padding-left: 1.5rem;
 
-
+}
 
 }
 </style>
