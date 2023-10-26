@@ -40,7 +40,7 @@ function sendAnswer(input, id, answerid) {
   }
 }
 function getQuestion(id) {
-  if (id <= 3) {
+  if (id <= 5) {
     correctData.value = ''
     fetch('http://127.0.0.1:3000/quiz/abcquestion/' + id, {
       method: 'GET'
@@ -98,8 +98,8 @@ function setHighscore(points) {
     <p v-if="correctData">Rätt svar!</p>
     <p v-if="correctData === false">FEL SVAR!</p>
   </div>
-  <div v-if="currentQuestion >= 4">
-    <p v-if="points > 2">Snyggt byggt, fräsig kärra!</p>
+  <div v-if="currentQuestion >= 6">
+    <p v-if="points > 3">Snyggt byggt, fräsig kärra!</p>
     <p v-else>Rackarns rabarber det där gick inte så bra!</p>
     <p>{{ points }} Poäng</p>
     <div v-if="setHighscore(points)">

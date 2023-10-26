@@ -1,6 +1,6 @@
 <script setup>
-import ImgForQuiz from "@/components/FillInBlankComponents/ImgForQuiz.vue";
-import InputBar from "@/components/FillInBlankComponents/InputBar.vue";
+import ImgForQuiz from '@/components/FillInBlankComponents/ImgForQuiz.vue'
+import InputBar from '@/components/FillInBlankComponents/InputBar.vue'
 import { onMounted, ref } from 'vue'
 let currentQuestion = ref(0)
 let correctData = ref('')
@@ -14,7 +14,7 @@ onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function getQuestion(id) {
-  if (id <= 3) {
+  if (id <= 5) {
     correctData.value = ''
     fetch('http://127.0.0.1:3000/quiz/fillblank/' + id, {
       method: 'GET'
@@ -54,24 +54,22 @@ function sendAnswer(input, id) {
       })
   }
 }
-  function setHighscore(points) {
-    console.log("test")
-    fetch('http://127.0.0.1:3000/highscore/blank', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
-      },
-      body: JSON.stringify({ score: points }),
+function setHighscore(points) {
+  console.log('test')
+  fetch('http://127.0.0.1:3000/highscore/blank', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: 'BEARER ' + localStorage.getItem('accessToken')
+    },
+    body: JSON.stringify({ score: points })
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('response from server:', data)
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('response from server:', data)
-      })
-      return true;
-    }
-    
-
+  return true
+}
 </script>
 <template>
   <main>
@@ -88,7 +86,6 @@ function sendAnswer(input, id) {
       <div v-if="setHighscore(points)"></div>
       <p>Quizen är slut</p>
       <p>Du fick {{ points }} poäng</p>
-
     </div>
     <ImgForQuiz />
     <InputBar />
