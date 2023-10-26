@@ -14,13 +14,13 @@ import {RouterLink} from "vue-router";
     </RouterLink>
   </div>
   <p>
-    <a><RouterLink to="/"><button>Klicka mig för att generera random quizfråga</button></RouterLink> </a>
+    <a><RouterLink to="/"><button class="ToRandQuiz">Klicka mig för att generera random quizfråga</button></RouterLink> </a>
   </p>
 
 </template>
 <style scoped>
 
-button{
+.ToRandQuiz{
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -28,9 +28,21 @@ button{
   border: 2px solid #214F75;
   background-color: #E8F3FD;
   border-radius: 5px;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
-  font-size: 18px;
+  font-size: 19px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.ToRandQuiz:hover{
+  cursor: pointer;
+  background-color: #406C90;
+  border-color: black;
+  color: white;
+}
+.ToRandQuiz:active{
+  background-color: #406C90;
+  transform: scale(.96);
 }
 
 img{
@@ -38,5 +50,6 @@ img{
   margin-left:30px;
   width: 10%;
 }
+
 </style>
 
