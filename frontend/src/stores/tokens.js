@@ -11,6 +11,9 @@ export const useTokensStore = defineStore('tokens', () => {
         refreshToken.value = tokens.refreshToken
         expiresIn.value = new Date(Date.now() + 30 * 60 * 1000);
     }
+    function setRefreshToken(token) {
+        refreshToken.value = token
+    }
     
     function clearTokens() {
         accessToken.value = ''
@@ -18,5 +21,5 @@ export const useTokensStore = defineStore('tokens', () => {
         expiresIn.value = 0
     }
     
-    return { accessToken, refreshToken, expiresIn, setTokens, clearTokens }
+    return { accessToken, refreshToken, expiresIn, setTokens, clearTokens, setRefreshToken }
 });

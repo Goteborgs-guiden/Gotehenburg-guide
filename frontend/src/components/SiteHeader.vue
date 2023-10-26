@@ -1,9 +1,7 @@
 <script setup>
 import { useDialogStore } from '../stores/dialog';
-import { useTokensStore } from '../stores/tokens';
 import { onMounted, ref } from 'vue';
 const dialogs = useDialogStore()
-const tokenStore = useTokensStore()
 const userInfo = ref('');
 onMounted(() => {
   getInfo();
@@ -13,18 +11,18 @@ function getInfo() {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'BEARER ' + tokenStore.accessToken
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
       },
     })
       .then((response) => response.json())
       .then((data) => {
         userInfo.value = data;
         console.log('response from server:', data)
-        //this log if needed for some reason otherwise it doesn't display user info
-        console.log('userInfo', userInfo.value)
-        console.log("a")
       })
     }
+function reload(){
+  setTimeout(function(){location.reload();}, 1000*1800.1)
+}
 </script>
 
 <template>
@@ -32,18 +30,15 @@ function getInfo() {
 
     <div id="headerContent">
         <h1>GBGuiden</h1>
-            <div v-if="!tokenStore.accessToken">
+            <div v-if="!userInfo">
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
             <div v-else>
-                <div v-if="getInfo()"></div>
                 <RouterLink class="RouterL" style="text-decoration: none;" to="/profile">{{userInfo.username}}</RouterLink>
+                <div v-if="reload()"></div>
             </div>
         </div>
-        <!--<p>{{ token }}</p>
-        <button @click="token = useTokensStore()">update</button>-->
-
     <nav class="navbar">
     <RouterLink class="RouterL" style="text-decoration: none;" to="/">Quiz</RouterLink>
     <RouterLink class="RouterL" style="text-decoration: none;" to="/">Hitta i GBG</RouterLink>
