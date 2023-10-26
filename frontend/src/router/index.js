@@ -15,18 +15,18 @@ const router = createRouter({
       component: () => import('../views/newView.vue')
     },
     {
-      path: '/AbcView',
+      path: '/tjot',
       name: 'AbcView',
       component: () => import('../views/AbcView.vue')
     },
     {
 
-      path: '/FillInBlankQuizView',
+      path: '/ordvitsknok',
       name: 'FillInBlankQuizView',
       component: () => import('../views/FillInBlankQuizView.vue')
     },
     {
-      path: '/MapQuizView',
+      path: '/geografikack',
       name: 'MapQuizView',
       component: () => import('../views/MapQuizView.vue')
     },

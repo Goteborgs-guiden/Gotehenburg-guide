@@ -1,10 +1,9 @@
 <script setup>
 import { useDialogStore } from '../stores/dialog';
-import { useTokensStore } from '../stores/tokens';
 import { onMounted, ref } from 'vue';
 const dialogs = useDialogStore()
-const tokenStore = useTokensStore()
 const userInfo = ref('');
+const isLoggedin = ref(false);
 onMounted(() => {
   getInfo();
 })
@@ -13,18 +12,30 @@ function getInfo() {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'BEARER ' + tokenStore.accessToken
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
       },
     })
       .then((response) => response.json())
       .then((data) => {
         userInfo.value = data;
         console.log('response from server:', data)
-        //this log if needed for some reason otherwise it doesn't display user info
-        console.log('userInfo', userInfo.value)
-        console.log("a")
+        if(data){
+          isLoggedin.value = true;
+        }
+        else{
+          isLoggedin.value = false;
+        }
       })
     }
+function reload(){
+  const time = Date.parse(localStorage.getItem('time'));
+  const currentTime = new Date(Date.now());
+  const timeLeft = time - currentTime;
+  console.log("time",time)
+  console.log("currentTime",currentTime);
+  console.log("time left",timeLeft)
+  setTimeout(function(){location.reload();}, timeLeft)
+}
 </script>
 
 <template>
@@ -32,38 +43,44 @@ function getInfo() {
 
     <div id="headerContent">
         <h1>GBGuiden</h1>
-            <div v-if="!tokenStore.accessToken">
+        <RouterLink id="GBGlogo" style="text-decoration: none;" to="/">GBGuiden</RouterLink>
+          <div v-if="!isLoggedin">
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
             <div v-else>
-                <div v-if="getInfo()"></div>
                 <RouterLink class="RouterL" style="text-decoration: none;" to="/profile">{{userInfo.username}}</RouterLink>
+                <div v-if="reload()"></div>
             </div>
         </div>
-        <!--<p>{{ token }}</p>
-        <button @click="token = useTokensStore()">update</button>-->
-
     <nav class="navbar">
-    <RouterLink class="RouterL" style="text-decoration: none;" to="/">Quiz</RouterLink>
-    <RouterLink class="RouterL" style="text-decoration: none;" to="/">Hitta i GBG</RouterLink>
-    <RouterLink class="RouterL" style="text-decoration: none;" to="/">GBGuide</RouterLink>
-    <RouterLink class="RouterL" style="text-decoration: none;" to="/highscore">Highscore</RouterLink>
-    <input id="search" placeholder="Hitta vänner">
-    </nav>
+    <ul>
+    <li class="dropdown ">
+      <a class="navitem">Quiz</a>
+      <div class="dropdown-content dropdownitem">
+        <li><RouterLink class="dropdownitem" to="/tjot">Tjöt</RouterLink></li>
+        <li><RouterLink class="dropdownitem" to="/ordvitsknok">Ordvitsknök</RouterLink></li>
+        <li><RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink></li>
+      </div>
+    </li>
+    <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
+    <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
+    <li><input id="search"  placeholder="Hitta vänner"></li>
+  </ul>  
+  </nav>
   </header>
 </template>
 <style scoped>
 
-h1 {
-    margin: 0;
-    color: #FFF;
-    font-family: 'Permanent Marker', cursive;
-font-size: 70px;
+#GBGlogo {
+margin: 0;
+color: #FFF;
+font-family: 'Permanent Marker', cursive;
+font-size: 4rem;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
-padding-left: 50px;
+padding-left: 3rem;
 }
 
 #headerContent {
@@ -75,50 +92,95 @@ padding-left: 50px;
 header{
     background-color: #214F75;
 }
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  float: right;
+  padding: 0;
+  height: 2.5rem;
+}
+li .navitem:hover, .dropdown:hover {
+  background-color: #214F75;
+  border-radius: .8rem;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #214F75;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #FFF;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #406C90;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 .button {
 background-color: #214F75;;
 color: #FFF;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 font-family: Permanent Marker;
-font-size: 18px;
+font-size: 1.2rem;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
 border: none;
-padding: 20px;
+padding: 1.5rem;
+}
+.navitem {
+  font-family: permanent marker;
+  padding-right: 1.5rem; 
+  padding-left: 1.5rem;
+  border-radius: .8rem;
+}
+.dropdownitem {
+  font-family: permanent marker;
+  border-radius: .8rem;
 }
 .navbar{
     background-color: #406C90;
     margin: 0;
-    padding-top: 5px;
-    padding-left:600px;
     text-align: right;
     color: #FFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: Permanent Marker;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    font-size: 1.2rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: end;
+    align-items: center;
+    height: 2.5rem;
+    width: 100%;
 }
 
 #search {
-border-radius: 61px;
-border: 2px solid #214F75;
+border-radius: 1rem;
+border: 0.2rem solid #214F75;
 background: #E8F3FD;
 color: #214F75;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 font-family: Permanent Marker;
-font-size: 18px;
+font-size: 1.2rem;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
 display: flex;
-padding-left: 1%;
-width: 20%;
+padding-left: 5%;
+width: 90%;
+height: 1.5rem;
 }
 
 ::placeholder {
