@@ -39,7 +39,7 @@ function touchEndMethod (touchEvent){
   </div>
 
   <p>
-    <a><RouterLink to="/"><button class="ToRandQuiz">Klicka mig för att generera random quizfråga</button></RouterLink> </a>
+    <a class="aTag"><RouterLink to="/"><button class="ToRandQuiz">Klicka mig för att generera random quizfråga</button></RouterLink> </a>
   </p>
 
 </template>
@@ -68,6 +68,9 @@ function touchEndMethod (touchEvent){
     width: 30px;
     padding: 90px 0px;
   }
+  .aTag{
+    display: none;
+  }
 
 }
 
@@ -90,6 +93,8 @@ function touchEndMethod (touchEvent){
   .RightArrow {
     display: none;
   }
+
+
 }
 .ToRandQuiz{
   display: block;
@@ -114,11 +119,5 @@ function touchEndMethod (touchEvent){
 .ToRandQuiz:active{
   background-color: #406C90;
   transform: scale(.96);
-}
-
-img{
-  margin-top: 20px;
-  margin-left:30px;
-  width: 10%;
 }
 </style>

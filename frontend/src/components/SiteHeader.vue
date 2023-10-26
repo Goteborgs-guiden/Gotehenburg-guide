@@ -44,7 +44,7 @@ function reload(){
     <div id="headerContent">
 
         <RouterLink id="GBGlogo" style="text-decoration: none;" to="/">GBGuiden</RouterLink>
-          <div v-if="!isLoggedin">
+          <div v-if="!isLoggedin" class="ButtonsForLoggAndRegis">
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
@@ -185,5 +185,33 @@ height: 1.5rem;
 
 ::placeholder {
     color: #214F75;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar {
+    display: none;
+    margin: auto;
+  }
+
+  .ButtonsForLoggAndRegis {
+    display: none;
+    margin: auto;
+  }
+
+  #GBGlogo{
+    font-size: 63px;
+    display: flex;
+  }
+
+  header{
+    margin: 0;
+  }
+
+  .ToMyPage{
+    display: none;
+  }
+  .mainHeader{
+
+  }
 }
 </style>
