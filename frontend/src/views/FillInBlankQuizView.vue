@@ -9,8 +9,6 @@ let points = ref(0)
 let question = ref('')
 let answer = ref('')
 let allowsubmit = ref(true)
-import { useTokensStore } from '../stores/tokens';
-const tokens = useTokensStore();
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
@@ -62,13 +60,12 @@ function sendAnswer(input, id) {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'BEARER ' + tokens.accessToken
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
       },
       body: JSON.stringify({ score: points }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(tokens.accessToken)
         console.log('response from server:', data)
       })
       return true;

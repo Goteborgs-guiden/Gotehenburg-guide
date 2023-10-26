@@ -1,10 +1,9 @@
 <script setup>
 import { useDialogStore } from '../stores/dialog';
-import { useTokensStore } from '../stores/tokens';
 import { onMounted, ref } from 'vue';
 const dialogs = useDialogStore()
-const tokenStore = useTokensStore()
 const userInfo = ref('');
+const isLoggedin = ref(false);
 onMounted(() => {
   getInfo();
 })
@@ -13,37 +12,47 @@ function getInfo() {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'BEARER ' + tokenStore.accessToken
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
       },
     })
       .then((response) => response.json())
       .then((data) => {
         userInfo.value = data;
         console.log('response from server:', data)
-        //this log if needed for some reason otherwise it doesn't display user info
-        console.log('userInfo', userInfo.value)
-        console.log("a")
+        if(data){
+          isLoggedin.value = true;
+        }
+        else{
+          isLoggedin.value = false;
+        }
       })
     }
+function reload(){
+  const time = Date.parse(localStorage.getItem('time'));
+  const currentTime = new Date(Date.now());
+  const timeLeft = time - currentTime;
+  console.log("time",time)
+  console.log("currentTime",currentTime);
+  console.log("time left",timeLeft)
+  setTimeout(function(){location.reload();}, timeLeft)
+}
 </script>
 
 <template>
    <header class="mainHeader">
 
     <div id="headerContent">
-      <RouterLink id="GBGlogo" style="text-decoration: none;" to="/">GBGuiden</RouterLink>
-            <div v-if="!tokenStore.accessToken">
+        <h1>GBGuiden</h1>
+        <RouterLink id="GBGlogo" style="text-decoration: none;" to="/">GBGuiden</RouterLink>
+          <div v-if="!isLoggedin">
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
             <div v-else>
-                <div v-if="getInfo()"></div>
                 <RouterLink class="RouterL" style="text-decoration: none;" to="/profile">{{userInfo.username}}</RouterLink>
+                <div v-if="reload()"></div>
             </div>
         </div>
-        <!--<p>{{ token }}</p>
-        <button @click="token = useTokensStore()">update</button>-->
-
     <nav class="navbar">
     <ul>
     <li class="dropdown ">

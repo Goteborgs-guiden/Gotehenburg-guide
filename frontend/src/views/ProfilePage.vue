@@ -1,8 +1,6 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { onMounted, ref } from 'vue';
-import { useTokensStore } from '../stores/tokens';
-const tokens = useTokensStore();
 const userInfo = ref('');
 const friends = ref('');
 onMounted(() => {
@@ -14,7 +12,7 @@ function getInfo() {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'BEARER ' + tokens.accessToken
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
       },
     })
       .then((response) => response.json())
