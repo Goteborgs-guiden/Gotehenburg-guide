@@ -74,21 +74,23 @@ function setHighscore(points) {
     <div v-if="onGoingQuiz" id="abc-quiz">
     <article class="geografikack">
       <div class="img"> <a>Place the Image here!!!</a></div>
-      <div class="Question">
+      <div class="question">
       <p>Vilken är världens mest musikaliska fågel?
     Truten! För det är en ____{{ question }}</p>
-      
+    <div class="showAnswer" v-if="!allowsubmit">
+        <p id="correctAnswer" v-if="correctData">Rätt svar</p>
+        <p id="wrongAnswer" v-else>Fel svar</p>
+      </div>
+      <div class="hideInputAndButton" v-if="allowsubmit">
       <div class="inputform">
-      <input class="Input" placeholder="Svara här" v-model="answer" type="text" />
+      <input class="input" placeholder="Svara här" v-model="answer" type="text" />
         </div>
       <div class="buttoncss">
-      <button @click="sendAnswer(answer, currentQuestion)">Skicka</button>
+      <button @click="sendAnswer(answer, currentQuestion)">></button>
       </div>
+    </div>
       </div>
-      <div v-if="!allowsubmit">
-        <p v-if="correctData">Rätt svar</p>
-        <p v-else>Fel svar</p>
-      </div>
+    
     </article>
     <div v-if="!onGoingQuiz">
       <div v-if="setHighscore(points)"></div>
@@ -114,7 +116,7 @@ function setHighscore(points) {
   text-align: center;
 }
 
-.Question {
+.question {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -133,9 +135,14 @@ p{
   display: flex;
   justify-content: center;
   font-family: 'Newsreader';
-  font-size: 1.3125rem;
-  width: fit-content;
-  
+  font-size: 2rem;
+  width: fit-content; 
+}
+#correctAnswer {
+  color:#2CE03E;
+}
+#wrongAnswer {
+  color: #F00;
 }
 .inputform {
   height: 2rem;
@@ -144,7 +151,7 @@ p{
   width: 96.5%;
   
 }
-.Input {
+.input {
   width: 100%;
   height: 2rem;
   border-radius: 1.90625rem;
@@ -175,7 +182,6 @@ button {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   font-family: 'Newsreader';
   font-size: 1.3125rem;
-  width: 10%;
   display: flex;
   justify-content: center;
   width: 20%;
