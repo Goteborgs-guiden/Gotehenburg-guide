@@ -15,10 +15,12 @@ function touchEndMethod (touchEvent){
   console.log("End pos", posXEnd)
   console.log(posXEnd)
   if (touchStartPos.value < posXEnd){
-    //Look at bob work in instead of console.log
+    //Add code here for swipe with moues
+    //remove console log
     console.log("swipe right")
   }else {
-    //Look at bob work in instead of console.log
+    //Add code here for swipe with moues
+    //remove console log
     console.log("swipe left")
   }
 }
