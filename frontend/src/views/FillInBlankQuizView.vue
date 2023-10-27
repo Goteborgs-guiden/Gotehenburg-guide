@@ -7,6 +7,7 @@ let points = ref(0)
 let question = ref('')
 let answer = ref('')
 let allowsubmit = ref(true)
+const questionImage = ref('')
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
@@ -20,6 +21,7 @@ function getQuestion(id) {
       .then((response) => response.json())
       .then((data) => {
         console.log('response from server:', data)
+        questionImage.value = data.img
         question.value = data.question
       })
   } else onGoingQuiz = false
@@ -73,10 +75,10 @@ function setHighscore(points) {
   <main>
     <div v-if="onGoingQuiz" id="abc-quiz">
     <article class="geografikack">
-      <div class="img"> <a>Place the Image here!!!</a></div>
+      <img :src="questionImage">
       <div class="question">
       <p>Vilken är världens mest musikaliska fågel?
-    Truten! För det är en ____{{ question }}</p>
+    {{ question }}</p>
     <div class="showAnswer" v-if="!allowsubmit">
         <p id="correctAnswer" v-if="correctData">Rätt svar</p>
         <p id="wrongAnswer" v-else>Fel svar</p>
@@ -92,11 +94,6 @@ function setHighscore(points) {
       </div>
     
     </article>
-    <div v-if="!onGoingQuiz">
-      <div v-if="setHighscore(points)"></div>
-      <p>Quizen är slut</p>
-      <p>Du fick {{ points }} poäng</p>
-    </div>
     </div>
   </main>
 </template>
