@@ -1,0 +1,32 @@
+<script setup>
+import { RouterLink } from 'vue-router'
+
+const props = defineProps(['imgSrc', 'link'])
+</script>
+
+<template>
+  <RouterLink :to="props.link" class="image-box">
+    <img :src="props.imgSrc" class="linkImages" />
+  </RouterLink>
+</template>
+<style scoped>
+.linkImages {
+  width: 12em;
+  height: 12em;
+
+  margin-top: 7em;
+  margin-left: 2em;
+  background: linear-gradient(180deg, #214F75 48.96%, #FFF 100%);
+  border-radius: 2.59375rem;
+
+}
+
+.image-box {
+  display: inline-block;
+  position: relative;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  margin-bottom: 1.8rem;
+}
+
+</style>

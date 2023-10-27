@@ -1,6 +1,7 @@
 <script setup>
 import {RouterLink} from "vue-router";
 import {ref} from "vue";
+import ScrollMenuTram from "@/components/HomePageFunctions/ScrollMenuTram.vue";
 
 const touchStartPos = ref()
 function touchStartMethod(touchEvent){
@@ -21,26 +22,31 @@ function touchEndMethod (touchEvent){
     console.log("swipe left")
   }
 }
+
 </script>
 <template>
+  <body class="Main">
 
   <div class="Trams" @touchstart="touchStartMethod" @touchend="touchEndMethod">
-    <a class="HoldArrow"><img src="../../public/svgarrows/arrowleft.svg" class="LeftArrow"></a>
+
+
     <RouterLink class="RouterL" to="/tjot">
-      <img class="Tramquiz1" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
+      <img class="Tramquiz1" src="/trams/lefttramquiz.svg" alt="tramquiz1">
     </RouterLink>
     <RouterLink class="RouterL" to="/ordvitsknok">
-      <img class="Tramquiz2" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2">
+      <img class="Tramquiz2" src="/trams/middletramquiz.svg" alt="tramquiz2">
     </RouterLink>
     <RouterLink class="RouterL" to="/geografikack">
-      <img class="Tramquiz3" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3">
+      <img class="Tramquiz3" src="/trams/righttramquiz.svg" alt="tramquiz3">
     </RouterLink>
-    <a class="HoldArrow"><img src="../../public/svgarrows/arrowright.svg" class="RightArrow"></a>
-  </div>
 
+
+  </div>
+  <ScrollMenuTram class="MobileTrams"/>
   <p>
-    <a class="aTag"><RouterLink to="/"><button class="ToRandQuiz">Klicka mig för att generera random quizfråga</button></RouterLink> </a>
+    <a class="aTag"><RouterLink to="/"><button class="ToRandQuiz">Quizz & Blandat</button></RouterLink> </a>
   </p>
+  </body>
 
 </template>
 <style scoped>
@@ -49,30 +55,63 @@ function touchEndMethod (touchEvent){
   .Trams{
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 5px;
   }
-  img{
-    width: 250px;
+
+.RouterL{
+  display: none;
+}
+  .Tramquiz1{
+    width: 50px;
   }
   .Tramquiz2{
-
+    width: 50px;
   }
   .Tramquiz3{
+    width: 50px;
 
   }
-  .LeftArrow{
-    width: 30px;
-    padding: 90px 0px;
+  html{
+    background-size: cover;
   }
-  .RightArrow{
-    width: 30px;
-    padding: 90px 0px;
+  .Main{
+
   }
-  .aTag{
-    display: none;
+
+.MobileTrams{
+
+}
+  .ToRandQuiz{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px 60px;
+    border: 2px solid #214F75;
+    background-color: #E8F3FD;
+    border-radius: 5px;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 19px;
+    text-align: center;
+    text-transform: uppercase;
+
+  }
+  .ToRandQuiz:hover{
+    cursor: pointer;
+    background-color: #406C90;
+    border-color: black;
+    color: white;
+  }
+  .ToRandQuiz:active{
+    background-color: #406C90;
+    transform: scale(.96);
   }
 
 }
+
+
+
+
 
 @media screen and (min-width: 500px) {
 
@@ -82,42 +121,64 @@ function touchEndMethod (touchEvent){
     margin-top: 30px;
   }
 
-  img {
-    width: 250px;
+  .Tramquiz1 {
+    margin-top: 60px;
+    width: 12.65625rem;
+    height: 16.5rem;
+    background: linear-gradient(180deg, #214F75 48.96%, #FFF 100%);
+    border-radius: 2.59375rem;
+    padding: 0.3rem;
+    padding-top: 0.8rem;
+
+  }
+  .Tramquiz2{
+    width: 12.65625rem;
+    height: 16.5rem;
+    margin: 1px 100px;
+    margin-top: 60px;
+    background: linear-gradient(180deg, #214F75 48.96%, #FFF 100%);
+    border-radius: 2.59375rem;
+    padding: 0.3rem;
+    padding-top: 0.8rem;
   }
 
-  .LeftArrow {
+  .Tramquiz3{
+    width: 12.65625rem;
+    height: 16.5rem;
+    margin-top: 60px;
+    background: linear-gradient(180deg, #214F75 48.96%, #FFF 100%);
+    border-radius: 2.59375rem;
+    padding: 0.3rem;
+    padding-top: 0.8rem;
+  }
+  .MobileTrams{
     display: none;
   }
-
-  .RightArrow {
-    display: none;
+  .ToRandQuiz{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 100px;
+    border: 2px solid #214F75;
+    background-color: #E8F3FD;
+    border-radius: 5px;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 19px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 70px;
+  }
+  .ToRandQuiz:hover{
+    cursor: pointer;
+    background-color: #406C90;
+    border-color: black;
+    color: white;
+  }
+  .ToRandQuiz:active{
+    background-color: #406C90;
+    transform: scale(.96);
   }
 
-
-}
-.ToRandQuiz{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 30px 100px;
-  border: 2px solid #214F75;
-  background-color: #E8F3FD;
-  border-radius: 5px;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 19px;
-  text-align: center;
-  text-transform: uppercase;
-}
-.ToRandQuiz:hover{
-  cursor: pointer;
-  background-color: #406C90;
-  border-color: black;
-  color: white;
-}
-.ToRandQuiz:active{
-  background-color: #406C90;
-  transform: scale(.96);
 }
 </style>

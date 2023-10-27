@@ -58,13 +58,13 @@ function getLocationHighscore() {
 
     <div class="item3 quiz-link">
       <RouterLink class="RouterL" to="/tjot">
-        <img class="tramBack" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1" />
+        <img class="tramBack" src="/trams/lefttramquiz.svg" alt="tramquiz1" />
       </RouterLink>
       <RouterLink class="RouterL" to="/ordvitsknok">
-        <img class="tramBack" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2" />
+        <img class="tramBack" src="/trams/middletramquiz.svg" alt="tramquiz2" />
       </RouterLink>
       <RouterLink class="RouterL" to="/geografikack">
-        <img class="tramBack" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3" />
+        <img class="tramBack" src="/trams/righttramquiz.svg" alt="tramquiz3" />
       </RouterLink>
     </div>
     

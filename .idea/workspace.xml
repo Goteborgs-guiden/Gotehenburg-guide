@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf07fae8-f574-4373-84e3-8f575026f4db" name="Changes" comment="Add FillInBlankQuizView.vue">
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/SiteHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SiteHeader.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollMenuTram.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollTram.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/assets/img/middle old tramquiz 3.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/trams/righttramquiz.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/assets/img/new tramquiz 2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/trams/middletramquiz.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/assets/img/old tramquiz 1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/trams/lefttramquiz.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LoginForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/TheHomepage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TheHomepage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/HighscorePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/HighscorePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/ProfilePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/ProfilePage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +56,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "118-css-for-homepage-mobile-adaptation",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Simon PC/WebstormProjects/Gotehenburg-guideM",
+    "last_opened_file_path": "C:/Users/Simon PC/WebstormProjects/Gotehenburg-guide-test",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -60,6 +69,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Simon PC\WebstormProjects\Gotehenburg-guide\frontend\public\trams" />
       <recent name="C:\Users\Simon PC\WebstormProjects\Gotehenburg-guide\frontend\src\views\MapQuizView" />
       <recent name="C:\Users\Simon\WebstormProjects\Gotehenburg-guide\frontend\src\assets" />
       <recent name="C:\Users\Simon\WebstormProjects\Gotehenburg-guide\img" />
@@ -95,6 +105,7 @@
       <workItem from="1697612248484" duration="453000" />
       <workItem from="1697679576212" duration="1840000" />
       <workItem from="1698303675989" duration="2459000" />
+      <workItem from="1698381238239" duration="13914000" />
     </task>
     <task id="LOCAL−00001" summary="Update the change">
       <option name="closed" value="true" />
