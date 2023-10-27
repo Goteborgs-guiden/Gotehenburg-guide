@@ -1,15 +1,13 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 let currentQuestion = ref(0)
-//const apiUrl = "http://127.0.0.1:3000/";
 let abcdata = ref('')
 let alternatives = ref([''])
 let correctData = ref('')
 let onGoingQuiz = true
 let points = ref(0)
 let allowsubmit = true;
-import { useTokensStore } from '../stores/tokens';
-const tokens = useTokensStore();
+const questionImage = ref('')
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
@@ -42,7 +40,7 @@ function sendAnswer(input, id, answerid) {
   }
 }
 function getQuestion(id) {
-  if (id <= 3) {
+  if (id <= 5) {
     correctData.value = ''
     fetch('http://127.0.0.1:3000/quiz/locationQuestion/' + id, {
       method: 'GET'
@@ -50,23 +48,24 @@ function getQuestion(id) {
       .then((response) => response.json())
       .then((data) => {
         console.log('response from server:', data)
+        questionImage.value = data.img
         abcdata.value = data.question
         alternatives.value = data.alternatives.split(',')
+        
       })
   } else onGoingQuiz = false
 }
 function setHighscore(points) {
-    fetch('http://127.0.0.1:3000/highscore', {
+    fetch('http://127.0.0.1:3000/highscore/location', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'BEARER ' + tokens.accessToken
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
       },
       body: JSON.stringify({ score: points }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(tokens.accessToken)
         console.log('response from server:', data)
       })
     }
@@ -74,10 +73,10 @@ function setHighscore(points) {
 
 <template>
   <div class="grid-container">
-    <div class="item1" id="question-image">
-      <img src="#" />
+    <div class="item1" id="questionImage">
+      <img :src="questionImage" />
     </div>
-
+    
     <div v-if="onGoingQuiz" id="abc-quiz" class="item2">
       <p>{{ abcdata }}</p>
       <div class="selection">
@@ -105,8 +104,8 @@ function setHighscore(points) {
     <p v-if="correctData">Rätt svar!</p>
     <p v-if="correctData === false">FEL SVAR!</p>
   </div>
-  <div v-if="currentQuestion >= 4">
-    <p v-if="points > 2">Snyggt byggt, fräsig kärra!</p>
+  <div v-if="currentQuestion >= 6">
+    <p v-if="points > 3">Snyggt byggt, fräsig kärra!</p>
     <p v-else>Rackarns rabarber det där gick inte så bra!</p>
     <p>{{ points }} Poäng</p>
     <div v-if="setHighscore(points)">

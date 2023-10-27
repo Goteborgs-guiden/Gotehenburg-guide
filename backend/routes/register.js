@@ -34,6 +34,7 @@ router.post("/", (req, res) => {
             if (err) {
               return console.log("Cannot encrypt");
             }
+            
             const hashedPassword = hash;
             bcrypt.compare(
 
@@ -58,7 +59,7 @@ router.post("/", (req, res) => {
                         '',
                         '',
                         '',
-                        '',
+                        '/noprofilepic.jpg',
                         '',
                         '',
                         '',

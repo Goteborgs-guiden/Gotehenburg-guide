@@ -1,10 +1,9 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { onMounted, ref } from 'vue';
-import { useTokensStore } from '../stores/tokens';
-const tokens = useTokensStore();
 const userInfo = ref('');
 const friends = ref('');
+const profileImage = ref('');
 onMounted(() => {
   getInfo();
 })
@@ -14,11 +13,12 @@ function getInfo() {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'BEARER ' + tokens.accessToken
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
       },
     })
       .then((response) => response.json())
       .then((data) => {
+        profileImage.value = data.img
         userInfo.value = data;
         friends.value = userInfo.value.friends.split(',')
         console.log('friends', friends.value)
@@ -30,6 +30,7 @@ function getInfo() {
         <div id="top-section">
             <div id="profile-img">
                 <h1 id="username">{{ userInfo.username}}</h1>
+                <img :src="profileImage"/>
             </div>
             <div id="profile-info">
                 <table id="shorts">

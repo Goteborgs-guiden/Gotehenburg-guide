@@ -1,6 +1,5 @@
 <script setup>
 import { useDialogStore } from '../stores/dialog';
-import { useTokensStore } from '../stores/tokens';
 import { onMounted, ref } from 'vue';
 
 const scrollPosition = ref()
@@ -8,8 +7,8 @@ const mobile = ref()
 const mobileNav = ref()
 const windowWidth = ref()
 const dialogs = useDialogStore()
-const tokenStore = useTokensStore()
 const userInfo = ref('');
+const isLoggedin = ref(false);
 onMounted(() => {
   getInfo();
 })
@@ -20,16 +19,19 @@ function getInfo() {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'BEARER ' + tokenStore.accessToken
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
       },
     })
       .then((response) => response.json())
       .then((data) => {
         userInfo.value = data;
         console.log('response from server:', data)
-        //this log if needed for some reason otherwise it doesn't display user info
-        console.log('userInfo', userInfo.value)
-        console.log("a")
+        if(data){
+          isLoggedin.value = true;
+        }
+        else{
+          isLoggedin.value = false;
+        }
       })
     }
     function toggleMobileNav(){
@@ -45,7 +47,15 @@ function getInfo() {
       mobileNav.value = false;
       return;
     }
-    
+function reload(){
+  const time = Date.parse(localStorage.getItem('time'));
+  const currentTime = new Date(Date.now());
+  const timeLeft = time - currentTime;
+  console.log("time",time)
+  console.log("currentTime",currentTime);
+  console.log("time left",timeLeft)
+  setTimeout(function(){location.reload();}, timeLeft)
+}
 </script>
 
 
@@ -54,18 +64,15 @@ function getInfo() {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="headerContent">
       <RouterLink id="GBGlogo" to="/">GBGuiden</RouterLink>
-            <div v-if="!tokenStore.accessToken && !mobile">
+          <div v-if="!isLoggedin && !mobile">
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
             <div v-else>
-                <div v-if="getInfo()"></div>
                 <RouterLink class="RouterL" style="text-decoration: none;" to="/profile">{{userInfo.username}}</RouterLink>
+                <div v-if="reload()"></div>
             </div>
         </div>
-        <!--<p>{{ token }}</p>
-        <button @click="token = useTokensStore()">update</button>-->
-
     <nav class="navbar">
       <ul v-show="!mobile" class="navigation">
       <li class="dropdown">
