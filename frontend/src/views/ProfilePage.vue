@@ -3,6 +3,7 @@ import { RouterLink } from "vue-router";
 import { onMounted, ref } from 'vue';
 const userInfo = ref('');
 const friends = ref('');
+const profileImage = ref('');
 onMounted(() => {
   getInfo();
 })
@@ -17,6 +18,7 @@ function getInfo() {
     })
       .then((response) => response.json())
       .then((data) => {
+        profileImage.value = data.img
         userInfo.value = data;
         friends.value = userInfo.value.friends.split(',')
         console.log('friends', friends.value)
@@ -28,6 +30,7 @@ function getInfo() {
         <div id="top-section">
             <div id="profile-img">
                 <h1 id="username">{{ userInfo.username}}</h1>
+                <img :src="profileImage"/>
             </div>
             <div id="profile-info">
                 <table id="shorts">

@@ -7,8 +7,7 @@ let correctData = ref('')
 let onGoingQuiz = true
 let points = ref(0)
 let allowsubmit = true;
-
-
+const questionImage = ref('')
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
@@ -49,8 +48,10 @@ function getQuestion(id) {
       .then((response) => response.json())
       .then((data) => {
         console.log('response from server:', data)
+        questionImage.value = data.img
         abcdata.value = data.question
         alternatives.value = data.alternatives.split(',')
+        
       })
   } else onGoingQuiz = false
 }
@@ -72,10 +73,10 @@ function setHighscore(points) {
 
 <template>
   <div class="grid-container">
-    <div class="item1" id="question-image">
-      <img src="#" />
+    <div class="item1" id="questionImage">
+      <img :src="questionImage" />
     </div>
-
+    
     <div v-if="onGoingQuiz" id="abc-quiz" class="item2">
       <p>{{ abcdata }}</p>
       <div class="selection">
