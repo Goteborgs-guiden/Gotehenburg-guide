@@ -73,7 +73,8 @@ function setHighscore(points) {
 
 <template>
   <div class="grid-container">
-    <div class="item1" id="questionImage">
+    
+    <div v-if="onGoingQuiz" class="item1" id="questionImage">
       <img :src="questionImage" />
     </div>
     
