@@ -5,10 +5,13 @@ let highscoreABC = ref([])
 let highscoreBlank = ref([])
 let highscoreLocation = ref([])
 let selected = ref('abc')
+import { useHighscore } from '../stores/highscore'
+const highscore = useHighscore()
 onMounted(() => {
   getABCHighscore()
   getBlankHighscore()
   getLocationHighscore()
+  if(highscore.lastQuiz !== '') selected.value = highscore.lastQuiz
 })
 
 function getABCHighscore() {
@@ -49,16 +52,33 @@ function getLocationHighscore() {
           <option class="optionForForm" value="map">Map highscore</option>
         </select>
       </form>
+      <div v-if="highscore.lastQuiz===''">
       <div class="scoreboardBox">
-        <h1 class="scores">X/X</h1>
+        <h1 class="scores">{{ highscore.score }}/5</h1>
       </div>
       <div class="infoBox">
-        <p class="info">box for William</p>
+        <p v-if="highscore.score === 5" class="info">full poäng bra jobbat</p>
+        <p v-if="highscore.score > 2 && highscore.score < 5" class="info">Starkt kämpat</p>
+        <p v-if="highscore.score <= 2" class="info">Det där gick ju inte så bra</p>
       </div>
+    
+    <div class="item2" v-if="highscore.lastQuiz==='abc'">
+      <router-link to="/tjot" custom v-slot="{ navigate }">
+        <button @click="navigate" role="link" class="redo">Försök igen</button>
+      </router-link>
     </div>
-    <div class="item2">
-      <button class="redo">Försök igen</button>
+    <div class="item2" v-if="highscore.lastQuiz==='fillblank'">
+      <router-link to="/ordvitsknok" custom v-slot="{ navigate }">
+        <button @click="navigate" role="link" class="redo">Försök igen</button>
+      </router-link>
     </div>
+    <div class="item2" v-if="highscore.lastQuiz==='map'">
+      <router-link to="/geografikack" custom v-slot="{ navigate }">
+        <button @click="navigate" role="link" class="redo">Försök igen</button>
+      </router-link>
+    </div>
+    </div>
+  </div>
 
     <div class="item3 quiz-link">
       <RouterLink class="RouterL" to="/tjot">
@@ -135,7 +155,7 @@ function getLocationHighscore() {
 }
 
 .chooseHighscoreBox select {
-  display: ;
+  display:;
 }
 
 .chooseHighscoreBox-selected {

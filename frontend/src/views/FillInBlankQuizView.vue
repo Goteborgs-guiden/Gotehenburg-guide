@@ -9,11 +9,14 @@ let points = ref(0)
 let question = ref('')
 let answer = ref('')
 let allowsubmit = ref(true)
+import { useHighscore } from '../stores/highscore';
+const highscore = useHighscore();
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function getQuestion(id) {
+  console.log("ongoing", onGoingQuiz)
   if (id <= 5) {
     correctData.value = ''
     fetch('http://127.0.0.1:3000/quiz/fillblank/' + id, {
@@ -84,6 +87,8 @@ function setHighscore(points) {
     </div>
     <div v-if="!onGoingQuiz">
       <div v-if="setHighscore(points)"></div>
+      <div v-if="highscore.setScore(points)"></div>
+      <div v-if="highscore.setLastQuiz('fillblank')"></div>
       <p>Quizen är slut</p>
       <p>Du fick {{ points }} poäng</p>
     </div>

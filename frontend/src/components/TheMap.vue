@@ -8,6 +8,8 @@ let onGoingQuiz = true
 let points = ref(0)
 let allowsubmit = true;
 const questionImage = ref('')
+import { useHighscore } from '../stores/highscore';
+const highscore = useHighscore();
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
@@ -109,8 +111,11 @@ function setHighscore(points) {
     <p v-else>Rackarns rabarber det där gick inte så bra!</p>
     <p>{{ points }} Poäng</p>
     <div v-if="setHighscore(points)">
-
     </div>
+    <div v-if="highscore.setScore(points)">
+    </div>
+    <div v-if="highscore.setLastQuiz('map')"></div>
+    
   </div>
 </template>
 <style scoped>
