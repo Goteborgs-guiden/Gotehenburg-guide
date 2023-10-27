@@ -103,7 +103,9 @@ function reload(){
         <RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink>
         <RouterLink class="navitem" to="/highscore">Highscore</RouterLink>
         <RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink>
+<div v-if="isLoggedIn">
         <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
+</div>
         <div v-if="!isLoggedIn" class="login-and-register">
               <button class="button" @click="dialogs.toggleLogin">Logga in</button>
               <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
