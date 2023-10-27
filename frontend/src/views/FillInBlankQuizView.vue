@@ -1,6 +1,4 @@
 <script setup>
-import ImgForQuiz from '@/components/FillInBlankComponents/ImgForQuiz.vue'
-import InputBar from '@/components/FillInBlankComponents/InputBar.vue'
 import { onMounted, ref } from 'vue'
 let currentQuestion = ref(0)
 let correctData = ref('')
@@ -74,52 +72,121 @@ function setHighscore(points) {
 <template>
   <main>
     <div v-if="onGoingQuiz" id="abc-quiz">
-      <p>{{ question }}</p>
-      <input v-model="answer" type="text" />
-      <button @click="sendAnswer(answer, currentQuestion)">submit</button>
-      <div v-if="!allowsubmit">
-        <p v-if="correctData">Rätt svar</p>
-        <p v-else>Fel svar</p>
+    <article class="geografikack">
+      <div class="img"> <a>Place the Image here!!!</a></div>
+      <div class="question">
+      <p>Vilken är världens mest musikaliska fågel?
+    Truten! För det är en ____{{ question }}</p>
+    <div class="showAnswer" v-if="!allowsubmit">
+        <p id="correctAnswer" v-if="correctData">Rätt svar</p>
+        <p id="wrongAnswer" v-else>Fel svar</p>
+      </div>
+      <div class="hideInputAndButton" v-if="allowsubmit">
+      <div class="inputform">
+      <input class="input" placeholder="Svara här" v-model="answer" type="text" />
+        </div>
+      <div class="buttoncss">
+      <button @click="sendAnswer(answer, currentQuestion)">></button>
       </div>
     </div>
+      </div>
+    
+    </article>
     <div v-if="!onGoingQuiz">
       <div v-if="setHighscore(points)"></div>
       <p>Quizen är slut</p>
       <p>Du fick {{ points }} poäng</p>
     </div>
-    <ImgForQuiz />
-    <InputBar />
+    </div>
   </main>
 </template>
 <style scoped>
-/*.item1 {grid-area: image;}
-.item2 {grid-area: question;}
-.item3 {grid-area: buttons;}
+.geografikack {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+  height: 100vh;
+}
+.img {
+  height: 40%;
+  width: 40%;
+  background: rgba(232, 243, 253, 0.91);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
 
-.grid-container {
-display: grid;
-grid-template-columns: 25% 50% 25%;
-grid-template-rows: 40% 20% 20%;
-grid-template-areas: 
-'. image .'
-'. question .'
-'buttons . .';
-}*/
-
-input {
+.question {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left: 1rem;
+  margin-top: 1.5rem;
+  width: 38.5%;
+  height: fit-content;
+  border-radius: 0.78125rem;
+  border: 0.2rem solid #406c90;
+  background: rgba(232, 243, 253, 0.91);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+}
+p{
+  display: flex;
+  justify-content: center;
+  font-family: 'Newsreader';
+  font-size: 2rem;
+  width: fit-content; 
+}
+#correctAnswer {
+  color:#2CE03E;
+}
+#wrongAnswer {
+  color: #F00;
+}
+.inputform {
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 96.5%;
+  
+}
+.input {
+  width: 100%;
+  height: 2rem;
   border-radius: 1.90625rem;
-  border: 2px solid #214f75;
+  border: 0.1rem solid #214f75;
   background: #e8f3fd;
+  display: flex;
+  justify-content: center;
+  
+}
+::placeholder {
+  padding-left: 1rem;
+  color: rgba(0, 0, 0, 0.53);
+  font-family: 'Newsreader';
+  font-size: 1.3125rem;
+}
+.buttoncss {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1em;
 }
 
 button {
   padding: 0.6rem 1.4rem;
   border-radius: 0.8rem;
-  border: 5px solid #91b6d8;
+  border: 0.2rem solid #91b6d8;
   background: #fff;
   color: #214f75;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   font-family: 'Newsreader';
   font-size: 1.3125rem;
+  display: flex;
+  justify-content: center;
+  width: 20%;
+}
+a{
+  color: black;
 }
 </style>
