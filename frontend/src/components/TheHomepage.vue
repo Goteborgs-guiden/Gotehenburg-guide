@@ -39,8 +39,6 @@ function touchEndMethod (touchEvent){
     <RouterLink class="RouterL" to="/geografikack">
       <img class="Tramquiz3" src="/trams/righttramquiz.svg" alt="tramquiz3">
     </RouterLink>
-
-
   </div>
   <ScrollMenuTram class="MobileTrams"/>
   <p>

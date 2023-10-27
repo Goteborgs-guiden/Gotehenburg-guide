@@ -3,7 +3,7 @@
 
 html {
     min-height: 77%;
-    background-image: url(img/stadssiluett.png);
+    background-image: url(/stadssiluett.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;

@@ -3,6 +3,7 @@ import { RouterLink } from "vue-router";
 import { onMounted, ref } from 'vue';
 const userInfo = ref('');
 const friends = ref('');
+const profileImage = ref('');
 onMounted(() => {
   getInfo();
 })
@@ -17,6 +18,7 @@ function getInfo() {
     })
       .then((response) => response.json())
       .then((data) => {
+        profileImage.value = data.img
         userInfo.value = data;
         friends.value = userInfo.value.friends.split(',')
         console.log('friends', friends.value)
@@ -28,6 +30,7 @@ function getInfo() {
         <div id="top-section">
             <div id="profile-img">
                 <h1 id="username">{{ userInfo.username}}</h1>
+                <img :src="profileImage"/>
             </div>
             <div id="profile-info">
                 <table id="shorts">
@@ -61,7 +64,7 @@ function getInfo() {
             <div id="quiz-scores">
                 <ul class="quiz">
                     <li><RouterLink class="RouterL" to="/tjot">
-                    <img class="tram" src="../../public/trams/old%20tramquiz%201.svg" alt="tramquiz1">
+                    <img class="tram" src="/old tramquiz 1.svg" alt="tramquiz1">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Tjöt</li>
                     <li class="quiz-info">Personligt bästa:</li>
@@ -69,7 +72,7 @@ function getInfo() {
                 </ul>
                 <ul class="quiz">
                     <li><RouterLink class="RouterL" to="/ordvitsknok">
-                    <img class="tram" src="../../public/trams/new%20tramquiz%202.svg" alt="tramquiz2">
+                    <img class="tram" src="/new tramquiz 2.svg" alt="tramquiz2">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Ordvitsknök</li>
                     <li class="quiz-info">Personligt bästa:</li>
@@ -77,7 +80,7 @@ function getInfo() {
                 </ul>
                 <ul class="quiz">
                     <li><RouterLink class="RouterL" to="/geografikack">
-                    <img class="tram" src="../../public/trams/middle%20old%20tramquiz%203.svg" alt="tramquiz3">
+                    <img class="tram" src="/middle old tramquiz 3.svg" alt="tramquiz3">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Geografi-käck</li>
                     <li class="quiz-info">Personligt bästa:</li>
