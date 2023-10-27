@@ -104,7 +104,7 @@ function reload(){
         <RouterLink class="navitem" to="/highscore">Highscore</RouterLink>
         <RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink>
         <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
-        <div v-if="!tokenStore.accessToken" class="login-and-register">
+        <div v-if="!isLoggedIn" class="login-and-register">
               <button class="button" @click="dialogs.toggleLogin">Logga in</button>
               <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
