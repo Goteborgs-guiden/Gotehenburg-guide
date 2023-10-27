@@ -8,10 +8,8 @@
 </template>
 <style scoped>
 .Img {
-  justify-content: space-evenly;
-  margin-left: 32.5rem;
   height: 25rem;
-  width: 51.4rem;
+  width: 50%;
   border-radius: 0.78125rem;
   border: 4px solid #406c90;
   background: rgba(232, 243, 253, 0.91);
