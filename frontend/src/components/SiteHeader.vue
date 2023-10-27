@@ -104,7 +104,9 @@ function reload(){
         <RouterLink class="navitem" to="/highscore">Highscore</RouterLink>
         <RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink>
 <div v-if="isLoggedIn">
+<div v-if="isLoggedIn">
         <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
+</div>
 </div>
         <div v-if="!isLoggedIn" class="login-and-register">
               <button class="button" @click="dialogs.toggleLogin">Logga in</button>
