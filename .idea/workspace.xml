@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf07fae8-f574-4373-84e3-8f575026f4db" name="Changes" comment="fix homepage and mobile adaptation">
+    <list default="true" id="cf07fae8-f574-4373-84e3-8f575026f4db" name="Changes" comment="Update the size of trams and the background">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollMenuTram.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollMenuTram.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollTram.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollTram.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/TheHomepage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TheHomepage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +96,7 @@
       <workItem from="1697679576212" duration="1840000" />
       <workItem from="1698303675989" duration="2459000" />
       <workItem from="1698381238239" duration="13914000" />
-      <workItem from="1698595598815" duration="2381000" />
+      <workItem from="1698595598815" duration="3901000" />
     </task>
     <task id="LOCAL−00001" summary="Update the change">
       <option name="closed" value="true" />
@@ -115,7 +112,14 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1698415079040</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="Update the size of trams and the background">
+      <option name="closed" value="true" />
+      <created>1698598325994</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1698598325994</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +142,7 @@
     <MESSAGE value="Add some mobile adaptation" />
     <MESSAGE value="Update the change" />
     <MESSAGE value="fix homepage and mobile adaptation" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix homepage and mobile adaptation" />
+    <MESSAGE value="Update the size of trams and the background" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update the size of trams and the background" />
   </component>
 </project>
