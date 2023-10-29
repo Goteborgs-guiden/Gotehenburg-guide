@@ -35,7 +35,11 @@ function login() {
     <header>
       <div class="wrapper">
         <form>
-          <label class="forgot">Glömt Lösenord?</label>
+          <div class="title-box">
+            <img class="back symb" src="/symbols/backarrow.svg" />
+            <label class="forgot">Glömt Lösenord?</label>
+            <img class="close symb" src="/symbols/navclose.svg" />
+          </div>
           <p class="resetText">
             Fyll i din mailadress så skickar vi en länk för att återställa ditt lösenord.
           </p>
@@ -59,10 +63,37 @@ form {
   background: #214f75;
   font-family: 'Permanent marker';
   color: #fff;
-  height: 18.5em;
+  height: 21em;
+}
+.title-box {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-areas: 'back title cross';
+  justify-items: center;
+}
+
+.close {
+  grid-area: cross;
+  height: 1.2em;
+  margin-top: 0.6em;
+  cursor: pointer;
+}
+
+.symb:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.back {
+  grid-area: back;
+  height: 1.4em;
+  margin-top: 0.6em;
+  cursor: pointer;
+  padding-right: 0.5em;
 }
 
 .forgot {
+  grid-area: title;
   font-size: x-large;
   padding-bottom: 5px;
   border-bottom-style: solid;
@@ -70,13 +101,14 @@ form {
   box-shadow: 0 3px 0px 0px rgba(0, 0, 0, 0.3);
   width: 9em;
   align-self: center;
-  padding-top: 0.5rem;
+  padding-top: 1.5em;
 }
 .resetText {
   font-family: 'Newsreader';
   text-align: center;
   padding-left: 1em;
   padding-right: 1em;
+  padding-top: 0.5em;
 }
 
 label {
