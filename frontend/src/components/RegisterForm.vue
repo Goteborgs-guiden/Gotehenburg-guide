@@ -124,6 +124,7 @@ margin-top: 0.1em;
   height: 2em;
   width: 7.5em;
   font-size: x-large;
+  cursor: pointer;
 }
 
 .button:hover {

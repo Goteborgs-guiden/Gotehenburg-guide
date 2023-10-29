@@ -107,6 +107,14 @@ a {
   margin-top: 0.2em;
 }
 
+a:hover {
+  text-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+a:active {
+  transform: translateY(2px);
+}
+
 .loginButton {
   display: block;
   margin: auto;
@@ -121,6 +129,7 @@ a {
   height: 2em;
   width: 9rem;
   font-size: x-large;
+  cursor: pointer;
 }
 
 .loginButton:hover {
