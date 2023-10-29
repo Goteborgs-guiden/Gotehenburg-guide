@@ -49,7 +49,7 @@ function login() {
 </template>
 <style>
 .wrapper {
-  width: 23rem;
+  width: 25em;
 }
 
 form {
@@ -59,7 +59,7 @@ form {
   background: #214f75;
   font-family: 'Permanent marker';
   color: #fff;
-  height: 20rem;
+  height: 21em;
 }
 
 .login {
@@ -121,6 +121,17 @@ a {
   height: 2em;
   width: 9rem;
   font-size:x-large;
+}
+
+.loginButton:hover {
+  background-color: #214f75;
+  color: #fff;
+  border: 2px solid #ffffff;
+}
+
+.loginButton:active {
+  transform: translateY(2px);
+  box-shadow: none;
 }
 
 
