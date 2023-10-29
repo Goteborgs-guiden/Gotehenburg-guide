@@ -2,9 +2,11 @@
 import ScrollMenu from '@/components/ScrollMenu.vue'
 </script>
 <template>
-  <ScrollMenu />
-  <main>
-    <header>
+  <main class="grid-cont">
+    <div class="scroll-menu">
+      <ScrollMenu />
+    </div>
+    <header class="header-box">
       <div class="imageBox">
         <img src="/gbguide/swimmingareas/badplatsernarrow.png" class="headerImage" />
       </div>
@@ -235,6 +237,11 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
   </main>
 </template>
 <style>
+.gridCont {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+}
+
 .imageBox {
   width: 97%;
   margin-left: auto;
@@ -243,6 +250,7 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
 }
 
 .titleBox {
+  position: relative;
   font-family: 'Newsreader';
   color: white;
   position: absolute;
@@ -341,5 +349,50 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
 
 .downButtonOpen:hover {
   width: 3.5em;
+}
+
+.scroll-menu {
+  grid-area: menu;
+}
+.header-box {
+  grid-area: headImg;
+}
+.box1 {
+  grid-area: 1;
+}
+.box2 {
+  grid-area: 2;
+}
+.box3 {
+  grid-area: 3;
+}
+.box4 {
+  grid-area: 4;
+}
+.box5 {
+  grid-area: 5;
+}
+
+@media screen and (max-width: 600px) {
+  .grid-cont {
+    display: grid;
+    grid-template-areas:
+      'headImg'
+      '1'
+      '2'
+      '3'
+      '4'
+      '5';
+  }
+
+  .artBoxClosed {
+    display: grid;
+    grid-template-rows: 40% 10% 40%;
+  }
+
+  .artBoxOpen {
+    display: grid;
+    grid-template-rows: 40% 10% 40%;
+  }
 }
 </style>

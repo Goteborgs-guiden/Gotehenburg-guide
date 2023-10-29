@@ -1,6 +1,5 @@
 <script setup>
-import ScrollMenu from "@/components/ScrollMenu.vue";
-
+import ScrollMenu from '@/components/ScrollMenu.vue'
 </script>
 
 <template>
@@ -10,8 +9,8 @@ import ScrollMenu from "@/components/ScrollMenu.vue";
         <img src="/gbguide/gbgcity3.jpeg" class="main-img overlay" />
       </div>
       <div class="img-text">
-        <h1 class="mainTitle" >GBGuide</h1>
-        <h2 class="mainSecTitle" >Göteborgs Topp 5</h2>
+        <h1 class="mainTitle">GBGuide</h1>
+        <h2 class="mainSecTitle">Göteborgs Topp 5</h2>
       </div>
     </div>
     <div class="item2">
@@ -20,18 +19,18 @@ import ScrollMenu from "@/components/ScrollMenu.vue";
   </main>
 </template>
 <style>
-
 .grid-container {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
     'header'
     'list';
-    gap: 1rem;
+  gap: 1rem;
 }
 
 .item1 {
   grid-area: header;
+  position: relative;
   place-self: center;
   text-align: center;
 }
@@ -45,7 +44,7 @@ import ScrollMenu from "@/components/ScrollMenu.vue";
   background-color: #214f75;
   width: 98%;
   margin-left: auto;
-  margin-right: auto ;
+  margin-right: auto;
   margin-top: 1%;
 }
 
@@ -56,6 +55,7 @@ import ScrollMenu from "@/components/ScrollMenu.vue";
 }
 
 .img-text {
+  position: absolute;
   font-family: 'Newsreader';
   color: white;
   position: absolute;
@@ -64,12 +64,49 @@ import ScrollMenu from "@/components/ScrollMenu.vue";
 }
 
 .mainTitle {
-  font-size: 10rem;
+  font-size: 1000%;
   margin-bottom: 0;
 }
 
 .mainSecTitle {
   font-size: 4rem;
   margin-top: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .grid-container {
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+    'header'
+    'list';
+    gap: 0;
+}
+
+  .main-img {
+    position: relative;
+    width: 100%;
+    height: 15em;
+  }
+
+  .img-backg {
+    position: relative;
+    margin-top: 0;
+  }
+
+  .img-text{
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 18%;
+  }
+  .mainTitle {
+    font-size: 5em;
+  }
+  .mainSecTitle {
+  font-size: 2em;
+  margin-top: 0;
+}
+
 }
 </style>

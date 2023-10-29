@@ -15,10 +15,10 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
     <div class="box1">
       <article class="artBoxClosed">
         <div class="artImageBoxClosed">
-          <img src="/gbguide/artists/laleh.jpeg"  class="artImageClosed" />
+          <img src="/gbguide/artists/kapten.jpeg"  class="artImageClosed" />
         </div>
         <div class="artTitleBoxClosed">
-          <h1 class="artTitleClosed">1. Laleh</h1>
+          <h1 class="artTitleClosed">1. Kapten Röd</h1>
           <div class="artTextBoxClosed">
             <p class="artTextClosed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -34,10 +34,10 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
       </article>
       <article class="artBoxOpen">
         <div class="artImageBoxOpen">
-          <img src="/gbguide/artists/laleh.jpeg"  class="artImageOpen" />
+          <img src="/gbguide/artists/kapten.jpeg"  class="artImageOpen" />
         </div>
         <div class="artTitleBoxOpen">
-          <h1 class="artTitleOpen">1. Laleh</h1>
+          <h1 class="artTitleOpen">1. Kapten Röd</h1>
           <div class="artTextBoxOpen">
             <p class="artTextOpen">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -103,10 +103,10 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
     <div class="box3">
       <article class="artBoxClosed">
         <div class="artImageBoxClosed">
-          <img src="/gbguide/artists/hakan.jpeg" class="artImageClosed" />
+          <img src="/gbguide/artists/laleh.jpeg" class="artImageClosed" />
         </div>
         <div class="artTitleBoxClosed">
-          <h1 class="artTitleClosed">3. Håkan Hellström</h1>
+          <h1 class="artTitleClosed">3. Laleh</h1>
           <div class="artTextBoxClosed">
             <p class="artTextClosed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -122,10 +122,10 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
       </article>
       <article class="artBoxOpen">
         <div class="artImageBoxOpen">
-          <img src="/gbguide/artists/hakan.jpeg" class="artImageOpen" />
+          <img src="/gbguide/artists/laleh.jpeg" class="artImageOpen" />
         </div>
         <div class="artTitleBoxOpen">
-          <h1 class="artTitleOpen">3. Håkan Hellström</h1>
+          <h1 class="artTitleOpen">3. Laleh</h1>
           <div class="artTextBoxOpen">
             <p class="artTextOpen">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -147,10 +147,10 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
     <div class="box4">
       <article class="artBoxClosed">
         <div class="artImageBoxClosed">
-          <img src="/gbguide/artists/yukimi.jpeg" class="artImageClosed" />
+          <img src="/gbguide/artists/hakan.jpeg" class="artImageClosed" />
         </div>
         <div class="artTitleBoxClosed">
-          <h1 class="artTitleClosed">4. Yukimi Nagano</h1>
+          <h1 class="artTitleClosed">4. Håkan Hellström</h1>
           <div class="artTextBoxClosed">
             <p class="artTextClosed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -166,10 +166,10 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
       </article>
       <article class="artBoxOpen">
         <div class="artImageBoxOpen">
-          <img src="/gbguide/artists/yukimi.jpeg" class="artImageOpen" />
+          <img src="/gbguide/artists/hakan.jpeg" class="artImageOpen" />
         </div>
         <div class="artTitleBoxOpen">
-          <h1 class="artTitleOpen">4. Yukimi Nagano</h1>
+          <h1 class="artTitleOpen">4. Håkan Hellström</h1>
           <div class="artTextBoxOpen">
             <p class="artTextOpen">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
