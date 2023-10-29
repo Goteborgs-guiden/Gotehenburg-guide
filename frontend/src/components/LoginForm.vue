@@ -19,14 +19,14 @@ function login() {
     .then((response) => response.json())
     .then((data) => {
       console.log('response from server:', data)
-      if(data!=null){
+      if (data != null) {
         dialogs.showLogin = false
       }
       tokens.setTokens(data)
       localStorage.setItem('accessToken', data.accessToken)
-      console.log(tokens.expiresIn);
-      localStorage.setItem('time', tokens.expiresIn);
-      location.reload();
+      console.log(tokens.expiresIn)
+      localStorage.setItem('time', tokens.expiresIn)
+      location.reload()
     })
 }
 </script>
@@ -68,7 +68,7 @@ form {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   box-shadow: 0 3px 0px 0px rgba(0, 0, 0, 0.3);
-  width: 8rem;
+
   align-self: center;
   padding-top: 0.5rem;
 }
@@ -77,8 +77,8 @@ label {
   padding-left: 1rem;
   font-size: large;
 }
-.inputLabel{
-    padding-top: 1rem;
+.inputLabel {
+  padding-top: 1rem;
 }
 
 .inputField {
@@ -100,11 +100,11 @@ label {
 }
 
 a {
-    font-family: 'Newsreader';
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    margin-top: 0.2em;
+  font-family: 'Newsreader';
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 0.2em;
 }
 
 .loginButton {
@@ -120,7 +120,7 @@ a {
   padding-bottom: 0.2em;
   height: 2em;
   width: 9rem;
-  font-size:x-large;
+  font-size: x-large;
 }
 
 .loginButton:hover {
@@ -132,8 +132,5 @@ a {
 .loginButton:active {
   transform: translateY(2px);
   box-shadow: none;
-  
 }
-
-
 </style>
