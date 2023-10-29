@@ -66,7 +66,8 @@ form {
   font-size: x-large;
   padding-bottom: 5px;
   border-bottom-style: solid;
-  border-bottom-width: 2px;
+  border-bottom-width: 3px;
+  box-shadow: 0 3px 0px 0px rgba(0, 0, 0, 0.3);
   width: 8rem;
   align-self: center;
   padding-top: 0.5rem;
@@ -87,7 +88,7 @@ label {
   box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.2) inset;
   font-size: large;
   height: 2.5rem;
-  font-family: 'Permanent marker';
+  font-family: 'Newsreader';
   padding-left: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
@@ -95,6 +96,7 @@ label {
 
 ::placeholder {
   color: rgba(33, 79, 117, 0.3);
+  font-family: 'Permanent marker';
 }
 
 a {
@@ -102,20 +104,24 @@ a {
     color: white;
     text-align: center;
     text-decoration: none;
-    margin-top: 0;
+    margin-top: 0.2em;
 }
 
 .loginButton {
   display: block;
   margin: auto;
-  margin-top: 1rem;
+  margin-top: 0.6em;
   border-radius: 0.53125rem;
   border: 2px solid #214f75;
+  color: #214f75;
   background: #fff;
   box-shadow: 0px 3px 3px 3px rgba(0, 0, 0, 0.3);
   font-family: 'Permanent marker';
-  height: 2.5rem;
+  padding-bottom: 0.2em;
+  height: 2em;
   width: 9rem;
-  font-size: larger;
+  font-size:x-large;
 }
+
+
 </style>
