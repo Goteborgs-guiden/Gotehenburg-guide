@@ -31,7 +31,10 @@ function register() {
   <header>
     <div class="wrapper">
       <form>
-        <label class="register">Registrera dig:</label>
+        <div class="close-box">
+          <label class="register">Registrera dig:</label>
+          <img class="close" src="/symbols/navclose.svg" />
+        </div>
         <label class="inputLabel">mailadress:</label>
         <input class="inputField" type="text" v-model="email" placeholder="mailadress" />
         <label class="inputLabel">användarnamn:</label>
@@ -63,7 +66,27 @@ form {
   height: 33.5em;
 }
 
+.close-box {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-areas: 'none reg cross';
+  justify-items: center;
+}
+
+.close {
+  grid-area: cross;
+  height: 1.2em;
+  margin-top: 0.6em;
+  cursor: pointer;
+}
+
+.close:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
 .register {
+  grid-area: reg;
   font-size: x-large;
   padding-bottom: 5px;
   border-bottom-style: solid;
@@ -76,7 +99,7 @@ form {
 
 label {
   padding-left: 1rem;
-  font-size:larger;
+  font-size: larger;
 }
 
 .inputLabel {
@@ -103,11 +126,10 @@ label {
 }
 
 .password-info {
-font-size:smaller;
-text-align: center;
-margin-bottom: 0;
-margin-top: 0.1em;
-
+  font-size: smaller;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 0.1em;
 }
 
 .button {
