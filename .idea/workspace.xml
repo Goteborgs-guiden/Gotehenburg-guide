@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf07fae8-f574-4373-84e3-8f575026f4db" name="Changes" comment="Add FillInBlankQuizView.vue">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollMenuTram.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollTram.vue" afterDir="false" />
+    <list default="true" id="cf07fae8-f574-4373-84e3-8f575026f4db" name="Changes" comment="fix homepage and mobile adaptation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/img/middle old tramquiz 3.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/trams/righttramquiz.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/img/new tramquiz 2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/trams/middletramquiz.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/img/old tramquiz 1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/trams/lefttramquiz.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LoginForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollMenuTram.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollMenuTram.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollTram.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePageFunctions/ScrollTram.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/TheHomepage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TheHomepage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/HighscorePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/HighscorePage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/ProfilePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/ProfilePage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,25 +41,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "118-css-for-homepage-mobile-adaptation",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Simon PC/WebstormProjects/Gotehenburg-guide-test",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.2.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;118-css-for-homepage-mobile-adaptation&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Simon PC/WebstormProjects/Gotehenburg-guide-test&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.2.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Simon PC\WebstormProjects\Gotehenburg-guide\frontend\public\trams" />
@@ -106,6 +99,7 @@
       <workItem from="1697679576212" duration="1840000" />
       <workItem from="1698303675989" duration="2459000" />
       <workItem from="1698381238239" duration="13914000" />
+      <workItem from="1698595598815" duration="2381000" />
     </task>
     <task id="LOCAL−00001" summary="Update the change">
       <option name="closed" value="true" />
@@ -114,7 +108,14 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1698254311772</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="fix homepage and mobile adaptation">
+      <option name="closed" value="true" />
+      <created>1698415079040</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1698415079040</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +137,7 @@
     <MESSAGE value="Add FillInBlankQuizView.vue" />
     <MESSAGE value="Add some mobile adaptation" />
     <MESSAGE value="Update the change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update the change" />
+    <MESSAGE value="fix homepage and mobile adaptation" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix homepage and mobile adaptation" />
   </component>
 </project>

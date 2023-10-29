@@ -75,6 +75,7 @@ const slideOffset = ref(0)
   position: absolute;
   border: none;
   top: 40%;
+  background-color: transparent;
 }
 
 .backwardButton {

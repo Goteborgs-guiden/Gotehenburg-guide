@@ -13,10 +13,9 @@ const props = defineProps(['imgSrc', 'link'])
 .linkImages {
   width: 12em;
   height: 12em;
-
   margin-top: 7em;
   margin-left: 2em;
-  background: linear-gradient(180deg, #214F75 48.96%, #FFF 100%);
+  background: linear-gradient(180deg, #406C90 48.96%, #FFF 100%);
   border-radius: 2.59375rem;
 
 }

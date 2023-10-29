@@ -4,21 +4,23 @@ import {ref} from "vue";
 import ScrollMenuTram from "@/components/HomePageFunctions/ScrollMenuTram.vue";
 
 const touchStartPos = ref()
-function touchStartMethod(touchEvent){
+
+function touchStartMethod(touchEvent) {
   touchStartPos.value = touchEvent.changedTouches[0].clientX;
 }
+
 //posXStart
-function touchEndMethod (touchEvent){
+function touchEndMethod(touchEvent) {
   const posXEnd = touchEvent.changedTouches[0].clientX;
 
   console.log("Start pos", touchStartPos)
   console.log("End pos", posXEnd)
   console.log(posXEnd)
-  if (touchStartPos.value < posXEnd){
+  if (touchStartPos.value < posXEnd) {
     //Add code here for swipe with moues
     //remove console log
     console.log("swipe right")
-  }else {
+  } else {
     //Add code here for swipe with moues
     //remove console log
     console.log("swipe left")
@@ -44,7 +46,11 @@ function touchEndMethod (touchEvent){
   </div>
   <ScrollMenuTram class="MobileTrams"/>
   <p>
-    <a class="aTag"><RouterLink to="/"><button class="ToRandQuiz">Quizz & Blandat</button></RouterLink> </a>
+    <a class="aTag">
+      <RouterLink to="/">
+        <button class="ToRandQuiz">Quizz & Blandat</button>
+      </RouterLink>
+    </a>
   </p>
   </body>
 
@@ -52,36 +58,42 @@ function touchEndMethod (touchEvent){
 <style scoped>
 
 @media only screen and (max-width: 500px) {
-  .Trams{
+  .Trams {
     display: flex;
     justify-content: center;
     margin-top: 5px;
   }
 
-.RouterL{
-  display: none;
-}
-  .Tramquiz1{
+  .RouterL {
+    display: none;
+  }
+
+  .Tramquiz1 {
     width: 50px;
   }
-  .Tramquiz2{
+
+  .Tramquiz2 {
     width: 50px;
   }
-  .Tramquiz3{
+
+  .Tramquiz3 {
     width: 50px;
 
   }
-  html{
+
+  html {
     background-size: cover;
   }
-  .Main{
+
+  .Main {
 
   }
 
-.MobileTrams{
+  .MobileTrams {
 
-}
-  .ToRandQuiz{
+  }
+
+  .ToRandQuiz {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -96,21 +108,20 @@ function touchEndMethod (touchEvent){
     text-transform: uppercase;
 
   }
-  .ToRandQuiz:hover{
+
+  .ToRandQuiz:hover {
     cursor: pointer;
     background-color: #406C90;
     border-color: black;
     color: white;
   }
-  .ToRandQuiz:active{
+
+  .ToRandQuiz:active {
     background-color: #406C90;
     transform: scale(.96);
   }
 
 }
-
-
-
 
 
 @media screen and (min-width: 500px) {
@@ -123,38 +134,43 @@ function touchEndMethod (touchEvent){
 
   .Tramquiz1 {
     margin-top: 60px;
-    width: 12.65625rem;
-    height: 16.5rem;
-    background: linear-gradient(180deg, #214F75 48.96%, #FFF 100%);
+    width: 22.65625rem;
+    height: 26.5rem;
+    background: linear-gradient(180deg, #406C90 48.96%, #FFF 100%);
     border-radius: 2.59375rem;
     padding: 0.3rem;
     padding-top: 0.8rem;
 
   }
-  .Tramquiz2{
-    width: 12.65625rem;
-    height: 16.5rem;
-    margin: 1px 100px;
+
+
+  .Tramquiz2 {
+    width: 22.65625rem;
+    height: 26.5rem;
+    margin: 1px 90px;
     margin-top: 60px;
-    background: linear-gradient(180deg, #214F75 48.96%, #FFF 100%);
+    background: linear-gradient(180deg, #406C90 48.96%, #FFF 100%);
+    border-radius: 2.59375rem;
+    padding: 0.3rem;
+    padding-left: 22px;
+    padding-top: 0.8rem;
+  }
+
+  .Tramquiz3 {
+    width: 22.65625rem;
+    height: 26.5rem;
+    margin-top: 60px;
+    background: linear-gradient(180deg, #406C90 48.96%, #FFF 100%);
     border-radius: 2.59375rem;
     padding: 0.3rem;
     padding-top: 0.8rem;
   }
 
-  .Tramquiz3{
-    width: 12.65625rem;
-    height: 16.5rem;
-    margin-top: 60px;
-    background: linear-gradient(180deg, #214F75 48.96%, #FFF 100%);
-    border-radius: 2.59375rem;
-    padding: 0.3rem;
-    padding-top: 0.8rem;
-  }
-  .MobileTrams{
+  .MobileTrams {
     display: none;
   }
-  .ToRandQuiz{
+
+  .ToRandQuiz {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -169,13 +185,15 @@ function touchEndMethod (touchEvent){
     text-transform: uppercase;
     margin-top: 70px;
   }
-  .ToRandQuiz:hover{
+
+  .ToRandQuiz:hover {
     cursor: pointer;
     background-color: #406C90;
     border-color: black;
     color: white;
   }
-  .ToRandQuiz:active{
+
+  .ToRandQuiz:active {
     background-color: #406C90;
     transform: scale(.96);
   }
