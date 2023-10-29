@@ -35,7 +35,10 @@ function login() {
     <header>
       <div class="wrapper">
         <form>
-          <label class="login">Logga in:</label>
+          <div class="close-box">
+            <label class="login">Logga in:</label>
+            <img class="close" src="/symbols/navclose.svg" />
+          </div>
           <label class="inputLabel">mailadress:</label>
           <input class="inputField" type="text" v-model="email" placeholder="mailadress" />
           <label class="inputLabel">lösenord:</label>
@@ -61,8 +64,27 @@ form {
   color: #fff;
   height: 21em;
 }
+.close-box {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-areas: 'none log cross';
+  justify-items: center;
+}
+
+.close {
+  grid-area: cross;
+  height: 1.2em;
+  margin-top: 0.6em;
+  cursor: pointer;
+}
+
+.close:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
 
 .login {
+  grid-area: log;
   font-size: x-large;
   padding-bottom: 5px;
   border-bottom-style: solid;
