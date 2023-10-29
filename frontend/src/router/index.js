@@ -40,6 +40,11 @@ const router = createRouter({
       path: '/highscore',
       name: 'Highscore',
       component: () => import('../views/HighscorePage.vue')
+    },
+    {
+      path: '/forgot',
+      name: 'forgot',
+      component: () => import('../components/ForgotPasswordForm.vue')
     }
   ]
 })

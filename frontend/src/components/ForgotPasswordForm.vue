@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+/*import { ref } from 'vue'
 import { useTokensStore } from '../stores/tokens'
 import { useDialogStore } from '../stores/dialog'
 const dialogs = useDialogStore()
@@ -28,26 +28,26 @@ function login() {
       localStorage.setItem('time', tokens.expiresIn);
       location.reload();
     })
-}
+}*/
 </script>
 <template>
   <div>
     <header>
       <div class="wrapper">
         <form>
-          <label class="login">Logga in:</label>
+          <label class="forgot">Glömt Lösenord?</label>
+          <p class="resetText">
+            Fyll i din mailadress så skickar vi en länk för att återställa ditt lösenord.
+          </p>
           <label class="inputLabel">mailadress:</label>
           <input class="inputField" type="text" v-model="email" placeholder="mailadress" />
-          <label class="inputLabel">lösenord:</label>
-          <input class="inputField" type="password" v-model="password" placeholder="lösenord" />
-          <a href="url">Glömt lösenord?</a>
-          <input class="loginButton" type="submit" value="logga in" @click.prevent="login()" />
+          <input class="sendButton" type="submit" value="återställ" @click.prevent="login()" />
         </form>
       </div>
     </header>
   </div>
 </template>
-<style>
+<style scoped>
 .wrapper {
   width: 25em;
 }
@@ -59,26 +59,33 @@ form {
   background: #214f75;
   font-family: 'Permanent marker';
   color: #fff;
-  height: 21em;
+  height: 18.5em;
 }
 
-.login {
+.forgot {
   font-size: x-large;
   padding-bottom: 5px;
   border-bottom-style: solid;
   border-bottom-width: 3px;
   box-shadow: 0 3px 0px 0px rgba(0, 0, 0, 0.3);
-  width: 8rem;
+  width: 9em;
   align-self: center;
   padding-top: 0.5rem;
+}
+.resetText {
+  font-family: 'Newsreader';
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 label {
   padding-left: 1rem;
   font-size: large;
 }
-.inputLabel{
-    padding-top: 1rem;
+.inputLabel {
+  padding-top: 0;
+
 }
 
 .inputField {
@@ -92,6 +99,7 @@ label {
   padding-left: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
+  margin-top: 0.5em;
 }
 
 ::placeholder {
@@ -99,18 +107,10 @@ label {
   font-family: 'Permanent marker';
 }
 
-a {
-    font-family: 'Newsreader';
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    margin-top: 0.2em;
-}
-
-.loginButton {
+.sendButton {
   display: block;
   margin: auto;
-  margin-top: 0.6em;
+  margin-top: 0.8em;
   border-radius: 0.53125rem;
   border: 2px solid #214f75;
   color: #214f75;
@@ -120,20 +120,17 @@ a {
   padding-bottom: 0.2em;
   height: 2em;
   width: 9rem;
-  font-size:x-large;
+  font-size: x-large;
 }
 
-.loginButton:hover {
+.sendButton:hover {
   background-color: #214f75;
   color: #fff;
   border: 2px solid #ffffff;
 }
 
-.loginButton:active {
+.sendButton:active {
   transform: translateY(2px);
   box-shadow: none;
-  
 }
-
-
 </style>
