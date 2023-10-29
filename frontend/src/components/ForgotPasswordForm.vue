@@ -85,7 +85,6 @@ label {
 }
 .inputLabel {
   padding-top: 0;
-
 }
 
 .inputField {
@@ -121,6 +120,7 @@ label {
   height: 2em;
   width: 9rem;
   font-size: x-large;
+  cursor: pointer;
 }
 
 .sendButton:hover {
