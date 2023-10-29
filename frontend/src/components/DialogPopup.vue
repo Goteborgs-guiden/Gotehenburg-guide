@@ -10,10 +10,10 @@ const dialogs = useDialogStore()
 <template>
 
 <div>
-    <div v-if="dialogs.showRegister" class="popup-background">
+    <div v-if="dialogs.showRegister" class="popup-background popReg">
         <RegisterForm/>
     </div>
-    <div v-if="dialogs.showLogin" class="popup-background">
+    <div v-if="dialogs.showLogin" class="popup-background popLog">
         <LoginForm/>
     </div>
 </div>
@@ -22,8 +22,8 @@ const dialogs = useDialogStore()
 .popup-background {
     position: absolute;
     background: rgba(112, 38, 38, 0.5);
-    top: 0;
-    right: 50%;
     margin: auto;
+    top: 2%;
+    right: 1%;
 }
 </style>
