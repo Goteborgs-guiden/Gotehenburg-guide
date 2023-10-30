@@ -260,6 +260,7 @@ margin-left: 1rem;
     color: #214F75;
 }
 
+
 @media screen and (max-width: 768px) {
 
   .navigation {
@@ -317,6 +318,5 @@ background-color: #406C90;
 padding-left: 1.5rem;
 
 }
-
 }
 </style>
