@@ -155,7 +155,7 @@ function getLocationHighscore() {
 }
 
 .chooseHighscoreBox select {
-  display:;
+
 }
 
 .chooseHighscoreBox-selected {
