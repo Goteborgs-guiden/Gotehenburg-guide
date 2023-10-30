@@ -74,7 +74,7 @@ function setHighscore(points) {
 <template>
   <div class="grid-container">
     <div class="item1" id="question-image">
-      <img src="\geographyImages\gotaplatsen.png" />
+      <img src="\geographyImages\kungsportsplatsen.png" />
     </div>
     
 
@@ -142,6 +142,7 @@ function setHighscore(points) {
 
 .item1 {
   justify-self: center;
+  margin-top: 1em;
 }
 
 .item2 {
@@ -153,6 +154,7 @@ function setHighscore(points) {
   height: 16.6875rem;
   background-color: rgba(64, 108, 144, 0.9);
   border-radius: 0.8rem;
+  margin-bottom: 5rem;
 }
 #btn0 {
   width: 23.25rem;
