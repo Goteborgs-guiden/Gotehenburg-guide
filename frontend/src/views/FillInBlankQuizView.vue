@@ -77,7 +77,6 @@ function setHighscore(points) {
     <article class="geografikack">
       <img :src="questionImage">
       <div class="question">
-      <p>Vilken är världens mest musikaliska fågel?
     {{ question }}</p>
     <div class="showAnswer" v-if="!allowsubmit">
         <p id="correctAnswer" v-if="correctData">Rätt svar</p>
