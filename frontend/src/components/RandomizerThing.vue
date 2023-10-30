@@ -10,14 +10,25 @@ let allowsubmit = ref(true)
 let alternatives = ref([''])
 let randomID = ref(Math.floor(Math.random() * 5) + 1)
 let randomQuiz = ref(Math.floor(Math.random() * 3) + 1)
+let takenQuestions = []
 const questionImage = ref('')
 
 onMounted(() => {
-    randomizeQuestion();
+  randomizeQuestion()
 })
 function randomizeQuestion() {
   randomID.value = Math.floor(Math.random() * 5) + 1
   randomQuiz.value = Math.floor(Math.random() * 3) + 1
+  let questionString = `${randomID.value}-${randomQuiz.value}`;
+
+  while (takenQuestions.includes(questionString)) {
+    randomID.value = Math.floor(Math.random() * 5) + 1;
+    randomQuiz.value = Math.floor(Math.random() * 3) + 1;
+    questionString = `${randomID.value}-${randomQuiz.value}`;
+  }
+  takenQuestions.push(questionString);
+  console.log(questionString, 'question')
+  console.log('takenQuestions', takenQuestions)
   if (randomQuiz.value === 1) {
     getBlankQuestion(randomID.value)
     console.log(randomQuiz)
@@ -63,15 +74,15 @@ function sendBlankAnswer(input, id) {
         }
         allowsubmit.value = false
         setTimeout(function () {
-            currentQuestion.value++;
-            randomizeQuestion();
+          currentQuestion.value++
+          randomizeQuestion()
           allowsubmit.value = true
         }, 1000)
       })
   }
 }
 function sendMapAnswer(input, id, answerid) {
-    console.log(input,"input",id,"id")
+  console.log(input, 'input', id, 'id')
   if (allowsubmit.value) {
     console.log(input)
     fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
@@ -95,8 +106,8 @@ function sendMapAnswer(input, id, answerid) {
         }
         allowsubmit.value = false
         setTimeout(function () {
-            currentQuestion.value++;
-            randomizeQuestion();
+          currentQuestion.value++
+          randomizeQuestion()
           document.getElementById('btn' + answerid).style.border = ''
           allowsubmit.value = true
         }, 1000)
@@ -119,7 +130,7 @@ function getMapQuestion(id) {
   } else onGoingQuiz = false
 }
 function sendABCAnswer(input, id, answerid) {
-    console.log(input,"input",id,"id",answerid,"answerid")
+  console.log(input, 'input', id, 'id', answerid, 'answerid')
   if (allowsubmit.value) {
     console.log(input)
     fetch('http://127.0.0.1:3000/quiz/abcanswer/' + id, {
@@ -143,8 +154,8 @@ function sendABCAnswer(input, id, answerid) {
         }
         allowsubmit.value = false
         setTimeout(function () {
-            currentQuestion.value++;
-            randomizeQuestion();
+          currentQuestion.value++
+          randomizeQuestion()
           document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'
           allowsubmit.value = true
         }, 1000)
@@ -175,7 +186,7 @@ function getABCQuestion(id) {
           <div class="img"><a>Place the Image here!!!</a></div>
           <div class="question">
             <p>
-                {{ question }}
+              {{ question }}
             </p>
             <div class="showAnswer" v-if="!allowsubmit">
               <p id="correctAnswer" v-if="correctData">Rätt svar</p>
@@ -191,12 +202,12 @@ function getABCQuestion(id) {
             </div>
           </div>
         </article>
-    </div>
-    <div v-if="randomQuiz === 3">
+      </div>
+      <div v-if="randomQuiz === 3">
         <div id="question">
-        {{ question }}
-          </div>
-      <div class="selection">
+          {{ question }}
+        </div>
+        <div class="selection">
           <button class="btn" id="btn0" @click="sendABCAnswer(alternatives[0], randomID, 0)">
             {{ alternatives[0] }}
           </button>
@@ -209,28 +220,27 @@ function getABCQuestion(id) {
           <button class="btn" id="btn3" @click="sendABCAnswer(alternatives[3], randomID, 3)">
             {{ alternatives[3] }}
           </button>
-        
+        </div>
       </div>
-    </div>
-    <div v-if="randomQuiz === 2">
+      <div v-if="randomQuiz === 2">
         <p>{{ question }}</p>
-      <div class="selection">
-        <from>
-          <button id="btn0" @click="sendMapAnswer(alternatives[0], randomID, 0)">
-            {{ alternatives[0] }}
-          </button>
-          <button id="btn1" @click="sendMapAnswer(alternatives[1], randomID, 1)">
-            {{ alternatives[1] }}
-          </button>
-          <button id="btn2" @click="sendMapAnswer(alternatives[2], randomID, 2)">
-            {{ alternatives[2] }}
-          </button>
-          <button id="btn3" @click="sendMapAnswer(alternatives[3], randomID, 3)">
-            {{ alternatives[3] }}
-          </button>
-        </from>
+        <div class="selection">
+          <from>
+            <button id="btn0" @click="sendMapAnswer(alternatives[0], randomID, 0)">
+              {{ alternatives[0] }}
+            </button>
+            <button id="btn1" @click="sendMapAnswer(alternatives[1], randomID, 1)">
+              {{ alternatives[1] }}
+            </button>
+            <button id="btn2" @click="sendMapAnswer(alternatives[2], randomID, 2)">
+              {{ alternatives[2] }}
+            </button>
+            <button id="btn3" @click="sendMapAnswer(alternatives[3], randomID, 3)">
+              {{ alternatives[3] }}
+            </button>
+          </from>
+        </div>
       </div>
-    </div>
     </div>
     <div v-if="!onGoingQuiz">
       <p>Quizen är slut</p>
@@ -239,7 +249,6 @@ function getABCQuestion(id) {
   </main>
 </template>
 <style scoped>
-
 .btn {
   width: 70%;
   height: 3.5rem;
