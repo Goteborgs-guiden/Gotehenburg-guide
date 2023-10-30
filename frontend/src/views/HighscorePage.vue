@@ -11,6 +11,7 @@ onMounted(() => {
   getABCHighscore()
   getBlankHighscore()
   getLocationHighscore()
+  
   if(highscore.lastQuiz !== '') selected.value = highscore.lastQuiz
 })
 
@@ -52,14 +53,14 @@ function getLocationHighscore() {
           <option class="optionForForm" value="map">Map highscore</option>
         </select>
       </form>
-      <div v-if="highscore.lastQuiz===''">
       <div class="scoreboardBox">
         <h1 class="scores">{{ highscore.score }}/5</h1>
       </div>
       <div class="infoBox">
         <p v-if="highscore.score === 5" class="info">full poäng bra jobbat</p>
         <p v-if="highscore.score > 2 && highscore.score < 5" class="info">Starkt kämpat</p>
-        <p v-if="highscore.score <= 2" class="info">Det där gick ju inte så bra</p>
+        <p v-if="highscore.score === 0 && highscore.lastQuiz===''" class="info">Du måste göra quizen först</p>
+        <p v-if="highscore.score <= 2 && highscore.lastQuiz!==''" class="info">Det där gick ju inte så bra</p>
       </div>
     
     <div class="item2" v-if="highscore.lastQuiz==='abc'">
@@ -76,7 +77,6 @@ function getLocationHighscore() {
       <router-link to="/geografikack" custom v-slot="{ navigate }">
         <button @click="navigate" role="link" class="redo">Försök igen</button>
       </router-link>
-    </div>
     </div>
   </div>
 
