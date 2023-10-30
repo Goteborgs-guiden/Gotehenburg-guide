@@ -1,5 +1,11 @@
 <script setup>
 import ScrollMenu from '@/components/ScrollMenu.vue'
+import { ref } from 'vue'
+const openAccordion = ref(0)
+const toggleAccordion = (index) => {
+  openAccordion.value = openAccordion.value === index ? 0 : index
+  console.log('clicked')
+}
 </script>
 <template>
   <main class="grid-cont">
@@ -14,52 +20,62 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
         <h1 class="title">Badplatser</h1>
       </div>
     </header>
+
     <div class="box1">
-      <article class="artBoxClosed">
-        <div class="artImageBoxClosed">
-          <img src="/gbguide/swimmingareas/askimsbadet.jpeg" class="artImageClosed" />
-        </div>
-        <div class="artTitleBoxClosed">
-          <h1 class="artTitleClosed">1. Askimsbadet</h1>
-          <div class="artTextBoxClosed">
-            <p class="artTextClosed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua.
-            </p>
+      <div>
+        <article
+          :class="{ artBoxClosed: openAccordion !== 1, artBoxOpen: openAccordion === 1 }"
+          v-show="openAccordion !== 1"
+        >
+          <div class="artImageBoxClosed">
+            <img src="/gbguide/swimmingareas/askimsbadet.jpeg" class="artImageClosed" />
           </div>
-          <div class="artButtonBoxClosed">
-            <button class="artButtonClosed">
-              <img src="/svgarrows/arrowdown.svg" class="downButtonClosed" />
-            </button>
+          <div class="artTitleBoxClosed">
+            <h1 class="artTitleClosed">1. Askimsbadet</h1>
+            <div class="artTextBoxClosed">
+              <p class="artTextClosed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+            <div class="artButtonBoxClosed" @click="toggleAccordion(1)">
+              <button class="artButtonClosed">
+                <img src="/svgarrows/arrowdown.svg" class="downButtonClosed" />
+              </button>
+            </div>
           </div>
-        </div>
-      </article>
-      <article class="artBoxOpen">
-        <div class="artImageBoxOpen">
-          <img src="/gbguide/swimmingareas/askimsbadet.jpeg" class="artImageOpen" />
-        </div>
-        <div class="artTitleBoxOpen">
-          <h1 class="artTitleOpen">1. Askimsbadet</h1>
-          <div class="artTextBoxOpen">
-            <p class="artTextOpen">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua.
-              <br />
-              <br />
-              Quam viverra orci sagittis eu volutpat odio facilisis mauris. Sit amet facilisis magna
-              etiam.
-            </p>
+        </article>
+        <article class="artBoxOpen" v-show="openAccordion === 1">
+          <div class="artImageBoxOpen">
+            <img src="/gbguide/swimmingareas/askimsbadet.jpeg" class="artImageOpen" />
           </div>
-          <div class="artButtonBoxOpen">
-            <button class="artButtonOpen">
-              <img src="/svgarrows/arrowup.svg" class="upButtonOpen" />
-            </button>
+          <div class="artTitleBoxOpen">
+            <h1 class="artTitleOpen">1. Askimsbadet</h1>
+            <div class="artTextBoxOpen">
+              <p class="artTextOpen">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+                <br />
+                <br />
+                Quam viverra orci sagittis eu volutpat odio facilisis mauris. Sit amet facilisis
+                magna etiam.
+              </p>
+            </div>
+            <div class="artButtonBoxOpen" @click="toggleAccordion(1)">
+              <button class="artButtonOpen">
+                <img src="/svgarrows/arrowup.svg" class="upButtonOpen" />
+              </button>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </div>
+
     <div class="box2">
-      <article class="artBoxClosed">
+      <article
+        :class="{ artBoxClosed: openAccordion !== 2, artBoxOpen: openAccordion === 2 }"
+        v-show="openAccordion !== 2"
+      >
         <div class="artImageBoxClosed">
           <img src="/gbguide/swimmingareas/aspholmen.jpeg" class="artImageClosed" />
         </div>
@@ -71,14 +87,14 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
               incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
-          <div class="artButtonBoxClosed">
+          <div class="artButtonBoxClosed" @click="toggleAccordion(2)">
             <button class="artButtonClosed">
               <img src="/svgarrows/arrowdown.svg" class="downButtonClosed" />
             </button>
           </div>
         </div>
       </article>
-      <article class="artBoxOpen">
+      <article class="artBoxOpen" v-show="openAccordion === 2">
         <div class="artImageBoxOpen">
           <img src="/gbguide/swimmingareas/aspholmen.jpeg" class="artImageOpen" />
         </div>
@@ -94,7 +110,7 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
               etiam.
             </p>
           </div>
-          <div class="artButtonBoxOpen">
+          <div class="artButtonBoxOpen" @click="toggleAccordion(2)">
             <button class="artButtonOpen">
               <img src="/svgarrows/arrowup.svg" class="upButtonOpen" />
             </button>
@@ -102,8 +118,12 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
         </div>
       </article>
     </div>
+
     <div class="box3">
-      <article class="artBoxClosed">
+      <article
+        :class="{ artBoxClosed: openAccordion !== 3, artBoxOpen: openAccordion === 3 }"
+        v-show="openAccordion !== 3"
+      >
         <div class="artImageBoxClosed">
           <img src="/gbguide/swimmingareas/billdal.jpeg" class="artImageClosed" />
         </div>
@@ -115,14 +135,14 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
               incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
-          <div class="artButtonBoxClosed">
+          <div class="artButtonBoxClosed" @click="toggleAccordion(3)">
             <button class="artButtonClosed">
               <img src="/svgarrows/arrowdown.svg" class="downButtonClosed" />
             </button>
           </div>
         </div>
       </article>
-      <article class="artBoxOpen">
+      <article class="artBoxOpen" v-show="openAccordion === 3">
         <div class="artImageBoxOpen">
           <img src="/gbguide/swimmingareas/billdal.jpeg" class="artImageOpen" />
         </div>
@@ -138,7 +158,7 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
               etiam.
             </p>
           </div>
-          <div class="artButtonBoxOpen">
+          <div class="artButtonBoxOpen" @click="toggleAccordion(3)">
             <button class="artButtonOpen">
               <img src="/svgarrows/arrowup.svg" class="upButtonOpen" />
             </button>
@@ -146,8 +166,12 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
         </div>
       </article>
     </div>
+
     <div class="box4">
-      <article class="artBoxClosed">
+      <article
+        :class="{ artBoxClosed: openAccordion !== 4, artBoxOpen: openAccordion === 4 }"
+        v-show="openAccordion !== 4"
+      >
         <div class="artImageBoxClosed">
           <img src="/gbguide/swimmingareas/delsjobadet.jpeg" class="artImageClosed" />
         </div>
@@ -159,14 +183,14 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
               incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
-          <div class="artButtonBoxClosed">
+          <div class="artButtonBoxClosed" @click="toggleAccordion(4)">
             <button class="artButtonClosed">
               <img src="/svgarrows/arrowdown.svg" class="downButtonClosed" />
             </button>
           </div>
         </div>
       </article>
-      <article class="artBoxOpen">
+      <article class="artBoxOpen" v-show="openAccordion === 4">
         <div class="artImageBoxOpen">
           <img src="/gbguide/swimmingareas/delsjobadet.jpeg" class="artImageOpen" />
         </div>
@@ -182,7 +206,7 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
               etiam.
             </p>
           </div>
-          <div class="artButtonBoxOpen">
+          <div class="artButtonBoxOpen" @click="toggleAccordion(4)">
             <button class="artButtonOpen">
               <img src="/svgarrows/arrowup.svg" class="upButtonOpen" />
             </button>
@@ -190,8 +214,12 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
         </div>
       </article>
     </div>
+
     <div class="box5">
-      <article class="artBoxClosed">
+      <article
+        :class="{ artBoxClosed: openAccordion !== 5, artBoxOpen: openAccordion === 5 }"
+        v-show="openAccordion !== 5"
+      >
         <div class="artImageBoxClosed">
           <img src="/gbguide/swimmingareas/fiskeback.jpeg" class="artImageClosed" />
         </div>
@@ -203,14 +231,14 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
               incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
-          <div class="artButtonBoxClosed">
+          <div class="artButtonBoxClosed" @click="toggleAccordion(5)">
             <button class="artButtonClosed">
               <img src="/svgarrows/arrowdown.svg" class="downButtonClosed" />
             </button>
           </div>
         </div>
       </article>
-      <article class="artBoxOpen">
+      <article class="artBoxOpen" v-show="openAccordion === 5">
         <div class="artImageBoxOpen">
           <img src="/gbguide/swimmingareas/fiskeback.jpeg" class="artImageOpen" />
         </div>
@@ -226,7 +254,7 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
               etiam.
             </p>
           </div>
-          <div class="artButtonBoxOpen">
+          <div class="artButtonBoxOpen" @click="toggleAccordion(5)">
             <button class="artButtonOpen">
               <img src="/svgarrows/arrowup.svg" class="upButtonOpen" />
             </button>
