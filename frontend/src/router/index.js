@@ -46,7 +46,8 @@ const router = createRouter({
       path: '/random',
       name: 'random',
       component: () => import('../views/RandomView.vue')
-
+    },
+    {
       path: '/gbguide',
       name: 'gbguide',
       component: () => import('../views/gbguide/GbguidePage.vue')
