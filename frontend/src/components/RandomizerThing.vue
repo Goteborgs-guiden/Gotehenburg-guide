@@ -159,7 +159,6 @@ function getABCQuestion(id) {
 </script>
 <template>
   <main>
-    <button @click="randomizeQuestion()">rando</button>
     <div v-if="onGoingQuiz">
       <div v-if="randomQuiz === 1">
         <article class="geografikack">

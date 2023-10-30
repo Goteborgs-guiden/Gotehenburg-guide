@@ -14,7 +14,7 @@ import {RouterLink} from "vue-router";
     </RouterLink>
   </div>
   <p>
-    <a><RouterLink to="/"><button class="ToRandQuiz">Klicka mig för att generera random quizfråga</button></RouterLink> </a>
+    <a><RouterLink to="/random"><button class="ToRandQuiz">Quiz & blandat</button></RouterLink> </a>
   </p>
 
 </template>
