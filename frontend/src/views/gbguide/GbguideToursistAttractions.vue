@@ -260,13 +260,14 @@ const toggleAccordion = (index) => {
   margin-left: auto;
   margin-right: auto;
   margin-top: 1%;
+  background-color: #214f75;
 }
 
 .titleBox {
   font-family: 'Newsreader';
   color: white;
   position: absolute;
-  top: 50%;
+  top: 57%;
   left: 33%;
 }
 
@@ -279,6 +280,7 @@ const toggleAccordion = (index) => {
   display: block;
   width: 100%;
   height: 100%;
+  opacity: 0.5;
 }
 
 .artBoxClosed {

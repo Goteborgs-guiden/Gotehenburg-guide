@@ -12,7 +12,7 @@ const toggleAccordion = (index) => {
   <main>
     <header>
       <div class="imageBox">
-        <img src="/gbguide/artists/artistsheader.jpeg" class="headerImage" />
+        <img src="/gbguide/artists/artistsheadernarrow.jpeg" class="headerImage" />
       </div>
       <div class="titleBox">
         <h1 class="title">Artister</h1>
@@ -271,8 +271,8 @@ const toggleAccordion = (index) => {
   font-family: 'Newsreader';
   color: white;
   position: absolute;
-  top: 50%;
-  left: 33%;
+  top: 42%;
+  left: 9%;
 }
 
 .title {

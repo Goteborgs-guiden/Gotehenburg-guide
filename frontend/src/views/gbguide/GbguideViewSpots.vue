@@ -266,8 +266,8 @@ const toggleAccordion = (index) => {
   font-family: 'Newsreader';
   color: white;
   position: absolute;
-  top: 50%;
-  left: 33%;
+  top: 60%;
+  left: 30%;
 }
 
 .title {

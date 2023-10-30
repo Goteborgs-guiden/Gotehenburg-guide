@@ -11,7 +11,7 @@ const toggleAccordion = (index) => {
   <main>
     <header>
       <div class="imageBox">
-        <img src="/gbguide/restaurants/restaurangheader.jpeg" class="headerImage" />
+        <img src="/gbguide/restaurants/restaurangheadernarrow.jpeg" class="headerImage" />
       </div>
       <div class="titleBox">
         <h1 class="title">Restauranger</h1>
@@ -266,7 +266,7 @@ const toggleAccordion = (index) => {
   color: white;
   position: absolute;
   top: 50%;
-  left: 33%;
+  left: 30%;
 }
 
 .title {

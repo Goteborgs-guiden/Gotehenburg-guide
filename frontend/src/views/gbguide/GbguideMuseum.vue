@@ -11,7 +11,7 @@ const toggleAccordion = (index) => {
   <main>
     <header>
       <div class="imageBox">
-        <img src="/gbguide/museums/museumheader.jpeg" class="headerImage" />
+        <img src="/gbguide/museums/museumheadernarrow.jpeg" class="headerImage" />
       </div>
       <div class="titleBox">
         <h1 class="title">Museum</h1>
