@@ -64,7 +64,7 @@ function getInfo() {
             <div id="quiz-scores">
                 <ul class="quiz">
                     <li><RouterLink class="RouterL" to="/tjot">
-                    <img class="tram" src="/old tramquiz 1.svg" alt="tramquiz1">
+                    <img class="tram" src="/trams/lefttramquiz.svg" alt="tramquiz1">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Tjöt</li>
                     <li class="quiz-info">Personligt bästa:</li>
@@ -72,7 +72,7 @@ function getInfo() {
                 </ul>
                 <ul class="quiz">
                     <li><RouterLink class="RouterL" to="/ordvitsknok">
-                    <img class="tram" src="/new tramquiz 2.svg" alt="tramquiz2">
+                    <img class="tram" src="/trams/middletramquiz.svg" alt="tramquiz2">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Ordvitsknök</li>
                     <li class="quiz-info">Personligt bästa:</li>
@@ -80,7 +80,7 @@ function getInfo() {
                 </ul>
                 <ul class="quiz">
                     <li><RouterLink class="RouterL" to="/geografikack">
-                    <img class="tram" src="/middle old tramquiz 3.svg" alt="tramquiz3">
+                    <img class="tram" src="/trams/righttramquiz.svg" alt="tramquiz3">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Geografi-käck</li>
                     <li class="quiz-info">Personligt bästa:</li>
