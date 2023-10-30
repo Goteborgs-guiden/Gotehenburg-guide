@@ -96,15 +96,14 @@ function setHighscore(points) {
             <button @click="sendAnswer(answer, currentQuestion)">></button>
           </div>
         </div>
-
-        <div v-if="!onGoingQuiz">
-          <div v-if="setHighscore(points)"></div>
-          <div v-if="highscore.setScore(points)"></div>
-          <div v-if="highscore.setLastQuiz('fillblank')"></div>
-          <p>Quizen är slut</p>
-          <p>Du fick {{ points }} poäng</p>
-        </div>
       </article>
+    </div>
+    <div v-if="!onGoingQuiz">
+      <div v-if="setHighscore(points)"></div>
+      <div v-if="highscore.setScore(points)"></div>
+      <div v-if="highscore.setLastQuiz('fillblank')"></div>
+      <p>Quizen är slut</p>
+      <p>Du fick {{ points }} poäng</p>
     </div>
   </main>
 </template>
