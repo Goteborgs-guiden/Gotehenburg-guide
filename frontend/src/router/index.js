@@ -42,6 +42,11 @@ const router = createRouter({
       component: () => import('../views/HighscorePage.vue')
     },
     {
+
+      path: '/random',
+      name: 'random',
+      component: () => import('../views/RandomView.vue')
+
       path: '/gbguide',
       name: 'gbguide',
       component: () => import('../views/gbguide/GbguidePage.vue')
@@ -90,6 +95,7 @@ const router = createRouter({
       path: '/gbguide/restaurants',
       name: 'Restaurants',
       component: () => import('../views/gbguide/GbguideRestaurants.vue')
+
     }
   ]
 })

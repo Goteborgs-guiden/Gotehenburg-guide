@@ -46,11 +46,9 @@ function touchEndMethod(touchEvent) {
   </div>
   <ScrollMenuTram class="MobileTrams"/>
   <p>
-    <a class="aTag">
-      <RouterLink to="/">
-        <button class="ToRandQuiz">Quizz & Blandat</button>
-      </RouterLink>
-    </a>
+
+    <a><RouterLink to="/random"><button class="ToRandQuiz">Quiz & blandat</button></RouterLink> </a>
+
   </p>
   </body>
 
