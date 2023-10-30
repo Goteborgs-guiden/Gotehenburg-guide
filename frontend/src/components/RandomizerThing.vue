@@ -30,7 +30,7 @@ function randomizeQuestion() {
   }
 }
 function getBlankQuestion(id) {
-  if (id <= 5) {
+  if (currentQuestion.value <= 5) {
     correctData.value = ''
     fetch('http://127.0.0.1:3000/quiz/fillblank/' + id, {
       method: 'GET'
@@ -104,7 +104,7 @@ function sendMapAnswer(input, id, answerid) {
   }
 }
 function getMapQuestion(id) {
-  if (id <= 5) {
+  if (currentQuestion.value <= 5) {
     correctData.value = ''
     fetch('http://127.0.0.1:3000/quiz/locationQuestion/' + id, {
       method: 'GET'
@@ -152,7 +152,7 @@ function sendABCAnswer(input, id, answerid) {
   }
 }
 function getABCQuestion(id) {
-  if (id <= 5) {
+  if (currentQuestion.value <= 5) {
     correctData.value = ''
     fetch('http://127.0.0.1:3000/quiz/abcquestion/' + id, {
       method: 'GET'
@@ -231,10 +231,10 @@ function getABCQuestion(id) {
         </from>
       </div>
     </div>
-        <div v-if="!onGoingQuiz">
-          <p>Quizen är slut</p>
-          <p>Du fick {{ points }} poäng</p>
-        </div>
+    </div>
+    <div v-if="!onGoingQuiz">
+      <p>Quizen är slut</p>
+      <p>Du fick {{ points }} poäng</p>
     </div>
   </main>
 </template>
