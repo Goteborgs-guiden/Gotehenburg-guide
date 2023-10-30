@@ -6,7 +6,7 @@ const props = defineProps(['imgSrc', 'link'])
 
 <template>
   <RouterLink :to="props.link" class="image-box">
-    <img :src="props.imgSrc" class="linkImages" />
+    <img :src="props.imgSrc" class="linkImages"/>
   </RouterLink>
 </template>
 <style scoped>
@@ -18,6 +18,8 @@ const props = defineProps(['imgSrc', 'link'])
   margin-left: auto;
   background: linear-gradient(180deg, #406C90 48.96%, #FFF 100%), 100%;
   border-radius: 2.59375rem;
+}
+.middleTram{
 
 }
 

@@ -109,6 +109,7 @@ function touchEndMethod(touchEvent) {
     text-align: center;
     text-transform: uppercase;
     box-shadow: 0px 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: #214F75;
 
   }
 
@@ -117,7 +118,7 @@ function touchEndMethod(touchEvent) {
   .ToRandQuiz:active {
     background-color: #406C90;
     color: white;
-    border-color: black;
+    border-color: white;
     transform: scale(.96);
   }
 
@@ -185,12 +186,16 @@ function touchEndMethod(touchEvent) {
     text-transform: uppercase;
     margin-top: 70px;
     box-shadow: 0px 4px 4px 9px rgba(0, 0, 0, 0.3);
+    color: #214F75;
   }
+
+
+
 
   .ToRandQuiz:hover {
     cursor: pointer;
     background-color: #406C90;
-    border-color: black;
+    border-color: white;
     color: white;
   }
 
