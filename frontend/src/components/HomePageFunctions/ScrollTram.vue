@@ -11,11 +11,12 @@ const props = defineProps(['imgSrc', 'link'])
 </template>
 <style scoped>
 .linkImages {
-  width: 12em;
-  height: 12em;
+  width: 16em;
+  height: 20em;
   margin-top: 7em;
-  margin-left: 2em;
-  background: linear-gradient(180deg, #406C90 48.96%, #FFF 100%);
+  margin-right: auto;
+  margin-left: auto;
+  background: linear-gradient(180deg, #406C90 48.96%, #FFF 100%), 100%;
   border-radius: 2.59375rem;
 
 }

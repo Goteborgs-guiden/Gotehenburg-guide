@@ -94,30 +94,30 @@ function touchEndMethod(touchEvent) {
   }
 
   .ToRandQuiz {
+    box-sizing: border-box;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 4em;
     padding: 15px 60px;
-    border: 2px solid #214F75;
-    background-color: #E8F3FD;
-    border-radius: 5px;
+    border: 4px solid #214F75;
+    background: rgba(232, 243, 253, 0.99);
+    border-radius: 24px;
     font-weight: 500;
     font-style: normal;
-    font-size: 19px;
+    font-size: 23px;
     text-align: center;
     text-transform: uppercase;
+    box-shadow: 0px 2px 2px 4px rgba(0, 0, 0, 0.3);
 
   }
 
-  .ToRandQuiz:hover {
-    cursor: pointer;
-    background-color: #406C90;
-    border-color: black;
-    color: white;
-  }
+
 
   .ToRandQuiz:active {
     background-color: #406C90;
+    color: white;
+    border-color: black;
     transform: scale(.96);
   }
 
@@ -174,16 +174,17 @@ function touchEndMethod(touchEvent) {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 30px 100px;
-    border: 2px solid #214F75;
-    background-color: #E8F3FD;
-    border-radius: 5px;
+    padding: 35px 200px;
+    border: 4px solid #214F75;
+    background: rgba(232, 243, 253, 0.99);
+    border-radius: 24px;
     font-weight: 500;
     font-style: normal;
-    font-size: 19px;
+    font-size: 50px;
     text-align: center;
     text-transform: uppercase;
     margin-top: 70px;
+    box-shadow: 0px 4px 4px 9px rgba(0, 0, 0, 0.3);
   }
 
   .ToRandQuiz:hover {
