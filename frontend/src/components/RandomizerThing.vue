@@ -27,11 +27,8 @@ function randomizeQuestion() {
     questionString = `${randomID.value}-${randomQuiz.value}`;
   }
   takenQuestions.push(questionString);
-  console.log(questionString, 'question')
-  console.log('takenQuestions', takenQuestions)
   if (randomQuiz.value === 1) {
     getBlankQuestion(randomID.value)
-    console.log(randomQuiz)
   }
   if (randomQuiz.value === 2) {
     getMapQuestion(randomID.value)
@@ -48,7 +45,6 @@ function getBlankQuestion(id) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('response from server:', data)
         question.value = data.question
       })
   } else onGoingQuiz = false
@@ -64,13 +60,9 @@ function sendBlankAnswer(input, id) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('response from server:', data)
         correctData.value = data
         if (data) {
           points.value++
-          console.log('correct')
-        } else {
-          console.log('wrong')
         }
         allowsubmit.value = false
         setTimeout(function () {
@@ -82,9 +74,7 @@ function sendBlankAnswer(input, id) {
   }
 }
 function sendMapAnswer(input, id, answerid) {
-  console.log(input, 'input', id, 'id')
   if (allowsubmit.value) {
-    console.log(input)
     fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
       method: 'POST',
       body: JSON.stringify({ answer: input }),
@@ -94,14 +84,11 @@ function sendMapAnswer(input, id, answerid) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('response from server:', data)
         correctData.value = data
         if (data) {
-          console.log('answerid=', answerid)
           document.getElementById('btn' + answerid).style.border = '2px solid green'
           points.value++
         } else {
-          console.log('answerid=', answerid)
           document.getElementById('btn' + answerid).style.border = '2px solid red'
         }
         allowsubmit.value = false
@@ -122,7 +109,6 @@ function getMapQuestion(id) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('response from server:', data)
         questionImage.value = data.img
         question.value = data.question
         alternatives.value = data.alternatives.split(',')
@@ -130,9 +116,7 @@ function getMapQuestion(id) {
   } else onGoingQuiz = false
 }
 function sendABCAnswer(input, id, answerid) {
-  console.log(input, 'input', id, 'id', answerid, 'answerid')
   if (allowsubmit.value) {
-    console.log(input)
     fetch('http://127.0.0.1:3000/quiz/abcanswer/' + id, {
       method: 'POST',
       body: JSON.stringify({ answer: input }),
@@ -142,14 +126,11 @@ function sendABCAnswer(input, id, answerid) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('response from server:', data)
         correctData.value = data
         if (data) {
-          console.log('answerid=', answerid)
           document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
           points.value++
         } else {
-          console.log('answerid=', answerid)
           document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
         }
         allowsubmit.value = false
@@ -170,7 +151,6 @@ function getABCQuestion(id) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('response from server:', data)
         question.value = data.question
         alternatives.value = data.alternatives.split(',')
       })
