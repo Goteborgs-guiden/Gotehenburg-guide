@@ -4,7 +4,6 @@ import { ref } from 'vue'
 const openAccordion = ref(0)
 const toggleAccordion = (index) => {
   openAccordion.value = openAccordion.value === index ? 0 : index
-  console.log('clicked')
 }
 </script>
 <template>
