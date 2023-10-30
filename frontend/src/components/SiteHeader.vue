@@ -48,7 +48,11 @@ function getInfo() {
       return;
     }
 function reload(){
+
   const time = Date.parse(localStorage.getItem('time'));
+  if(time){
+    return false;
+  }
   const currentTime = new Date(Date.now());
   const timeLeft = time - currentTime;
   console.log("time",time)
