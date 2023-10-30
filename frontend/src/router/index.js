@@ -40,6 +40,11 @@ const router = createRouter({
       path: '/highscore',
       name: 'Highscore',
       component: () => import('../views/HighscorePage.vue')
+    },
+    {
+      path: '/random',
+      name: 'random',
+      component: () => import('../views/RandomView.vue')
     }
   ]
 })
