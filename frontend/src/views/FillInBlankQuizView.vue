@@ -88,7 +88,6 @@ function sendAnswer(input, id) {
       <div v-if="setHighscore(points)"></div>
       <p>Quizen är slut</p>
       <p>Du fick {{ points }} poäng</p>
-
     </div>
     <ImgForQuiz />
     <InputBar />
