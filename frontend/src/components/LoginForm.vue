@@ -47,7 +47,7 @@ function login() {
     </header>
   </div>
 </template>
-<style>
+<style >
 .wrapper {
   width: 23rem;
 }

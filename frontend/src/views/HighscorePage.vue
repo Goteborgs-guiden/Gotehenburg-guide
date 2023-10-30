@@ -5,10 +5,14 @@ let highscoreABC = ref([])
 let highscoreBlank = ref([])
 let highscoreLocation = ref([])
 let selected = ref('abc')
+import { useHighscore } from '../stores/highscore'
+const highscore = useHighscore()
 onMounted(() => {
   getABCHighscore()
   getBlankHighscore()
   getLocationHighscore()
+  
+  if(highscore.lastQuiz !== '') selected.value = highscore.lastQuiz
 })
 
 function getABCHighscore() {
@@ -50,25 +54,41 @@ function getLocationHighscore() {
         </select>
       </form>
       <div class="scoreboardBox">
-        <h1 class="scores">X/X</h1>
+        <h1 class="scores">{{ highscore.score }}/5</h1>
       </div>
       <div class="infoBox">
-        <p class="info">box for William</p>
+        <p v-if="highscore.score === 5" class="info">full poäng bra jobbat</p>
+        <p v-if="highscore.score > 2 && highscore.score < 5" class="info">Starkt kämpat</p>
+        <p v-if="highscore.score === 0 && highscore.lastQuiz===''" class="info">Du måste göra quizen först</p>
+        <p v-if="highscore.score <= 2 && highscore.lastQuiz!==''" class="info">Det där gick ju inte så bra</p>
       </div>
+    
+    <div class="item2" v-if="highscore.lastQuiz==='abc'">
+      <router-link to="/tjot" custom v-slot="{ navigate }">
+        <button @click="navigate" role="link" class="redo">Försök igen</button>
+      </router-link>
     </div>
-    <div class="item2">
-      <button class="redo">Försök igen</button>
+    <div class="item2" v-if="highscore.lastQuiz==='fillblank'">
+      <router-link to="/ordvitsknok" custom v-slot="{ navigate }">
+        <button @click="navigate" role="link" class="redo">Försök igen</button>
+      </router-link>
     </div>
+    <div class="item2" v-if="highscore.lastQuiz==='map'">
+      <router-link to="/geografikack" custom v-slot="{ navigate }">
+        <button @click="navigate" role="link" class="redo">Försök igen</button>
+      </router-link>
+    </div>
+  </div>
 
     <div class="item3 quiz-link">
       <RouterLink class="RouterL" to="/tjot">
-        <img class="tramBack" src="/old tramquiz 1.svg" alt="tramquiz1" />
+        <img class="tramBack" src="/trams/lefttramquiz.svg" alt="tramquiz1" />
       </RouterLink>
       <RouterLink class="RouterL" to="/ordvitsknok">
-        <img class="tramBack" src="/new tramquiz 2.svg" alt="tramquiz2" />
+        <img class="tramBack" src="/trams/middletramquiz.svg" alt="tramquiz2" />
       </RouterLink>
       <RouterLink class="RouterL" to="/geografikack">
-        <img class="tramBack" src="/middle old tramquiz 3.svg" alt="tramquiz3" />
+        <img class="tramBack" src="/trams/righttramquiz.svg" alt="tramquiz3" />
       </RouterLink>
     </div>
 
@@ -135,7 +155,7 @@ function getLocationHighscore() {
 }
 
 .chooseHighscoreBox select {
-  display: ;
+  display:;
 }
 
 .chooseHighscoreBox-selected {
