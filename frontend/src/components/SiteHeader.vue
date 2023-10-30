@@ -60,6 +60,11 @@ function reload(){
   console.log("time left",timeLeft)
   setTimeout(function(){location.reload();}, timeLeft)
 }
+function logout(){
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('time');
+  location.reload();
+}
 </script>
 
 
@@ -73,7 +78,8 @@ function reload(){
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
             <div v-else>
-                <RouterLink class="RouterL" style="text-decoration: none;" to="/profile">{{userInfo.username}}</RouterLink>
+                <RouterLink class="navitem" style="text-decoration: none;" to="/profile">{{userInfo.username}}</RouterLink>
+                <button class="button" @click="logout()">logout</button>
                 <div v-if="reload()"></div>
             </div>
         </div>
