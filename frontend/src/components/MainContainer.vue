@@ -14,5 +14,6 @@ import DialogPopup from './DialogPopup.vue'
 <style scoped>
 main {
   min-height: 100vh;
+  overflow: hidden;
 }
 </style>

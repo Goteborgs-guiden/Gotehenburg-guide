@@ -3,8 +3,16 @@ import { RouterLink } from "vue-router";
 import { onMounted, ref } from 'vue';
 const userInfo = ref('');
 const friends = ref('');
+const profileImage = ref('');
+let highscoreABC = ref([])
+let highscoreBlank = ref([])
+let highscoreLocation = ref([])
+let selected = ref('abc')
 onMounted(() => {
   getInfo();
+  getABCHighscore()
+  getBlankHighscore()
+  getLocationHighscore()
 })
 
 function getInfo() {
@@ -17,17 +25,58 @@ function getInfo() {
     })
       .then((response) => response.json())
       .then((data) => {
+        profileImage.value = data.img
         userInfo.value = data;
         friends.value = userInfo.value.friends.split(',')
         console.log('friends', friends.value)
       })
-    }
+}
+function getABCHighscore() {
+  fetch('http://127.0.0.1:3000/highscore/friends/abc', {
+    method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
+      },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      highscoreABC.value = data
+    })
+}
+function getBlankHighscore() {
+  fetch('http://127.0.0.1:3000/highscore/friends/blank', {
+    method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
+      },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      highscoreBlank.value = data
+    })
+}
+function getLocationHighscore() {
+  fetch('http://127.0.0.1:3000/highscore/friends/location', {
+    method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
+      },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      highscoreLocation.value = data
+    })
+}
 </script>
 <template>
     <div id="profile-page">
         <div id="top-section">
             <div id="profile-img">
                 <h1 id="username">{{ userInfo.username}}</h1>
+                <img :src="profileImage"/>
             </div>
             <div id="profile-info">
                 <table id="shorts">
@@ -61,7 +110,7 @@ function getInfo() {
             <div id="quiz-scores">
                 <ul class="quiz">
                     <li><RouterLink class="RouterL" to="/tjot">
-                    <img class="tram" src="../assets/img/old tramquiz 1.svg" alt="tramquiz1">
+                    <img class="tram" src="/trams/lefttramquiz.svg" alt="tramquiz1">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Tjöt</li>
                     <li class="quiz-info">Personligt bästa:</li>
@@ -69,7 +118,7 @@ function getInfo() {
                 </ul>
                 <ul class="quiz">
                     <li><RouterLink class="RouterL" to="/ordvitsknok">
-                    <img class="tram" src="../assets/img/new tramquiz 2.svg" alt="tramquiz2">
+                    <img class="tram" src="/trams/middletramquiz.svg" alt="tramquiz2">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Ordvitsknök</li>
                     <li class="quiz-info">Personligt bästa:</li>
@@ -77,7 +126,7 @@ function getInfo() {
                 </ul>
                 <ul class="quiz">
                     <li><RouterLink class="RouterL" to="/geografikack">
-                    <img class="tram" src="../assets/img/middle old tramquiz 3.svg" alt="tramquiz3">
+                    <img class="tram" src="/trams/righttramquiz.svg" alt="tramquiz3">
                     </RouterLink></li>
                     <li class="quiz-info quiz-extra">Geografi-käck</li>
                     <li class="quiz-info">Personligt bästa:</li>
@@ -91,9 +140,152 @@ function getInfo() {
                 </ul>
             </div>
         </div>
+        <form class="chooseHighscoreBox">
+        <select class="selectForForm" v-model="selected">
+          <option class="optionForForm" value="abc">ABC</option>
+          <option class="optionForForm" value="fillblank">Blank highscore</option>
+          <option class="optionForForm" value="map">Map highscore</option>
+        </select>
+      </form>
+        <div class="item4 highscore">
+            <h1>friends highscore</h1>
+      <table class="highscoreTable" v-if="selected === 'abc'">
+        <tr v-for="(highscore, index) in highscoreABC" :key="index">
+          <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
+          <td class="user">{{ highscore.username }} med {{ highscore.ABCHS }} poäng</td>
+        </tr>
+      </table>
+      <table v-if="selected === 'fillblank'">
+        <tr v-for="(highscore, index) in highscoreBlank" :key="index">
+          <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
+          <td class="user">{{ highscore.username }} med {{ highscore.BlankHS }} poäng</td>
+        </tr>
+      </table>
+      <table v-if="selected === 'map'">
+        <tr v-for="(highscore, index) in highscoreLocation" :key="index">
+          <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
+          <td class="user">{{ highscore.username }} med {{ highscore.LocationHS }} poäng</td>
+        </tr>
+      </table>
+    </div>
 </div>
 </template>
 <style scoped>
+.user {
+  border-radius: 17px;
+  background: rgba(64, 108, 144, 0.73);
+  text-align: center;
+  color: #fff;
+  border: 2.22rem;
+  font-family: 'Newsreader';
+}
+.position {
+  border-radius: 6px;
+  border: 1px solid #000;
+  background: #fff;
+  text-align: center;
+  color: #000;
+  font-family: 'Noto Sans Osmanya';
+  font-size: xx-large;
+}
+
+.pos-1 {
+  background: #fff;
+  color: #000;
+}
+
+.pos-2 {
+  background: #ffcd37;
+  color: #599bd6;
+}
+
+.pos-3 {
+  background: #1a09e7;
+  color: #fff;
+}
+
+.pos-4 {
+  background: #12a621;
+  color: #fff;
+}
+
+.pos-5 {
+  background: #de0101;
+  color: #fff;
+}
+
+.pos-6 {
+  background: #dd5f04;
+  color: #09068d;
+}
+
+.pos-7 {
+  background: rgba(112, 57, 33, 0.92);
+}
+
+.pos-8 {
+  background: #6d0370;
+  color: #fff;
+}
+
+.pos-9 {
+  background: #7cc9f4;
+  color: #214f75;
+}
+
+.pos-10 {
+  background: #7bcf8e;
+  color: #177b82;
+}
+
+.pos-11 {
+  background: #151515;
+  color: #d4d3d3;
+}
+.chooseHighscoreBox {
+  position: relative;
+  font-family: 'Newsreader';
+  height: 3em;
+  width: 100%;
+  margin-top: 5%;
+  /*border-radius: 1.90625rem;
+  border: 3px solid #214f75;
+  background: #e8f3fd;*/
+}
+.chooseHighscoreBox select {
+  
+}
+
+.chooseHighscoreBox-selected {
+  background-color: #e8f3fd;
+}
+
+.chooseHighscoreBox-selected::after {
+  position: absolute;
+  content: '';
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+.highscore {
+  width: 57.5rem;
+  height: 55.0625rem;
+  padding: 2%;
+  margin-top: 2rem;
+  border-radius: 0.75rem;
+  border: 4px solid #214f75;
+  background: rgba(232, 243, 253, 0.9);
+  box-shadow: 0px 4px 4px 9px rgba(0, 0, 0, 0.3);
+}
+.highscoreTable {
+  border-spacing: 1.3rem;
+}
+.item4 {
+  grid-area: highs;
+}
 #profile-page {
     display:flex;
     flex-direction: column;

@@ -34,7 +34,7 @@ function createtable(){
     con.connect(function(err) {
         if (err) throw err;
         console.log("Connected!");
-        var sql = "CREATE TABLE locationQuiz (id INT AUTO_INCREMENT PRIMARY KEY, question VARCHAR(255), alternatives VARCHAR(255), correct VARCHAR(255)), img VARCHAR(255))";
+        var sql = "CREATE TABLE locationQuiz (id INT AUTO_INCREMENT PRIMARY KEY, question VARCHAR(255), alternatives VARCHAR(255), correct VARCHAR(255), img VARCHAR(255))";
         con.query(sql, function (err, result) {
             if (err) console.warn("locationQuiz table exists");
             else{

@@ -87,3 +87,59 @@ router.get("/location", (req, res) => {
         res.status(200).send(result);
     })
 })
+router.get("/friends/location",authenticateToken, (req, res) => {
+    let sql = "SELECT friends FROM account WHERE username = '" + req.user.name + "'";
+    database.con.query(sql, (err, result) => {
+        if(err) console.warn("error getting the data");
+        let friends = result[0].friends;
+        friends = friends.split(",");
+        friends = friends.map((friend) => {
+            return "'" + friend + "'";
+        })
+        friends = friends.join(",");
+        console.log("friends",friends)
+        let sql2 = "SELECT username, LocationHS FROM account WHERE username IN (" + friends + ") ORDER BY LocationHS DESC LIMIT 11";
+        database.con.query(sql2, (err, result) => {
+            if(err) console.warn("error getting the data");
+            res.status(200).send(result);
+        })
+    })
+})
+
+router.get("/friends/abc",authenticateToken, (req, res) => {
+    let sql = "SELECT friends FROM account WHERE username = '" + req.user.name + "'";
+    database.con.query(sql, (err, result) => {
+        if(err) console.warn("error getting the data");
+        let friends = result[0].friends;
+        friends = friends.split(",");
+        friends = friends.map((friend) => {
+            return "'" + friend + "'";
+        })
+        friends = friends.join(",");
+        console.log("friends",friends)
+        let sql2 = "SELECT username, ABCHS FROM account WHERE username IN (" + friends + ") ORDER BY ABCHS DESC LIMIT 11";
+        database.con.query(sql2, (err, result) => {
+            if(err) console.warn("error getting the data");
+            res.status(200).send(result);
+        })
+    })
+})
+
+router.get("/friends/blank",authenticateToken, (req, res) => {
+    let sql = "SELECT friends FROM account WHERE username = '" + req.user.name + "'";
+    database.con.query(sql, (err, result) => {
+        if(err) console.warn("error getting the data");
+        let friends = result[0].friends;
+        friends = friends.split(",");
+        friends = friends.map((friend) => {
+            return "'" + friend + "'";
+        })
+        friends = friends.join(",");
+        console.log("friends",friends)
+        let sql2 = "SELECT username, BlankHS FROM account WHERE username IN (" + friends + ") ORDER BY BlankHS DESC LIMIT 11";
+        database.con.query(sql2, (err, result) => {
+            if(err) console.warn("error getting the data");
+            res.status(200).send(result);
+        })
+    })
+})
