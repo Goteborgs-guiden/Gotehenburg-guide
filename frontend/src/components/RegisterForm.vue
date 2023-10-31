@@ -2,11 +2,16 @@
 import { ref } from 'vue'
 let username = ref('')
 let password = ref('')
+let password2 = ref('')
 let email = ref('')
+const regexForEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const regexForPassword =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,22}$/;
 function register() {
+  if (regexForEmail.test(email.value) && regexForPassword.test(password.value) && regexForPassword.test(password2.value) && password.value === password2.value){
   const data = {
     username: username.value,
     password: password.value,
+    pass2: password2.value,
     email: email.value
   }
   console.log(data)
@@ -21,6 +26,14 @@ function register() {
     .then((data) => {
       console.log('response from server:', data)
     })
+    alert("goodemail and good password")
+    return true;
+  }else {
+    alert("The email can't have any special character in it."+ "\n" +
+        "The password needs a minimum of 8 characters and maximum 22 characters, " +
+        "at least one uppercase letter, one lowercase letter and one number."+"\n"+
+        "Both passwords must be the same")
+  }
 }
 </script>
 <template>
@@ -39,7 +52,7 @@ function register() {
         <label>lösenord:</label>
         <input class="input" type="password" v-model="password" placeholder="lösenord" />
         <label>upprepa lösenord:</label>
-        <input class="input" type="password" v-model="pass2" placeholder="upprepa lösenord" />
+        <input class="input" type="password" v-model="password2" placeholder="upprepa lösenord" />
         <div class="button-wrapper">
           <input class="button" type="submit" value="Register" @click.prevent="register()" />
         </div>
