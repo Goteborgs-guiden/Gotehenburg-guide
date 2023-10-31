@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue'
+import { useDialogStore } from '../stores/dialog'
+const dialogs = useDialogStore()
 let username = ref('')
 let password = ref('')
 let email = ref('')
@@ -33,7 +35,7 @@ function register() {
       <form>
         <div class="close-box">
           <label class="register">Registrera dig:</label>
-          <img class="close" src="/symbols/navclose.svg" />
+          <img class="close" src="/symbols/navclose.svg" @click="dialogs.toggleRegister"/>
         </div>
         <label class="inputLabel">mailadress:</label>
         <input class="inputField" type="text" v-model="email" placeholder="mailadress" />

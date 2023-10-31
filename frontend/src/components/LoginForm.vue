@@ -37,20 +37,19 @@ function login() {
         <form>
           <div class="close-box">
             <label class="login">Logga in:</label>
-            <img class="close" src="/symbols/navclose.svg" />
+            <img class="close" src="/symbols/navclose.svg" @click="dialogs.toggleLogin"/>
           </div>
           <label class="inputLabel">mailadress:</label>
           <input class="inputField" type="text" v-model="email" placeholder="mailadress" />
           <label class="inputLabel">lösenord:</label>
           <input class="inputField" type="password" v-model="password" placeholder="lösenord" />
-          <a href="url">Glömt lösenord?</a>
           <input class="loginButton" type="submit" value="logga in" @click.prevent="login()" />
         </form>
       </div>
     </header>
   </div>
 </template>
-<style>
+<style scoped>
 .wrapper {
   width: 25em;
 }
@@ -121,14 +120,6 @@ label {
   font-family: 'Permanent marker';
 }
 
-a {
-  font-family: 'Newsreader';
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  margin-top: 0.2em;
-}
-
 a:hover {
   text-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
@@ -140,7 +131,7 @@ a:active {
 .loginButton {
   display: block;
   margin: auto;
-  margin-top: 0.6em;
+  margin-top: 1em;
   border-radius: 0.53125rem;
   border: 2px solid #214f75;
   color: #214f75;
