@@ -8,10 +8,16 @@ let question = ref('')
 let answer = ref('')
 let allowsubmit = ref(true)
 
+import { useHighscore } from '../stores/highscore'
+const highscore = useHighscore()
+
+const questionImage = ref('')
+
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function getQuestion(id) {
+  console.log('ongoing', onGoingQuiz)
   if (id <= 5) {
     correctData.value = ''
     fetch('http://127.0.0.1:3000/quiz/fillblank/' + id, {
@@ -20,6 +26,7 @@ function getQuestion(id) {
       .then((response) => response.json())
       .then((data) => {
         console.log('response from server:', data)
+        questionImage.value = data.img
         question.value = data.question
       })
   } else onGoingQuiz = false
@@ -72,31 +79,31 @@ function setHighscore(points) {
 <template>
   <main>
     <div v-if="onGoingQuiz" id="abc-quiz">
-    <article class="geografikack">
-      <div class="img"> <a>Place the Image here!!!</a></div>
-      <div class="question">
-      <p>Vilken är världens mest musikaliska fågel?
-    Truten! För det är en ____{{ question }}</p>
-    <div class="showAnswer" v-if="!allowsubmit">
-        <p id="correctAnswer" v-if="correctData">Rätt svar</p>
-        <p id="wrongAnswer" v-else>Fel svar</p>
-      </div>
-      <div class="hideInputAndButton" v-if="allowsubmit">
-      <div class="inputform">
-      <input class="input" placeholder="Svara här" v-model="answer" type="text" />
+      <article class="geografikack">
+        <img :src="questionImage" />
+        <div class="question">
+          <p>{{ question }}</p>
         </div>
-      <div class="buttoncss">
-      <button @click="sendAnswer(answer, currentQuestion)">></button>
-      </div>
+        <div class="showAnswer" v-if="!allowsubmit">
+          <p id="correctAnswer" v-if="correctData">Rätt svar</p>
+          <p id="wrongAnswer" v-else>Fel svar</p>
+        </div>
+        <div class="hideInputAndButton" v-if="allowsubmit">
+          <div class="inputform">
+            <input class="input" placeholder="Svara här" v-model="answer" type="text" />
+          </div>
+          <div class="buttoncss">
+            <button @click="sendAnswer(answer, currentQuestion)">></button>
+          </div>
+        </div>
+      </article>
     </div>
-      </div>
-    
-    </article>
     <div v-if="!onGoingQuiz">
       <div v-if="setHighscore(points)"></div>
+      <div v-if="highscore.setScore(points)"></div>
+      <div v-if="highscore.setLastQuiz('fillblank')"></div>
       <p>Quizen är slut</p>
       <p>Du fick {{ points }} poäng</p>
-    </div>
     </div>
   </main>
 </template>
@@ -131,25 +138,24 @@ function setHighscore(points) {
   display: flex;
   justify-content: center;
 }
-p{
+p {
   display: flex;
   justify-content: center;
   font-family: 'Newsreader';
   font-size: 2rem;
-  width: fit-content; 
+  width: fit-content;
 }
 #correctAnswer {
-  color:#2CE03E;
+  color: #2ce03e;
 }
 #wrongAnswer {
-  color: #F00;
+  color: #f00;
 }
 .inputform {
   height: 2rem;
   display: flex;
   justify-content: center;
   width: 96.5%;
-  
 }
 .input {
   width: 100%;
@@ -159,7 +165,6 @@ p{
   background: #e8f3fd;
   display: flex;
   justify-content: center;
-  
 }
 ::placeholder {
   padding-left: 1rem;
@@ -186,7 +191,7 @@ button {
   justify-content: center;
   width: 20%;
 }
-a{
+a {
   color: black;
 }
 </style>
