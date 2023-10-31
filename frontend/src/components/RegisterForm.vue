@@ -26,7 +26,7 @@ function register() {
     .then((data) => {
       console.log('response from server:', data)
     })
-    alert("goodemail and good password")
+    alert("Registration completed successfully")
     return true;
   }else {
     alert("The email can't have any special character in it."+ "\n" +
