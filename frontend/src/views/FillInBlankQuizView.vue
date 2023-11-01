@@ -12,7 +12,6 @@ let correctAnswer = ref('')
 
 import { useHighscore } from '../stores/highscore'
 const highscore = useHighscore()
-
 const questionImage = ref('')
 
 onMounted(() => {
@@ -59,7 +58,7 @@ function sendAnswer(input, id) {
           getQuestion(currentQuestion.value++)
           getQuestion(currentQuestion.value)
           allowsubmit.value = true
-        }, 2000)
+        }, 1500)
       })
   }
 }
