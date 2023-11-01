@@ -85,12 +85,10 @@ function addfriend(){
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
-
             <div class="whenLoggedIn" v-else>
                 <RouterLink class="navitem" style="text-decoration: none;" to="/profile"><p class="user">{{userInfo.username}}</p></RouterLink>
                 <button class="button" @click="logout()">Logga ut</button>
-                <div v-if="reload()"></div>
-
+    
             </div>
         </div>
     <nav class="navbar">
@@ -125,9 +123,8 @@ function addfriend(){
         <RouterLink class="navitem" to="/highscore">Highscore</RouterLink>
         <RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink>
 <div v-if="isLoggedIn">
-<div v-if="isLoggedIn">
         <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
-</div>
+        <button class="button" @click="logout()">logout</button>
 </div>
         <div v-if="!isLoggedIn" class="login-and-register">
               <button class="button" @click="dialogs.toggleLogin">Logga in</button>
@@ -138,7 +135,6 @@ function addfriend(){
         </div>
         <input id="search" v-model="friend" placeholder="Lägg till vän">
         <button class="button" @click="addfriend()">add</button>
-
       </ul>
       </Transition>
   </nav>
@@ -158,6 +154,7 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 padding-left: 3%;
+text-decoration: none;
 }
 
 #headerContent {
@@ -244,6 +241,7 @@ float: right;
 padding-left: 1rem;
 padding-right: 1rem;
 margin-right: 2rem;
+cursor: pointer;
 }
 .button:hover {
   background-color: #406C90;
@@ -256,12 +254,16 @@ margin-right: 2rem;
   padding-left: 1.5rem;
   border-radius: .8rem;
   transition: .5s ease all;
+  color: #fff;
   border-bottom: 1px solid transparent;
+  text-decoration: none;
   cursor: pointer;
 }
 .dropdownitem {
   font-family: permanent marker;
   border-radius: .8rem;
+  color: #fff;
+  text-decoration: none;
 }
 .navbar{
     background-color: #406C90;

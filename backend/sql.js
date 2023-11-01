@@ -3,7 +3,7 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "developer",
     password: "password",
-    database: "gbgmysql"
+    database: "gbgmysql",
   });
 
 function createtable(){
