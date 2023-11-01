@@ -147,7 +147,7 @@ function setHighscore(points) {
 .item1 {
   justify-self: center;
   margin-top: 1em;
-  margin-bottom: 3em;
+  margin-bottom: 1em;
 }
 
 .item2 {
@@ -214,7 +214,7 @@ function setHighscore(points) {
 img {
   margin-top: 2em;
   margin-bottom: 1em;
-  width: 90%;
+  width: 100%;
   height: 90%;
 }
 </style>
