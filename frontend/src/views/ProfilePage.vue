@@ -1,6 +1,8 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { onMounted, ref } from 'vue';
+import { useDialogStore } from '../stores/dialog';
+const dialogs = useDialogStore()
 const userInfo = ref('');
 const friends = ref('');
 const profileImage = ref('');
@@ -102,7 +104,7 @@ function getLocationHighscore() {
                     </tr>
                 </table>
                 <a href="#editPage?">
-                    <button id="edit-button">redigera</button>
+                    <button @click="dialogs.toggleEdit" id="edit-button">redigera</button>
                 </a>
             </div>
         </div>

@@ -2,9 +2,7 @@
 import { useDialogStore } from '../stores/dialog';
 import RegisterForm from './RegisterForm.vue';
 import LoginForm from './LoginForm.vue';
-import { useTokensStore } from '../stores/tokens';
-import { ref } from 'vue';
-let token = ref("");
+import EditPage1 from './EditPage1.vue';
 const dialogs = useDialogStore()
 </script>
 <template>
@@ -16,6 +14,9 @@ const dialogs = useDialogStore()
     <div v-if="dialogs.showLogin" class="popup-background popLog">
         <LoginForm/>
     </div>
+    <div v-if="dialogs.showEdit" class="popup-background popEdit">
+        <EditPage1/>
+    </div>
 </div>
 </template>
 <style scoped>
@@ -25,5 +26,9 @@ const dialogs = useDialogStore()
     margin: auto;
     top: 2%;
     right: 1%;
+}
+.popup-background.popEdit {
+    top:30%;
+    right: 25%;
 }
 </style>
