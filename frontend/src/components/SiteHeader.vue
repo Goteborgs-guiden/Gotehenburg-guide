@@ -47,20 +47,6 @@ function getInfo() {
       mobileNav.value = false;
       return;
     }
-function reload(){
-  const time = Date.parse(localStorage.getItem('time'));
-  console.log("time",time)
-  const currentTime = new Date(Date.now());
-    const timeLeft = time - currentTime;
-    console.log("time",time)
-    console.log("currentTime",currentTime);
-    console.log("time left",timeLeft)
-  if(timeLeft > 0){
-    console.log("time left",timeLeft)
-    setTimeout(function(){location.reload();}, timeLeft)
-  }
-  
-}
 function logout(){
   localStorage.removeItem('accessToken');
   localStorage.removeItem('time');
@@ -81,7 +67,6 @@ function logout(){
             <div v-else>
                 <RouterLink class="navitem" style="text-decoration: none;" to="/profile">{{userInfo.username}}</RouterLink>
                 <button class="button" @click="logout()">logout</button>
-                <div v-if="reload()"></div>
             </div>
         </div>
     <nav class="navbar">
