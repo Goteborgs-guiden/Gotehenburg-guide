@@ -63,10 +63,17 @@ function addfriend(){
       'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
     }
   })
-    .then((response) => response.json())
+    .then((response) => {
+    if (response.status === 200) {
+        alert('Friend added')
+      }
+      else{
+        alert('Friend not added')
+      }})
     .then((data) => {
       console.log('response from server:', data)
     })
+    friend.value = '';
 }
 </script>
 
