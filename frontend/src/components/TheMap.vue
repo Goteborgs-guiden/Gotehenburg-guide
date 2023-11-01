@@ -75,15 +75,17 @@ function setHighscore(points) {
 
 <template>
   <div class="grid-container">
-    
     <div v-if="onGoingQuiz" class="item1" id="questionImage">
       <img :src="questionImage" />
     </div>
-    
+
     <div v-if="onGoingQuiz" id="abc-quiz" class="item2">
-      <p>{{ abcdata }}</p>
+      
+      
       <div class="selection">
         <from>
+      
+      <div class="question" > {{ abcdata }} </div>
           <button id="btn0" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
             {{ alternatives[0] }}
           </button>
@@ -144,6 +146,7 @@ function setHighscore(points) {
 
 .item1 {
   justify-self: center;
+  margin-top: 1em;
 }
 
 .item2 {
@@ -152,9 +155,10 @@ function setHighscore(points) {
 .selection {
   text-align: center;
   width: 59.53125rem;
-  height: 13.6875rem;
+  height: 16.6875rem;
   background-color: rgba(64, 108, 144, 0.9);
   border-radius: 0.8rem;
+  margin-bottom: 5rem;
 }
 #btn0 {
   width: 23.25rem;
@@ -162,7 +166,7 @@ function setHighscore(points) {
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   margin-right: 5.5rem;
 }
 #btn1 {
@@ -195,18 +199,14 @@ function setHighscore(points) {
 .item4 {
   justify-self: center;
 }
-.one {
-  padding: 0.6rem 1.4rem;
+
+.question{
+  color: white;
+  padding: 0.6rem 0rem 0rem 0rem;
   border-radius: 0.8rem;
-  border: 5px solid #91b6d8;
-  background: #fff;
-  color: #214f75;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   font-family: 'Newsreader';
-  font-size: 1.3125rem;
-}
+  font-size: 1.5rem;
 
-.two {
-  padding: 0.6rem 2rem;
 }
 </style>
