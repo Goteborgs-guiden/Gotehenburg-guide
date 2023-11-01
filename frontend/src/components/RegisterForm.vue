@@ -23,6 +23,7 @@ function register() {
     .then((data) => {
       console.log('response from server:', data)
     })
+    dialogs.toggleRegister()
 }
 </script>
 <template>
