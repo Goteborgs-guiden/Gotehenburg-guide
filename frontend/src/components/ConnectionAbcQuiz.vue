@@ -4,46 +4,47 @@ let currentQuestion = ref(0)
 //const apiUrl = "http://127.0.0.1:3000/";
 let question = ref('')
 let alternatives = ref([''])
-let correctData = ref('')
 let onGoingQuiz = true
 let points = ref(0)
-let allowsubmit = true;
+let allowsubmit = ref(true);
 import { useHighscore } from '../stores/highscore';
 const highscore = useHighscore();
+const correctAnswer = ref();
+const userGuess = ref('');
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function sendAnswer(input, id, answerid) {
-  if(allowsubmit){
-  console.log(input)
+  userGuess.value = input
+  if(allowsubmit.value){
+  console.log('röv',input)
   fetch('http://127.0.0.1:3000/quiz/abcanswer/' + id, {
-    method: 'POST',
-    body: JSON.stringify({ answer: input }),
-    headers: {
-      'Content-type': 'application/json'
-    }
+    method: 'GET'
   })
-    .then((response) => response.json())
+    .then((response) => response.text())
     .then((data) => {
       console.log('response from server:', data)
-      correctData.value = data
-      if (data) {
+      
+      correctAnswer.value = data 
+      console.log(correctAnswer.value)
+      if (input === correctAnswer.value) {
         console.log('answerid=', answerid)
         document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
         points.value++
       } else {
         console.log('answerid=', answerid)
         document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
+        
       }
-      allowsubmit = false;
-      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'; allowsubmit=true}, 1000);
+      allowsubmit.value = false;
+      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'; allowsubmit.value=true}, 2000);
     })
   }
 }
 function getQuestion(id) {
   if (id <= 5) {
-    correctData.value = ''
+    
     fetch('http://127.0.0.1:3000/quiz/abcquestion/' + id, {
       method: 'GET'
     })
@@ -96,9 +97,11 @@ function setHighscore(points) {
    
   <div>
   </div>
-  <div v-if="onGoingQuiz">
-    <p v-if="correctData">Rätt svar!</p>
-    <p v-if="correctData === false">FEL SVAR!</p>
+  <div v-if="onGoingQuiz" class="feedback">
+    <div v-if="!allowsubmit">
+    <p id="correct" v-if="correctAnswer === userGuess">RÄTT!</p>
+    <p id="wrong" v-if="correctAnswer != userGuess">FEL! rätt svar:  {{ correctAnswer }}</p>
+  </div>
   </div>
   <div v-if="currentQuestion >= 6">
     <p v-if="points > 3">Snyggt byggt, fräsig kärra!</p>
@@ -146,6 +149,22 @@ justify-content: center;
 align-items: center;
 margin-top: 2rem;
 margin-bottom: 2rem;
+}
+.feedback{
+  color: #000;
+font-family: Newsreader;
+font-size: 2rem;
+font-style: normal;
+font-weight: 400;
+text-align: center;
+
+
+}
+.feedback #correct {
+  color:#2ce03e
+}
+.feedback #wrong {
+  color: #f00;
 }
 .selection {
   text-align: center;
