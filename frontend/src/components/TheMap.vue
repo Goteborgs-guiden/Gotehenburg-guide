@@ -80,12 +80,12 @@ function setHighscore(points) {
     </div>
 
     <div v-if="onGoingQuiz" id="abc-quiz" class="item2">
-      <p>{{ abcdata }}</p>
+      
       
       <div class="selection">
         <from>
       
-      <div class="question"><p>Vart befinner du dig?</p></div>
+      <div class="question" > {{ abcdata }} </div>
           <button id="btn0" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
             {{ alternatives[0] }}
           </button>
@@ -209,5 +209,9 @@ function setHighscore(points) {
   font-family: 'Newsreader';
   font-size: 1.5rem;
 
+}
+img {
+  margin-top: 2em;
+  margin-bottom: 1em;
 }
 </style>
