@@ -67,8 +67,6 @@ function logout(){
   location.reload();
 }
 </script>
-
-
 <template>
    <header :class="{'scrolled-nav': scrollPosition}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -78,9 +76,9 @@ function logout(){
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
-            <div v-else>
-                <RouterLink class="navitem" style="text-decoration: none;" to="/profile">{{userInfo.username}}</RouterLink>
-                <button class="button" @click="logout()">logout</button>
+            <div class="whenLoggedIn" v-else>
+                <RouterLink class="navitem" style="text-decoration: none;" to="/profile"><p class="user">{{userInfo.username}}</p></RouterLink>
+                <button class="button" @click="logout()">Logga ut</button>
                 <div v-if="reload()"></div>
             </div>
         </div>
@@ -127,7 +125,6 @@ function logout(){
           <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
         </div>
         <input id="search"  placeholder="Hitta vänner">
-
       </ul>
       </Transition>
   </nav>
@@ -169,11 +166,32 @@ ul {
   padding: 0;
   height: 2.5rem;
 }
+.whenLoggedIn {
+  display: flex;
+  font-size: 1.2rem;
+}
+.user:hover {
+  background-color: #406C90;
+  border-radius: .8rem;
+  transition: .5s ease all;
+}
+p{
+  font-family: permanent marker;
+  padding-right: 1.5rem; 
+  padding-left: 1.5rem;
+  border-radius: .8rem;
+  transition: .5s ease all;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  color: #FFF;
+  margin: 0;
+}
 li .navitem:hover, .dropdown:hover {
   background-color: #214F75;
   border-radius: .8rem;
   transition: .5s ease all;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -225,6 +243,7 @@ margin-right: 2rem;
   border-radius: .8rem;
   transition: .5s ease all;
   border-bottom: 1px solid transparent;
+  cursor: pointer;
 }
 .dropdownitem {
   font-family: permanent marker;
@@ -251,7 +270,7 @@ border: 0.2rem solid #214F75;
 background: #E8F3FD;
 color: #214F75;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-font-family: Permanent Marker;
+font-family: Newsreader;
 font-size: 1.2rem;
 font-style: normal;
 font-weight: 400;
@@ -265,6 +284,7 @@ margin-left: 1rem;
 
 ::placeholder {
     color: #214F75;
+  font-family: 'Permanent marker';
 }
 
 
