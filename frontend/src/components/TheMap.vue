@@ -6,7 +6,7 @@ let alternatives = ref([''])
 let correctData = ref('')
 let onGoingQuiz = true
 let points = ref(0)
-let allowsubmit = true;
+let allowsubmit = ref(true);
 const questionImage = ref('')
 import { useHighscore } from '../stores/highscore';
 const highscore = useHighscore();
@@ -15,7 +15,7 @@ onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function sendAnswer(input, id, answerid) {
-  if(allowsubmit){
+  if(allowsubmit.value){
   console.log(input)
   fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
     method: 'POST',
@@ -36,8 +36,8 @@ function sendAnswer(input, id, answerid) {
         console.log('answerid=', answerid)
         document.getElementById('btn' + answerid).style.border = '2px solid red'
       }
-      allowsubmit = false;
-      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = ''; allowsubmit=true}, 1000);
+      allowsubmit.value = false;
+      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = ''; allowsubmit.value=true}, 1000);
     })
   }
 }
@@ -109,7 +109,7 @@ function setHighscore(points) {
     <p v-if="correctData">Rätt svar!</p>
     <p v-if="correctData === false">FEL SVAR!</p>
   </div>
-  <div v-if="currentQuestion >= 6">
+  <div v-if="!onGoingQuiz">
     <p v-if="points > 3">Snyggt byggt, fräsig kärra!</p>
     <p v-else>Rackarns rabarber det där gick inte så bra!</p>
     <p>{{ points }} Poäng</p>
