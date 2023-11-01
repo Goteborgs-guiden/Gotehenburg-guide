@@ -70,6 +70,7 @@ function register() {
   padding-left: 1rem;
 }
 
+
 form {
   display: flex;
   flex-direction: column;

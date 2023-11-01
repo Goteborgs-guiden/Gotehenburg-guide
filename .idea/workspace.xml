@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf07fae8-f574-4373-84e3-8f575026f4db" name="Changes" comment="Add validation for email and password">
+    <list default="true" id="cf07fae8-f574-4373-84e3-8f575026f4db" name="Changes" comment="Update .gitignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +114,7 @@
       <workItem from="1698303675989" duration="2459000" />
       <workItem from="1698381238239" duration="13914000" />
       <workItem from="1698595598815" duration="3901000" />
+      <workItem from="1698824924137" duration="294000" />
     </task>
     <task id="LOCAL−00001" summary="Update the change">
       <option name="closed" value="true" />
@@ -167,6 +169,7 @@
     <MESSAGE value="fix homepage and mobile adaptation" />
     <MESSAGE value="Update the size of trams and the background" />
     <MESSAGE value="Add validation for email and password" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add validation for email and password" />
+    <MESSAGE value="Update .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update .gitignore" />
   </component>
 </project>
