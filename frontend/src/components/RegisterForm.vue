@@ -33,7 +33,7 @@ function register() {
     return true;
   }else {
     alert("The email can't have any special character in it."+ "\n" +
-        "The password needs a minimum of 8 characters and maximum 22 characters, " +
+        "The password needs a minimum of 8 characters and maximum 12 characters, " +
         "at least one uppercase letter, one lowercase letter and one number."+"\n"+
         "Both passwords must be the same")
   }
