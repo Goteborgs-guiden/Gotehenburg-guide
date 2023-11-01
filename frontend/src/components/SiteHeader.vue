@@ -9,6 +9,7 @@ const windowWidth = ref()
 const dialogs = useDialogStore()
 const userInfo = ref('');
 const isLoggedin = ref(false);
+const friend = ref('');
 onMounted(() => {
   getInfo();
 })
@@ -47,24 +48,32 @@ function getInfo() {
       mobileNav.value = false;
       return;
     }
-function reload(){
-  const time = Date.parse(localStorage.getItem('time'));
-  console.log("time",time)
-  const currentTime = new Date(Date.now());
-    const timeLeft = time - currentTime;
-    console.log("time",time)
-    console.log("currentTime",currentTime);
-    console.log("time left",timeLeft)
-  if(timeLeft > 0){
-    console.log("time left",timeLeft)
-    setTimeout(function(){location.reload();}, timeLeft)
-  }
-  
-}
 function logout(){
   localStorage.removeItem('accessToken');
   localStorage.removeItem('time');
   location.reload();
+}
+function addfriend(){
+  console.log("friend",friend.value)
+  fetch('http://127.0.0.1:3000/user/friend', {
+    method: 'POST',
+    body: JSON.stringify({friend:friend.value}),
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
+    }
+  })
+    .then((response) => {
+    if (response.status === 200) {
+        alert('Friend added')
+      }
+      else{
+        alert('Friend not added')
+      }})
+    .then((data) => {
+      console.log('response from server:', data)
+    })
+    friend.value = '';
 }
 </script>
 <template>
@@ -76,10 +85,12 @@ function logout(){
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
+
             <div class="whenLoggedIn" v-else>
                 <RouterLink class="navitem" style="text-decoration: none;" to="/profile"><p class="user">{{userInfo.username}}</p></RouterLink>
                 <button class="button" @click="logout()">Logga ut</button>
                 <div v-if="reload()"></div>
+
             </div>
         </div>
     <nav class="navbar">
@@ -99,7 +110,8 @@ function logout(){
         </li>
         <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
         <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
-        <li><input id="search"  placeholder="Hitta vänner"></li>
+        <li><input id="search" v-model="friend" placeholder="Lägg till vän"></li>
+        <button class="button" @click="addfriend()">add</button>
       </ul>  
       <div class="icon">
         <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{ 'icon-active': mobileNav }"></i>
@@ -124,7 +136,9 @@ function logout(){
         <div v-else>
           <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
         </div>
-        <input id="search"  placeholder="Hitta vänner">
+        <input id="search" v-model="friend" placeholder="Lägg till vän">
+        <button class="button" @click="addfriend()">add</button>
+
       </ul>
       </Transition>
   </nav>
