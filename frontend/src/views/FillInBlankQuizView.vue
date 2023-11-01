@@ -44,7 +44,7 @@ function sendAnswer(input, id) {
     .then((response) => response.text())
       .then((data) => {
         console.log('response from server:', data)
-  
+         correctAnswer.value = data
         if (input === correctAnswer.value) {
           points.value++
           correctData.value = false;
