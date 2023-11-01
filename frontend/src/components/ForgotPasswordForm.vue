@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+/*import { ref } from 'vue'
 import { useTokensStore } from '../stores/tokens'
 import { useDialogStore } from '../stores/dialog'
 const dialogs = useDialogStore()
@@ -19,31 +19,33 @@ function login() {
     .then((response) => response.json())
     .then((data) => {
       console.log('response from server:', data)
-      if (data != null) {
+      if(data!=null){
         dialogs.showLogin = false
       }
       tokens.setTokens(data)
       localStorage.setItem('accessToken', data.accessToken)
-      console.log(tokens.expiresIn)
-      localStorage.setItem('time', tokens.expiresIn)
-      location.reload()
+      console.log(tokens.expiresIn);
+      localStorage.setItem('time', tokens.expiresIn);
+      location.reload();
     })
-}
+}*/
 </script>
 <template>
   <div>
     <header>
       <div class="wrapper">
         <form>
-          <div class="close-box">
-            <label class="login">Logga in:</label>
-            <img class="close" src="/symbols/navclose.svg" @click="dialogs.toggleLogin"/>
+          <div class="title-box">
+            <img class="back symb" src="/symbols/backarrow.svg" />
+            <label class="forgot">Glömt Lösenord?</label>
+            <img class="close symb" src="/symbols/navclose.svg" />
           </div>
+          <p class="resetText">
+            Fyll i din mailadress så skickar vi en länk för att återställa ditt lösenord.
+          </p>
           <label class="inputLabel">mailadress:</label>
           <input class="inputField" type="text" v-model="email" placeholder="mailadress" />
-          <label class="inputLabel">lösenord:</label>
-          <input class="inputField" type="password" v-model="password" placeholder="lösenord" />
-          <input class="loginButton" type="submit" value="logga in" @click.prevent="login()" />
+          <input class="sendButton" type="submit" value="återställ" @click.prevent="login()" />
         </form>
       </div>
     </header>
@@ -63,10 +65,10 @@ form {
   color: #fff;
   height: 21em;
 }
-.close-box {
+.title-box {
   display: grid;
   grid-template-columns: 10% 80% 10%;
-  grid-template-areas: 'none log cross';
+  grid-template-areas: 'back title cross';
   justify-items: center;
 }
 
@@ -77,21 +79,36 @@ form {
   cursor: pointer;
 }
 
-.close:active {
+.symb:active {
   transform: translateY(2px);
   box-shadow: none;
 }
 
-.login {
-  grid-area: log;
+.back {
+  grid-area: back;
+  height: 1.4em;
+  margin-top: 0.6em;
+  cursor: pointer;
+  padding-right: 0.5em;
+}
+
+.forgot {
+  grid-area: title;
   font-size: x-large;
   padding-bottom: 5px;
   border-bottom-style: solid;
   border-bottom-width: 3px;
   box-shadow: 0 3px 0px 0px rgba(0, 0, 0, 0.3);
-
+  width: 9em;
   align-self: center;
-  padding-top: 0.5rem;
+  padding-top: 1.5em;
+}
+.resetText {
+  font-family: 'Newsreader';
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.5em;
 }
 
 label {
@@ -99,7 +116,7 @@ label {
   font-size: large;
 }
 .inputLabel {
-  padding-top: 1rem;
+  padding-top: 0;
 }
 
 .inputField {
@@ -113,6 +130,7 @@ label {
   padding-left: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
+  margin-top: 0.5em;
 }
 
 ::placeholder {
@@ -120,18 +138,10 @@ label {
   font-family: 'Permanent marker';
 }
 
-a:hover {
-  text-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.5);
-}
-
-a:active {
-  transform: translateY(2px);
-}
-
-.loginButton {
+.sendButton {
   display: block;
   margin: auto;
-  margin-top: 1em;
+  margin-top: 0.8em;
   border-radius: 0.53125rem;
   border: 2px solid #214f75;
   color: #214f75;
@@ -145,13 +155,13 @@ a:active {
   cursor: pointer;
 }
 
-.loginButton:hover {
+.sendButton:hover {
   background-color: #214f75;
   color: #fff;
   border: 2px solid #ffffff;
 }
 
-.loginButton:active {
+.sendButton:active {
   transform: translateY(2px);
   box-shadow: none;
 }

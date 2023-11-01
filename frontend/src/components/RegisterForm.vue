@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue'
+import { useDialogStore } from '../stores/dialog'
+const dialogs = useDialogStore()
 let username = ref('')
 let password = ref('')
 let email = ref('')
@@ -21,6 +23,7 @@ function register() {
     .then((data) => {
       console.log('response from server:', data)
     })
+    dialogs.toggleRegister()
 }
 </script>
 <template>
@@ -31,17 +34,21 @@ function register() {
   <header>
     <div class="wrapper">
       <form>
-        <label class="register">Registrera dig:</label>
-        <label>mailadress:</label>
-        <input class="input" type="text" v-model="email" placeholder="mailadress" />
-        <label>användarnamn:</label>
-        <input class="input" type="text" v-model="username" placeholder="användarnamn" />
-        <label>lösenord:</label>
-        <input class="input" type="password" v-model="password" placeholder="lösenord" />
-        <label>upprepa lösenord:</label>
-        <input class="input" type="password" v-model="pass2" placeholder="upprepa lösenord" />
+        <div class="close-box">
+          <label class="register">Registrera dig:</label>
+          <img class="close" src="/symbols/navclose.svg" @click="dialogs.toggleRegister"/>
+        </div>
+        <label class="inputLabel">mailadress:</label>
+        <input class="inputField" type="text" v-model="email" placeholder="mailadress" />
+        <label class="inputLabel">användarnamn:</label>
+        <input class="inputField" type="text" v-model="username" placeholder="användarnamn" />
+        <label class="inputLabel">lösenord:</label>
+        <input class="inputField" type="password" v-model="password" placeholder="lösenord" />
+        <p class="password-info">(8-12 tecken, A-Z, minst ett specialtecken)</p>
+        <label class="inputLabel">upprepa lösenord:</label>
+        <input class="inputField" type="password" v-model="pass2" placeholder="upprepa lösenord" />
         <div class="button-wrapper">
-          <input class="button" type="submit" value="Register" @click.prevent="register()" />
+          <input class="button" type="submit" value="Registrera" @click.prevent="register()" />
         </div>
       </form>
     </div>
@@ -49,69 +56,110 @@ function register() {
 </template>
 <style scoped>
 .wrapper {
-  border: 5px solid #fff;
-  background: #214f75;
-  width: 21.84375rem;
-  height: 29.78125rem;
-  text-align: left;
-  padding-left: 1rem;
+  width: 28em;
 }
 
 form {
   display: flex;
   flex-direction: column;
+  border: 5px solid #fff;
+  background: #214f75;
+  font-family: 'Permanent marker';
   color: #fff;
-  font-family: 'Permanent Marker';
-  font-size: 1.3125rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  height: 33.5em;
+}
+
+.close-box {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-areas: 'none reg cross';
+  justify-items: center;
+}
+
+.close {
+  grid-area: cross;
+  height: 1.2em;
+  margin-top: 0.6em;
+  cursor: pointer;
+}
+
+.close:active {
+  transform: translateY(2px);
+  box-shadow: none;
 }
 
 .register {
-  color: #fff;
-  font-family: 'Permanent Marker';
-  font-size: 42px;
-  text-decoration: underline;
+  grid-area: reg;
+  font-size: x-large;
+  padding-bottom: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  box-shadow: 0 3px 0px 0px rgba(0, 0, 0, 0.3);
+  width: 8em;
+  align-self: center;
+  padding-top: 0.5rem;
 }
 
-.input {
-  width: 18.375rem;
-  height: 2.65625rem;
-  border-radius: 1.90625rem;
+label {
+  padding-left: 1rem;
+  font-size: larger;
+}
+
+.inputLabel {
+  padding-top: 1rem;
+  margin-bottom: 0.2em;
+}
+
+.inputField {
+  border-radius: 1.9em;
   border: 2px solid #214f75;
   background: #e8f3fd;
-  box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.4) inset;
-  color: rgba(33, 79, 117, 0.30);
-font-family: 'Permanent Marker';
-  font-size: 1.3125rem;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.2) inset;
+  font-size: large;
+  height: 2.5rem;
+  font-family: 'Newsreader';
+  padding-left: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
-input[type='text'] {
-  padding-left: 5%;
+::placeholder {
+  color: rgba(33, 79, 117, 0.3);
+  font-family: 'Permanent marker';
 }
 
-input[type='password'] {
-  padding-left: 5%;
+.password-info {
+  font-size: smaller;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 0.1em;
 }
+
 .button {
+  display: block;
+  margin: auto;
+  margin-top: 0.8em;
   border-radius: 0.53125rem;
-  width: 50%;
   border: 2px solid #214f75;
-  background: #fff;
-  box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.4);
   color: #214f75;
-  font-family: 'Permanent Marker';
-  text-align: center;
-  width: 10.34375rem;
-  height: 2.3125rem;
-  font-size: 1.3125rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  background: #fff;
+  box-shadow: 0px 3px 3px 3px rgba(0, 0, 0, 0.3);
+  font-family: 'Permanent marker';
+  padding-bottom: 0.2em;
+  height: 2em;
+  width: 7.5em;
+  font-size: x-large;
+  cursor: pointer;
 }
 
-.button-wrapper {
-  text-align: center;
+.button:hover {
+  background-color: #214f75;
+  color: #fff;
+  border: 2px solid #ffffff;
+}
+
+.button:active {
+  transform: translateY(2px);
+  box-shadow: none;
 }
 </style>
