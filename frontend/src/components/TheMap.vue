@@ -159,6 +159,7 @@ function setHighscore(points) {
   background-color: rgba(64, 108, 144, 0.9);
   border-radius: 0.8rem;
   margin-bottom: 5rem;
+  box-shadow: 1px 1px 4px 0px;
 }
 #btn0 {
   width: 23.25rem;
