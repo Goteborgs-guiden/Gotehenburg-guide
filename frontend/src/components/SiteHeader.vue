@@ -9,6 +9,7 @@ const windowWidth = ref()
 const dialogs = useDialogStore()
 const userInfo = ref('');
 const isLoggedin = ref(false);
+const friend = ref('');
 onMounted(() => {
   getInfo();
 })
@@ -52,6 +53,28 @@ function logout(){
   localStorage.removeItem('time');
   location.reload();
 }
+function addfriend(){
+  console.log("friend",friend.value)
+  fetch('http://127.0.0.1:3000/user/friend', {
+    method: 'POST',
+    body: JSON.stringify({friend:friend.value}),
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
+    }
+  })
+    .then((response) => {
+    if (response.status === 200) {
+        alert('Friend added')
+      }
+      else{
+        alert('Friend not added')
+      }})
+    .then((data) => {
+      console.log('response from server:', data)
+    })
+    friend.value = '';
+}
 </script>
 
 
@@ -86,7 +109,8 @@ function logout(){
         </li>
         <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
         <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
-        <li><input id="search"  placeholder="Hitta vänner"></li>
+        <li><input id="search" v-model="friend" placeholder="Lägg till vän"></li>
+        <button class="button" @click="addfriend()">add</button>
       </ul>  
       <div class="icon">
         <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{ 'icon-active': mobileNav }"></i>
@@ -111,8 +135,8 @@ function logout(){
         <div v-else>
           <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
         </div>
-        <input id="search"  placeholder="Hitta vänner">
-
+        <input id="search" v-model="friend" placeholder="Lägg till vän">
+        <button class="button" @click="addfriend()">add</button>
       </ul>
       </Transition>
   </nav>
