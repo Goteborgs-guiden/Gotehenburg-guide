@@ -31,7 +31,9 @@ function getQuestion(id) {
       })
   } else onGoingQuiz = false
 }
+
 function sendAnswer(input, id) {
+  input = input.toLowerCase();
   if (allowsubmit.value) {
     fetch('http://127.0.0.1:3000/quiz/fillblank/' + id, {
       method: 'POST',
@@ -40,7 +42,7 @@ function sendAnswer(input, id) {
         'Content-type': 'application/json'
       }
     })
-      .then((response) => response.json())
+    .then((response) => response.json())
       .then((data) => {
         console.log('response from server:', data)
         correctData.value = data
@@ -50,12 +52,13 @@ function sendAnswer(input, id) {
         } else {
           console.log('wrong')
         }
+        this.answer = ""
         allowsubmit.value = false
         setTimeout(function () {
           getQuestion(currentQuestion.value++)
           getQuestion(currentQuestion.value)
           allowsubmit.value = true
-        }, 1000)
+        }, 2000)
       })
   }
 }
@@ -79,23 +82,23 @@ function setHighscore(points) {
 <template>
   <main>
     <div v-if="onGoingQuiz" id="abc-quiz">
-      <article class="geografikack">
+      <article class="ordvitsknok">
         <img :src="questionImage" />
         <div class="question">
           <p>{{ question }}</p>
-        </div>
         <div class="showAnswer" v-if="!allowsubmit">
           <p id="correctAnswer" v-if="correctData">Rätt svar</p>
-          <p id="wrongAnswer" v-else>Fel svar</p>
+          <p id="wrongAnswer" v-else>Fel svar, rätt svar är: {{  }}</p>
         </div>
         <div class="hideInputAndButton" v-if="allowsubmit">
           <div class="inputform">
-            <input class="input" placeholder="Svara här" v-model="answer" type="text" />
+            <input @keydown.enter="sendAnswer(answer, currentQuestion)"  class="input" placeholder="Svara här" v-model="answer" type="text" @input="handleInput" />
           </div>
           <div class="buttoncss">
-            <button @click="sendAnswer(answer, currentQuestion)">></button>
+            <button @input="handleInput" @click="sendAnswer(answer, currentQuestion)">></button>
           </div>
         </div>
+      </div>
       </article>
     </div>
     <div v-if="!onGoingQuiz">
@@ -108,16 +111,15 @@ function setHighscore(points) {
   </main>
 </template>
 <style scoped>
-.geografikack {
+.ordvitsknok {
   display: flex;
   align-items: center;
   flex-direction: column;
   margin-top: 2rem;
-  height: 100vh;
 }
-.img {
-  height: 40%;
+img {
   width: 40%;
+  margin-top: 1.5rem;
   background: rgba(232, 243, 253, 0.91);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   text-align: center;
@@ -129,6 +131,7 @@ function setHighscore(points) {
   justify-content: space-evenly;
   padding-left: 1rem;
   margin-top: 1.5rem;
+  margin-bottom: 3rem;
   width: 38.5%;
   height: fit-content;
   border-radius: 0.78125rem;
