@@ -9,6 +9,7 @@ const windowWidth = ref()
 const dialogs = useDialogStore()
 const userInfo = ref('');
 const isLoggedin = ref(false);
+const friend = ref('');
 onMounted(() => {
   getInfo();
 })
@@ -52,9 +53,29 @@ function logout(){
   localStorage.removeItem('time');
   location.reload();
 }
+function addfriend(){
+  console.log("friend",friend.value)
+  fetch('http://127.0.0.1:3000/user/friend', {
+    method: 'POST',
+    body: JSON.stringify({friend:friend.value}),
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
+    }
+  })
+    .then((response) => {
+    if (response.status === 200) {
+        alert('Friend added')
+      }
+      else{
+        alert('Friend not added')
+      }})
+    .then((data) => {
+      console.log('response from server:', data)
+    })
+    friend.value = '';
+}
 </script>
-
-
 <template>
    <header :class="{'scrolled-nav': scrollPosition}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -64,9 +85,10 @@ function logout(){
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
-            <div v-else-if="!mobile">
-                <RouterLink class="navitem" style="text-decoration: none;" to="/profile">{{userInfo.username}}</RouterLink>
-                <button class="button" @click="logout()">logout</button>
+            <div class="whenLoggedIn" v-else>
+                <RouterLink class="navitem" style="text-decoration: none;" to="/profile"><p class="user">{{userInfo.username}}</p></RouterLink>
+                <button class="button" @click="logout()">Logga ut</button>
+    
             </div>
         </div>
     <nav class="navbar">
@@ -86,7 +108,8 @@ function logout(){
         </li>
         <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
         <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
-        <li><input id="search"  placeholder="Hitta vänner"></li>
+        <li><input id="search" v-model="friend" placeholder="Lägg till vän"></li>
+        <button class="button" @click="addfriend()">add</button>
       </ul>  
       <div class="icon">
         <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{ 'icon-active': mobileNav }"></i>
@@ -107,7 +130,11 @@ function logout(){
               <button class="button" @click="dialogs.toggleLogin">Logga in</button>
               <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
-        <input id="search" placeholder="Hitta vänner">
+        <div v-else>
+          <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
+        </div>
+        <input id="search" v-model="friend" placeholder="Lägg till vän">
+        <button class="button" @click="addfriend()">add</button>
       </ul>
       </Transition>
   </nav>
@@ -150,11 +177,32 @@ ul {
   padding: 0;
   height: 2.5rem;
 }
+.whenLoggedIn {
+  display: flex;
+  font-size: 1.2rem;
+}
+.user:hover {
+  background-color: #406C90;
+  border-radius: .8rem;
+  transition: .5s ease all;
+}
+p{
+  font-family: permanent marker;
+  padding-right: 1.5rem; 
+  padding-left: 1.5rem;
+  border-radius: .8rem;
+  transition: .5s ease all;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  color: #FFF;
+  margin: 0;
+}
 li .navitem:hover, .dropdown:hover {
   background-color: #214F75;
   border-radius: .8rem;
   transition: .5s ease all;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -209,6 +257,7 @@ cursor: pointer;
   color: #fff;
   border-bottom: 1px solid transparent;
   text-decoration: none;
+  cursor: pointer;
 }
 .dropdownitem {
   font-family: permanent marker;
@@ -237,7 +286,7 @@ border: 0.2rem solid #214F75;
 background: #E8F3FD;
 color: #214F75;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-font-family: Permanent Marker;
+font-family: Newsreader;
 font-size: 1.2rem;
 font-style: normal;
 font-weight: 400;
@@ -251,6 +300,7 @@ margin-left: 1rem;
 
 ::placeholder {
     color: #214F75;
+  font-family: 'Permanent marker';
 }
 
 
