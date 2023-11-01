@@ -1,12 +1,14 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 let currentQuestion = ref(0)
-let correctData = ref('')
+let correctData = ref(true)
 let onGoingQuiz = true
 let points = ref(0)
 let question = ref('')
 let answer = ref('')
 let allowsubmit = ref(true)
+let correctAnswer = ref('')
+
 
 import { useHighscore } from '../stores/highscore'
 const highscore = useHighscore()
@@ -28,6 +30,7 @@ function getQuestion(id) {
         console.log('response from server:', data)
         questionImage.value = data.img
         question.value = data.question
+      
       })
   } else onGoingQuiz = false
 }
@@ -35,21 +38,19 @@ function getQuestion(id) {
 function sendAnswer(input, id) {
   input = input.toLowerCase();
   if (allowsubmit.value) {
-    fetch('http://127.0.0.1:3000/quiz/fillblank/' + id, {
-      method: 'POST',
-      body: JSON.stringify({ answer: input }),
-      headers: {
-        'Content-type': 'application/json'
-      }
+    fetch('http://127.0.0.1:3000/quiz/fillblankanswer/' + id, {
+      method: 'GET'
     })
-    .then((response) => response.json())
+    .then((response) => response.text())
       .then((data) => {
         console.log('response from server:', data)
-        correctData.value = data
-        if (data) {
+         correctAnswer.value = data
+        if (input === correctAnswer.value) {
           points.value++
+          correctData.value = false;
           console.log('correct')
         } else {
+          correctData.value = true;
           console.log('wrong')
         }
         this.answer = ""
@@ -87,8 +88,8 @@ function setHighscore(points) {
         <div class="question">
           <p>{{ question }}</p>
         <div class="showAnswer" v-if="!allowsubmit">
-          <p id="correctAnswer" v-if="correctData">Rätt svar</p>
-          <p id="wrongAnswer" v-else>Fel svar, rätt svar är: {{  }}</p>
+          <p id="correctAnswer" v-if="!correctData">Rätt svar</p>
+          <p id="wrongAnswer" v-else>Fel svar, rätt svar är: {{ correctAnswer }}</p>
         </div>
         <div class="hideInputAndButton" v-if="allowsubmit">
           <div class="inputform">
