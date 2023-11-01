@@ -7,7 +7,7 @@ let password = ref('')
 let password2 = ref('')
 let email = ref('')
 const regexForEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-const regexForPassword =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,22}$/;
+const regexForPassword =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,12}$/;
 function register() {
   if (regexForEmail.test(email.value) && regexForPassword.test(password.value) && regexForPassword.test(password2.value) && password.value === password2.value){
   const data = {
@@ -57,7 +57,7 @@ function register() {
         <input class="inputField" type="text" v-model="username" placeholder="användarnamn" />
         <label class="inputLabel">lösenord:</label>
         <input class="inputField" type="password" v-model="password" placeholder="lösenord" />
-        <p class="password-info">(8-22 tecken, A-Z, minst ett specialtecken)</p>
+        <p class="password-info">(8-12 tecken, A-Z, minst ett specialtecken)</p>
         <label class="inputLabel">upprepa lösenord:</label>
         <input class="inputField" type="password" v-model="password2" placeholder="upprepa lösenord" />
 
