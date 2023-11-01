@@ -6,6 +6,7 @@ export const useDialogStore = defineStore('dialog', () => {
   const showLogin = ref(false)
   function toggleRegister() {
     showRegister.value = !showRegister.value
+    console.log('clicked')
   }
   function toggleLogin() {
     showLogin.value = !showLogin.value
