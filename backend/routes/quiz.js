@@ -45,19 +45,15 @@ router.get("/abcquestion/:id", (request, response, next) => {
         }
     });   
 });
-router.post("/fillblank/:id",(request,response) =>{
-    const body = request.body;
+router.get("/fillblankanswer/:id",(request,response) =>{
+    
     let id = request.params.id;
     let sql = 'SELECT * FROM fillBlank WHERE id = '+id;
     database.con.query(sql,(err, result) => {
         if(err) console.warn("error getting the data");
+        console.log(result[0].correct)
         if(result[0]?.question){
-            if(body.answer === result[0].correct){
-                response.status(200).send(true);
-            }
-            else{
-                response.status(200).send(false);
-            }
+           response.status(200).send(result[0].correct);  
         }
         else{
             response.status(404).send("site not found")
