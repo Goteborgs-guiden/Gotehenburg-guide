@@ -50,7 +50,7 @@ function getInfo() {
 function reload(){
 
   const time = Date.parse(localStorage.getItem('time'));
-  if(!time){
+  if(time<0){
     return false;
   }
   const currentTime = new Date(Date.now());
