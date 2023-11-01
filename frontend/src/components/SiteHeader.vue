@@ -48,17 +48,18 @@ function getInfo() {
       return;
     }
 function reload(){
-
   const time = Date.parse(localStorage.getItem('time'));
-  if(!time){
-    return false;
-  }
-  const currentTime = new Date(Date.now());
-  const timeLeft = time - currentTime;
   console.log("time",time)
-  console.log("currentTime",currentTime);
-  console.log("time left",timeLeft)
-  setTimeout(function(){location.reload();}, timeLeft)
+  const currentTime = new Date(Date.now());
+    const timeLeft = time - currentTime;
+    console.log("time",time)
+    console.log("currentTime",currentTime);
+    console.log("time left",timeLeft)
+  if(timeLeft > 0){
+    console.log("time left",timeLeft)
+    setTimeout(function(){location.reload();}, timeLeft)
+  }
+  
 }
 function logout(){
   localStorage.removeItem('accessToken');
