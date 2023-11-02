@@ -26,13 +26,13 @@ const slideOffset = ref(0)
 
       <button
           class="backwardButton buttonItem"
-          @click="slideOffset = Math.min(slideOffset + 375, 0)"
+          @click="slideOffset = Math.min(slideOffset + 390, 0)"
       >
         <img src="/svgarrows/arrowleft.svg" class="buttonImage" />
       </button>
       <button
           class="forwardButton buttonItem"
-          @click="slideOffset = Math.max(slideOffset - 375, -750)"
+          @click="slideOffset = Math.max(slideOffset - 390, -800)"
       >
         <img src="/svgarrows/arrowright.svg" class="buttonImage" />
       </button>
@@ -46,8 +46,7 @@ const slideOffset = ref(0)
 }
 
 .scrollContainer {
-  width: 94%;
-  margin-left: 4%;
+  width: 88.5em;
   overflow: hidden;
 }
 
@@ -61,6 +60,7 @@ const slideOffset = ref(0)
   position: absolute;
   width: 2.5em;
   cursor: pointer;
+
 }
 
 .buttonImage:hover {
@@ -83,6 +83,11 @@ const slideOffset = ref(0)
 }
 
 .forwardButton {
-  right: 8.5%;
+  right: calc(0.5% + 2.5em);
 }
+
+@media screen and (max-width: 768px){
+
+}
+
 </style>

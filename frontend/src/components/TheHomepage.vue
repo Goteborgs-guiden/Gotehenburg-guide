@@ -52,7 +52,7 @@ function touchEndMethod(touchEvent) {
     </div>
   <p>
 
-    <a><RouterLink to="/random"><button class="ToRandQuiz">Blanda</button></RouterLink> </a>
+    <a><RouterLink style="text-decoration: none;" to="/random"><button  class="ToRandQuiz">Blanda</button></RouterLink> </a>
 
   </p>
   </body>
@@ -63,11 +63,11 @@ function touchEndMethod(touchEvent) {
 
 
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 450px) {
 
   .Trams {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding-top: 5rem;
     width: 100%;
   }
@@ -80,10 +80,11 @@ function touchEndMethod(touchEvent) {
     align-items: center;
     justify-content: space-evenly;
     height: 30rem;
+    box-sizing: border-box;
   }
   .tramSizes{
     width: 20%;
-    height: 20rem;
+    
     
   }
   #tram1 {
@@ -93,16 +94,13 @@ function touchEndMethod(touchEvent) {
   }
   #tram2{
     padding: 1rem;
-    padding-left: 2rem;
     width: 100%;
     height: 100%;
   }
   #tram3{
     padding: 1rem;
-    padding-right: 1rem;
     width: 100%;
     height: 100%;
-    padding-left: 0.5rem;
   }
 
   .MobileTrams {
@@ -141,7 +139,7 @@ function touchEndMethod(touchEvent) {
   }
 
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 449px) {
   .Trams {
     display: flex;
     justify-content: space-evenly;
@@ -159,12 +157,12 @@ function touchEndMethod(touchEvent) {
   
   }
   section.container.Mobiletrams {
-    
+
   }
 
 
   .MobileTrams {
-    width: 80%;
+  
   }
 
   .ToRandQuiz {
@@ -184,6 +182,7 @@ function touchEndMethod(touchEvent) {
     text-transform: uppercase;
     box-shadow: 0px 2px 2px 4px rgba(0, 0, 0, 0.3);
     color: #214F75;
+    text-decoration: none;
   }
   .ToRandQuiz:active {
     background-color: #406C90;
