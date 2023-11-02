@@ -120,6 +120,10 @@ const slideOffset = ref(0)
   .buttonQMedia1 {
     display: none;
   }
+
+  .buttonQMedia2 {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 600px) and (max-width: 1000px) {
@@ -158,7 +162,7 @@ const slideOffset = ref(0)
   }
 }
 
-@media screen and (min-width: 1601px) {
+@media screen and (min-width: 1600px) {
   .buttonQMedia2 {
     display: none;
   }
