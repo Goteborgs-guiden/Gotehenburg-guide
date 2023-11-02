@@ -86,7 +86,7 @@ function isLoggedIn(){
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
-            <div class="whenLoggedIn" v-if="isLoggedIn()">
+            <div class="whenLoggedIn" v-if="isLoggedIn() && !mobile">
                 <RouterLink class="navitem" style="text-decoration: none;" to="/profile"><p class="user">{{userInfo.username}}</p></RouterLink>
                 <button class="button" @click="logout()">Logga ut</button>
     
@@ -110,7 +110,7 @@ function isLoggedIn(){
         <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
         <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
         <li><input id="search" v-model="friend" placeholder="Lägg till vän"></li>
-        <button class="button" @click="addfriend()">add</button>
+        <button id="addbutton" @click="addfriend()">+</button>
       </ul>  
       <div class="icon">
         <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{ 'icon-active': mobileNav }"></i>
@@ -123,19 +123,21 @@ function isLoggedIn(){
         <RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink>
         <RouterLink class="navitem" to="/highscore">Highscore</RouterLink>
         <RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink>
-<div v-if="isLoggedIn()">
+        <div v-if="isLoggedIn()" class="logged-in">
         <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
-        <button class="button" @click="logout()">logout</button>
-</div>
+        </div>
+        <div v-if="isLoggedIn()" class="logged-in">
+        <button class="button" @click="logout()">Logga ut</button>
+        </div>
         <div v-if="!isLoggedIn()" class="login-and-register">
               <button class="button" @click="dialogs.toggleLogin">Logga in</button>
               <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
-        <div v-else>
-          <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
-        </div>
+       
+        <div class="searchfield">
         <input id="search" v-model="friend" placeholder="Lägg till vän">
-        <button class="button" @click="addfriend()">add</button>
+        <button id="addbutton" @click="addfriend()">+</button>
+      </div>
       </ul>
       </Transition>
   </nav>
@@ -166,7 +168,6 @@ text-decoration: none;
 
 header{
     background-color: #214F75;
-    height: 6rem;
 }
 ul {
   list-style-type: none;
@@ -198,7 +199,7 @@ p{
   color: #FFF;
   margin: 0;
 }
-li .navitem:hover, .dropdown:hover {
+li .navitem:hover, .dropdown:hover, #addbutton:hover {
   background-color: #214F75;
   border-radius: .8rem;
   transition: .5s ease all;
@@ -222,7 +223,8 @@ li .navitem:hover, .dropdown:hover {
   text-align: left;
 }
 
-.dropdown-content a:hover {background-color: #406C90;}
+.dropdown-content a:hover {
+  background-color: #406C90;}
 
 .dropdown:hover .dropdown-content {
   display: block;
@@ -243,6 +245,26 @@ padding-left: 1rem;
 padding-right: 1rem;
 margin-right: 2rem;
 cursor: pointer;
+border-radius: .8rem;
+}
+#addbutton {
+  background-color: #406C90;
+  color: #FFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: Permanent Marker;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: none;
+  transition: .5s ease all;
+  cursor: pointer;
+  margin-right: 0.5em;
+  padding-right:0.5em;
+  padding-left: 0.5em;
+}
+#addbutton :hover {
+
 }
 .button:hover {
   background-color: #406C90;
@@ -343,6 +365,7 @@ transform: rotate(180deg);
   background-color:#406C90;
   padding-bottom: 1rem;
   border-radius: .8rem;
+  z-index: 10;
 }
 .dropdownitem {
   font-family: permanent marker;
@@ -357,10 +380,35 @@ transform: rotate(180deg);
   flex-direction: column;
   gap: 10px;
 }
+.logged-in {
+  display: flex;
+  flex-direction: column;
+}
 .button {
 background-color: #406C90;
 padding-left: 1.5rem;
 
+}
+#search {
+border-radius: 1rem;
+border: 0.2rem solid #214F75;
+background: #E8F3FD;
+color: #214F75;
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+font-family: Newsreader;
+font-size: 1.2rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+display: flex;
+padding-left: 5%;
+width: 60%;
+height: 1.5rem;
+margin-left: 1rem;
+}
+.searchfield {
+  display: flex;
+  flex-direction: row;
 }
 }
 </style>
