@@ -145,7 +145,6 @@ function getLocationHighscore() {
 }
 .item3 {
   grid-area: highs;
-
   align-self: center;
 }
 
@@ -251,7 +250,7 @@ select,
   box-shadow: 0px 4px 4px 3px rgba(64, 108, 144, 0.5);
   color: #fff;
   font-family: 'Newsreader';
-  font-size: 1.8125rem;
+  font-size: 1.8rem;
 }
 
 .redo:hover {
@@ -396,7 +395,7 @@ td {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin-top: 10%;
+    margin-top: 2%;
   }
 
   .item2 {
@@ -449,9 +448,6 @@ td {
 }
 
 @media screen and (min-width: 1601px) {
-  .grid-container {
-    margin-top: 4%;
-  }
   .newQuiz {
     display: none;
   }
