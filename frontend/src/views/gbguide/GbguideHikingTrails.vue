@@ -255,7 +255,7 @@ const toggleAccordion = (index) => {
     </div>
   </main>
 </template>
-<style>
+<style scoped>
 .imageBox {
   width: 97%;
   margin-left: auto;

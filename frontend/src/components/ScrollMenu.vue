@@ -120,11 +120,9 @@ const slideOffset = ref(0)
   .buttonQMedia1 {
     display: none;
   }
-
 }
 
 @media screen and (min-width: 600px) and (max-width: 1000px) {
-
   .scrollContainer {
     width: 22.5em;
   }
@@ -134,6 +132,10 @@ const slideOffset = ref(0)
   }
 
   .buttonQMedia1 {
+    display: none;
+  }
+
+  .buttonQMedia3 {
     display: none;
   }
 }
@@ -157,5 +159,12 @@ const slideOffset = ref(0)
 }
 
 @media screen and (min-width: 1601px) {
+  .buttonQMedia2 {
+    display: none;
+  }
+
+  .buttonQMedia3 {
+    display: none;
+  }
 }
 </style>

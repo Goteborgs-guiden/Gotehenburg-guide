@@ -263,37 +263,39 @@ const toggleAccordion = (index) => {
     </div>
   </main>
 </template>
-<style>
-.gridCont {
-  display: grid;
-  grid-template-rows: repeat(7, 1fr);
+<style scoped>
+.grid-cont {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .imageBox {
-  width: 97%;
+  background-color: #214f75;
+  width: 98%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1%;
 }
 
+.headerImage {
+  display: block;
+  width: 100%;
+  max-width: 1000ch;
+  opacity: 0.5;
+}
+
 .titleBox {
-  position: relative;
-  font-family: 'Newsreader';
-  color: white;
   position: absolute;
   top: 50%;
-  left: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .title {
   font-size: 8em;
-  margin-bottom: 0;
-}
-
-.headerImage {
-  display: block;
-  width: 100%;
-  height: 100%;
+  font-family: 'Newsreader';
+  color: white;
 }
 
 .artBoxClosed {
