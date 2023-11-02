@@ -6,44 +6,40 @@ let alternatives = ref([''])
 let correctData = ref('')
 let onGoingQuiz = true
 let points = ref(0)
-let allowsubmit = true
+let allowsubmit = ref(true)
 const questionImage = ref('')
 import { useHighscore } from '../stores/highscore'
 const highscore = useHighscore()
+const correctAnswer = ref();
+const userGuess = ref('');
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function sendAnswer(input, id, answerid) {
-  if (allowsubmit) {
-    console.log(input)
-    fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
-      method: 'POST',
-      body: JSON.stringify({ answer: input }),
-      headers: {
-        'Content-type': 'application/json'
+  userGuess.value = input
+  if(allowsubmit.value){
+  fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
+    method: 'GET'
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      console.log('response from server:', data)
+      
+      correctAnswer.value = data 
+      console.log(correctAnswer.value)
+      if (input === correctAnswer.value) {
+        console.log('answerid=', answerid)
+        document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
+        points.value++
+      } else {
+        console.log('answerid=', answerid)
+        document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
+        
       }
+      allowsubmit.value = false;
+      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'; allowsubmit.value=true}, 2000);
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('response from server:', data)
-        correctData.value = data
-        if (data) {
-          console.log('answerid=', answerid)
-          document.getElementById('btn' + answerid).style.border = '2px solid green'
-          points.value++
-        } else {
-          console.log('answerid=', answerid)
-          document.getElementById('btn' + answerid).style.border = '2px solid red'
-        }
-        allowsubmit = false
-        setTimeout(function () {
-          getQuestion(currentQuestion.value++)
-          getQuestion(currentQuestion.value)
-          document.getElementById('btn' + answerid).style.border = ''
-          allowsubmit = true
-        }, 1000)
-      })
   }
 }
 function getQuestion(id) {
@@ -106,8 +102,10 @@ function setHighscore(points) {
     <from> </from>
   </div>
   <div v-if="onGoingQuiz">
-    <p v-if="correctData">Rätt svar!</p>
-    <p v-if="correctData === false">FEL SVAR!</p>
+    <div class="feedback" v-if="!allowsubmit">
+      <p id="correct" v-if="correctAnswer === userGuess">RÄTT!</p>
+      <p id="wrong" v-if="correctAnswer != userGuess">FEL! rätt svar:  {{ correctAnswer }}</p>
+    </div>
   </div>
   <div v-if="currentQuestion >= 6">
     <p v-if="points > 3">Snyggt byggt, fräsig kärra!</p>
@@ -119,6 +117,22 @@ function setHighscore(points) {
   </div>
 </template>
 <style scoped>
+.feedback{
+  color: #000;
+font-family: Newsreader;
+font-size: 2rem;
+font-style: normal;
+font-weight: 400;
+text-align: center;
+
+
+}
+.feedback #correct {
+  color:#2ce03e
+}
+.feedback #wrong {
+  color: #f00;
+}
 .item1 {
   grid-area: image;
 }
