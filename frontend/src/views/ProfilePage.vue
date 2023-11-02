@@ -426,6 +426,15 @@ function getLocationHighscore() {
     bottom: 1rem;
   }
 
+  #edit-button:hover{
+    background: #214F75;
+    border-color: white;
+  }
+
+  #edit-button:active{
+    transform: scale(.96);
+  }
+
   #quiz-friends {
     display: flex;
     flex-direction: row;
@@ -686,8 +695,8 @@ function getLocationHighscore() {
   }
 
   .highscore {
-    width: 57.5rem;
-    height: 55.0625rem;
+    width: 23.5em;
+    height: 31.063em;
     padding: 2%;
     margin-top: 2rem;
     border-radius: 0.75rem;
@@ -808,6 +817,11 @@ function getLocationHighscore() {
     bottom: 1rem;
   }
 
+  #edit-button:active{
+    transform: scale(.96);
+  }
+
+
   #quiz-friends {
     display: flex;
     flex-direction: column;
@@ -889,12 +903,12 @@ function getLocationHighscore() {
     border: 4px solid #214F75;
     background: rgba(232, 243, 253, 0.91);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    width: 50%;
-    margin-right: 1rem;
-    margin-left: 0.5rem;
+    width: 87%;
+    margin: 1em 1em;
     height: 30%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 20em;
   }
 
   .friend {
@@ -928,8 +942,8 @@ function getLocationHighscore() {
   .selectForForm {
     border: 4px solid #214F75;
     border-radius: 22px;
-    margin: 50px 250px;
-    background: red;
+    margin: 6.8em 20em;
+    background: rgba(232, 243, 253, 0.9);
 
   }
 
@@ -942,7 +956,7 @@ function getLocationHighscore() {
 
   .item4 {
     margin: auto auto;
-    margin-bottom: 300px;
+    margin-bottom: 5em
   }
 
 
