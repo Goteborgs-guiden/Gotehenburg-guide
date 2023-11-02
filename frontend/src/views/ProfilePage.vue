@@ -84,7 +84,9 @@ function getLocationHighscore() {
         <h1 id="username">{{ userInfo.username }}</h1>
         <img :src="profileImage"/>
       </div>
+
       <div id="profile-info">
+
         <table id="shorts">
           <tr>
             <td class="info">Namn:</td>
@@ -99,6 +101,8 @@ function getLocationHighscore() {
             <td class="answer">{{ userInfo.district }}</td>
           </tr>
         </table>
+      </div>
+      <div id="AboutMe">
         <table id="about">
           <tr class="info">
             <td>Om mig:</td>
@@ -112,6 +116,7 @@ function getLocationHighscore() {
         </a>
       </div>
     </div>
+
     <div id="quiz-friends">
       <div id="quiz-scores">
         <ul class="quiz">
@@ -339,11 +344,12 @@ function getLocationHighscore() {
     background: url(<path-to-image>), lightgray 50%;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     height: 15em;
-    width: 15em;
+    width: 27em;
     margin: 1em;
     display: flex;
     align-items: end;
     justify-content: center;
+    margin-left: 4em;
 
   }
 
@@ -361,6 +367,17 @@ function getLocationHighscore() {
   }
 
   #profile-info {
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    margin-left: 10em;
+    width: 24%;
+    position: relative;
+    height: 10rem;
+  }
+
+  #AboutMe{
     border-radius: 25px;
     border: 4px solid rgba(33, 79, 117, 0.61);
     background: #E8F3FD;
@@ -753,13 +770,23 @@ function getLocationHighscore() {
 
   #profile-info {
     border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    width: 70%;
+    position: relative;
+    height: 10rem;
+  }
+
+  #AboutMe{
+    border-radius: 25px;
     border: 4px solid rgba(33, 79, 117, 0.61);
     background: #E8F3FD;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: row;
     margin: 1rem;
-    width: 70%;
+    width: 90%;
     position: relative;
     height: 10rem;
   }
