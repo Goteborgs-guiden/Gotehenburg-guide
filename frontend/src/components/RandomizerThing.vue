@@ -12,6 +12,8 @@ let randomID = ref(Math.floor(Math.random() * 5) + 1)
 let randomQuiz = ref(Math.floor(Math.random() * 3) + 1)
 let takenQuestions = []
 const questionImage = ref('')
+const correctAnswer = ref()
+const userGuess = ref('')
 
 onMounted(() => {
   randomizeQuestion()
@@ -19,14 +21,14 @@ onMounted(() => {
 function randomizeQuestion() {
   randomID.value = Math.floor(Math.random() * 5) + 1
   randomQuiz.value = Math.floor(Math.random() * 3) + 1
-  let questionString = `${randomID.value}-${randomQuiz.value}`;
+  let questionString = `${randomID.value}-${randomQuiz.value}`
 
   while (takenQuestions.includes(questionString)) {
-    randomID.value = Math.floor(Math.random() * 5) + 1;
-    randomQuiz.value = Math.floor(Math.random() * 3) + 1;
-    questionString = `${randomID.value}-${randomQuiz.value}`;
+    randomID.value = Math.floor(Math.random() * 5) + 1
+    randomQuiz.value = Math.floor(Math.random() * 3) + 1
+    questionString = `${randomID.value}-${randomQuiz.value}`
   }
-  takenQuestions.push(questionString);
+  takenQuestions.push(questionString)
   if (randomQuiz.value === 1) {
     getBlankQuestion(randomID.value)
   }
@@ -50,54 +52,62 @@ function getBlankQuestion(id) {
   } else onGoingQuiz = false
 }
 function sendBlankAnswer(input, id) {
+  input = input.toLowerCase()
+  console.log("input",input)
   if (allowsubmit.value) {
-    fetch('http://127.0.0.1:3000/quiz/fillblank/' + id, {
-      method: 'POST',
-      body: JSON.stringify({ answer: input }),
-      headers: {
-        'Content-type': 'application/json'
-      }
+    fetch('http://127.0.0.1:3000/quiz/fillblankanswer/' + id, {
+      method: 'GET'
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => {
-        correctData.value = data
-        if (data) {
+        console.log('response from server:', data)
+        correctAnswer.value = data
+        if (input === correctAnswer.value) {
           points.value++
+          correctData.value = false
+          console.log('correct')
+        } else {
+          correctData.value = true
+          console.log('wrong')
         }
+        this.answer = ''
         allowsubmit.value = false
         setTimeout(function () {
-          currentQuestion.value++
+          getBlankQuestion(currentQuestion.value++)
           randomizeQuestion()
           allowsubmit.value = true
-        }, 1000)
+        }, 1500)
       })
   }
 }
 function sendMapAnswer(input, id, answerid) {
+  console.log('input=', input, 'id=', id, 'answerid=', answerid)
+  userGuess.value = input
   if (allowsubmit.value) {
     fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
-      method: 'POST',
-      body: JSON.stringify({ answer: input }),
-      headers: {
-        'Content-type': 'application/json'
-      }
+      method: 'GET'
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => {
-        correctData.value = data
-        if (data) {
-          document.getElementById('btn' + answerid).style.border = '2px solid green'
+        console.log('response from server:', data)
+
+        correctAnswer.value = data
+        console.log(correctAnswer.value)
+        if (input === correctAnswer.value) {
+          console.log('answerid=', answerid)
+          document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
           points.value++
         } else {
-          document.getElementById('btn' + answerid).style.border = '2px solid red'
+          console.log('answerid=', answerid)
+          document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
         }
         allowsubmit.value = false
         setTimeout(function () {
-          currentQuestion.value++
+          getMapQuestion(currentQuestion.value++)
           randomizeQuestion()
-          document.getElementById('btn' + answerid).style.border = ''
+          document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'
           allowsubmit.value = true
-        }, 1000)
+        }, 2000)
       })
   }
 }
@@ -116,30 +126,32 @@ function getMapQuestion(id) {
   } else onGoingQuiz = false
 }
 function sendABCAnswer(input, id, answerid) {
+  userGuess.value = input
   if (allowsubmit.value) {
     fetch('http://127.0.0.1:3000/quiz/abcanswer/' + id, {
-      method: 'POST',
-      body: JSON.stringify({ answer: input }),
-      headers: {
-        'Content-type': 'application/json'
-      }
+      method: 'GET'
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => {
-        correctData.value = data
-        if (data) {
+        console.log('response from server:', data)
+
+        correctAnswer.value = data
+        console.log(correctAnswer.value)
+        if (input === correctAnswer.value) {
+          console.log('answerid=', answerid)
           document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
           points.value++
         } else {
+          console.log('answerid=', answerid)
           document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
         }
         allowsubmit.value = false
         setTimeout(function () {
-          currentQuestion.value++
+          getABCQuestion(currentQuestion.value++)
           randomizeQuestion()
           document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'
           allowsubmit.value = true
-        }, 1000)
+        }, 2000)
       })
   }
 }
@@ -161,22 +173,27 @@ function getABCQuestion(id) {
   <main>
     <div v-if="onGoingQuiz">
       <div v-if="randomQuiz === 1">
-        <article class="geografikack">
-          <div class="img"><a>Place the Image here!!!</a></div>
+        <article class="ordvitsknok">
+          <img :src="questionImage" />
           <div class="question">
-            <p>
-              {{ question }}
-            </p>
+            <p>{{ question }}</p>
             <div class="showAnswer" v-if="!allowsubmit">
-              <p id="correctAnswer" v-if="correctData">Rätt svar</p>
-              <p id="wrongAnswer" v-else>Fel svar</p>
+              <p id="correctAnswer" v-if="!correctData">Rätt svar</p>
+              <p id="wrongAnswer" v-else>Fel svar, rätt svar är: {{ correctAnswer }}</p>
             </div>
             <div class="hideInputAndButton" v-if="allowsubmit">
               <div class="inputform">
-                <input class="input" placeholder="Svara här" v-model="answer" type="text" />
+                <input
+                  @keydown.enter="sendAnswer(answer, currentQuestion)"
+                  class="input"
+                  placeholder="Svara här"
+                  v-model="answer"
+                  type="text"
+                  @input="handleInput"
+                />
               </div>
               <div class="buttoncss">
-                <button @click="sendBlankAnswer(answer, randomID)">></button>
+                <button @input="handleInput" @click="sendBlankAnswer(answer, randomID)">></button>
               </div>
             </div>
           </div>
@@ -187,37 +204,39 @@ function getABCQuestion(id) {
           {{ question }}
         </div>
         <div class="selection">
-          <button class="btn" id="btn0" @click="sendABCAnswer(alternatives[0], randomID, 0)">
-            {{ alternatives[0] }}
-          </button>
-          <button class="btn" id="btn1" @click="sendABCAnswer(alternatives[1], randomID, 1)">
-            {{ alternatives[1] }}
-          </button>
-          <button class="btn" id="btn2" @click="sendABCAnswer(alternatives[2], randomID, 2)">
-            {{ alternatives[2] }}
-          </button>
-          <button class="btn" id="btn3" @click="sendABCAnswer(alternatives[3], randomID, 3)">
-            {{ alternatives[3] }}
+          <button
+            v-for="(alternative, index) in alternatives"
+            :key="index"
+            class="btn"
+            :id="'btn' + index"
+            @click="sendABCAnswer(alternative, randomID, index)"
+          >
+            {{ alternative }}
           </button>
         </div>
       </div>
       <div v-if="randomQuiz === 2">
-        <p>{{ question }}</p>
         <div class="selection">
           <from>
-            <button id="btn0" @click="sendMapAnswer(alternatives[0], randomID, 0)">
-              {{ alternatives[0] }}
-            </button>
-            <button id="btn1" @click="sendMapAnswer(alternatives[1], randomID, 1)">
-              {{ alternatives[1] }}
-            </button>
-            <button id="btn2" @click="sendMapAnswer(alternatives[2], randomID, 2)">
-              {{ alternatives[2] }}
-            </button>
-            <button id="btn3" @click="sendMapAnswer(alternatives[3], randomID, 3)">
-              {{ alternatives[3] }}
-            </button>
+            <div class="question">{{ question }}</div>
+            <div class="selection">
+              <button
+                v-for="(alternative, index) in alternatives"
+                :key="index"
+                class="btn"
+                :id="'btn' + index"
+                @click="sendMapAnswer(alternative, randomID, index)"
+              >
+                {{ alternative }}
+              </button>
+            </div>
           </from>
+        </div>
+      </div>
+      <div v-if="onGoingQuiz && randomQuiz != 1">
+        <div class="feedback" v-if="!allowsubmit">
+          <p id="correct" v-if="correctAnswer === userGuess">RÄTT!</p>
+          <p id="wrong" v-if="correctAnswer != userGuess">FEL! rätt svar: {{ correctAnswer }}</p>
         </div>
       </div>
     </div>
@@ -228,6 +247,20 @@ function getABCQuestion(id) {
   </main>
 </template>
 <style scoped>
+.feedback {
+  color: #000;
+  font-family: Newsreader;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+}
+.feedback #correct {
+  color: #2ce03e;
+}
+.feedback #wrong {
+  color: #f00;
+}
 .btn {
   width: 70%;
   height: 3.5rem;
