@@ -18,7 +18,6 @@ onMounted(() => {
 function sendAnswer(input, id, answerid) {
   userGuess.value = input
   if(allowsubmit.value){
-  console.log('röv',input)
   fetch('http://127.0.0.1:3000/quiz/abcanswer/' + id, {
     method: 'GET'
   })
@@ -77,22 +76,18 @@ function setHighscore(points) {
     <div v-if="onGoingQuiz" id="abc-quiz">
       <div id="question">
         {{ question }}
+        </div>
+        <div class="selection">
+            <button
+              v-for="(alternative, index) in alternatives"
+              :key="index"
+              class="btn"
+              :id="'btn' + index"
+              @click="sendAnswer(alternative, currentQuestion, index)"
+            >
+              {{ alternative }}
+            </button>
           </div>
-      <div class="selection">
-          <button class="btn" id="btn0" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
-            {{ alternatives[0] }}
-          </button>
-          <button class="btn" id="btn1" @click="sendAnswer(alternatives[1], currentQuestion, 1)">
-            {{ alternatives[1] }}
-          </button>
-          <button class="btn" id="btn2" @click="sendAnswer(alternatives[2], currentQuestion, 2)">
-            {{ alternatives[2] }}
-          </button>
-          <button class="btn" id="btn3" @click="sendAnswer(alternatives[3], currentQuestion, 3)">
-            {{ alternatives[3] }}
-          </button>
-        
-      </div>
     </div>
    
   <div>
