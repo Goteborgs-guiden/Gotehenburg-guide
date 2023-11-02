@@ -31,4 +31,16 @@ const dialogs = useDialogStore()
     top:30%;
     right: 25%;
 }
+
+@media screen and (max-width: 768px) {
+    .popup-background {
+    position: absolute;
+    background: rgba(112, 38, 38, 0.5);
+    margin: auto;
+    top: 2%;
+    right: 0;
+    width: 100;
+    
+}
+}
 </style>
