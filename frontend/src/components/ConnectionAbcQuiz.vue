@@ -11,6 +11,8 @@ import { useHighscore } from '../stores/highscore';
 const highscore = useHighscore();
 const correctAnswer = ref();
 const userGuess = ref('');
+import { useRouter } from 'vue-router'
+const router = useRouter();
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
@@ -99,14 +101,10 @@ function setHighscore(points) {
   </div>
   </div>
   <div v-if="currentQuestion >= 6">
-    <p v-if="points > 3">Snyggt byggt, fräsig kärra!</p>
-    <p v-else>Rackarns rabarber det där gick inte så bra!</p>
-    <p>{{ points }} Poäng</p>
-    <div v-if="setHighscore(points)">
-    </div>
-    <div v-if="highscore.setScore(points)">
-    </div>
-    <div v-if="highscore.setLastQuiz('abc')"></div>
+    {{ setHighscore(points) }}
+    {{ highscore.setScore(points) }}
+    {{ highscore.setLastQuiz('abc') }}
+    {{ router.push("/highscore") }}
 
   </div>
   </div>
