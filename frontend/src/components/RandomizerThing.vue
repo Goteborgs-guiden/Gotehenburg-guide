@@ -47,6 +47,7 @@ function getBlankQuestion(id) {
     })
       .then((response) => response.json())
       .then((data) => {
+        questionImage.value = data.img
         question.value = data.question
       })
   } else onGoingQuiz = false
@@ -119,9 +120,9 @@ function getMapQuestion(id) {
     })
       .then((response) => response.json())
       .then((data) => {
-        questionImage.value = data.img
         question.value = data.question
         alternatives.value = data.alternatives.split(',')
+        questionImage.value = data.img
       })
   } else onGoingQuiz = false
 }
@@ -216,6 +217,7 @@ function getABCQuestion(id) {
         </div>
       </div>
       <div v-if="randomQuiz === 2">
+        <img :src="questionImage"/>
         <div class="selection">
           <from>
             <div class="question">{{ question }}</div>
