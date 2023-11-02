@@ -13,22 +13,21 @@ const highscore = useHighscore()
 const correctAnswer = ref()
 const userGuess = ref('')
 function getQuestion(id) {
-    if (id <= 5) {
-      correctData.value = ''
-      fetch('http://127.0.0.1:3000/quiz/locationQuestion/' + id, {
-        method: 'GET'
+  if (id <= 5) {
+    correctData.value = ''
+    fetch('http://127.0.0.1:3000/quiz/locationQuestion/' + id, {
+      method: 'GET'
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('response from server:', data)
+        questionImage.value = data.img
+        abcdata.value = data.question
+        alternatives.value = data.alternatives.split(',')
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('response from server:', data)
-          questionImage.value = data.img
-          abcdata.value = data.question
-          alternatives.value = data.alternatives.split(',')
-        })
-    } else onGoingQuiz = false
-  }
+  } else onGoingQuiz = false
+}
 onMounted(() => {
-  
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function sendAnswer(input, id, answerid) {
@@ -60,7 +59,7 @@ function sendAnswer(input, id, answerid) {
         }, 2000)
       })
   }
-  
+
   function setHighscore(points) {
     fetch('http://127.0.0.1:3000/highscore/location', {
       method: 'POST',
@@ -87,26 +86,26 @@ function sendAnswer(input, id, answerid) {
     <div v-if="onGoingQuiz" id="abc-quiz" class="selection">
       <form>
         <div class="question">{{ abcdata }}</div>
+        <div v-if="onGoingQuiz">
+          <div class="feedback" >
+            <p id="correct" v-if="correctAnswer === userGuess && !allowsubmit">RÄTT!</p>
+            <p id="wrong" v-if="correctAnswer != userGuess && !allowsubmit">FEL! rätt svar: {{ correctAnswer }}</p>
+          </div>
+        </div>
         <div class="buttonContainer">
-        <button
-          v-for="(alternative, index) in alternatives"
-          :key="index"
-          class="btn"
-          @click.prevent="sendAnswer(alternative, currentQuestion, index)"
-        >
-          {{ alternative }}
-        </button>
-      </div>
+          <button
+            v-for="(alternative, index) in alternatives"
+            :key="index"
+            class="btn"
+            @click.prevent="sendAnswer(alternative, currentQuestion, index)"
+          >
+            {{ alternative }}
+          </button>
+        </div>
       </form>
     </div>
   </div>
 
-  <div v-if="onGoingQuiz">
-    <div class="feedback" v-if="!allowsubmit">
-      <p id="correct" v-if="correctAnswer === userGuess">RÄTT!</p>
-      <p id="wrong" v-if="correctAnswer != userGuess">FEL! rätt svar: {{ correctAnswer }}</p>
-    </div>
-  </div>
   <div v-if="currentQuestion >= 6">
     <p v-if="points > 3">Snyggt byggt, fräsig kärra!</p>
     <p v-else>Rackarns rabarber det där gick inte så bra!</p>
@@ -118,18 +117,16 @@ function sendAnswer(input, id, answerid) {
 </template>
 <style scoped>
 .feedback {
-  color: #000;
-  font-family: Newsreader;
-  font-size: 2rem;
+  color: #ffffff;
+  font-family: 'Newsreader';
+  font-size: 1.5em;
   font-style: normal;
   font-weight: 400;
   text-align: center;
+  height:27px;
 }
-.feedback #correct {
-  color: #2ce03e;
-}
-.feedback #wrong {
-  color: #f00;
+.feedback p{
+  margin:0;
 }
 .item1 {
   grid-area: image;
@@ -165,7 +162,6 @@ function sendAnswer(input, id, answerid) {
   border-radius: 0.8rem;
   margin-bottom: 5rem;
   box-shadow: 1px 1px 4px 0px;
-  
 }
 .btn {
   width: 43%;
@@ -178,7 +174,6 @@ function sendAnswer(input, id, answerid) {
   margin-bottom: 1em;
   font-family: 'Newsreader';
   font-size: large;
-  
 }
 
 .item3 {
@@ -196,9 +191,8 @@ function sendAnswer(input, id, answerid) {
   font-family: 'Newsreader';
   font-size: 1.5rem;
   width: 100%;
-  
 }
-.buttonContainer{
+.buttonContainer {
   display: flex;
   flex-direction: row;
   gap: 5%;
@@ -213,15 +207,15 @@ img {
   box-shadow: 1px 1px 4px 0px;
 }
 @media screen and (max-width: 680px) {
-  .selection{
+  .selection {
     align-items: center;
-    padding:1em;
+    padding: 1em;
   }
- .btn{
-  width: 100%;
- }
- img {
-  width: 80%;
- }
+  .btn {
+    width: 100%;
+  }
+  img {
+    width: 80%;
+  }
 }
 </style>
