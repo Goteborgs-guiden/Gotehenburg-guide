@@ -20,7 +20,7 @@ router.get("/", authenticateToken, (req, res) => {
   });
 });
 router.post("/", authenticateToken, (req, res) => {
-  if (req.body.first_name !== undefined) {
+  if (req.body.first_name !== undefined && req.body.first_name !== "") {
     sql =
       "UPDATE account SET first_name = '" +
       req.body.first_name +
@@ -29,7 +29,7 @@ router.post("/", authenticateToken, (req, res) => {
       "'";
     database.con.query(sql, (err, result) => {});
   }
-  if (req.body.surname !== undefined) {
+  if (req.body.surname !== undefined && req.body.surname !== "") {
     sql =
       "UPDATE account SET surname = '" +
       req.body.surname +
@@ -38,7 +38,7 @@ router.post("/", authenticateToken, (req, res) => {
       "'";
     database.con.query(sql, (err, result) => {});
   }
-  if (req.body.img !== undefined) {
+  if (req.body.img !== undefined && req.body.img !== "") {
     sql =
       "UPDATE account SET img = '" +
       req.body.img +
@@ -47,7 +47,7 @@ router.post("/", authenticateToken, (req, res) => {
       "'";
     database.con.query(sql, (err, result) => {});
   }
-  if (req.body.district !== undefined) {
+  if (req.body.district !== undefined && req.body.district !== "") {
     sql =
       "UPDATE account SET district = '" +
       req.body.district +
@@ -56,7 +56,7 @@ router.post("/", authenticateToken, (req, res) => {
       "'";
     database.con.query(sql, (err, result) => {});
   }
-  if (req.body.date_of_birth !== undefined) {
+  if (req.body.date_of_birth !== undefined && req.body.date_of_birth !== "") {
     sql =
       "UPDATE account SET date_of_birth = '" +
       req.body.date_of_birth +
@@ -65,7 +65,7 @@ router.post("/", authenticateToken, (req, res) => {
       "'";
     database.con.query(sql, (err, result) => {});
   }
-  if (req.body.about !== undefined) {
+  if (req.body.about !== undefined && req.body.about !== "") {
     sql =
       "UPDATE account SET about = '" +
       req.body.about +

@@ -2,41 +2,34 @@
 import { ref } from 'vue'
 import { useDialogStore } from '../stores/dialog'
 const dialogs = useDialogStore()
-let username = ref('')
-let password = ref('')
-let password2 = ref('')
-let email = ref('')
-const regexForEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-const regexForPassword =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,12}$/;
-function register() {
-  if (regexForEmail.test(email.value) && regexForPassword.test(password.value) && regexForPassword.test(password2.value) && password.value === password2.value){
+const f_name = ref('')
+const l_name = ref('')
+const district = ref('')
+const DOB = ref('')
+const about = ref('')
+function edit() {
   const data = {
-    username: username.value,
-    password: password.value,
-    pass2: password2.value,
-    email: email.value
+    first_name: f_name.value,
+    surname: l_name.value,
+    district: district.value,
+    date_of_birth: DOB.value,
+    about: about.value
   }
   console.log(data)
-  fetch('http://127.0.0.1:3000/register', {
+  fetch('http://127.0.0.1:3000/user', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
-      'Content-type': 'application/json'
+      'Content-type': 'application/json',
+      'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
     }
   })
     .then((response) => response.json())
     .then((data) => {
       console.log('response from server:', data)
     })
-    dialogs.toggleRegister()
-    alert("Registration completed successfully")
-    return true;
-  }else {
-    alert("The email can't have any special character in it."+ "\n" +
-        "The password needs a minimum of 8 characters and maximum 12 characters, " +
-        "at least one uppercase letter, one lowercase letter and one number."+"\n"+
-        "Both passwords must be the same")
-  }
+    dialogs.toggleEdit()
+    location.reload();
 }
 </script>
 <template>
@@ -48,21 +41,21 @@ function register() {
     <div class="wrapper">
       <form>
         <div class="close-box">
-          <label class="register">Registrera dig:</label>
-          <img class="close" src="/symbols/navclose.svg" @click="dialogs.toggleRegister"/>
+          <label class="register">Redigera dig:</label>
+          <img class="close" src="/symbols/navclose.svg" @click="dialogs.toggleEdit"/>
         </div>
-        <label class="inputLabel">mailadress:</label>
-        <input class="inputField" type="text" v-model="email" placeholder="mailadress" />
-        <label class="inputLabel">användarnamn:</label>
-        <input class="inputField" type="text" v-model="username" placeholder="användarnamn" />
-        <label class="inputLabel">lösenord:</label>
-        <input class="inputField" type="password" v-model="password" placeholder="lösenord" />
-        <p class="password-info">(8-12 tecken, A-Z, minst ett specialtecken)</p>
-        <label class="inputLabel">upprepa lösenord:</label>
-        <input class="inputField" type="password" v-model="password2" placeholder="upprepa lösenord" />
-
+        <label class="inputLabel">förnamn:</label>
+        <input class="inputField" type="text" v-model="f_name" placeholder="Förnamn" />
+        <label class="inputLabel">efternamn:</label>
+        <input class="inputField" type="text" v-model="l_name" placeholder="Efternamn" />
+        <label class="inputLabel">stadsdel:</label>
+        <input class="inputField" type="text" v-model="district" placeholder="Stadsdel" />
+        <label class="inputLabel">födelsedatum:</label>
+        <input class="inputField" type="date" v-model="DOB"/>
+        <label class="inputLabel">Om mig:</label>
+        <input class="inputField" type="text" v-model="about" placeholder="Om mig" />
         <div class="button-wrapper">
-          <input class="button" type="submit" value="Registrera" @click.prevent="register()" />
+          <input class="button" type="submit" value="Registrera" @click.prevent="edit()" />
         </div>
       </form>
     </div>
@@ -71,6 +64,7 @@ function register() {
 <style scoped>
 .wrapper {
   width: 28em;
+  left: 50%;
 }
 
 form {

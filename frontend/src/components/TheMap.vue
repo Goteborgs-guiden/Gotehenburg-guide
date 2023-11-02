@@ -147,6 +147,7 @@ function setHighscore(points) {
 .item1 {
   justify-self: center;
   margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .item2 {
@@ -159,6 +160,7 @@ function setHighscore(points) {
   background-color: rgba(64, 108, 144, 0.9);
   border-radius: 0.8rem;
   margin-bottom: 5rem;
+  box-shadow: 1px 1px 4px 0px;
 }
 #btn0 {
   width: 23.25rem;
@@ -208,5 +210,11 @@ function setHighscore(points) {
   font-family: 'Newsreader';
   font-size: 1.5rem;
 
+}
+img {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  width: 100%;
+  height: 90%;
 }
 </style>

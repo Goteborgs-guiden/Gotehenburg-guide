@@ -7,19 +7,29 @@ const mobile = ref()
 const mobileNav = ref()
 const windowWidth = ref()
 const dialogs = useDialogStore()
-const userInfo = ref('')
-const isLoggedin = ref(false)
+const userInfo = ref('');
+const friend = ref('');
 onMounted(() => {
   getInfo()
 })
 window.addEventListener('resize', checkScreen)
 checkScreen()
 function getInfo() {
-  fetch('http://127.0.0.1:3000/user', {
-    method: 'GET',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: 'BEARER ' + localStorage.getItem('accessToken')
+    fetch('http://127.0.0.1:3000/user', {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        userInfo.value = data;
+        console.log('response from server:', data)
+      })
+    }
+    function toggleMobileNav(){
+      mobileNav.value = !mobileNav.value;
     }
   })
     .then((response) => response.json())
@@ -51,6 +61,36 @@ function logout() {
   localStorage.removeItem('time')
   location.reload()
 }
+function addfriend(){
+  console.log("friend",friend.value)
+  fetch('http://127.0.0.1:3000/user/friend', {
+    method: 'POST',
+    body: JSON.stringify({friend:friend.value}),
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
+    }
+  })
+    .then((response) => {
+    if (response.status === 200) {
+        alert('Friend added')
+      }
+      else{
+        alert('Friend not added')
+      }})
+    .then((data) => {
+      console.log('response from server:', data)
+    })
+    friend.value = '';
+}
+function isLoggedIn(){
+  if(localStorage.getItem('accessToken')){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 </script>
 
 <template>
@@ -61,9 +101,24 @@ function logout() {
     />
     <div id="headerContent">
       <RouterLink id="GBGlogo" to="/">GBGuiden</RouterLink>
-      <div v-if="!isLoggedin && !mobile">
-        <button class="button" @click="dialogs.toggleLogin">Logga in</button>
-        <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
+          <div v-if="!isLoggedIn() && !mobile">
+                <button class="button" @click="dialogs.toggleLogin">Logga in</button>
+                <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
+            </div>
+            <div class="whenLoggedIn" v-if="isLoggedIn()">
+                <RouterLink class="navitem" style="text-decoration: none;" to="/profile"><p class="user">{{userInfo.username}}</p></RouterLink>
+                <button class="button" @click="logout()">Logga ut</button>
+    
+            </div>
+        </div>
+    <nav class="navbar">
+      <ul v-show="!mobile" class="navigation">
+      <li class="dropdown">
+      <a v-show="!mobile" class="navitem">Quiz</a>
+      <div v-show="mobile">
+        <RouterLink class="dropdownitem" to="/tjot">Tjöt</RouterLink>
+        <RouterLink class="dropdownitem" to="/ordvitsknok">Ordvitsknök</RouterLink>
+        <RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink>
       </div>
       <div v-else>
         <RouterLink class="navitem" style="text-decoration: none" to="/profile">{{
@@ -89,8 +144,9 @@ function logout() {
         </li>
         <li><RouterLink class="navitem" to="/highscore">Highscore</RouterLink></li>
         <li><RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink></li>
-        <li><input id="search" placeholder="Hitta vänner" /></li>
-      </ul>
+        <li><input id="search" v-model="friend" placeholder="Lägg till vän"></li>
+        <button class="button" @click="addfriend()">add</button>
+      </ul>  
       <div class="icon">
         <i
           @click="toggleMobileNav"
@@ -102,25 +158,25 @@ function logout() {
       <Transition name="mobile-nav">
         <ul v-show="mobileNav" class="dropdown-nav">
           <a class="navitem">Quiz</a>
-          <RouterLink class="dropdownitem" to="/tjot">Tjöt</RouterLink>
-          <RouterLink class="dropdownitem" to="/ordvitsknok">Ordvitsknök</RouterLink>
-          <RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink>
-          <RouterLink class="navitem" to="/highscore">Highscore</RouterLink>
-          <RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink>
-          <div v-if="isLoggedIn">
-            <div v-if="isLoggedIn">
-              <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
+        <RouterLink class="dropdownitem" to="/tjot">Tjöt</RouterLink>
+        <RouterLink class="dropdownitem" to="/ordvitsknok">Ordvitsknök</RouterLink>
+        <RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink>
+        <RouterLink class="navitem" to="/highscore">Highscore</RouterLink>
+        <RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink>
+<div v-if="isLoggedIn()">
+        <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
+        <button class="button" @click="logout()">logout</button>
+</div>
+        <div v-if="!isLoggedIn()" class="login-and-register">
+              <button class="button" @click="dialogs.toggleLogin">Logga in</button>
+              <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
-          </div>
-          <div v-if="!isLoggedIn" class="login-and-register">
-            <button class="button" @click="dialogs.toggleLogin">Logga in</button>
-            <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
-          </div>
-          <div v-else>
-            <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
-          </div>
-          <input id="search" placeholder="Hitta vänner" />
-        </ul>
+        <div v-else>
+          <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
+        </div>
+        <input id="search" v-model="friend" placeholder="Lägg till vän">
+        <button class="button" @click="addfriend()">add</button>
+      </ul>
       </Transition>
     </nav>
   </header>
@@ -131,14 +187,16 @@ nav {
 }
 
 #GBGlogo {
-  margin: 0;
-  color: #fff;
-  font-family: 'Permanent Marker', cursive;
-  font-size: 4rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  padding-left: 3%;
+
+margin: 0;
+color: #FFF;
+font-family: 'Permanent Marker', cursive;
+font-size: 4rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+padding-left: 3%;
+text-decoration: none;
 }
 
 #headerContent {
@@ -161,12 +219,34 @@ ul {
   padding: 0;
   height: 2.5rem;
 }
-li .navitem:hover,
-.dropdown:hover {
-  background-color: #214f75;
-  border-radius: 0.8rem;
-  transition: 0.5s ease all;
+
+.whenLoggedIn {
+  display: flex;
+  font-size: 1.2rem;
 }
+.user:hover {
+  background-color: #406C90;
+  border-radius: .8rem;
+  transition: .5s ease all;
+}
+p{
+  font-family: permanent marker;
+  padding-right: 1.5rem; 
+  padding-left: 1.5rem;
+  border-radius: .8rem;
+  transition: .5s ease all;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  color: #FFF;
+  margin: 0;
+}
+li .navitem:hover, .dropdown:hover {
+  background-color: #214F75;
+  border-radius: .8rem;
+  transition: .5s ease all;
+
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -194,19 +274,21 @@ li .navitem:hover,
 }
 
 .button {
-  background-color: #214f75;
-  color: #fff;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: Permanent Marker;
-  font-size: 1.2rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  border: none;
-  float: right;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-right: 2rem;
+
+background-color: #214F75;
+color: #FFF;
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+font-family: Permanent Marker;
+font-size: 1.2rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+border: none;
+float: right;
+padding-left: 1rem;
+padding-right: 1rem;
+margin-right: 2rem;
+cursor: pointer;
 }
 .button:hover {
   background-color: #406c90;
@@ -217,13 +299,18 @@ li .navitem:hover,
   font-family: permanent marker;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
-  border-radius: 0.8rem;
-  transition: 0.5s ease all;
+  border-radius: .8rem;
+  transition: .5s ease all;
+  color: #fff;
   border-bottom: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
 }
 .dropdownitem {
   font-family: permanent marker;
-  border-radius: 0.8rem;
+  border-radius: .8rem;
+  color: #fff;
+  text-decoration: none;
 }
 .navbar {
   background-color: #406c90;
@@ -241,25 +328,26 @@ li .navitem:hover,
 }
 
 #search {
-  border-radius: 1rem;
-  border: 0.2rem solid #214f75;
-  background: #e8f3fd;
-  color: #214f75;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: Permanent Marker;
-  font-size: 1.2rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  display: flex;
-  padding-left: 5%;
-  width: 80%;
-  height: 1.5rem;
-  margin-left: 1rem;
+border-radius: 1rem;
+border: 0.2rem solid #214F75;
+background: #E8F3FD;
+color: #214F75;
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+font-family: Newsreader;
+font-size: 1.2rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+display: flex;
+padding-left: 5%;
+width: 80%;
+height: 1.5rem;
+margin-left: 1rem;
 }
 
 ::placeholder {
-  color: #214f75;
+    color: #214F75;
+  font-family: 'Permanent marker';
 }
 
 @media screen and (max-width: 768px) {
