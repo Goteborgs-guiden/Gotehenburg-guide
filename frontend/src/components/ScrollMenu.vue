@@ -36,8 +36,20 @@ const slideOffset = ref(0)
         <img src="/svgarrows/arrowleft.svg" class="buttonImage" />
       </button>
       <button
-        class="forwardButton buttonItem"
+        class="forwardButton buttonItem buttonQMedia1"
         @click="slideOffset = Math.max(slideOffset - 350, -1050)"
+      >
+        <img src="/svgarrows/arrowright.svg" class="buttonImage" />
+      </button>
+      <button
+        class="forwardButton buttonItem buttonQMedia2"
+        @click="slideOffset = Math.max(slideOffset - 350, -2100)"
+      >
+        <img src="/svgarrows/arrowright.svg" class="buttonImage" />
+      </button>
+      <button
+        class="forwardButton buttonItem buttonQMedia3"
+        @click="slideOffset = Math.max(slideOffset - 350, -2100)"
       >
         <img src="/svgarrows/arrowright.svg" class="buttonImage" />
       </button>
@@ -93,26 +105,55 @@ const slideOffset = ref(0)
 }
 
 .forwardButton {
-  right: 2.5%;
+  right: calc(0.5% + 3em);
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
   .scrollContainer {
-  width: 22.5em;
-}
+    width: 22.5em;
+  }
 
-.container {
-  width: 33em;
-}
+  .container {
+    width: 28em;
+  }
+
+  .buttonQMedia1 {
+    display: none;
+  }
 
 }
 
 @media screen and (min-width: 600px) and (max-width: 1000px) {
 
+  .scrollContainer {
+    width: 22.5em;
+  }
+
+  .container {
+    width: 28em;
+  }
+
+  .buttonQMedia1 {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1000px) and (max-width: 1600px) {
+  .scrollContainer {
+    width: 44.5em;
+  }
 
+  .container {
+    width: 50em;
+  }
+
+  .buttonQMedia1 {
+    display: none;
+  }
+
+  .buttonQMedia3 {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1601px) {
