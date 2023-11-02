@@ -810,10 +810,11 @@ function getLocationHighscore() {
 
   #quiz-friends {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100vw;
     align-items: center;
     padding-top: 1rem;
+    margin-left: 0em;
   }
 
   .tram {
@@ -855,8 +856,8 @@ function getLocationHighscore() {
     list-style: none;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 15rem;
+    width: 51%;
+    height: 8.4em;
     padding: 0.5rem;
     margin: 0.5rem;
   }
