@@ -4,8 +4,6 @@ var con = mysql.createConnection({
     user: "developer",
     password: "password",
     database: "gbgmysql",
-    port: "3307",
-
   });
 
 function createtable(){
