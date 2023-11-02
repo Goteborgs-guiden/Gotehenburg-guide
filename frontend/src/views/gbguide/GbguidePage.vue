@@ -18,13 +18,11 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
     </div>
   </main>
 </template>
-<style>
+<style scoped>
 .grid-container {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas:
-    'header'
-    'list';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -35,7 +33,8 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
   text-align: center;
 }
 .item2 {
-  width: 100%;
+  display: flex;
+  justify-content: center;
   overflow: hidden;
   grid-area: list;
 }
@@ -51,16 +50,17 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
 .main-img {
   display: block;
   width: 100%;
+  max-width: 1000ch;
   opacity: 0.5;
 }
 
 .img-text {
-  position: absolute;
   font-family: 'Newsreader';
   color: white;
   position: absolute;
-  top: 16%;
-  left: 33%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .mainTitle {
@@ -73,40 +73,47 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
   margin-top: 0;
 }
 
-@media screen and (max-width: 600px) {
-  .grid-container {
-  display: grid;
-  grid-template-rows: 50% 50%;
-  grid-template-areas:
-    'header'
-    'list';
-    gap: 0;
+
+
+@media screen and (max-width: 600px){
+  .mainTitle {
+  font-size: 350%;
+  margin-bottom: 0;
 }
 
-  .main-img {
-    position: relative;
-    width: 100%;
-    height: 15em;
-  }
-
-  .img-backg {
-    position: relative;
-    margin-top: 0;
-  }
-
-  .img-text{
-    position: absolute;
-    text-align: center;
-    top: 0;
-    left: 18%;
-  }
-  .mainTitle {
-    font-size: 5em;
-  }
-  .mainSecTitle {
-  font-size: 2em;
+.mainSecTitle {
+  font-size: 1em;
   margin-top: 0;
 }
 
 }
+
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  .mainTitle {
+  font-size: 500%;
+  margin-bottom: 0;
+}
+
+.mainSecTitle {
+  font-size: 2em;
+  margin-top: 0;
+}
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1600px) {
+  .mainTitle {
+  font-size: 800%;
+  margin-bottom: 0;
+}
+
+.mainSecTitle {
+  font-size: 3em;
+  margin-top: 0;
+}
+}
+
+@media screen and (min-width: 1600px) {
+}
+
+
 </style>

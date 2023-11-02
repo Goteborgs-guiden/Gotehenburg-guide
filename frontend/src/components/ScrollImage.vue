@@ -19,7 +19,7 @@ const props = defineProps(['imgSrc', 'caption', 'link'])
   display: inline-block;
   position: relative;
   background-color: white;
-  margin: 1rem;
+  margin: 1em;
 }
 
 .linkImageText {

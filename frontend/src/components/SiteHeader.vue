@@ -166,7 +166,6 @@ text-decoration: none;
 
 header{
     background-color: #214F75;
-    height: 6rem;
 }
 ul {
   list-style-type: none;

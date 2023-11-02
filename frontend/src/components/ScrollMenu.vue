@@ -47,12 +47,17 @@ const slideOffset = ref(0)
 <style>
 .container {
   position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100em;
+  background-color: white;
 }
 
 .scrollContainer {
-  width: 94%;
-  margin-left: 3%;
+  width: 88.5em;
+  background: white;
   overflow: hidden;
+  height: fit-content;
 }
 
 .scrollMenu {
@@ -89,5 +94,27 @@ const slideOffset = ref(0)
 
 .forwardButton {
   right: 2.5%;
+}
+
+@media screen and (max-width: 600px){
+  .scrollContainer {
+  width: 22.5em;
+}
+
+.container {
+  width: 33em;
+}
+
+}
+
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1600px) {
+
+}
+
+@media screen and (min-width: 1601px) {
 }
 </style>
