@@ -89,19 +89,14 @@ router.get("/locationQuestion/:id", (request, response, next) => {
         }
     });   
 });
-router.post("/locationAnswer/:id",(request,response) =>{
-    const body = request.body;
+router.get("/locationAnswer/:id",(request,response) =>{
     let id = request.params.id;
     let sql = 'SELECT * FROM locationQuiz WHERE id = '+id;
     database.con.query(sql,(err, result) => {
         if(err) console.warn("error getting the data");
+        console.log(result[0].correct)
         if(result[0]?.question){
-            if(body.answer === result[0].correct){
-                response.status(200).send(true);
-            }
-            else{
-                response.status(200).send(false);
-            }
+           response.status(200).send(result[0].correct);  
         }
         else{
             response.status(404).send("site not found")
