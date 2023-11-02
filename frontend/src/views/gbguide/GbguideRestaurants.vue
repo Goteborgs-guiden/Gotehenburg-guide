@@ -392,7 +392,7 @@ const toggleAccordion = (index) => {
 
 @media screen and (min-width: 200px) and (max-width: 1000px) {
   .title {
-    font-size: 5em;
+    font-size: 4em;
   }
 
   .imageBox {
