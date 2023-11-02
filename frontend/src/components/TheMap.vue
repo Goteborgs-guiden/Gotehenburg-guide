@@ -6,39 +6,44 @@ let alternatives = ref([''])
 let correctData = ref('')
 let onGoingQuiz = true
 let points = ref(0)
-let allowsubmit = true;
+let allowsubmit = true
 const questionImage = ref('')
-import { useHighscore } from '../stores/highscore';
-const highscore = useHighscore();
+import { useHighscore } from '../stores/highscore'
+const highscore = useHighscore()
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function sendAnswer(input, id, answerid) {
-  if(allowsubmit){
-  console.log(input)
-  fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
-    method: 'POST',
-    body: JSON.stringify({ answer: input }),
-    headers: {
-      'Content-type': 'application/json'
-    }
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('response from server:', data)
-      correctData.value = data
-      if (data) {
-        console.log('answerid=', answerid)
-        document.getElementById('btn' + answerid).style.border = '2px solid green'
-        points.value++
-      } else {
-        console.log('answerid=', answerid)
-        document.getElementById('btn' + answerid).style.border = '2px solid red'
+  if (allowsubmit) {
+    console.log(input)
+    fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
+      method: 'POST',
+      body: JSON.stringify({ answer: input }),
+      headers: {
+        'Content-type': 'application/json'
       }
-      allowsubmit = false;
-      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = ''; allowsubmit=true}, 1000);
     })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('response from server:', data)
+        correctData.value = data
+        if (data) {
+          console.log('answerid=', answerid)
+          document.getElementById('btn' + answerid).style.border = '2px solid green'
+          points.value++
+        } else {
+          console.log('answerid=', answerid)
+          document.getElementById('btn' + answerid).style.border = '2px solid red'
+        }
+        allowsubmit = false
+        setTimeout(function () {
+          getQuestion(currentQuestion.value++)
+          getQuestion(currentQuestion.value)
+          document.getElementById('btn' + answerid).style.border = ''
+          allowsubmit = true
+        }, 1000)
+      })
   }
 }
 function getQuestion(id) {
@@ -53,24 +58,23 @@ function getQuestion(id) {
         questionImage.value = data.img
         abcdata.value = data.question
         alternatives.value = data.alternatives.split(',')
-        
       })
   } else onGoingQuiz = false
 }
 function setHighscore(points) {
-    fetch('http://127.0.0.1:3000/highscore/location', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'Authorization': 'BEARER ' + localStorage.getItem('accessToken')
-      },
-      body: JSON.stringify({ score: points }),
+  fetch('http://127.0.0.1:3000/highscore/location', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: 'BEARER ' + localStorage.getItem('accessToken')
+    },
+    body: JSON.stringify({ score: points })
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('response from server:', data)
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('response from server:', data)
-      })
-    }
+}
 </script>
 
 <template>
@@ -80,28 +84,24 @@ function setHighscore(points) {
     </div>
 
     <div v-if="onGoingQuiz" id="abc-quiz" class="item2">
-      
-      
       <div class="selection">
         <from>
-      
-      <div class="question" > {{ abcdata }} </div>
-          <button id="btn0" @click="sendAnswer(alternatives[0], currentQuestion, 0)">
-            {{ alternatives[0] }}
-          </button>
-          <button id="btn1" @click="sendAnswer(alternatives[1], currentQuestion, 1)">
-            {{ alternatives[1] }}
-          </button>
-          <button id="btn2" @click="sendAnswer(alternatives[2], currentQuestion, 2)">
-            {{ alternatives[2] }}
-          </button>
-          <button id="btn3" @click="sendAnswer(alternatives[3], currentQuestion, 3)">
-            {{ alternatives[3] }}
-          </button>
+          <div class="question">{{ abcdata }}</div>
+          <div class="selection">
+            <button
+              v-for="(alternative, index) in alternatives"
+              :key="index"
+              class="btn"
+              :id="'btn' + index"
+              @click="sendAnswer(alternative, currentQuestion, index)"
+            >
+              {{ alternative }}
+            </button>
+          </div>
         </from>
       </div>
     </div>
-    </div>
+  </div>
   <div>
     <from> </from>
   </div>
@@ -113,12 +113,9 @@ function setHighscore(points) {
     <p v-if="points > 3">Snyggt byggt, fräsig kärra!</p>
     <p v-else>Rackarns rabarber det där gick inte så bra!</p>
     <p>{{ points }} Poäng</p>
-    <div v-if="setHighscore(points)">
-    </div>
-    <div v-if="highscore.setScore(points)">
-    </div>
+    <div v-if="setHighscore(points)"></div>
+    <div v-if="highscore.setScore(points)"></div>
     <div v-if="highscore.setLastQuiz('map')"></div>
-    
   </div>
 </template>
 <style scoped>
@@ -147,6 +144,7 @@ function setHighscore(points) {
 .item1 {
   justify-self: center;
   margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .item2 {
@@ -159,6 +157,7 @@ function setHighscore(points) {
   background-color: rgba(64, 108, 144, 0.9);
   border-radius: 0.8rem;
   margin-bottom: 5rem;
+  box-shadow: 1px 1px 4px 0px;
 }
 #btn0 {
   width: 23.25rem;
@@ -200,13 +199,18 @@ function setHighscore(points) {
   justify-self: center;
 }
 
-.question{
+.question {
   color: white;
   padding: 0.6rem 0rem 0rem 0rem;
   border-radius: 0.8rem;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   font-family: 'Newsreader';
   font-size: 1.5rem;
-
+}
+img {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  width: 100%;
+  height: 90%;
 }
 </style>
