@@ -59,7 +59,7 @@ function sendAnswer(input, id, answerid) {
         }, 2000)
       })
   }
-
+}
   function setHighscore(points) {
     fetch('http://127.0.0.1:3000/highscore/location', {
       method: 'POST',
@@ -74,7 +74,7 @@ function sendAnswer(input, id, answerid) {
         console.log('response from server:', data)
       })
   }
-}
+
 </script>
 
 <template>
@@ -124,6 +124,7 @@ function sendAnswer(input, id, answerid) {
   font-weight: 400;
   text-align: center;
   height:27px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
 .feedback p{
   margin:0;
@@ -174,6 +175,8 @@ function sendAnswer(input, id, answerid) {
   margin-bottom: 1em;
   font-family: 'Newsreader';
   font-size: large;
+  color: #214f75;
+  letter-spacing: 1.5px;
 }
 
 .item3 {
