@@ -52,7 +52,7 @@ function touchEndMethod(touchEvent) {
     </div>
   <p>
 
-    <a><RouterLink style="text-decoration: none;" to="/random"><button  class="ToRandQuiz">Blanda</button></RouterLink> </a>
+    <a><RouterLink style="text-decoration: none;" to="/random"><button  class="ToRandQuiz">Blanda Quiz</button></RouterLink> </a>
 
   </p>
   </body>
