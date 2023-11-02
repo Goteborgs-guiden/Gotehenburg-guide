@@ -8,7 +8,6 @@ const mobileNav = ref()
 const windowWidth = ref()
 const dialogs = useDialogStore()
 const userInfo = ref('');
-const isLoggedin = ref(false);
 const friend = ref('');
 onMounted(() => {
   getInfo();
@@ -27,12 +26,6 @@ function getInfo() {
       .then((data) => {
         userInfo.value = data;
         console.log('response from server:', data)
-        if(data){
-          isLoggedin.value = true;
-        }
-        else{
-          isLoggedin.value = false;
-        }
       })
     }
     function toggleMobileNav(){
@@ -75,17 +68,25 @@ function addfriend(){
     })
     friend.value = '';
 }
+function isLoggedIn(){
+  if(localStorage.getItem('accessToken')){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 </script>
 <template>
    <header :class="{'scrolled-nav': scrollPosition}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="headerContent">
       <RouterLink id="GBGlogo" to="/">GBGuiden</RouterLink>
-          <div v-if="!isLoggedin && !mobile">
+          <div v-if="!isLoggedIn() && !mobile">
                 <button class="button" @click="dialogs.toggleLogin">Logga in</button>
                 <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
-            <div class="whenLoggedIn" v-else>
+            <div class="whenLoggedIn" v-if="isLoggedIn()">
                 <RouterLink class="navitem" style="text-decoration: none;" to="/profile"><p class="user">{{userInfo.username}}</p></RouterLink>
                 <button class="button" @click="logout()">Logga ut</button>
     
@@ -122,11 +123,11 @@ function addfriend(){
         <RouterLink class="dropdownitem" to="/geografikack">Geografikäck</RouterLink>
         <RouterLink class="navitem" to="/highscore">Highscore</RouterLink>
         <RouterLink class="navitem" to="/gbguide">GBGuide</RouterLink>
-<div v-if="isLoggedIn">
+<div v-if="isLoggedIn()">
         <RouterLink class="navitem" to="/profile">Min Profil</RouterLink>
         <button class="button" @click="logout()">logout</button>
 </div>
-        <div v-if="!isLoggedIn" class="login-and-register">
+        <div v-if="!isLoggedIn()" class="login-and-register">
               <button class="button" @click="dialogs.toggleLogin">Logga in</button>
               <button class="button" @click="dialogs.toggleRegister">Registrera dig</button>
             </div>
