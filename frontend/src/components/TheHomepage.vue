@@ -32,22 +32,27 @@ function touchEndMethod(touchEvent) {
   <body class="Main">
 
   <div class="Trams" @touchstart="touchStartMethod" @touchend="touchEndMethod">
-
-
+    <div class="tramSizes">
     <RouterLink class="RouterL" to="/tjot">
-      <img class="Tramquiz1" src="/trams/lefttramquiz.svg" alt="tramquiz1">
+      <img class="Tramquiz" id="tram1" src="/trams/lefttramquiz.svg" alt="tramquiz1">
     </RouterLink>
+    </div>
+    <div class="tramSizes">
     <RouterLink class="RouterL" to="/ordvitsknok">
-      <img class="Tramquiz2" src="/trams/middletramquiz.svg" alt="tramquiz2">
+      <img class="Tramquiz" id="tram2" src="/trams/middletramquiz.svg" alt="tramquiz2">
     </RouterLink>
-    <RouterLink class="RouterL" to="/geografikack">
-      <img class="Tramquiz3" src="/trams/righttramquiz.svg" alt="tramquiz3">
+    </div>
+    <div class="tramSizes"><RouterLink class="RouterL" to="/geografikack">
+      <img class="Tramquiz" id="tram3" src="/trams/righttramquiz.svg" alt="tramquiz3">
     </RouterLink>
-  </div>
+    </div>
+    </div>
+    <div class="flexTrams">
   <ScrollMenuTram class="MobileTrams"/>
+    </div>
   <p>
 
-    <a><RouterLink to="/random"><button class="ToRandQuiz">Quiz & blandat</button></RouterLink> </a>
+    <a><RouterLink style="text-decoration: none;" to="/random"><button  class="ToRandQuiz">Blanda Quiz</button></RouterLink> </a>
 
   </p>
   </body>
@@ -55,114 +60,47 @@ function touchEndMethod(touchEvent) {
 </template>
 <style scoped>
 
-@media only screen and (max-width: 500px) {
+
+
+
+@media screen and (min-width: 450px) {
+
   .Trams {
     display: flex;
-    justify-content: center;
-    margin-top: 5px;
+    justify-content: space-evenly;
+    padding-top: 5rem;
+    width: 100%;
   }
 
-  .RouterL {
-    display: none;
-  }
-
-  .Tramquiz1 {
-    width: 50px;
-  }
-
-  .Tramquiz2 {
-    width: 50px;
-  }
-
-  .Tramquiz3 {
-    width: 50px;
-
-  }
-
-  html {
-    background-size: cover;
-  }
-
-  .Main {
-
-  }
-
-  .MobileTrams {
-
-  }
-
-  .ToRandQuiz {
+  .Tramquiz {
+    background: linear-gradient(180deg, #214F75 36.98%, rgba(33, 79, 117, 0.00) 100%);
+    border-radius: 2.59375rem;
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 30rem;
     box-sizing: border-box;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 4em;
-    padding: 15px 60px;
-    border: 4px solid #214F75;
-    background: rgba(232, 243, 253, 0.99);
-    border-radius: 24px;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 23px;
-    text-align: center;
-    text-transform: uppercase;
-    box-shadow: 0px 2px 2px 4px rgba(0, 0, 0, 0.3);
-    color: #214F75;
-
   }
-
-
-
-  .ToRandQuiz:active {
-    background-color: #406C90;
-    color: white;
-    border-color: white;
-    transform: scale(.96);
+  .tramSizes{
+    width: 20%;
+    
+    
   }
-
-}
-
-
-@media screen and (min-width: 500px) {
-
-  .Trams {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
+  #tram1 {
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
   }
-
-  .Tramquiz1 {
-    margin-top: 60px;
-    width: 22.65625rem;
-    height: 26.5rem;
-    background: linear-gradient(180deg, #406C90 48.96%, #FFF 100%);
-    border-radius: 2.59375rem;
-    padding: 0.3rem;
-    padding-top: 0.8rem;
-
+  #tram2{
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
   }
-
-
-  .Tramquiz2 {
-    width: 22.65625rem;
-    height: 26.5rem;
-    margin: 1px 90px;
-    margin-top: 60px;
-    background: linear-gradient(180deg, #406C90 48.96%, #FFF 100%);
-    border-radius: 2.59375rem;
-    padding: 0.3rem;
-    padding-left: 22px;
-    padding-top: 0.8rem;
-  }
-
-  .Tramquiz3 {
-    width: 22.65625rem;
-    height: 26.5rem;
-    margin-top: 60px;
-    background: linear-gradient(180deg, #406C90 48.96%, #FFF 100%);
-    border-radius: 2.59375rem;
-    padding: 0.3rem;
-    padding-top: 0.8rem;
+  #tram3{
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
   }
 
   .MobileTrams {
@@ -173,23 +111,21 @@ function touchEndMethod(touchEvent) {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 35px 200px;
+    padding: 2rem 3rem;
     border: 4px solid #214F75;
     background: rgba(232, 243, 253, 0.99);
+    font-family: Permanent Marker;
     border-radius: 24px;
     font-weight: 500;
     font-style: normal;
-    font-size: 50px;
+    font-size: 3rem;
     text-align: center;
     text-transform: uppercase;
-    margin-top: 70px;
+    text-decoration: none;
+    margin-top: 4rem;
     box-shadow: 0px 4px 4px 9px rgba(0, 0, 0, 0.3);
     color: #214F75;
   }
-
-
-
-
   .ToRandQuiz:hover {
     cursor: pointer;
     background-color: #406C90;
@@ -202,5 +138,57 @@ function touchEndMethod(touchEvent) {
     transform: scale(.96);
   }
 
+}
+@media only screen and (max-width: 449px) {
+  .Trams {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5px;
+  }
+
+  .RouterL {
+    display: none;
+  }
+
+  html {
+    background-size: cover;
+  }
+  .flexTrams {
+  
+  }
+  section.container.Mobiletrams {
+
+  }
+
+
+  .MobileTrams {
+  
+  }
+
+  .ToRandQuiz {
+    box-sizing: border-box;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 3rem;
+    border: 4px solid #214F75;
+    background: rgba(232, 243, 253, 0.99);
+    font-family: Permanent Marker;
+    border-radius: 24px;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 3rem;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0px 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: #214F75;
+    text-decoration: none;
+  }
+  .ToRandQuiz:active {
+    background-color: #406C90;
+    color: white;
+    border-color: white;
+    transform: scale(.96);
+  }
 }
 </style>
