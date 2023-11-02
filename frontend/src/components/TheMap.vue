@@ -6,74 +6,75 @@ let alternatives = ref([''])
 let correctData = ref('')
 let onGoingQuiz = true
 let points = ref(0)
-let allowsubmit = true
+let allowsubmit = ref(true)
 const questionImage = ref('')
 import { useHighscore } from '../stores/highscore'
 const highscore = useHighscore()
-
+const correctAnswer = ref()
+const userGuess = ref('')
+function getQuestion(id) {
+    if (id <= 5) {
+      correctData.value = ''
+      fetch('http://127.0.0.1:3000/quiz/locationQuestion/' + id, {
+        method: 'GET'
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('response from server:', data)
+          questionImage.value = data.img
+          abcdata.value = data.question
+          alternatives.value = data.alternatives.split(',')
+        })
+    } else onGoingQuiz = false
+  }
 onMounted(() => {
+  
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function sendAnswer(input, id, answerid) {
-  if (allowsubmit) {
-    console.log(input)
+  userGuess.value = input
+  if (allowsubmit.value) {
     fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
-      method: 'POST',
-      body: JSON.stringify({ answer: input }),
-      headers: {
-        'Content-type': 'application/json'
-      }
+      method: 'GET'
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => {
         console.log('response from server:', data)
-        correctData.value = data
-        if (data) {
+
+        correctAnswer.value = data
+        console.log(correctAnswer.value)
+        if (input === correctAnswer.value) {
           console.log('answerid=', answerid)
-          //document.getElementById('btn' + answerid).style.border = '2px solid green'
+          //document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
           points.value++
         } else {
           console.log('answerid=', answerid)
-          //document.getElementById('btn' + answerid).style.border = '2px solid red'
+          //document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
         }
-        allowsubmit = false
+        allowsubmit.value = false
         setTimeout(function () {
-          currentQuestion.value++
+          getQuestion(currentQuestion.value++)
           getQuestion(currentQuestion.value)
-          //document.getElementById('btn' + answerid).style.border = ''
-          allowsubmit = true
-        }, 1000)
+          //document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75';
+          allowsubmit.value = true
+        }, 2000)
       })
   }
-}
-function getQuestion(id) {
-  if (id <= 5) {
-    correctData.value = ''
-    fetch('http://127.0.0.1:3000/quiz/locationQuestion/' + id, {
-      method: 'GET'
+  
+  function setHighscore(points) {
+    fetch('http://127.0.0.1:3000/highscore/location', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: 'BEARER ' + localStorage.getItem('accessToken')
+      },
+      body: JSON.stringify({ score: points })
     })
       .then((response) => response.json())
       .then((data) => {
         console.log('response from server:', data)
-        questionImage.value = data.img
-        abcdata.value = data.question
-        alternatives.value = data.alternatives.split(',')
       })
-  } else onGoingQuiz = false
-}
-function setHighscore(points) {
-  fetch('http://127.0.0.1:3000/highscore/location', {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: 'BEARER ' + localStorage.getItem('accessToken')
-    },
-    body: JSON.stringify({ score: points })
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('response from server:', data)
-    })
+  }
 }
 </script>
 
@@ -84,23 +85,27 @@ function setHighscore(points) {
     </div>
 
     <div v-if="onGoingQuiz" id="abc-quiz" class="selection">
-      <from>
+      <form>
         <div class="question">{{ abcdata }}</div>
+        <div class="buttonContainer">
         <button
           v-for="(alternative, index) in alternatives"
           :key="index"
           class="btn"
-          @click="sendAnswer(alternative, currentQuestion, index)"
+          @click.prevent="sendAnswer(alternative, currentQuestion, index)"
         >
           {{ alternative }}
         </button>
-      </from>
+      </div>
+      </form>
     </div>
   </div>
 
   <div v-if="onGoingQuiz">
-    <p v-if="correctData">Rätt svar!</p>
-    <p v-if="correctData === false">FEL SVAR!</p>
+    <div class="feedback" v-if="!allowsubmit">
+      <p id="correct" v-if="correctAnswer === userGuess">RÄTT!</p>
+      <p id="wrong" v-if="correctAnswer != userGuess">FEL! rätt svar: {{ correctAnswer }}</p>
+    </div>
   </div>
   <div v-if="currentQuestion >= 6">
     <p v-if="points > 3">Snyggt byggt, fräsig kärra!</p>
@@ -112,6 +117,26 @@ function setHighscore(points) {
   </div>
 </template>
 <style scoped>
+.feedback {
+  color: #000;
+  font-family: Newsreader;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+}
+.feedback #correct {
+  color: #2ce03e;
+}
+.feedback #wrong {
+  color: #f00;
+}
+.item1 {
+  grid-area: image;
+}
+.item2 {
+  grid-area: choices;
+}
 .item3 {
   grid-area: buttonOne;
 }
@@ -140,17 +165,20 @@ function setHighscore(points) {
   border-radius: 0.8rem;
   margin-bottom: 5rem;
   box-shadow: 1px 1px 4px 0px;
+  
 }
 .btn {
-  width: 30%;
+  width: 43%;
   min-width: fit-content;
-  height: 2em;
+  height: 2.5em;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
   margin-top: 0.5rem;
-  margin-left: 5%;
   margin-bottom: 1em;
+  font-family: 'Newsreader';
+  font-size: large;
+  
 }
 
 .item3 {
@@ -168,13 +196,32 @@ function setHighscore(points) {
   font-family: 'Newsreader';
   font-size: 1.5rem;
   width: 100%;
+  
+}
+.buttonContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 img {
-  margin-top: 2em;
+  margin-top: 1em;
   margin-bottom: 1em;
   width: 50%;
   box-shadow: 1px 1px 4px 0px;
 }
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 680px) {
+  .selection{
+    align-items: center;
+    padding:1em;
+  }
+ .btn{
+  width: 100%;
+ }
+ img {
+  width: 80%;
+ }
 }
 </style>

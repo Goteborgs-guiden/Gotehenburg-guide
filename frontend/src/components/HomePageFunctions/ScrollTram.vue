@@ -11,24 +11,22 @@ const props = defineProps(['imgSrc', 'link'])
 </template>
 <style scoped>
 .linkImages {
-  width: 16em;
+  width: 20em;
   height: 20em;
-  margin-top: 7em;
+  padding-top: 5%;
+  margin-top: 20%;
   margin-right: auto;
-  margin-left: auto;
   background: linear-gradient(180deg, #406C90 48.96%, #FFF 100%), 100%;
   border-radius: 2.59375rem;
 }
-.middleTram{
-
-}
-
 .image-box {
   display: inline-block;
   position: relative;
-  margin-left: 4rem;
-  margin-right: 4rem;
+  margin-left: 8%;;
   margin-bottom: 1.8rem;
 }
 
+@media screen and (max-width: 450px){
+
+}
 </style>

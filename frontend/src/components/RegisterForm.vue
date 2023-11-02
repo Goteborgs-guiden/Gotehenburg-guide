@@ -9,7 +9,11 @@ let email = ref('')
 const regexForEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const regexForPassword =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,12}$/;
 function register() {
-  if (regexForEmail.test(email.value) && regexForPassword.test(password.value) && regexForPassword.test(password2.value) && password.value === password2.value){
+  if (regexForEmail.test(email.value) 
+  && regexForPassword.test(password.value) 
+  && regexForPassword.test(password2.value) 
+  && password.value === password2.value
+  && username.value.length > 0){
   const data = {
     username: username.value,
     password: password.value,
@@ -35,7 +39,7 @@ function register() {
     alert("The email can't have any special character in it."+ "\n" +
         "The password needs a minimum of 8 characters and maximum 12 characters, " +
         "at least one uppercase letter, one lowercase letter and one number."+"\n"+
-        "Both passwords must be the same")
+        "Both passwords must be the same \nThe username can't be empty")
   }
 }
 </script>
