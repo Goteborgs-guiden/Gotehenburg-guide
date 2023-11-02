@@ -30,17 +30,17 @@ function sendAnswer(input, id, answerid) {
         correctData.value = data
         if (data) {
           console.log('answerid=', answerid)
-          document.getElementById('btn' + answerid).style.border = '2px solid green'
+          //document.getElementById('btn' + answerid).style.border = '2px solid green'
           points.value++
         } else {
           console.log('answerid=', answerid)
-          document.getElementById('btn' + answerid).style.border = '2px solid red'
+          //document.getElementById('btn' + answerid).style.border = '2px solid red'
         }
         allowsubmit = false
         setTimeout(function () {
-          getQuestion(currentQuestion.value++)
+          currentQuestion.value++
           getQuestion(currentQuestion.value)
-          document.getElementById('btn' + answerid).style.border = ''
+          //document.getElementById('btn' + answerid).style.border = ''
           allowsubmit = true
         }, 1000)
       })
@@ -78,33 +78,26 @@ function setHighscore(points) {
 </script>
 
 <template>
-  <div class="grid-container">
+  <div class="flexbox">
     <div v-if="onGoingQuiz" class="item1" id="questionImage">
       <img :src="questionImage" />
     </div>
 
-    <div v-if="onGoingQuiz" id="abc-quiz" class="item2">
-      <div class="selection">
-        <from>
-          <div class="question">{{ abcdata }}</div>
-          <div class="selection">
-            <button
-              v-for="(alternative, index) in alternatives"
-              :key="index"
-              class="btn"
-              :id="'btn' + index"
-              @click="sendAnswer(alternative, currentQuestion, index)"
-            >
-              {{ alternative }}
-            </button>
-          </div>
-        </from>
-      </div>
+    <div v-if="onGoingQuiz" id="abc-quiz" class="selection">
+      <from>
+        <div class="question">{{ abcdata }}</div>
+        <button
+          v-for="(alternative, index) in alternatives"
+          :key="index"
+          class="btn"
+          @click="sendAnswer(alternative, currentQuestion, index)"
+        >
+          {{ alternative }}
+        </button>
+      </from>
     </div>
   </div>
-  <div>
-    <from> </from>
-  </div>
+
   <div v-if="onGoingQuiz">
     <p v-if="correctData">Rätt svar!</p>
     <p v-if="correctData === false">FEL SVAR!</p>
@@ -119,77 +112,45 @@ function setHighscore(points) {
   </div>
 </template>
 <style scoped>
-.item1 {
-  grid-area: image;
-}
-.item2 {
-  grid-area: choices;
-}
 .item3 {
   grid-area: buttonOne;
 }
 .item4 {
   grid-area: buttonTwo;
 }
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 50% 1fr;
-  grid-template-rows: 1fr 1fr 20%;
-  grid-template-areas:
-    '. image .'
-    '. choices .'
-    'buttonOne . buttonTwo';
+.flexbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .item1 {
   justify-self: center;
   margin-top: 1em;
   margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
 }
 
-.item2 {
-  justify-self: center;
-}
 .selection {
   text-align: center;
-  width: 59.53125rem;
-  height: 16.6875rem;
+  height: fit-content;
+  width: 70%;
   background-color: rgba(64, 108, 144, 0.9);
   border-radius: 0.8rem;
   margin-bottom: 5rem;
   box-shadow: 1px 1px 4px 0px;
 }
-#btn0 {
-  width: 23.25rem;
-  height: 3.5rem;
+.btn {
+  width: 30%;
+  min-width: fit-content;
+  height: 2em;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
   margin-top: 0.5rem;
-  margin-right: 5.5rem;
-}
-#btn1 {
-  width: 23.25rem;
-  height: 3.5rem;
-  border-radius: 1.90625rem;
-  border: 2px solid #214f75;
-  background: #e8f3fd;
-}
-#btn2 {
-  width: 23.25rem;
-  height: 3.5rem;
-  border-radius: 1.90625rem;
-  border: 2px solid #214f75;
-  background: #e8f3fd;
-  margin-top: 2.5rem;
-  margin-right: 5.5rem;
-}
-#btn3 {
-  width: 23.25rem;
-  height: 3.5rem;
-  border-radius: 1.90625rem;
-  border: 2px solid #214f75;
-  background: #e8f3fd;
+  margin-left: 5%;
+  margin-bottom: 1em;
 }
 
 .item3 {
@@ -206,11 +167,14 @@ function setHighscore(points) {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   font-family: 'Newsreader';
   font-size: 1.5rem;
+  width: 100%;
 }
 img {
   margin-top: 2em;
   margin-bottom: 1em;
-  width: 100%;
-  height: 90%;
+  width: 50%;
+  box-shadow: 1px 1px 4px 0px;
+}
+@media screen and (max-width: 860px) {
 }
 </style>
