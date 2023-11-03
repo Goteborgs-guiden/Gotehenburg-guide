@@ -85,9 +85,40 @@ function getLocationHighscore() {
         <img :src="profileImage"/>
       </div>
 
-      <div id="profile-info">
 
-        <table id="shorts">
+      <div id="profile-info-desktop">
+        <table id="shorts-desktop">
+          <tr>
+            <td class="info">Namn:</td>
+            <td class="answer">{{ userInfo.first_name}} {{ userInfo.surname }}</td>
+          </tr>
+          <tr>
+            <td class="info">Födelsedag:</td>
+            <td class="answer">{{userInfo.date_of_birth}}</td>
+          </tr>
+          <tr>
+            <td class="info">Område:</td>
+            <td class="answer">{{ userInfo.district }}</td>
+          </tr>
+        </table>
+        <table id="about">
+          <tr class="info">
+            <td>Om mig:</td>
+          </tr>
+          <tr class="answer">
+            <td>{{ userInfo.about }}</td>
+          </tr>
+        </table>
+        <a href="#editPage?">
+          <button id="edit-button">redigera</button>
+        </a>
+      </div>
+
+
+
+      <div id="profile-info-mobile">
+
+        <table id="shorts-mobile">
           <tr>
             <td class="info">Namn:</td>
             <td class="answer">{{ userInfo.first_name }} {{ userInfo.surname }}</td>
@@ -102,7 +133,7 @@ function getLocationHighscore() {
           </tr>
         </table>
       </div>
-      <div id="AboutMe">
+      <div id="AboutMe-mobile">
         <table id="about">
           <tr class="info">
             <td>Om mig:</td>
@@ -116,6 +147,8 @@ function getLocationHighscore() {
         </a>
       </div>
     </div>
+
+
 
     <div id="quiz-friends">
       <div id="quiz-scores">
@@ -366,18 +399,7 @@ function getLocationHighscore() {
     padding: 0.5rem;
   }
 
-  #profile-info {
-    border-radius: 25px;
-    display: flex;
-    flex-direction: row;
-    margin: 1rem;
-    margin-left: 10em;
-    width: 24%;
-    position: relative;
-    height: 10rem;
-  }
-
-  #AboutMe{
+  #profile-info-desktop {
     border-radius: 25px;
     border: 4px solid rgba(33, 79, 117, 0.61);
     background: #E8F3FD;
@@ -388,9 +410,10 @@ function getLocationHighscore() {
     width: 70%;
     position: relative;
     height: 10rem;
+
   }
 
-  #shorts {
+  #shorts-desktop {
     border-radius: 25px;
     border: 3px solid #406C90;
     background: #E8F3FD;
@@ -398,6 +421,45 @@ function getLocationHighscore() {
     margin: 15px;
     width: 25rem;
     height: 2rem;
+  }
+
+  #profile-info-mobile {
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    margin-left: 10em;
+    width: 24%;
+    position: relative;
+    height: 10rem;
+    display: none;
+
+  }
+
+  #AboutMe-mobile{
+    border-radius: 25px;
+    border: 4px solid rgba(33, 79, 117, 0.61);
+    background: #E8F3FD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    width: 70%;
+    position: relative;
+    height: 10rem;
+    display: none;
+
+  }
+
+  #shorts-mobile {
+    border-radius: 25px;
+    border: 3px solid #406C90;
+    background: #E8F3FD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin: 15px;
+    width: 25rem;
+    height: 2rem;
+    display: none;
 
   }
 
@@ -768,7 +830,33 @@ function getLocationHighscore() {
     padding: 0.5rem;
   }
 
-  #profile-info {
+  #profile-info-desktop {
+    border-radius: 25px;
+    border: 4px solid rgba(33, 79, 117, 0.61);
+    background: #E8F3FD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    width: 70%;
+    position: relative;
+    height: 10rem;
+    display: none;
+
+  }
+
+  #shorts-desktop {
+    border-radius: 25px;
+    border: 3px solid #406C90;
+    background: #E8F3FD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin: 15px;
+    width: 25rem;
+    height: 2rem;
+    display: none;
+  }
+
+  #profile-info-mobile {
     border-radius: 25px;
     display: flex;
     flex-direction: row;
@@ -776,9 +864,10 @@ function getLocationHighscore() {
     width: 70%;
     position: relative;
     height: 10rem;
+    display: unset;
   }
 
-  #AboutMe{
+  #AboutMe-mobile{
     border-radius: 25px;
     border: 4px solid rgba(33, 79, 117, 0.61);
     background: #E8F3FD;
@@ -789,9 +878,10 @@ function getLocationHighscore() {
     width: 90%;
     position: relative;
     height: 10rem;
+    display: unset;
   }
 
-  #shorts {
+  #shorts-mobile {
     border-radius: 25px;
     border: 3px solid #406C90;
     background: #E8F3FD;
@@ -799,6 +889,7 @@ function getLocationHighscore() {
     margin: 15px;
     width: 25rem;
     height: 2rem;
+    display: unset;
 
   }
 
