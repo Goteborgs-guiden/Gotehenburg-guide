@@ -11,8 +11,8 @@ onMounted(() => {
   getABCHighscore()
   getBlankHighscore()
   getLocationHighscore()
-  
-  if(highscore.lastQuiz !== '') selected.value = highscore.lastQuiz
+
+  if (highscore.lastQuiz !== '') selected.value = highscore.lastQuiz
 })
 
 function getABCHighscore() {
@@ -46,11 +46,11 @@ function getLocationHighscore() {
 <template>
   <div class="grid-container">
     <div class="item1">
-      <form class="chooseHighscoreBox">
-        <select class="selectForForm" v-model="selected">
-          <option class="optionForForm" value="abc">ABC</option>
-          <option class="optionForForm" value="fillblank">Blank highscore</option>
-          <option class="optionForForm" value="map">Map highscore</option>
+      <form class="select">
+        <select class="selectForForm" v-model="selected" id="multi-select">
+          <option class="optionForForm" value="abc">Tjöt</option>
+          <option class="optionForForm" value="fillblank">Ordvitsknök</option>
+          <option class="optionForForm" value="map">Geografikäck</option>
         </select>
       </form>
       <div class="scoreboardBox">
@@ -59,28 +59,32 @@ function getLocationHighscore() {
       <div class="infoBox">
         <p v-if="highscore.score === 5" class="info">full poäng bra jobbat</p>
         <p v-if="highscore.score > 2 && highscore.score < 5" class="info">Starkt kämpat</p>
-        <p v-if="highscore.score === 0 && highscore.lastQuiz===''" class="info">Du måste göra quizen först</p>
-        <p v-if="highscore.score <= 2 && highscore.lastQuiz!==''" class="info">Det där gick ju inte så bra</p>
+        <p v-if="highscore.score === 0 && highscore.lastQuiz === ''" class="info">
+          Du måste göra quizen först
+        </p>
+        <p v-if="highscore.score <= 2 && highscore.lastQuiz !== ''" class="info">
+          Det där gick ju inte så bra
+        </p>
       </div>
-    
-    <div class="item2" v-if="highscore.lastQuiz==='abc'">
-      <router-link to="/tjot" custom v-slot="{ navigate }">
-        <button @click="navigate" role="link" class="redo">Försök igen</button>
-      </router-link>
-    </div>
-    <div class="item2" v-if="highscore.lastQuiz==='fillblank'">
-      <router-link to="/ordvitsknok" custom v-slot="{ navigate }">
-        <button @click="navigate" role="link" class="redo">Försök igen</button>
-      </router-link>
-    </div>
-    <div class="item2" v-if="highscore.lastQuiz==='map'">
-      <router-link to="/geografikack" custom v-slot="{ navigate }">
-        <button @click="navigate" role="link" class="redo">Försök igen</button>
-      </router-link>
-    </div>
-  </div>
 
-    <div class="item3 quiz-link">
+      <div class="again" v-if="highscore.lastQuiz === 'abc'">
+        <router-link to="/tjot" custom v-slot="{ navigate }">
+          <button @click="navigate" role="link" class="redo">Försök igen</button>
+        </router-link>
+      </div>
+      <div class="again" v-if="highscore.lastQuiz === 'fillblank'">
+        <router-link to="/ordvitsknok" custom v-slot="{ navigate }">
+          <button @click="navigate" role="link" class="redo">Försök igen</button>
+        </router-link>
+      </div>
+      <div class="again" v-if="highscore.lastQuiz === 'map'">
+        <router-link to="/geografikack" custom v-slot="{ navigate }">
+          <button @click="navigate" role="link" class="redo">Försök igen</button>
+        </router-link>
+      </div>
+    </div>
+
+    <div class="item2 quiz-link">
       <RouterLink class="RouterL" to="/tjot">
         <img class="tramBack" src="/trams/lefttramquiz.svg" alt="tramquiz1" />
       </RouterLink>
@@ -92,7 +96,7 @@ function getLocationHighscore() {
       </RouterLink>
     </div>
 
-    <div class="item4 highscore">
+    <div class="item3 highscore">
       <table class="highscoreTable" v-if="selected === 'abc'">
         <tr v-for="(highscore, index) in highscoreABC" :key="index">
           <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
@@ -112,97 +116,120 @@ function getLocationHighscore() {
         </tr>
       </table>
     </div>
+
+      <router-link class="newQuiz" to="/">
+        <button class="redo">Nytt Quiz</button>
+        </router-link>
+    
   </div>
 </template>
 <style scoped>
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 .item1 {
   grid-area: score;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
 }
 .item2 {
-  grid-area: tryAgain;
+  grid-area: links;
+  padding-top: 4%;
+  align-self: center;
+  padding-bottom: 4%;
 }
 .item3 {
-  grid-area: links;
-}
-.item4 {
   grid-area: highs;
+  align-self: center;
 }
 
-.item5 {
-  grid-area: choice;
-}
 .grid-container {
   display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-template-rows: 40% 10% 10% 40%;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 40% 60%;
   grid-template-areas:
-    'score score highs highs highs'
-    'tryAgain tryAgain highs highs highs'
-    'links links highs highs highs'
-    'links links highs highs highs';
+    'score highs'
+    'links highs';
   justify-items: center;
+  align-items: center;
 }
 
-.chooseHighscoreBox {
-  position: relative;
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+  color: white;
+}
+
+select::-ms-expand {
+  display: none;
+}
+.select {
+  display: grid;
+  grid-template-areas: 'select';
+  align-items: center;
+  width: 50%;
+  max-width: 50ch;
+  border-radius: 24px;
+  border: 5px solid #fff;
+  background-color: #214f75;
+  color: #fff;
   font-family: 'Newsreader';
   height: 3em;
-  width: 100%;
-  margin-top: 5%;
-  /*border-radius: 1.90625rem;
-  border: 3px solid #214f75;
-  background: #e8f3fd;*/
+  cursor: pointer;
+  line-height: 1.1;
+  box-shadow: 0px 4px 4px 2px rgba(64, 108, 144, 0.5);
 }
 
-.chooseHighscoreBox select {
-
+select,
+.select:after {
+  grid-area: select;
+  justify-self: end;
+  margin-right: 1em;
 }
 
-.chooseHighscoreBox-selected {
-  background-color: #e8f3fd;
-}
-
-.chooseHighscoreBox-selected::after {
-  position: absolute;
+.select::after {
   content: '';
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
-}
-
-.selectionForForm {
-}
-
-.optionForForm {
-  color: red;
+  width: 0.8em;
+  height: 0.5em;
+  background-color: white;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 }
 
 .scoreboardBox {
+  width: 100%;
+  max-width: 100ch;
   align-items: center;
   border-radius: 24px;
   border: 3px solid #f1f2f1;
   background: #214f75;
-  box-shadow: 0px 4px 4px 5px rgba(64, 108, 144, 0.5);
-  width: 15em;
-  height: 5em;
+  box-shadow: 0px 4px 4px 3px rgba(64, 108, 144, 0.5);
   text-align: center;
-  padding: 0.5em;
   color: #fff;
   font-family: 'Newsreader';
   font-size: xx-large;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 .infoBox {
   width: 100%;
-  height: 3.0625em;
   border-radius: 0.75rem;
   border: 3px solid #f1f2f1;
   background: #214f75;
-  box-shadow: 0px 4px 4px 5px rgba(64, 108, 144, 0.5);
+  box-shadow: 0px 4px 4px 3px rgba(64, 108, 144, 0.5);
   color: #fff;
   text-align: center;
   font-family: 'Newsreader';
@@ -211,19 +238,33 @@ function getLocationHighscore() {
 }
 
 .redo {
-  width: 15rem;
-  height: 3.0625rem;
+  width: 100%;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-top: 10%;
   border-radius: 0.75rem;
   border: 3px solid #f1f2f1;
   background: #406c90;
-  box-shadow: 0px 4px 4px 5px rgba(64, 108, 144, 0.5);
+  box-shadow: 0px 4px 4px 3px rgba(64, 108, 144, 0.5);
   color: #fff;
   font-family: 'Newsreader';
-  font-size: 1.8125rem;
+  font-size: 1.8rem;
+}
+
+.redo:hover {
+  background-color: #214f75;
+  color: #fff;
+}
+
+.redo:active {
+  transform: translateY(2px);
+  box-shadow: none;
 }
 
 .tramBack {
-  background: linear-gradient(180deg, #214f75 48.96%, #fff 100%);
+  background: linear-gradient(180deg, #406C90 48.96%, #F2F3F2 100%);
   width: 15.65625rem;
   height: 16.5rem;
   border-radius: 2.59375rem;
@@ -240,6 +281,8 @@ img {
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
+  column-gap: 4em;
+  row-gap: 1em;
 }
 
 .img2 {
@@ -248,8 +291,7 @@ img {
 }
 
 .highscore {
-  width: 57.5rem;
-  height: 55.0625rem;
+  width: 90%;
   padding: 2%;
   margin-top: 2rem;
   border-radius: 0.75rem;
@@ -265,6 +307,7 @@ img {
 }
 
 .highscoreTable {
+  width: 100%;
   border-spacing: 1.3rem;
 }
 
@@ -283,6 +326,8 @@ td {
 
 .position {
   border-radius: 6px;
+  height: 100%;
+  width: 15%;
   border: 1px solid #000;
   background: #fff;
   text-align: center;
@@ -346,5 +391,65 @@ td {
 }
 
 @media screen and (max-width: 600px) {
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 2%;
+  }
+
+  .item2 {
+    display: none;
+  }
+  .newQuiz {
+    width:50%
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1600px) {
+  .item1 {
+  grid-area: score;
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+.item2 {
+  grid-area: links;
+  padding-top: 2%;
+  align-self: center;
+}
+.item3 {
+  grid-area: highs;
+  padding-top: 10%;
+  align-self: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 40% 60%;
+  grid-template-areas:
+    'score highs'
+    'links highs';
+  justify-items: center;
+  align-items: center;
+  margin-top: 10%;
+}
+
+  .item2 {
+    display: none;
+  }
+  .newQuiz {
+    width:50%
+  }
+}
+
+@media screen and (min-width: 1601px) {
+  .newQuiz {
+    display: none;
+  }
 }
 </style>

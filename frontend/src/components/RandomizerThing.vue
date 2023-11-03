@@ -11,6 +11,8 @@ let alternatives = ref([''])
 let randomID = ref(Math.floor(Math.random() * 5) + 1)
 let randomQuiz = ref(Math.floor(Math.random() * 3) + 1)
 let takenQuestions = []
+import { useRouter } from 'vue-router'
+const router = useRouter();
 const questionImage = ref('')
 const correctAnswer = ref()
 const userGuess = ref('')
@@ -169,6 +171,11 @@ function getABCQuestion(id) {
       })
   } else onGoingQuiz = false
 }
+function changePage() {
+  setTimeout(function () {
+    router.push("/")
+  }, 5000)
+}
 </script>
 <template>
   <main>
@@ -245,6 +252,7 @@ function getABCQuestion(id) {
     <div v-if="!onGoingQuiz">
       <p>Quizen är slut</p>
       <p>Du fick {{ points }} poäng</p>
+      {{changePage()}}
     </div>
   </main>
 </template>

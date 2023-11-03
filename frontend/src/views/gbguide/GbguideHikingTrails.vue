@@ -8,9 +8,11 @@ const toggleAccordion = (index) => {
 }
 </script>
 <template>
-  <ScrollMenu />
-  <main>
-    <header>
+  <main class="grid-cont">
+    <div class="scroll-menu">
+      <ScrollMenu />
+    </div>
+    <header class="header-box">
       <div class="imageBox">
         <img src="/gbguide/hikingtrails/hikeheadernarrow.jpg" class="headerImage" />
       </div>
@@ -19,7 +21,7 @@ const toggleAccordion = (index) => {
       </div>
     </header>
 
-    <div class="box1">
+    <div class="box1 box">
         <article
           :class="{ artBoxClosed: openAccordion !== 1, artBoxOpen: openAccordion === 1 }"
           v-show="openAccordion !== 1"
@@ -66,7 +68,7 @@ const toggleAccordion = (index) => {
       </article>
     </div>
 
-    <div class="box2">
+    <div class="box2 box">
         <article
           :class="{ artBoxClosed: openAccordion !== 2, artBoxOpen: openAccordion === 2 }"
           v-show="openAccordion !== 2"
@@ -113,7 +115,7 @@ const toggleAccordion = (index) => {
       </article>
     </div>
 
-    <div class="box3">
+    <div class="box3 box">
         <article
           :class="{ artBoxClosed: openAccordion !== 3, artBoxOpen: openAccordion === 3 }"
           v-show="openAccordion !== 3"
@@ -160,7 +162,7 @@ const toggleAccordion = (index) => {
       </article>
     </div>
 
-    <div class="box4">
+    <div class="box4 box">
         <article
           :class="{ artBoxClosed: openAccordion !== 4, artBoxOpen: openAccordion === 4 }"
           v-show="openAccordion !== 4"
@@ -207,7 +209,7 @@ const toggleAccordion = (index) => {
       </article>
     </div>
 
-    <div class="box5">
+    <div class="box5 box">
         <article
           :class="{ artBoxClosed: openAccordion !== 5, artBoxOpen: openAccordion === 5 }"
           v-show="openAccordion !== 5"
@@ -255,36 +257,56 @@ const toggleAccordion = (index) => {
     </div>
   </main>
 </template>
-<style>
+<style scoped>
+.grid-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-box {
+  grid-area: header;
+  position: relative;
+  place-self: center;
+  text-align: center;
+}
+
 .imageBox {
-  width: 97%;
+  background-color: #214f75;
+  width: 98%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1%;
 }
 
+.headerImage {
+  display: block;
+  width: 100%;
+  max-width: 1000ch;
+  opacity: 0.5;
+}
+
 .titleBox {
-  font-family: 'Newsreader';
-  color: white;
   position: absolute;
   top: 50%;
-  left: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .title {
   font-size: 8em;
-  margin-bottom: 0;
+  font-family: 'Newsreader';
+  color: white;
 }
 
-.headerImage {
-  display: block;
+.box {
   width: 100%;
-  height: 100%;
 }
 
 .artBoxClosed {
-  display: grid;
-  grid-template-columns: 20% 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
   background-color: #e8f3fd;
   color: #173a5a;
   margin: 2em;
@@ -307,7 +329,7 @@ const toggleAccordion = (index) => {
 .artButtonClosed {
   background-color: transparent;
   border: none;
-  margin-left: 44em;
+  margin-left: 40em;
   margin-top: 9em;
 }
 
@@ -324,11 +346,12 @@ const toggleAccordion = (index) => {
 }
 
 .artBoxOpen {
-  display: grid;
-  grid-template-columns: 40% 60%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
   background-color: #214f75;
   color: white;
-  margin: 2em;
+  margin: 1em;
   border: 3px solid #e8f3fd;
   border-radius: 1em;
   font-family: 'Newsreader';
@@ -362,5 +385,93 @@ const toggleAccordion = (index) => {
 
 .downButtonOpen:hover {
   width: 3.5em;
+}
+
+
+@media screen and (min-width: 200px) and (max-width: 1000px) {
+  .title {
+    font-size: 4em;
+  }
+
+  .headerImage {
+    margin-bottom: 1em;
+  }
+  .box {
+    background-color: #e8f3fd;
+  }
+  .artBoxClosed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .artImageClosed {
+    width: 100%;
+    border: none;
+    margin: 0;
+  }
+
+  .artTitleBoxClosed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  .artTitleClosed {
+    margin-left: 0;
+  }
+
+  .artTextClosed {
+    margin-left: 1em;
+  }
+
+  .artButtonClosed {
+    margin-left: 0;
+    margin-top: 1em;
+  }
+
+  .artBoxOpen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #214f75;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .artImageOpen {
+    width: 100%;
+    border: none;
+    margin: 0;
+  }
+
+  .artTitleBoxOpen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  .artTitleOpen {
+    margin-left: 1em;
+  }
+
+  .artTextOpen {
+    margin-left: 1em;
+  }
+  .artButtonOpen {
+    margin-left: 0;
+    margin-top: 10em;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1600px) {
+  .artButtonClosed {
+    margin-left: 25em;
+    margin-top: 9em;
+  }
 }
 </style>
