@@ -80,10 +80,7 @@ function getLocationHighscore() {
 <template>
   <div id="profile-page">
     <div id="top-section">
-      <div id="profile-img">
-        <h1 id="username">{{ userInfo.username }}</h1>
-<!--        <img :src="profileImage"/>-->
-      </div>
+
 
 
       <div id="profile-info-desktop">
@@ -148,8 +145,6 @@ function getLocationHighscore() {
       </div>
     </div>
 
-
-
     <div id="quiz-friends">
       <div id="quiz-scores">
         <ul class="quiz">
@@ -184,21 +179,24 @@ function getLocationHighscore() {
         </ul>
       </div>
 
+
       <div class="item4 highscore">
-        <h1 class="FriendsHigh">Vänner highscore</h1>
+        <div class="FriendsBackground">
+        <h1 class="FriendsHigh">Vänners highscore</h1>
+        </div>
         <table class="highscoreTable" v-if="selected === 'abc'">
           <tr v-for="(highscore, index) in highscoreABC" :key="index">
             <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
             <td class="user">{{ highscore.username }} med {{ highscore.ABCHS }} poäng</td>
           </tr>
         </table>
-        <table v-if="selected === 'fillblank'">
+        <table class="HighscoreFillBlank" v-if="selected === 'fillblank'">
           <tr v-for="(highscore, index) in highscoreBlank" :key="index">
             <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
             <td class="user">{{ highscore.username }} med {{ highscore.BlankHS }} poäng</td>
           </tr>
         </table>
-        <table v-if="selected === 'map'">
+        <table class="HighscoreMap" v-if="selected === 'map'">
           <tr v-for="(highscore, index) in highscoreLocation" :key="index">
             <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
             <td class="user">{{ highscore.username }} med {{ highscore.LocationHS }} poäng</td>
@@ -207,9 +205,9 @@ function getLocationHighscore() {
       </div>
       <form class="chooseHighscoreBox">
         <select class="selectForForm" v-model="selected">
-          <option class="optionForForm" value="abc">ABC</option>
-          <option class="optionForForm" value="fillblank">Blank highscore</option>
-          <option class="optionForForm" value="map">Map highscore</option>
+          <option class="optionForForm" value="abc">Tjöt</option>
+          <option class="optionForForm" value="fillblank">Ordvitsknök</option>
+          <option class="optionForForm" value="map">Geografikäck</option>
         </select>
       </form>
     </div>
@@ -219,8 +217,21 @@ function getLocationHighscore() {
 
 @media only screen and (min-height: 500px) {
 
+  .test{
+    padding-bottom: 10em;
+    margin-bottom: 10em;
+  }
+
+
+  .FriendsBackground{
+    border: 0.3em solid #214F75;
+    border-radius: 25px;
+  }
+
   .FriendsHigh{
     width: 30em;
+    margin-left: 6.5em;
+    margin-top: 0.5em;
   }
 
   .user {
@@ -341,7 +352,7 @@ function getLocationHighscore() {
 
   .highscore {
     width: 40.5rem;
-    height: 46.063rem;
+
     padding: 2%;
     margin-top: 2rem;
     border-radius: 0.75rem;
@@ -351,7 +362,15 @@ function getLocationHighscore() {
   }
 
   .highscoreTable {
-    border-spacing: 1.3rem;
+    padding-top: 5em;
+  }
+
+  .HighscoreFillBlank{
+    margin-top: 4.9em;
+  }
+
+  .HighscoreMap{
+    margin-top: 4.9em;
   }
 
 
@@ -634,10 +653,13 @@ function getLocationHighscore() {
 
   .selectForForm {
     border: 4px solid #214F75;
-    border-radius: 22px;
-    margin: -46em -26em;
+    border-radius: 25px;
+    margin: -41.5em -42em;
     position: absolute;
     background: rgba(232, 243, 253, 0.9);
+    padding: 0.5em 0.5em;
+    text-align: center;
+    font-weight: bold;
   }
 
   .selectForForm:hover {
@@ -648,11 +670,11 @@ function getLocationHighscore() {
   }
 
   .item4 {
-    margin: auto auto;
-    margin-bottom: 33.3em;
+    margin: -29em 1em;
+    margin-bottom: 0em;
     padding-bottom: 1em;
     margin-right: 9em;
-
+    height: 50em;
   }
 
 }
@@ -660,7 +682,11 @@ function getLocationHighscore() {
 
 @media only screen and (max-width: 500px) {
 
-
+  .FriendsHigh{
+    width: 30em;
+    margin-left: 2em;
+    margin-top: 0.5em;
+  }
 
   .user {
     border-radius: 17px;
@@ -780,7 +806,6 @@ function getLocationHighscore() {
 
   .highscore {
     width: 23.5em;
-    height: 31.063em;
     padding: 2%;
     margin-top: 2rem;
     border-radius: 0.75rem;
@@ -790,7 +815,15 @@ function getLocationHighscore() {
   }
 
   .highscoreTable {
-    border-spacing: 1.3rem;
+    margin-top: 4.3em;
+  }
+
+  .HighscoreFillBlank{
+    margin-top: 4.3em;
+  }
+
+  .HighscoreMap{
+    margin-top: 4.3em;
   }
 
 
@@ -880,25 +913,26 @@ function getLocationHighscore() {
     display: flex;
     flex-direction: row;
     margin: 1rem;
-    width: 90%;
+    width: 21.85em;
     position: relative;
     height: 10rem;
+    margin-right: 2.3em;
     display: unset;
   }
 
   #shorts-mobile {
     border-radius: 25px;
-    border: 3px solid #406C90;
+    border: 4px solid rgba(33, 79, 117, 0.61);
     background: #E8F3FD;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin: 15px;
-    width: 25rem;
-    height: 2rem;
-    padding-bottom: 6em;
+    margin: 1em -2.9em;
+    width: 1em;
+    height: 9em;
+    padding-bottom: 9em;
     padding-left: 0.5em;
     padding-top: 0.5em;
-    padding-right: 10em;
-    display: unset;
+    padding-right: 21.40em;
+    display: block;
 
   }
 
@@ -1069,8 +1103,10 @@ function getLocationHighscore() {
   .selectForForm {
     border: 4px solid #214F75;
     border-radius: 22px;
-    margin: -43.5em 20em;
+    margin: -27em 11em;
     background: rgba(232, 243, 253, 0.9);
+    text-align: center;
+    font-weight: bold;
 
   }
 
