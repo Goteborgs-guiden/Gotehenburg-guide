@@ -102,7 +102,7 @@ import ScrollMenu from '@/components/ScrollMenu.vue'
 
 @media screen and (min-width: 1000px) and (max-width: 1600px) {
   .mainTitle {
-  font-size: 800%;
+  font-size: 700%;
   margin-bottom: 0;
 }
 
