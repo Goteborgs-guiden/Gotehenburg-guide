@@ -37,7 +37,7 @@ const slideOffset = ref(0)
       </button>
       <button
         class="forwardButton buttonItem buttonQMedia1"
-        @click="slideOffset = Math.max(slideOffset - 350, -1050)"
+        @click="slideOffset = Math.max(slideOffset - 350, -1400)"
       >
         <img src="/svgarrows/arrowright.svg" class="buttonImage" />
       </button>
