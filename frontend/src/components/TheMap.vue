@@ -48,19 +48,16 @@ function sendAnswer(input, id, answerid) {
         if (input === correctAnswer.value) {
           console.log('answerid=', answerid)
           color.value='green';
-          //document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
           points.value++
         } else {
           console.log('answerid=', answerid)
           color.value='red';
-          //document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
         }
         allowsubmit.value = false
         setTimeout(function () {
-          getQuestion(currentQuestion.value++)
+          currentQuestion.value++
           getQuestion(currentQuestion.value)
           color.value='#214f75';
-          //document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75';
           allowsubmit.value = true
         }, 2000)
       })
