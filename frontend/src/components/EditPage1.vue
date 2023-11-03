@@ -55,7 +55,7 @@ function edit() {
         <label class="inputLabel">Om mig:</label>
         <input class="inputField about" type="text" v-model="about" placeholder="Om mig" />
         <div class="button-wrapper">
-          <input class="button" type="submit" value="Registrera" @click.prevent="edit()" />
+          <input class="button" type="submit" value="Redigera" @click.prevent="edit()" />
         </div>
       </form>
     </div>
