@@ -622,7 +622,10 @@ text-align: center;
     display: flex;
     flex-direction: column;
   }
-  .selection {
+  #questionquiz3{
+    width: 80%;
+  }
+  #selection {
     width: 90%;
     height: 20rem;
     display: flex;
@@ -638,6 +641,12 @@ text-align: center;
   .buttonquiz3 {
     width: 70%;
     margin: 0.8rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+  .feedbackquiz2 {
+    height: fit-content;
   }
 }
 </style>

@@ -211,5 +211,8 @@ img {
   img {
     width: 80%;
   }
+  .feedback {
+    height: fit-content;
+  }
 }
 </style>
