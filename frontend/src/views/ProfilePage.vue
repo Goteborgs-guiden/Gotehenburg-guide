@@ -185,7 +185,7 @@ function getLocationHighscore() {
       </div>
 
       <div class="item4 highscore">
-        <h1 class="FriendsHigh">friends highscore</h1>
+        <h1 class="FriendsHigh">Vänner highscore</h1>
         <table class="highscoreTable" v-if="selected === 'abc'">
           <tr v-for="(highscore, index) in highscoreABC" :key="index">
             <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
