@@ -28,8 +28,6 @@ const dialogs = useDialogStore()
     right: 1%;
 }
 .popup-background.popEdit {
-    top:30%;
-    right: 25%;
 }
 
 @media screen and (max-width: 768px) {

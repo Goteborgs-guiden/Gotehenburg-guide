@@ -170,4 +170,20 @@ label {
   transform: translateY(2px);
   box-shadow: none;
 }
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 100vw;
+  }
+  form {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid #fff;
+  background: #214f75;
+  font-family: 'Permanent marker';
+  color: #fff;
+  position: relative;
+  z-index: 15;
+}
+}
 </style>
