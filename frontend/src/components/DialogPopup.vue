@@ -42,7 +42,6 @@ const dialogs = useDialogStore()
     top: 2%;
     right: 0;
     width: 100;
-    
 }
 }
 </style>
