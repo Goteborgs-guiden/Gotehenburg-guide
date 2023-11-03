@@ -80,9 +80,6 @@ function getLocationHighscore() {
 <template>
   <div id="profile-page">
     <div id="top-section">
-
-
-
       <div id="profile-info-desktop">
         <table id="shorts-desktop">
           <tr>
@@ -110,9 +107,6 @@ function getLocationHighscore() {
           <button id="edit-button">redigera</button>
         </a>
       </div>
-
-
-
       <div id="profile-info-mobile">
 
         <table id="shorts-mobile">
@@ -180,36 +174,36 @@ function getLocationHighscore() {
       </div>
 
 
-      <div class="item4 highscore">
-        <div class="FriendsBackground">
-        <h1 class="FriendsHigh">Vänners highscore</h1>
+        <div class="item4 highscore">
+          <div class="FriendsBackground">
+          <h1 class="FriendsHigh">Vänners highscore</h1>
+          </div>
+          <table class="highscoreTable" v-if="selected === 'abc'">
+            <tr v-for="(highscore, index) in highscoreABC" :key="index">
+              <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
+              <td class="user">{{ highscore.username }} med {{ highscore.ABCHS }} poäng</td>
+            </tr>
+          </table>
+          <table class="HighscoreFillBlank" v-if="selected === 'fillblank'">
+            <tr v-for="(highscore, index) in highscoreBlank" :key="index">
+              <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
+              <td class="user">{{ highscore.username }} med {{ highscore.BlankHS }} poäng</td>
+            </tr>
+          </table>
+          <table class="HighscoreMap" v-if="selected === 'map'">
+            <tr v-for="(highscore, index) in highscoreLocation" :key="index">
+              <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
+              <td class="user">{{ highscore.username }} med {{ highscore.LocationHS }} poäng</td>
+            </tr>
+          </table>
         </div>
-        <table class="highscoreTable" v-if="selected === 'abc'">
-          <tr v-for="(highscore, index) in highscoreABC" :key="index">
-            <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
-            <td class="user">{{ highscore.username }} med {{ highscore.ABCHS }} poäng</td>
-          </tr>
-        </table>
-        <table class="HighscoreFillBlank" v-if="selected === 'fillblank'">
-          <tr v-for="(highscore, index) in highscoreBlank" :key="index">
-            <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
-            <td class="user">{{ highscore.username }} med {{ highscore.BlankHS }} poäng</td>
-          </tr>
-        </table>
-        <table class="HighscoreMap" v-if="selected === 'map'">
-          <tr v-for="(highscore, index) in highscoreLocation" :key="index">
-            <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
-            <td class="user">{{ highscore.username }} med {{ highscore.LocationHS }} poäng</td>
-          </tr>
-        </table>
-      </div>
-      <form class="chooseHighscoreBox">
-        <select class="selectForForm" v-model="selected">
-          <option class="optionForForm" value="abc">Tjöt</option>
-          <option class="optionForForm" value="fillblank">Ordvitsknök</option>
-          <option class="optionForForm" value="map">Geografikäck</option>
-        </select>
-      </form>
+        <form class="chooseHighscoreBox">
+          <select class="selectForForm" v-model="selected">
+            <option class="optionForForm" value="abc">Tjöt</option>
+            <option class="optionForForm" value="fillblank">Ordvitsknök</option>
+            <option class="optionForForm" value="map">Geografikäck</option>
+          </select>
+        </form>
     </div>
   </div>
 </template>
@@ -387,21 +381,6 @@ function getLocationHighscore() {
     margin: 0.5rem;
     width: 100%;
     height: 15rem;
-  }
-
-  #profile-img {
-    border-radius: 490px;
-    border: 5px solid #214F75;
-    background: url(<path-to-image>), lightgray 50%;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    height: 15em;
-    width: 15em;
-    margin: 1em;
-    display: flex;
-    align-items: end;
-    justify-content: center;
-    margin-left: 4em;
-
   }
 
   #username {

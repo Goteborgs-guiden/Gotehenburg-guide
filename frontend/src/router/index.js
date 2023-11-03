@@ -34,7 +34,7 @@ const router = createRouter({
 
       path: '/profile',
       name: 'Profile',
-      component: () => import('../views/ProfilePage.vue')
+      component: () => import('../views/ProfilePage2.vue')
     },
     {
       path: '/highscore',
