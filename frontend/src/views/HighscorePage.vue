@@ -103,13 +103,13 @@ function getLocationHighscore() {
           <td class="user">{{ highscore.username }} med {{ highscore.ABCHS }} poäng</td>
         </tr>
       </table>
-      <table v-if="selected === 'fillblank'">
+      <table class="highscoreTable" v-if="selected === 'fillblank'">
         <tr v-for="(highscore, index) in highscoreBlank" :key="index">
           <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
           <td class="user">{{ highscore.username }} med {{ highscore.BlankHS }} poäng</td>
         </tr>
       </table>
-      <table v-if="selected === 'map'">
+      <table class="highscoreTable" v-if="selected === 'map'">
         <tr v-for="(highscore, index) in highscoreLocation" :key="index">
           <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
           <td class="user">{{ highscore.username }} med {{ highscore.LocationHS }} poäng</td>
@@ -198,7 +198,7 @@ select,
 .select:after {
   grid-area: select;
   justify-self: end;
-  margin-right: 1em;
+  margin-right: 2em;
 }
 
 .select::after {

@@ -179,7 +179,7 @@ function getABCQuestion(id) {
 function changePage() {
   setTimeout(function () {
     router.push("/")
-  }, 1500)
+  }, 4000)
 }
 </script>
 <template>
@@ -273,13 +273,44 @@ function changePage() {
       
     </div>
     <div v-if="!onGoingQuiz">
-      <p>Quizen är slut</p>
-      <p>Du fick {{ points }} poäng</p>
-      {{changePage()}}
+      <div class="end-quiz-container">
+        <h1>Quizen är slut!</h1>
+        <p class="score">Du fick: <strong>{{ points }}</strong> poäng</p>
+        <p class="thank-you">Tack för ditt deltagande i quizen!</p>
+        {{ changePage() }}
+      </div>  
     </div>
   </main>
 </template>
 <style scoped>
+/* end screen */
+    .end-quiz-container {
+      margin: 50px auto;
+      width: 80%;
+      max-width: 600px;
+      background-color: #214F75;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border: 0.4rem solid #ffff
+    }
+
+    .end-quiz-container h1 {
+      color: #ffff;
+    }
+    .end-quiz-container p {
+      color: #ffff;
+    }
+    .end-quiz-container .score {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .end-quiz-container .thank-you {
+      font-style: italic;
+    }
+
+
 /* the map style*/
 #geoimg {
   margin-top: 1em;

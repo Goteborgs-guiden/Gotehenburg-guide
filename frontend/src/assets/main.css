@@ -3,9 +3,10 @@
 html {
   min-height: 77%;
   background-image: url(/stadssiluett.png);
-  background-size: cover;
+  background-size: 100%;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position:bottom center;
+  background-color: #F1F2F1;
 }
 
 body {
