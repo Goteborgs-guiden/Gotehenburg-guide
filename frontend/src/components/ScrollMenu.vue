@@ -36,8 +36,20 @@ const slideOffset = ref(0)
         <img src="/svgarrows/arrowleft.svg" class="buttonImage" />
       </button>
       <button
-        class="forwardButton buttonItem"
+        class="forwardButton buttonItem buttonQMedia1"
         @click="slideOffset = Math.max(slideOffset - 350, -1050)"
+      >
+        <img src="/svgarrows/arrowright.svg" class="buttonImage" />
+      </button>
+      <button
+        class="forwardButton buttonItem buttonQMedia2"
+        @click="slideOffset = Math.max(slideOffset - 350, -2100)"
+      >
+        <img src="/svgarrows/arrowright.svg" class="buttonImage" />
+      </button>
+      <button
+        class="forwardButton buttonItem buttonQMedia3"
+        @click="slideOffset = Math.max(slideOffset - 350, -2450)"
       >
         <img src="/svgarrows/arrowright.svg" class="buttonImage" />
       </button>
@@ -47,12 +59,17 @@ const slideOffset = ref(0)
 <style>
 .container {
   position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100em;
+  background-color: white;
 }
 
 .scrollContainer {
-  width: 94%;
-  margin-left: 3%;
+  width: 88.5em;
+  background: white;
   overflow: hidden;
+  height: fit-content;
 }
 
 .scrollMenu {
@@ -88,6 +105,70 @@ const slideOffset = ref(0)
 }
 
 .forwardButton {
-  right: 2.5%;
+  right: calc(0.5% + 3em);
+}
+
+@media screen and (max-width: 600px) {
+  .scrollContainer {
+    width: 22.5em;
+  }
+
+  .container {
+    width: 28em;
+  }
+
+  .buttonQMedia1 {
+    display: none;
+  }
+
+  .buttonQMedia2 {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  .scrollContainer {
+    width: 22.5em;
+  }
+
+  .container {
+    width: 28em;
+  }
+
+  .buttonQMedia1 {
+    display: none;
+  }
+
+  .buttonQMedia3 {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1600px) {
+  .scrollContainer {
+    width: 44.5em;
+  }
+
+  .container {
+    width: 50em;
+  }
+
+  .buttonQMedia1 {
+    display: none;
+  }
+
+  .buttonQMedia3 {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .buttonQMedia2 {
+    display: none;
+  }
+
+  .buttonQMedia3 {
+    display: none;
+  }
 }
 </style>

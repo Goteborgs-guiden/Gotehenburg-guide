@@ -9,39 +9,20 @@ let points = ref(0)
 let allowsubmit = ref(true)
 const questionImage = ref('')
 import { useHighscore } from '../stores/highscore'
+import { useRouter } from 'vue-router'
 const highscore = useHighscore()
+
+
+let color=ref('');
+let answerID=ref('');
+
 const correctAnswer = ref();
 const userGuess = ref('');
+const router = useRouter();
 
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
-function sendAnswer(input, id, answerid) {
-  userGuess.value = input
-  if(allowsubmit.value){
-  fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
-    method: 'GET'
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      console.log('response from server:', data)
-      
-      correctAnswer.value = data 
-      console.log(correctAnswer.value)
-      if (input === correctAnswer.value) {
-        console.log('answerid=', answerid)
-        document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
-        points.value++
-      } else {
-        console.log('answerid=', answerid)
-        document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
-        
-      }
-      allowsubmit.value = false;
-      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'; allowsubmit.value=true}, 2000);
-    })
-  }
-}
 function getQuestion(id) {
   if (id <= 5) {
     correctData.value = ''
@@ -57,81 +38,120 @@ function getQuestion(id) {
       })
   } else onGoingQuiz = false
 }
-function setHighscore(points) {
-  fetch('http://127.0.0.1:3000/highscore/location', {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: 'BEARER ' + localStorage.getItem('accessToken')
-    },
-    body: JSON.stringify({ score: points })
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('response from server:', data)
+onMounted(() => {
+  if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
+})
+function sendAnswer(input, id, answerid) {
+  if (allowsubmit.value) {
+    userGuess.value = input
+    answerID.value = answerid
+    fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
+      method: 'GET'
     })
+      .then((response) => response.text())
+      .then((data) => {
+        console.log('response from server:', data)
+
+        correctAnswer.value = data
+        console.log(correctAnswer.value)
+        if (input === correctAnswer.value) {
+          console.log('answerid=', answerid)
+          color.value='green';
+          points.value++
+        } else {
+          console.log('answerid=', answerid)
+          color.value='red';
+        }
+        allowsubmit.value = false
+        setTimeout(function () {
+          currentQuestion.value++
+          getQuestion(currentQuestion.value)
+          color.value='#214f75';
+          allowsubmit.value = true
+        }, 2000)
+      })
+  }
 }
+  function setHighscore(points) {
+    fetch('http://127.0.0.1:3000/highscore/location', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: 'BEARER ' + localStorage.getItem('accessToken')
+      },
+      body: JSON.stringify({ score: points })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('response from server:', data)
+      })
+  }
+
+
+
 </script>
 
 <template>
-  <div class="grid-container">
+
+  <div class="flexbox">
+
     <div v-if="onGoingQuiz" class="item1" id="questionImage">
       <img :src="questionImage" />
     </div>
 
-    <div v-if="onGoingQuiz" id="abc-quiz" class="item2">
-      <div class="selection">
-        <from>
-          <div class="question">{{ abcdata }}</div>
-          <div class="selection">
-            <button
-              v-for="(alternative, index) in alternatives"
-              :key="index"
-              class="btn"
-              :id="'btn' + index"
-              @click="sendAnswer(alternative, currentQuestion, index)"
-            >
-              {{ alternative }}
-            </button>
+    <div v-if="onGoingQuiz" id="abc-quiz" class="selection">
+      <form>
+        <div class="question">{{ abcdata }}</div>
+        <div v-if="onGoingQuiz">
+          <div class="feedback" >
+            <p id="correct" v-if="correctAnswer === userGuess && !allowsubmit">RÄTT!</p>
+            <p id="wrong" v-if="correctAnswer != userGuess && !allowsubmit">FEL! rätt svar: {{ correctAnswer }}</p>
           </div>
-        </from>
-      </div>
+        </div>
+        <div class="buttonContainer">
+          <button
+            v-for="(alternative, index) in alternatives"
+            :key="index"
+            class="btn"
+            v-bind:style="index === answerID ? {'border': '0.2rem solid', color} : {'border': '0.2rem solid #214f75'}"
+            @click.prevent="sendAnswer(alternative, currentQuestion, index)"
+            
+            >
+
+            {{ alternative }}
+          </button>
+        </div>
+      </form>
     </div>
   </div>
-  <div>
-    <from> </from>
-  </div>
-  <div v-if="onGoingQuiz">
-    <div class="feedback" v-if="!allowsubmit">
-      <p id="correct" v-if="correctAnswer === userGuess">RÄTT!</p>
-      <p id="wrong" v-if="correctAnswer != userGuess">FEL! rätt svar:  {{ correctAnswer }}</p>
-    </div>
-  </div>
+
   <div v-if="currentQuestion >= 6">
-    <p v-if="points > 3">Snyggt byggt, fräsig kärra!</p>
-    <p v-else>Rackarns rabarber det där gick inte så bra!</p>
-    <p>{{ points }} Poäng</p>
-    <div v-if="setHighscore(points)"></div>
-    <div v-if="highscore.setScore(points)"></div>
-    <div v-if="highscore.setLastQuiz('map')"></div>
+    {{setHighscore(points)}}
+    {{highscore.setScore(points)}}
+    {{highscore.setLastQuiz('map')}}
+    {{router.push("/highscore")}}
   </div>
 </template>
 <style scoped>
-.feedback{
-  color: #000;
-font-family: Newsreader;
-font-size: 2rem;
-font-style: normal;
-font-weight: 400;
-text-align: center;
-
-
+.feedback {
+  color: #ffffff;
+  font-family: 'Newsreader';
+  font-size: 1.5em;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  height:27px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
-.feedback #correct {
-  color:#2ce03e
+.correctAlternative{
+  border: 0.2rem solid green;
 }
-.feedback #wrong {
-  color: #f00;
+.wrongAlternative{
+  color:0.2rem solid red;
+}
+.feedback p{
+  margin:0;
+  color:white
 }
 .item1 {
   grid-area: image;
@@ -145,65 +165,42 @@ text-align: center;
 .item4 {
   grid-area: buttonTwo;
 }
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 50% 1fr;
-  grid-template-rows: 1fr 1fr 20%;
-  grid-template-areas:
-    '. image .'
-    '. choices .'
-    'buttonOne . buttonTwo';
+.flexbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .item1 {
   justify-self: center;
   margin-top: 1em;
   margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
 }
 
-.item2 {
-  justify-self: center;
-}
 .selection {
   text-align: center;
-  width: 59.53125rem;
-  height: 16.6875rem;
+  height: fit-content;
+  width: 70%;
   background-color: rgba(64, 108, 144, 0.9);
   border-radius: 0.8rem;
   margin-bottom: 5rem;
   box-shadow: 1px 1px 4px 0px;
 }
-#btn0 {
-  width: 23.25rem;
-  height: 3.5rem;
+.btn {
+  width: 43%;
+  min-width: fit-content;
+  height: 2.5em;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
   margin-top: 0.5rem;
-  margin-right: 5.5rem;
-}
-#btn1 {
-  width: 23.25rem;
-  height: 3.5rem;
-  border-radius: 1.90625rem;
-  border: 2px solid #214f75;
-  background: #e8f3fd;
-}
-#btn2 {
-  width: 23.25rem;
-  height: 3.5rem;
-  border-radius: 1.90625rem;
-  border: 2px solid #214f75;
-  background: #e8f3fd;
-  margin-top: 2.5rem;
-  margin-right: 5.5rem;
-}
-#btn3 {
-  width: 23.25rem;
-  height: 3.5rem;
-  border-radius: 1.90625rem;
-  border: 2px solid #214f75;
-  background: #e8f3fd;
+  margin-bottom: 1em;
+  font-family: 'Newsreader';
+  font-size: large;
+  color: #214f75;
+  letter-spacing: 1.5px;
 }
 
 .item3 {
@@ -220,11 +217,32 @@ text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   font-family: 'Newsreader';
   font-size: 1.5rem;
+  width: 100%;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 img {
-  margin-top: 2em;
+  margin-top: 1em;
   margin-bottom: 1em;
-  width: 100%;
-  height: 90%;
+  width: 50%;
+  box-shadow: 1px 1px 4px 0px;
+}
+@media screen and (max-width: 680px) {
+  .selection {
+    align-items: center;
+    padding: 1em;
+  }
+  .btn {
+    width: 100%;
+  }
+  img {
+    width: 80%;
+  }
 }
 </style>

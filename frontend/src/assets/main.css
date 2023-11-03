@@ -1,24 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
-
 html {
-    min-height: 77%;
-    background-image: url(/stadssiluett.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-
+  min-height: 77%;
+  background-image: url(/stadssiluett.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 body {
-    margin:0;
-    padding:0;
+  margin: 0;
+  padding: 0;
 }
-
-
-
-
-
-
-
-
