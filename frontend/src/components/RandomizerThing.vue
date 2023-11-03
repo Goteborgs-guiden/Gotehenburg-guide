@@ -16,7 +16,8 @@ const router = useRouter();
 const questionImage = ref('')
 const correctAnswer = ref()
 const userGuess = ref('')
-
+let color=ref('');
+let answerID=ref('');
 onMounted(() => {
   randomizeQuestion()
 })
@@ -85,8 +86,9 @@ function sendBlankAnswer(input, id) {
 }
 function sendMapAnswer(input, id, answerid) {
   console.log('input=', input, 'id=', id, 'answerid=', answerid)
-  userGuess.value = input
   if (allowsubmit.value) {
+    userGuess.value = input
+    answerID.value = answerid
     fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
       method: 'GET'
     })
@@ -98,17 +100,18 @@ function sendMapAnswer(input, id, answerid) {
         console.log(correctAnswer.value)
         if (input === correctAnswer.value) {
           console.log('answerid=', answerid)
-          document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
+          color.value='green';
           points.value++
         } else {
           console.log('answerid=', answerid)
-          document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
+          color.value='red'
         }
         allowsubmit.value = false
         setTimeout(function () {
-          getMapQuestion(currentQuestion.value++)
+          currentQuestion.value++
+          getMapQuestion(currentQuestion.value)
           randomizeQuestion()
-          document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'
+          color.value='214f75';
           allowsubmit.value = true
         }, 2000)
       })
@@ -129,8 +132,9 @@ function getMapQuestion(id) {
   } else onGoingQuiz = false
 }
 function sendABCAnswer(input, id, answerid) {
-  userGuess.value = input
   if (allowsubmit.value) {
+    userGuess.value = input
+    answerID.value = answerid
     fetch('http://127.0.0.1:3000/quiz/abcanswer/' + id, {
       method: 'GET'
     })
@@ -142,17 +146,18 @@ function sendABCAnswer(input, id, answerid) {
         console.log(correctAnswer.value)
         if (input === correctAnswer.value) {
           console.log('answerid=', answerid)
-          document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
+          color.value='green';
           points.value++
         } else {
           console.log('answerid=', answerid)
-          document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
+          color.value='red';
         }
         allowsubmit.value = false
         setTimeout(function () {
-          getABCQuestion(currentQuestion.value++)
+          currentQuestion.value++
+          getABCQuestion(currentQuestion.value)
           randomizeQuestion()
-          document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'
+          color.value='#214f75';
           allowsubmit.value = true
         }, 2000)
       })
@@ -174,7 +179,7 @@ function getABCQuestion(id) {
 function changePage() {
   setTimeout(function () {
     router.push("/")
-  }, 5000)
+  }, 1500)
 }
 </script>
 <template>
@@ -192,7 +197,7 @@ function changePage() {
             <div class="hideInputAndButton" v-if="allowsubmit">
               <div class="inputform">
                 <input
-                  @keydown.enter="sendAnswer(answer, currentQuestion)"
+                  @keydown.enter="sendBlankAnswer(answer, randomID)"
                   class="input"
                   placeholder="Svara här"
                   v-model="answer"
@@ -216,6 +221,7 @@ function changePage() {
             v-for="(alternative, index) in alternatives"
             :key="index"
             class="btn"
+            v-bind:style="index === answerID ? {'border': '0.2rem solid', color} : {'border': '0.2rem solid #214f75'}"
             :id="'btn' + index"
             @click="sendABCAnswer(alternative, randomID, index)"
           >
@@ -233,6 +239,7 @@ function changePage() {
                 v-for="(alternative, index) in alternatives"
                 :key="index"
                 class="btn"
+                v-bind:style="index === answerID ? {'border': '0.2rem solid', color} : {'border': '0.2rem solid #214f75'}"
                 :id="'btn' + index"
                 @click="sendMapAnswer(alternative, randomID, index)"
               >
@@ -268,11 +275,8 @@ text-align: center;
 
 
 }
-.feedback #correct {
-  color:#2ce03e
-}
-.feedback #wrong {
-  color: #f00;
+.feedback p{
+  color: black;
 }
 .item1 {
   grid-area: image;
@@ -406,12 +410,6 @@ p {
   font-size: 2rem;
   width: fit-content;
 }
-#correctAnswer {
-  color: #2ce03e;
-}
-#wrongAnswer {
-  color: #f00;
-}
 .inputform {
   height: 2rem;
   display: flex;
@@ -497,12 +495,6 @@ font-weight: 400;
 text-align: center;
 
 
-}
-.feedback #correct {
-  color:#2ce03e
-}
-.feedback #wrong {
-  color: #f00;
 }
 .selection {
   text-align: center;
