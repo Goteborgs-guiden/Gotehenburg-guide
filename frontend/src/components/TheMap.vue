@@ -33,9 +33,9 @@ onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function sendAnswer(input, id, answerid) {
-  answerID.value=answerid;
-  userGuess.value = input
   if (allowsubmit.value) {
+    userGuess.value = input
+    answerID.value = answerid
     fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
       method: 'GET'
     })
@@ -140,12 +140,7 @@ function sendAnswer(input, id, answerid) {
 }
 .feedback p{
   margin:0;
-}
-#wrong{
-  color:red;
-}
-#correct{
-  color:green;
+  color:white
 }
 .item1 {
   grid-area: image;

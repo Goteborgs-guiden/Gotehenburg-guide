@@ -17,9 +17,9 @@ onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function sendAnswer(input, id, answerid) {
-  answerID.value = answerid
-  userGuess.value = input
   if (allowsubmit.value) {
+    userGuess.value = input
+    answerID.value = answerid
     fetch('http://127.0.0.1:3000/quiz/abcanswer/' + id, {
       method: 'GET'
     })
@@ -97,7 +97,7 @@ function setHighscore(points) {
 
     <div></div>
     <div v-if="onGoingQuiz" class="feedback">
-      <div v-if="!allowsubmit">
+      <div class="feedback" v-if="!allowsubmit">
         <p id="correct" v-if="correctAnswer === userGuess">RÄTT!</p>
         <p id="wrong" v-if="correctAnswer != userGuess">FEL! rätt svar: {{ correctAnswer }}</p>
       </div>
@@ -113,6 +113,21 @@ function setHighscore(points) {
   </div>
 </template>
 <style scoped>
+.feedback {
+  color: #ffffff;
+  font-family: 'Newsreader';
+  font-size: 1.5em;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  height:27px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+}
+.feedback p{
+  margin:0;
+  color:#ffffff
+}
+
 .quiz-container {
   height: 100vh;
   width: 100vw;
@@ -153,11 +168,9 @@ function setHighscore(points) {
   font-weight: 400;
   text-align: center;
 }
-.feedback #correct {
-  color: #2ce03e;
-}
-.feedback #wrong {
-  color: #f00;
+.feedback p{
+  margin:0;
+  color:black
 }
 .selection {
   text-align: center;
