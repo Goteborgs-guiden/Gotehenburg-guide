@@ -37,7 +37,7 @@ const slideOffset = ref(0)
       </button>
       <button
         class="forwardButton buttonItem buttonQMedia1"
-        @click="slideOffset = Math.max(slideOffset - 350, -1400)"
+        @click="slideOffset = Math.max(slideOffset - 350, -2450)"
       >
         <img src="/svgarrows/arrowright.svg" class="buttonImage" />
       </button>
@@ -49,7 +49,7 @@ const slideOffset = ref(0)
       </button>
       <button
         class="forwardButton buttonItem buttonQMedia3"
-        @click="slideOffset = Math.max(slideOffset - 350, -2450)"
+        @click="slideOffset = Math.max(slideOffset - 350, -1400)"
       >
         <img src="/svgarrows/arrowright.svg" class="buttonImage" />
       </button>
@@ -117,11 +117,11 @@ const slideOffset = ref(0)
     width: 28em;
   }
 
-  .buttonQMedia1 {
+  .buttonQMedia2 {
     display: none;
   }
 
-  .buttonQMedia2 {
+  .buttonQMedia3 {
     display: none;
   }
 }
@@ -135,7 +135,7 @@ const slideOffset = ref(0)
     width: 28em;
   }
 
-  .buttonQMedia1 {
+  .buttonQMedia2 {
     display: none;
   }
 
@@ -163,11 +163,11 @@ const slideOffset = ref(0)
 }
 
 @media screen and (min-width: 1600px) {
-  .buttonQMedia2 {
+  .buttonQMedia1 {
     display: none;
   }
 
-  .buttonQMedia3 {
+  .buttonQMedia2 {
     display: none;
   }
 }
