@@ -198,7 +198,7 @@ select,
 .select:after {
   grid-area: select;
   justify-self: end;
-  margin-right: 1em;
+  margin-right: 2em;
 }
 
 .select::after {
