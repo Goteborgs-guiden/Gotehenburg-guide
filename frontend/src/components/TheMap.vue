@@ -9,11 +9,46 @@ let points = ref(0)
 let allowsubmit = ref(true)
 const questionImage = ref('')
 import { useHighscore } from '../stores/highscore'
+import { useRouter } from 'vue-router'
 const highscore = useHighscore()
-const correctAnswer = ref()
-const userGuess = ref('')
+
+
 let color=ref('');
 let answerID=ref('');
+
+const correctAnswer = ref();
+const userGuess = ref('');
+const router = useRouter();
+
+onMounted(() => {
+  if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
+})
+function sendAnswer(input, id, answerid) {
+  userGuess.value = input
+  if(allowsubmit.value){
+  fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
+    method: 'GET'
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      console.log('response from server:', data)
+      
+      correctAnswer.value = data 
+      console.log(correctAnswer.value)
+      if (input === correctAnswer.value) {
+        console.log('answerid=', answerid)
+        document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
+        points.value++
+      } else {
+        console.log('answerid=', answerid)
+        document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
+        
+      }
+      allowsubmit.value = false;
+      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'; allowsubmit.value=true}, 2000);
+    })
+  }
+}
 function getQuestion(id) {
   if (id <= 5) {
     correctData.value = ''
@@ -82,6 +117,12 @@ function sendAnswer(input, id, answerid) {
 
 <template>
   <div class="flexbox">
+</script>
+
+<template>
+
+  <div class="grid-container">
+
     <div v-if="onGoingQuiz" class="item1" id="questionImage">
       <img :src="questionImage" />
     </div>
@@ -113,12 +154,10 @@ function sendAnswer(input, id, answerid) {
   </div>
 
   <div v-if="currentQuestion >= 6">
-    <p v-if="points > 3">Snyggt byggt, fräsig kärra!</p>
-    <p v-else>Rackarns rabarber det där gick inte så bra!</p>
-    <p>{{ points }} Poäng</p>
-    <div v-if="setHighscore(points)"></div>
-    <div v-if="highscore.setScore(points)"></div>
-    <div v-if="highscore.setLastQuiz('map')"></div>
+    {{setHighscore(points)}}
+    {{highscore.setScore(points)}}
+    {{highscore.setLastQuiz('map')}}
+    {{router.push("/highscore")}}
   </div>
 </template>
 <style scoped>

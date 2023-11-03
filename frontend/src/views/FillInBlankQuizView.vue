@@ -8,6 +8,8 @@ let question = ref('')
 let answer = ref('')
 let allowsubmit = ref(true)
 let correctAnswer = ref('')
+import { useRouter } from 'vue-router'
+const router = useRouter();
 
 
 import { useHighscore } from '../stores/highscore'
@@ -102,11 +104,10 @@ function setHighscore(points) {
       </article>
     </div>
     <div v-if="!onGoingQuiz">
-      <div v-if="setHighscore(points)"></div>
-      <div v-if="highscore.setScore(points)"></div>
-      <div v-if="highscore.setLastQuiz('fillblank')"></div>
-      <p>Quizen är slut</p>
-      <p>Du fick {{ points }} poäng</p>
+      {{setHighscore(points)}}
+      {{highscore.setScore(points)}}
+      {{highscore.setLastQuiz('fillblank')}}
+      {{ router.push("/highscore") }}
     </div>
   </main>
 </template>
