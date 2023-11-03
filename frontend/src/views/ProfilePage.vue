@@ -185,7 +185,7 @@ function getLocationHighscore() {
       </div>
 
       <div class="item4 highscore">
-        <h1>friends highscore</h1>
+        <h1 class="FriendsHigh">friends highscore</h1>
         <table class="highscoreTable" v-if="selected === 'abc'">
           <tr v-for="(highscore, index) in highscoreABC" :key="index">
             <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
@@ -204,20 +204,24 @@ function getLocationHighscore() {
             <td class="user">{{ highscore.username }} med {{ highscore.LocationHS }} poäng</td>
           </tr>
         </table>
-        <form class="chooseHighscoreBox">
-          <select class="selectForForm" v-model="selected">
-            <option class="optionForForm" value="abc">ABC</option>
-            <option class="optionForForm" value="fillblank">Blank highscore</option>
-            <option class="optionForForm" value="map">Map highscore</option>
-          </select>
-        </form>
       </div>
+      <form class="chooseHighscoreBox">
+        <select class="selectForForm" v-model="selected">
+          <option class="optionForForm" value="abc">ABC</option>
+          <option class="optionForForm" value="fillblank">Blank highscore</option>
+          <option class="optionForForm" value="map">Map highscore</option>
+        </select>
+      </form>
     </div>
   </div>
 </template>
 <style scoped>
 
 @media only screen and (min-height: 500px) {
+
+  .FriendsHigh{
+    width: 30em;
+  }
 
   .user {
     border-radius: 17px;
@@ -541,6 +545,7 @@ function getLocationHighscore() {
     margin: 1em 1em;
     margin-bottom: 65em;
     height: 30%;
+    margin-right: 12em;
   }
 
   .quiz {
@@ -557,7 +562,7 @@ function getLocationHighscore() {
     list-style: none;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 6em;
     height: 15rem;
     padding: 0.5rem;
     margin: 0.5rem;
@@ -574,6 +579,7 @@ function getLocationHighscore() {
     margin: 0.5rem;
     display: flex;
     justify-content: center;
+    margin-bottom: -0.2em;
   }
 
   .quiz-extra {
@@ -629,7 +635,7 @@ function getLocationHighscore() {
   .selectForForm {
     border: 4px solid #214F75;
     border-radius: 22px;
-    margin: -6em 36em;
+    margin: -46em -26em;
     position: absolute;
     background: rgba(232, 243, 253, 0.9);
   }
@@ -646,12 +652,15 @@ function getLocationHighscore() {
     margin-bottom: 33.3em;
     padding-bottom: 1em;
     margin-right: 9em;
+
   }
 
 }
 
 
 @media only screen and (max-width: 500px) {
+
+
 
   .user {
     border-radius: 17px;
@@ -885,6 +894,10 @@ function getLocationHighscore() {
     margin: 15px;
     width: 25rem;
     height: 2rem;
+    padding-bottom: 6em;
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+    padding-right: 10em;
     display: unset;
 
   }
@@ -1056,7 +1069,7 @@ function getLocationHighscore() {
   .selectForForm {
     border: 4px solid #214F75;
     border-radius: 22px;
-    margin: 6.8em 20em;
+    margin: -43.5em 20em;
     background: rgba(232, 243, 253, 0.9);
 
   }
@@ -1069,7 +1082,7 @@ function getLocationHighscore() {
   }
 
   .item4 {
-    margin: auto auto;
+    margin: -60em 1em;
     margin-bottom: 5em
   }
 
