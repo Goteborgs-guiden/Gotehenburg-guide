@@ -90,7 +90,7 @@ function setHighscore(points) {
           <p>{{ question }}</p>
         <div class="showAnswer" v-if="!allowsubmit">
           <p id="correctAnswer" v-if="!correctData">Rätt svar</p>
-          <p id="wrongAnswer" v-else>Fel svar, rätt svar är: {{ correctAnswer }}</p>
+          <p id="wrongAnswer" v-else>FEL! Rätt svar: {{ correctAnswer }}</p>
         </div>
         <div class="hideInputAndButton" v-if="allowsubmit">
           <div class="inputform">
@@ -169,9 +169,11 @@ p {
   background: #e8f3fd;
   display: flex;
   justify-content: center;
+  padding-left: 1rem;
+  font-family: 'Newsreader';
+  font-size: 1.3125rem;
 }
 ::placeholder {
-  padding-left: 1rem;
   color: rgba(0, 0, 0, 0.53);
   font-family: 'Newsreader';
   font-size: 1.3125rem;

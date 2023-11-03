@@ -88,25 +88,22 @@ function setHighscore(points) {
       <div id="question">
         {{ question }}
       </div>
+      <div v-if="onGoingQuiz" class="feedback">
+      <div class="feedback" v-if="!allowsubmit">
+        <p id="correct" v-if="correctAnswer === userGuess">RÄTT!</p>
+        <p id="wrong" v-if="correctAnswer != userGuess">FEL! Rätt svar: {{ correctAnswer }}</p>
+      </div>
+    </div>
       <div class="selection">
         <button
           v-for="(alternative, index) in alternatives"
           :key="index"
-          class="btn"
+          class="button"
           v-bind:style="index === answerID ? {'border': '0.2rem solid', color} : {'border': '0.2rem solid #214f75'}"
           @click="sendAnswer(alternative, currentQuestion, index)"
         >
           {{ alternative }}
         </button>
-      </div>
-    </div>
-
-
-    <div></div>
-    <div v-if="onGoingQuiz" class="feedback">
-      <div class="feedback" v-if="!allowsubmit">
-        <p id="correct" v-if="correctAnswer === userGuess">RÄTT!</p>
-        <p id="wrong" v-if="correctAnswer != userGuess">FEL! rätt svar: {{ correctAnswer }}</p>
       </div>
     </div>
     <div v-if="currentQuestion >= 6">
@@ -127,6 +124,7 @@ function setHighscore(points) {
   text-align: center;
   height:27px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1.5rem;
 }
 .feedback p{
   margin:0;
@@ -163,7 +161,7 @@ function setHighscore(points) {
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .feedback {
   color: #000;
@@ -190,11 +188,15 @@ function setHighscore(points) {
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
 }
-.btn {
+.button {
   width: 70%;
   height: 3.5rem;
   border-radius: 1.90625rem;
   background: #e8f3fd;
+  color: #214f75;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Newsreader';
+  font-size: 1.3125rem;
 }
 @media screen and (max-width: 768px) {
   #question {
@@ -223,7 +225,7 @@ function setHighscore(points) {
     padding-top: 0.8rem;
     padding-bottom: 0.8rem;
   }
-  .btn {
+  .button {
     width: 70%;
     margin: 0.8rem;
   }

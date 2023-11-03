@@ -188,11 +188,11 @@ function changePage() {
       <div v-if="randomQuiz === 1">
         <article class="ordvitsknok">
           <img :src="questionImage" />
-          <div class="question">
+          <div class="questionquiz1">
             <p>{{ question }}</p>
             <div class="showAnswer" v-if="!allowsubmit">
               <p id="correctAnswer" v-if="!correctData">Rätt svar</p>
-              <p id="wrongAnswer" v-else>Fel svar, rätt svar är: {{ correctAnswer }}</p>
+              <p id="wrongAnswer" v-else>FEL! Rätt svar: {{ correctAnswer }}</p>
             </div>
             <div class="hideInputAndButton" v-if="allowsubmit">
               <div class="inputform">
@@ -212,49 +212,65 @@ function changePage() {
           </div>
         </article>
       </div>
-      <div v-if="randomQuiz === 3">
-        <div id="question">
+            <!--Geografikäck-->
+              <div v-if="randomQuiz === 2" class="flexbox">
+              <div class="item1">
+                    <img id="geoimg" :src="questionImage"/>
+                  </div>
+                    <div class="selectionquiz2">
+                      <from>
+                        <div class="questionquiz2">{{ question }}</div>
+                        <div v-if="onGoingQuiz && randomQuiz != 1">
+                          <div class="feedbackquiz2" >
+                            <p id="correct" v-if="correctAnswer === userGuess && !allowsubmit">RÄTT!</p>
+                            <p id="wrong" v-if="correctAnswer != userGuess && !allowsubmit">FEL! Rätt svar: {{ correctAnswer }}</p>
+                          </div>
+                  </div>
+                        <div class="btnContainer">
+                          <button
+                            v-for="(alternative, index) in alternatives"
+                            :key="index"
+                            class="btn"
+                            v-bind:style="index === answerID ? {'border': '0.2rem solid', color} : {'border': '0.2rem solid #214f75'}"
+                            :id="'btn' + index"
+                            @click="sendMapAnswer(alternative, randomID, index)"
+                          >
+                            {{ alternative }}
+                          </button>
+                        </div>
+                      </from>
+                    </div>
+                  </div>     
+      <!--Geografikäck-->
+        <!--Tjöt-->
+          <div v-if="randomQuiz === 3">
+            <div id="abc-quiz">
+          <div id="questionquiz3">
           {{ question }}
-        </div>
-        <div class="selection">
-          <button
-            v-for="(alternative, index) in alternatives"
-            :key="index"
-            class="btn"
-            v-bind:style="index === answerID ? {'border': '0.2rem solid', color} : {'border': '0.2rem solid #214f75'}"
-            :id="'btn' + index"
-            @click="sendABCAnswer(alternative, randomID, index)"
-          >
-            {{ alternative }}
-          </button>
-        </div>
-      </div>
-      <div v-if="randomQuiz === 2">
-        <img :src="questionImage"/>
-        <div class="selection">
-          <from>
-            <div class="question">{{ question }}</div>
-            <div class="selection">
-              <button
-                v-for="(alternative, index) in alternatives"
-                :key="index"
-                class="btn"
-                v-bind:style="index === answerID ? {'border': '0.2rem solid', color} : {'border': '0.2rem solid #214f75'}"
-                :id="'btn' + index"
-                @click="sendMapAnswer(alternative, randomID, index)"
-              >
-                {{ alternative }}
-              </button>
-            </div>
-          </from>
-        </div>
-      </div>
-      <div v-if="onGoingQuiz && randomQuiz != 1">
+         </div>
+         <div v-if="onGoingQuiz && randomQuiz != 1">
         <div class="feedback" v-if="!allowsubmit">
           <p id="correct" v-if="correctAnswer === userGuess">RÄTT!</p>
-          <p id="wrong" v-if="correctAnswer != userGuess">FEL! rätt svar: {{ correctAnswer }}</p>
+          <p id="wrong" v-if="correctAnswer != userGuess">FEL! Rätt svar: {{ correctAnswer }}</p>
         </div>
       </div>
+         <div id="selection">
+           <button
+            v-for="(alternative, index) in alternatives"
+            :key="index"
+            class="button"
+            v-bind:style="index === answerID ? {'border': '0.2rem solid', color} : {'border': '0.2rem solid #214f75'}"
+            :id="'button' + index"
+            @click="sendABCAnswer(alternative, randomID, index)"
+           >
+            {{ alternative }}
+          </button>
+          </div>
+          </div>
+        </div>
+       <!--Tjöt-->
+  
+      
     </div>
     <div v-if="!onGoingQuiz">
       <p>Quizen är slut</p>
@@ -265,100 +281,130 @@ function changePage() {
 </template>
 <style scoped>
 /* the map style*/
-.feedback{
-  color: #000;
-font-family: Newsreader;
-font-size: 2rem;
-font-style: normal;
-font-weight: 400;
-text-align: center;
-
-
+#geoimg {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 50%;
+  box-shadow: 1px 1px 4px 0px;
 }
-.feedback p{
-  color: black;
+.flexbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.item1 {
-  grid-area: image;
-}
-.item2 {
-  grid-area: choices;
-}
-.item3 {
-  grid-area: buttonOne;
-}
-.item4 {
-  grid-area: buttonTwo;
-}
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 50% 1fr;
-  grid-template-rows: 1fr 1fr 20%;
-  grid-template-areas:
-    '. image .'
-    '. choices .'
-    'buttonOne . buttonTwo';
-}
-
 .item1 {
   justify-self: center;
   margin-top: 1em;
   margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
 }
-
-.item2 {
-  justify-self: center;
-}
-.selection {
+.feedbackquiz2{
+  color: #ffffff;
+  font-family: 'Newsreader';
+  font-size: 1.5em;
+  font-style: normal;
+  font-weight: 400;
   text-align: center;
-  width: 59.53125rem;
-  height: 16.6875rem;
+  height:27px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+}
+.feedbackquiz2 p{
+  margin:0;
+  color:white
+}
+.selectionquiz2 {
+  text-align: center;
+  height: fit-content;
+  width: 70%;
   background-color: rgba(64, 108, 144, 0.9);
   border-radius: 0.8rem;
   margin-bottom: 5rem;
   box-shadow: 1px 1px 4px 0px;
+
 }
-#btn0 {
-  width: 23.25rem;
-  height: 3.5rem;
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.btn {
+  width: 43%;
+  min-width: fit-content;
+  height: 2.5em;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
   margin-top: 0.5rem;
-  margin-right: 5.5rem;
+  margin-bottom: 1em;
+  font-family: 'Newsreader';
+  font-size: large;
+  color: #214f75;
+  letter-spacing: 1.5px;
+}
+#btn0 {
+  width: 43%;
+  min-width: fit-content;
+  height: 2.5em;
+  border-radius: 1.90625rem;
+  border: 2px solid #214f75;
+  background: #e8f3fd;
+  margin-top: 0.5rem;
+  margin-bottom: 1em;
+  font-family: 'Newsreader';
+  font-size: large;
+  color: #214f75;
+  letter-spacing: 1.5px;
 }
 #btn1 {
-  width: 23.25rem;
-  height: 3.5rem;
+  width: 43%;
+  min-width: fit-content;
+  height: 2.5em;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
+  margin-top: 0.5rem;
+  margin-bottom: 1em;
+  font-family: 'Newsreader';
+  font-size: large;
+  color: #214f75;
+  letter-spacing: 1.5px;
 }
 #btn2 {
-  width: 23.25rem;
-  height: 3.5rem;
+  width: 43%;
+  min-width: fit-content;
+  height: 2.5em;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
-  margin-top: 2.5rem;
-  margin-right: 5.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1em;
+  font-family: 'Newsreader';
+  font-size: large;
+  color: #214f75;
+  letter-spacing: 1.5px;
 }
 #btn3 {
-  width: 23.25rem;
-  height: 3.5rem;
+  width: 43%;
+  min-width: fit-content;
+  height: 2.5em;
   border-radius: 1.90625rem;
   border: 2px solid #214f75;
   background: #e8f3fd;
+  margin-top: 0.5rem;
+  margin-bottom: 1em;
+  font-family: 'Newsreader';
+  font-size: large;
+  color: #214f75;
+  letter-spacing: 1.5px;
 }
 
-.item3 {
-  justify-self: center;
-}
-.item4 {
-  justify-self: center;
-}
-
-.question {
+.questionquiz2 {
   color: white;
   padding: 0.6rem 0rem 0rem 0rem;
   border-radius: 0.8rem;
@@ -366,28 +412,20 @@ text-align: center;
   font-family: 'Newsreader';
   font-size: 1.5rem;
 }
-img {
-  margin-top: 2em;
-  margin-bottom: 1em;
-  width: 100%;
-  height: 90%;
-}
 /* blank style*/
 .ordvitsknok {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 2rem;
 }
 img {
   width: 40%;
-  margin-top: 1.5rem;
   background: rgba(232, 243, 253, 0.91);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   text-align: center;
 }
 
-.question {
+.questionquiz1 {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -424,9 +462,11 @@ p {
   background: #e8f3fd;
   display: flex;
   justify-content: center;
+  font-family: Newsreader;
+  font-size: 1.3125rem;
+  padding-left: 1rem;
 }
 ::placeholder {
-  padding-left: 1rem;
   color: rgba(0, 0, 0, 0.53);
   font-family: 'Newsreader';
   font-size: 1.3125rem;
@@ -466,7 +506,7 @@ a {
   align-items: center;
 }
 
-#question {
+#questionquiz3 {
   border-radius: 25px;
 border: 4px solid #406C90;
 background: rgba(232, 243, 253, 0.91);
@@ -484,7 +524,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 margin-top: 2rem;
-margin-bottom: 2rem;
+margin-bottom: 1rem;
 }
 .feedback{
   color: #000;
@@ -493,10 +533,12 @@ font-size: 2rem;
 font-style: normal;
 font-weight: 400;
 text-align: center;
-
-
 }
-.selection {
+.feedback p{
+  margin:0;
+  color:black
+}
+#selection {
   text-align: center;
   width: 40%;
   background-color: rgba(64, 108, 144, 0.9);
@@ -509,22 +551,22 @@ text-align: center;
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
 }
-.btn {
+.button {
   width: 70%;
   height: 3.5rem;
   border-radius: 1.90625rem;
   background: #e8f3fd;
 }
-#btn0 {
+#button0 {
   border: 0.2rem solid #214f75;
 }
-#btn1 {
+#button1 {
   border: 0.2rem solid #214f75;
 }
-#btn2 {
+#button2 {
   border: 0.2rem solid #214f75;
 }
-#btn3 {
+#button3 {
   border: 0.2rem solid #214f75;
 }
 @media screen and (max-width: 768px) {
@@ -558,6 +600,5 @@ text-align: center;
     width: 70%;
     margin: 0.8rem;
   }
- 
 }
 </style>
