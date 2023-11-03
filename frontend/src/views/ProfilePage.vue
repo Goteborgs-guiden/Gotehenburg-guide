@@ -366,11 +366,11 @@ function getLocationHighscore() {
   }
 
   .HighscoreFillBlank{
-    margin-top: 4.9em;
+    margin-top: 5em;
   }
 
   .HighscoreMap{
-    margin-top: 4.9em;
+    margin-top: 5em;
   }
 
 
@@ -815,7 +815,7 @@ function getLocationHighscore() {
   }
 
   .highscoreTable {
-    margin-top: 4.3em;
+    margin-top: -0.7em;
   }
 
   .HighscoreFillBlank{
@@ -1006,14 +1006,14 @@ function getLocationHighscore() {
 
   #quiz-scores {
     border-radius: 25px;
-    border: unset;
-    background: unset;
-    box-shadow: unset;
+    border: 4px solid #214F75;
+    background: rgba(232, 243, 253, 0.91);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     display: flex;
     justify-content: space-around;
-    width: 50%;
+    width: 95%;
     margin-left: 1rem;
-    margin-right: 0.5rem;
+    margin-right: 0.9em;
     height: 30%;
   }
 
@@ -1031,7 +1031,7 @@ function getLocationHighscore() {
     list-style: none;
     display: flex;
     flex-direction: column;
-    width: 51%;
+    width: 24%;
     height: 8.4em;
     padding: 0.5rem;
     margin: 0.5rem;
@@ -1103,7 +1103,7 @@ function getLocationHighscore() {
   .selectForForm {
     border: 4px solid #214F75;
     border-radius: 22px;
-    margin: -27em 11em;
+    margin: -61.7em 11em;
     background: rgba(232, 243, 253, 0.9);
     text-align: center;
     font-weight: bold;
