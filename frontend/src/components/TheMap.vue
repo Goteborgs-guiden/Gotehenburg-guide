@@ -12,6 +12,8 @@ import { useHighscore } from '../stores/highscore'
 const highscore = useHighscore()
 const correctAnswer = ref()
 const userGuess = ref('')
+let color=ref('');
+let answerID=ref('');
 function getQuestion(id) {
   if (id <= 5) {
     correctData.value = ''
@@ -31,6 +33,7 @@ onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
 function sendAnswer(input, id, answerid) {
+  answerID.value=answerid;
   userGuess.value = input
   if (allowsubmit.value) {
     fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
@@ -44,16 +47,19 @@ function sendAnswer(input, id, answerid) {
         console.log(correctAnswer.value)
         if (input === correctAnswer.value) {
           console.log('answerid=', answerid)
+          color.value='green';
           //document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
           points.value++
         } else {
           console.log('answerid=', answerid)
+          color.value='red';
           //document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
         }
         allowsubmit.value = false
         setTimeout(function () {
           getQuestion(currentQuestion.value++)
           getQuestion(currentQuestion.value)
+          color.value='#214f75';
           //document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75';
           allowsubmit.value = true
         }, 2000)
@@ -97,8 +103,11 @@ function sendAnswer(input, id, answerid) {
             v-for="(alternative, index) in alternatives"
             :key="index"
             class="btn"
+            v-bind:style="index === answerID ? {'border': '0.2rem solid', color} : {'border': '0.2rem solid #214f75'}"
             @click.prevent="sendAnswer(alternative, currentQuestion, index)"
-          >
+            
+            >
+
             {{ alternative }}
           </button>
         </div>
@@ -126,8 +135,20 @@ function sendAnswer(input, id, answerid) {
   height:27px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
+.correctAlternative{
+  border: 0.2rem solid green;
+}
+.wrongAlternative{
+  color:0.2rem solid red;
+}
 .feedback p{
   margin:0;
+}
+#wrong{
+  color:red;
+}
+#correct{
+  color:green;
 }
 .item1 {
   grid-area: image;
