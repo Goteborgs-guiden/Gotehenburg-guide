@@ -41,7 +41,7 @@ function edit() {
     <div class="wrapper">
       <form>
         <div class="close-box">
-          <label class="register">Redigera dig:</label>
+          <label class="register">Redigera:</label>
           <img class="close" src="/symbols/navclose.svg" @click="dialogs.toggleEdit"/>
         </div>
         <label class="inputLabel">förnamn:</label>
@@ -53,7 +53,7 @@ function edit() {
         <label class="inputLabel">födelsedatum:</label>
         <input class="inputField" type="date" v-model="DOB"/>
         <label class="inputLabel">Om mig:</label>
-        <input class="inputField" type="text" v-model="about" placeholder="Om mig" />
+        <input class="inputField about" type="text" v-model="about" placeholder="Om mig" />
         <div class="button-wrapper">
           <input class="button" type="submit" value="Registrera" @click.prevent="edit()" />
         </div>
@@ -103,7 +103,7 @@ form {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   box-shadow: 0 3px 0px 0px rgba(0, 0, 0, 0.3);
-  width: 8em;
+  width: 5em;
   align-self: center;
   padding-top: 0.5rem;
 }
