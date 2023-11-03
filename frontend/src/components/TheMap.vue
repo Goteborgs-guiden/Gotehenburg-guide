@@ -23,32 +23,6 @@ const router = useRouter();
 onMounted(() => {
   if (currentQuestion.value === 0) getQuestion(1), getQuestion(currentQuestion.value++)
 })
-function sendAnswer(input, id, answerid) {
-  userGuess.value = input
-  if(allowsubmit.value){
-  fetch('http://127.0.0.1:3000/quiz/locationAnswer/' + id, {
-    method: 'GET'
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      console.log('response from server:', data)
-      
-      correctAnswer.value = data 
-      console.log(correctAnswer.value)
-      if (input === correctAnswer.value) {
-        console.log('answerid=', answerid)
-        document.getElementById('btn' + answerid).style.border = '0.2rem solid green'
-        points.value++
-      } else {
-        console.log('answerid=', answerid)
-        document.getElementById('btn' + answerid).style.border = '0.2rem solid red'
-        
-      }
-      allowsubmit.value = false;
-      setTimeout(function(){getQuestion(currentQuestion.value++); getQuestion(currentQuestion.value); document.getElementById('btn' + answerid).style.border = '0.2rem solid #214f75'; allowsubmit.value=true}, 2000);
-    })
-  }
-}
 function getQuestion(id) {
   if (id <= 5) {
     correctData.value = ''
@@ -113,15 +87,13 @@ function sendAnswer(input, id, answerid) {
       })
   }
 
+
+
 </script>
 
 <template>
+
   <div class="flexbox">
-</script>
-
-<template>
-
-  <div class="grid-container">
 
     <div v-if="onGoingQuiz" class="item1" id="questionImage">
       <img :src="questionImage" />
