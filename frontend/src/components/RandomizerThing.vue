@@ -206,7 +206,7 @@ function changePage() {
                 />
               </div>
               <div class="buttoncss">
-                <button @input="handleInput" @click="sendBlankAnswer(answer, randomID)">></button>
+                <button id="buttonquiz1" @input="handleInput" @click="sendBlankAnswer(answer, randomID)">></button>
               </div>
             </div>
           </div>
@@ -258,7 +258,7 @@ function changePage() {
            <button
             v-for="(alternative, index) in alternatives"
             :key="index"
-            class="button"
+            class="buttonquiz3"
             v-bind:style="index === answerID ? {'border': '0.2rem solid', color} : {'border': '0.2rem solid #214f75'}"
             :id="'button' + index"
             @click="sendABCAnswer(alternative, randomID, index)"
@@ -508,7 +508,7 @@ p {
   margin: 1em;
 }
 
-button {
+#buttonquiz1 {
   padding: 0.6rem 1.4rem;
   border-radius: 0.8rem;
   border: 0.2rem solid #91b6d8;
@@ -582,11 +582,15 @@ text-align: center;
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
 }
-.button {
+.buttonquiz3 {
   width: 70%;
   height: 3.5rem;
   border-radius: 1.90625rem;
   background: #e8f3fd;
+  color: #214f75;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Newsreader';
+  font-size: 1.3125rem;
 }
 #button0 {
   border: 0.2rem solid #214f75;
@@ -628,6 +632,10 @@ text-align: center;
     padding-bottom: 0.8rem;
   }
   .btn {
+    width: 70%;
+    margin: 0.8rem;
+  }
+  .buttonquiz3 {
     width: 70%;
     margin: 0.8rem;
   }
