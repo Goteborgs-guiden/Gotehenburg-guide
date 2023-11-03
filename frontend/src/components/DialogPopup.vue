@@ -14,8 +14,10 @@ const dialogs = useDialogStore()
     <div v-if="dialogs.showLogin" class="popup-background popLog">
         <LoginForm/>
     </div>
+    <div class="try">
     <div v-if="dialogs.showEdit" class="popup-background popEdit">
         <EditPage1/>
+    </div>
     </div>
 </div>
 </template>
@@ -28,7 +30,9 @@ const dialogs = useDialogStore()
     right: 1%;
 }
 .popup-background.popEdit {
+
 }
+
 
 @media screen and (max-width: 768px) {
     .popup-background {

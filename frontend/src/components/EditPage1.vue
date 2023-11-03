@@ -143,6 +143,10 @@ label {
   margin-top: 0.1em;
 }
 
+.button-wrapper {
+  margin-bottom: 1em;
+}
+
 .button {
   display: block;
   margin: auto;
