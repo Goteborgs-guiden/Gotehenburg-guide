@@ -235,7 +235,6 @@ function getLocationHighscore() {
     padding: 0.5rem;
     text-align: center;
     text-transform: uppercase;
-    width: 3.5em;
     height: 3.5em;
     line-height: 3.5em;
     border-radius: 50%;
