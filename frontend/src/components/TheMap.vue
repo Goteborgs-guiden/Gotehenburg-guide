@@ -92,20 +92,17 @@ function sendAnswer(input, id, answerid) {
 </script>
 
 <template>
-
   <div class="flexbox">
-
-    <div v-if="onGoingQuiz" class="item1" id="questionImage">
+    <div v-if="onGoingQuiz" class="item1">
       <img :src="questionImage" />
     </div>
-
-    <div v-if="onGoingQuiz" id="abc-quiz" class="selection">
+    <div v-if="onGoingQuiz" class="selection">
       <form>
         <div class="question">{{ abcdata }}</div>
         <div v-if="onGoingQuiz">
           <div class="feedback" >
             <p id="correct" v-if="correctAnswer === userGuess && !allowsubmit">RÄTT!</p>
-            <p id="wrong" v-if="correctAnswer != userGuess && !allowsubmit">FEL! rätt svar: {{ correctAnswer }}</p>
+            <p id="wrong" v-if="correctAnswer != userGuess && !allowsubmit">FEL! Rätt svar: {{ correctAnswer }}</p>
           </div>
         </div>
         <div class="buttonContainer">
@@ -114,17 +111,13 @@ function sendAnswer(input, id, answerid) {
             :key="index"
             class="btn"
             v-bind:style="index === answerID ? {'border': '0.2rem solid', color} : {'border': '0.2rem solid #214f75'}"
-            @click.prevent="sendAnswer(alternative, currentQuestion, index)"
-            
-            >
-
+            @click.prevent="sendAnswer(alternative, currentQuestion, index)">
             {{ alternative }}
           </button>
         </div>
       </form>
     </div>
   </div>
-
   <div v-if="currentQuestion >= 6">
     {{setHighscore(points)}}
     {{highscore.setScore(points)}}
@@ -143,27 +136,9 @@ function sendAnswer(input, id, answerid) {
   height:27px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
-.correctAlternative{
-  border: 0.2rem solid green;
-}
-.wrongAlternative{
-  color:0.2rem solid red;
-}
 .feedback p{
   margin:0;
   color:white
-}
-.item1 {
-  grid-area: image;
-}
-.item2 {
-  grid-area: choices;
-}
-.item3 {
-  grid-area: buttonOne;
-}
-.item4 {
-  grid-area: buttonTwo;
 }
 .flexbox {
   display: flex;
@@ -202,14 +177,6 @@ function sendAnswer(input, id, answerid) {
   color: #214f75;
   letter-spacing: 1.5px;
 }
-
-.item3 {
-  justify-self: center;
-}
-.item4 {
-  justify-self: center;
-}
-
 .question {
   color: white;
   padding: 0.6rem 0rem 0rem 0rem;
@@ -243,6 +210,9 @@ img {
   }
   img {
     width: 80%;
+  }
+  .feedback {
+    height: fit-content;
   }
 }
 </style>
