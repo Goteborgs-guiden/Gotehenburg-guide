@@ -660,6 +660,7 @@ function getLocationHighscore() {
   }
   .FriendsHigh {
     margin-bottom: 0.5em;
+    font-size: 35px;
   }
   .chooseHighscoreBox {
     margin-bottom: 1em;
@@ -668,6 +669,15 @@ function getLocationHighscore() {
     border: 0;
     background: none;
     box-shadow: none;
+    margin-bottom: 0;
   }
+  .quiz-info{
+    font-size: 15px;
+  }
+  .quiz-extra {
+    font-size: 20px;
+  }
+
+
 }
 </style>
