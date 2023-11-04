@@ -294,6 +294,7 @@ img {
   width: 90%;
   padding: 2%;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   border-radius: 0.75rem;
   border: 4px solid #214f75;
   background: rgba(232, 243, 253, 0.9);
