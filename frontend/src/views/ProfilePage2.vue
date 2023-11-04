@@ -178,11 +178,17 @@ function getLocationHighscore() {
                 <li class="quiz-info quiz-extra">{{ userInfo.LocationHS }}/5</li>
                 </ul>
             </div>
-            <div class="item4 highscore">
-                <div class="FriendsBackground">
-                    <h1 class="FriendsHigh">Vänners highscore</h1>
-                </div>
-                <table class="highscoreTable" v-if="selected === 'abc'">
+            <div class="highscore">
+                
+                    <div class="FriendsHigh">Vänners highscore</div>
+                    <form class="chooseHighscoreBox">
+                        <select class="selectForForm" v-model="selected">
+                            <option class="optionForForm" value="abc">Tjöt</option>
+                            <option class="optionForForm" value="fillblank">Ordvitsknök</option>
+                            <option class="optionForForm" value="map">Geografikäck</option>
+                        </select>
+                    </form>
+                <table v-if="selected === 'abc'">
                     <tr v-for="(highscore, index) in highscoreABC" :key="index">
                     <td :class="'position pos-' + (index + 1)">{{ index + 1 }}</td>
                     <td class="user">{{ highscore.username }} med {{ highscore.ABCHS }} poäng</td>
@@ -201,13 +207,7 @@ function getLocationHighscore() {
                     </tr>
                 </table>
             </div>
-            <form class="chooseHighscoreBox">
-                <select class="selectForForm" v-model="selected">
-                    <option class="optionForForm" value="abc">Tjöt</option>
-                    <option class="optionForForm" value="fillblank">Ordvitsknök</option>
-                    <option class="optionForForm" value="map">Geografikäck</option>
-                </select>
-            </form>
+           
     </div>
 </template>
 <style scoped>
@@ -215,7 +215,6 @@ function getLocationHighscore() {
     display: flex;
     flex-direction: column;
   }
-
   #top-section {
     display: flex;
     flex-direction: row;
@@ -242,7 +241,6 @@ function getLocationHighscore() {
     border-radius: 50%;
     font-size: 3em;
     border: 4px solid rgba(33, 79, 117, 0.61);
-  
 }
     #profile-info {
     border-radius: 25px;
@@ -258,7 +256,6 @@ function getLocationHighscore() {
     align-items: center;
     padding: 0.5em;
   }
-
   #shorts {
     border-radius: 25px;
     border: 3px solid #406C90;
@@ -310,18 +307,16 @@ function getLocationHighscore() {
     margin-top: 0.5em;
     height: fit-content;
   }
-
   #about {
     display: flex;
     width: 50%;
     height: 10rem;
     flex-direction: column;
   }
-
   #edit-button {
     border-radius: 17px;
     border: 2px solid #214F75;
-    background: #6E91AD;
+    background: rgba(64, 108, 144, 0.73);
     box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.40);
     color: #FFF;
     font-family: Permanent Marker;
@@ -334,18 +329,17 @@ function getLocationHighscore() {
     right: 1rem;
     bottom: 1rem;
   }
-
   #edit-button:hover{
     background: #214F75;
     border-color: white;
   }
-
   #edit-button:active{
     transform: scale(.96);
   }
-
 #quiz-friends{
     display: flex;
+    width: 100%;
+    justify-content: space-evenly;
 }
   .tram {
     height: 7rem;
@@ -366,10 +360,10 @@ function getLocationHighscore() {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     display: flex;
     justify-content: space-around;
+    align-items: center;
     width: 50%;
-    margin: 1em 1em;
-    height: 30%;
-    margin-right: 12em;
+    margin: 1em 1em 2em 1em;
+    height: 24em;
   }
 
   .quiz {
@@ -386,8 +380,9 @@ function getLocationHighscore() {
     list-style: none;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     width: 6em;
-    height: 15rem;
+    height: 20rem;
     padding: 0.5rem;
     margin: 0.5rem;
   }
@@ -400,70 +395,72 @@ function getLocationHighscore() {
     line-height: normal;
     display: flex;
     flex-direction: row;
-    margin: 0.5rem;
     display: flex;
     justify-content: center;
-    margin-bottom: -0.2em;
   }
 
   .quiz-extra {
     font-size: 1.9rem;
   }
-  #friends-list {
-    padding: 0;
-    margin: 0;
-  }
 
-  #friend-list {
-    border-radius: 25px;
-    border: 4px solid #214F75;
-    background: rgba(232, 243, 253, 0.91);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+
+  .highscore {
     width: 50%;
-    margin-right: 1rem;
-    margin-left: 0.5rem;
-    height: 30%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .friend {
-    border-radius: 17px;
-    background: rgba(64, 108, 144, 0.73);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    color: #FFF;
-    font-family: Newsreader;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    list-style: none;
-    margin: 1rem;
-    padding: 0.5rem;
-
-  }
-
-  #friends {
-    color: #000;
-    font-family: Newsreader;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
     display: flex;
-    justify-content: center;
-    margin: 0.5rem;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.5em 0.5em 1.5em 0.5em;
+    margin: 1em 1em 2em 0em;
+    border-radius: 0.75rem;
+    border: 4px solid #214f75;
+    background: rgba(232, 243, 253, 0.9);
+  }
+
+
+  .HighscoreFillBlank{
+  }
+
+  .HighscoreMap{
   }
 
   .selectForForm {
-    border: 4px solid #214F75;
+    border: 2px solid #214f75;
     border-radius: 25px;
-    margin: -41.5em -42em;
     position: absolute;
-    background: rgba(232, 243, 253, 0.9);
-    padding: 0.5em 0.5em;
+    background: rgba(64, 108, 144, 0.73);
+    color: #FFF;
+    padding: 0.1em 0.1em;
     text-align: center;
     font-weight: bold;
+    width: 100%;
+    font-family: Newsreader;
+    font-size: 20px;
+    height: 2.5em;
+  }
+
+  .chooseHighscoreBox {
+    position: relative;
+    font-family: 'Newsreader';
+    height: 3em;
+    width: 50%;
+    border-radius: 1.90625rem;
+  }
+  .chooseHighscoreBox select {
+  }
+  .chooseHighscoreBox-selected {
+    background-color: #e8f3fd;
+  }
+  .chooseHighscoreBox-selected::after {
+    position: absolute;
+    content: '';
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
   }
 
   .selectForForm:hover {
@@ -472,11 +469,15 @@ function getLocationHighscore() {
     border-color: rgba(232, 243, 253, 0.9);
 
   }
-  .FriendsBackground{
-    border: 0.3em solid #214F75;
+  .FriendsHigh {
+    text-align: center;
+    font-family: Permanent Marker;
+    color:#FFF;
+    font-size: 3em;
     border-radius: 25px;
+    padding: 0 0.5em 0 0.5em;
+    background-color: rgba(64, 108, 144, 0.91);;
   }
-
 
   .user {
     border-radius: 17px;
@@ -485,9 +486,10 @@ function getLocationHighscore() {
     color: #fff;
     border: 2.22rem;
     font-family: 'Newsreader';
-    width: 100%;
+    width: 85%;
+    border: 2px solid #214f75;
+    font-size: 1.5em;
   }
-
   .position {
     border-radius: 6px;
     border: 1px solid #000;
@@ -496,6 +498,7 @@ function getLocationHighscore() {
     color: #000;
     font-family: 'Noto Sans Osmanya';
     font-size: xx-large;
+    border: 2px solid #214f75;
   }
 
   .pos-1 {
@@ -564,58 +567,8 @@ function getLocationHighscore() {
     padding: 10px 20px;
   }
 
-  .chooseHighscoreBox {
-    position: relative;
-    font-family: 'Newsreader';
-    height: 3em;
-    width: 100%;
-    margin-top: 5%;
-    /*border-radius: 1.90625rem;
-    border: 3px solid #214f75;
-    background: #e8f3fd;*/
-  }
 
-  .chooseHighscoreBox select {
-
-  }
-
-  .chooseHighscoreBox-selected {
-    background-color: #e8f3fd;
-  }
-
-  .chooseHighscoreBox-selected::after {
-    position: absolute;
-    content: '';
-    top: 14px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-color: #fff transparent transparent transparent;
-  }
-
-  .highscore {
-    width: 40.5rem;
-
-    padding: 2%;
-    margin-top: 2rem;
-    border-radius: 0.75rem;
-    border: 4px solid #214f75;
-    background: rgba(232, 243, 253, 0.9);
-    box-shadow: 0px 4px 4px 9px rgba(0, 0, 0, 0.3);
-  }
-
-  .highscoreTable {
-    padding-top: 5em;
-  }
-
-  .HighscoreFillBlank{
-    margin-top: 5em;
-  }
-
-  .HighscoreMap{
-    margin-top: 5em;
-  }
+ 
 
   @media screen and (max-width: 768px) {
     #top-section {
@@ -657,7 +610,7 @@ function getLocationHighscore() {
     height: 2rem;
     margin: 0.5em;
 }
-#about[data-v-719e5484] {
+#about {
     display: flex;
     width: 85%;
     height: 10rem;
@@ -693,6 +646,28 @@ function getLocationHighscore() {
     font-style: normal;
     line-height: normal;
     width: 85%;
+  }
+  #quiz-friends {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #quiz-scores {
+    width: 80%;
+  }
+  .highscore {
+    width: 80%;
+  }
+  .FriendsHigh {
+    margin-bottom: 0.5em;
+  }
+  .chooseHighscoreBox {
+    margin-bottom: 1em;
+  }
+  #quiz-scores {
+    border: 0;
+    background: none;
+    box-shadow: none;
   }
 }
 </style>
