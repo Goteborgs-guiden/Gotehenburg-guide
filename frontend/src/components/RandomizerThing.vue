@@ -77,7 +77,7 @@ function sendBlankAnswer(input, id) {
         this.answer = ''
         allowsubmit.value = false
         setTimeout(function () {
-          getBlankQuestion(currentQuestion.value++)
+          currentQuestion.value++
           randomizeQuestion()
           allowsubmit.value = true
         }, 1500)
@@ -109,7 +109,7 @@ function sendMapAnswer(input, id, answerid) {
         allowsubmit.value = false
         setTimeout(function () {
           currentQuestion.value++
-          getMapQuestion(currentQuestion.value)
+        
           randomizeQuestion()
           color.value='214f75';
           allowsubmit.value = true
@@ -155,7 +155,6 @@ function sendABCAnswer(input, id, answerid) {
         allowsubmit.value = false
         setTimeout(function () {
           currentQuestion.value++
-          getABCQuestion(currentQuestion.value)
           randomizeQuestion()
           color.value='#214f75';
           allowsubmit.value = true

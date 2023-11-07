@@ -57,7 +57,7 @@ function sendAnswer(input, id) {
         this.answer = ""
         allowsubmit.value = false
         setTimeout(function () {
-          getQuestion(currentQuestion.value++)
+          currentQuestion.value++
           getQuestion(currentQuestion.value)
           allowsubmit.value = true
         }, 1500)
