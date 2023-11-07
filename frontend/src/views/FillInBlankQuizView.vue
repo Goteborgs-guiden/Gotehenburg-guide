@@ -150,10 +150,10 @@ p {
   width: fit-content;
 }
 #correctAnswer {
-  color: #2ce03e;
+  color: #000000;
 }
 #wrongAnswer {
-  color: #f00;
+  color: rgb(0, 0, 0);
 }
 .inputform {
   height: 2rem;

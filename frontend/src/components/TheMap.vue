@@ -175,7 +175,6 @@ function sendAnswer(input, id, answerid) {
   font-family: 'Newsreader';
   font-size: large;
   color: #214f75;
-  letter-spacing: 1.5px;
 }
 .question {
   color: white;
